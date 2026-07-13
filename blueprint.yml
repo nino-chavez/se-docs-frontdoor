@@ -1,0 +1,119 @@
+# Blueprint Configuration — stamped by template/tools/blueprint-init on 2026-07-09
+
+project:
+  name: "se-docs-frontdoor"
+  description: "A Slack front door over every SE doc source — one cited answer away"
+  product: "SE Docs Front Door"
+  audience:
+    leadership: ["commerce.com SE leadership (pilot sponsor per grill 2026-07-09: 'SE team ask')"]
+    engineering: []                 # none in v1 — configure-first; fills if a pilot test fails into the build branch
+    broader: ["commerce.com sales engineers (all Claude-Enterprise-seated)", "senior SEs (2-3, deflection-metric champions — recruit before go-live)"]
+
+# ──────────────────────────────────────────────────────────────────
+# Pilot profile (REQUIRED — Stage 0 → Stage 1 gate)
+# Reviewer: pilot-profile-lock-reviewer (blocks Stage 1 until filled)
+# Derived from the 2026-07-09 definition + grill session (three research
+# tracks + 16-question grill); ledger in research/sources/.
+# ──────────────────────────────────────────────────────────────────
+pilot_profile:
+  slug: "commerce-se-solution-research"
+  display_name: "commerce.com sales engineer researching a client solution across scattered doc sources"
+  pain_point: "SEs assemble client solutions from docs scattered across Jira/Confluence, Google Drive, Slack threads, NotebookLM notebooks, local files, and internal/public doc sites; research time goes to finding and cross-referencing, not reasoning, and the fallback is pinging the 2-3 senior SEs who hold the tribal knowledge."
+  monetization_side: "internal — no revenue; success is senior-SE deflection (fewer 'quick question' pings) with weekly-active SEs as the backup adoption signal"
+  walkthrough_citation: "research/sources/definition-and-grill-2026-07-09.md"
+  competitors_in_scope:             # the pilot's real competition is the status quo + the buy shelf
+    - "Shoulder-tap to a senior SE (the incumbent behavior the metric measures)"
+    - "Claude Tag / Claude in Slack (Anthropic-native — this IS the Tier 0 candidate, not a rival)"
+    - "Slack native Slackbot/Agentforce (2026-03 overhaul; Salesforce-model, undocumented ACLs)"
+    - "Glean (~$60k/yr floor — dead on arrival next to existing Claude Enterprise spend)"
+    - "Onyx / Dust (Claude-friendly buys — only revive if indexed-RAG-with-ACL-sync is ever forced)"
+  out_of_scope_pilots:
+    - "Synthesis deliverables (solution-overview / RFP drafting) — v2 roadmap, lookup-first per grill"
+    - "Write-back of any kind (gap-filing tickets, KB writes) — READ-ONLY v1 is a hard line"
+    - "Call-time fast lane (prompt-cached core for mid-call latency) — async-first v1"
+    - "Non-SE audiences (support, CS, partners) — expansion only after SE deflection moves"
+
+# Pipeline shape — see Blueprint docs/variant-selection.md (methodology source)
+variant: greenfield
+
+# Deliverable sophistication — see Blueprint docs/portal-and-tier-ladder.md (methodology source)
+# Variant × Tier matrix codified in that doc; do not deviate without an ADR.
+tier: 1
+
+# Portal type — which portal harness this initiative uses
+# initiative = Initiative Portal (Astro + @blueprint/ui, multi-audience platform front-door)
+# review     = Review Portal (static HTML + drawers, brownfield audit/redesign)
+# bespoke    = custom portal with mandatory divergence ADR in decisions/
+portal_type: initiative
+
+# ──────────────────────────────────────────────────────────────────
+# Portal harness config (Initiative Portal). Read by apps/portal/src/lib/portal-config.ts.
+# Tier-0 default: ZERO data sources wired. The portal builds green and shows the
+# decisions catalog + strategy excerpts; every optional substrate section hides.
+# Wire a source = set its path to a repo-relative file that exists, then rebuild.
+# A typo'd path simply keeps the section hidden — it never crashes the build.
+# ──────────────────────────────────────────────────────────────────
+portal:
+  repo_url: "https://github.com/your-org/se-docs-frontdoor"
+  decisions:
+    dir: "decisions"               # folder of NNNN-slug.md decision records (ADRs)
+    # filename_pattern: "^(?:ADR-)?(\\d{4})-(.+)\\.md$"  # override the matcher if your ADRs are named differently
+  # Optional derived-data sources. Each is a repo-relative path to a JSON file
+  # produced by a consumer-side derive tool. null = section hidden (Tier 0).
+  sources:
+    state: null                    # capability state-derive   → enables Inspect/coverage
+    board: null                    # work-board derive         → enables Roadmap
+    epic_footprints: null          # per-epic footprint derive → enriches Roadmap epic progress
+    attestations: null             # gate attestations derive  → enables Inspect/attestations
+    proposals: null                # proposal/issue derive     → enables Inspect/dependencies
+    dep_graph: null                # dependency-graph derive   → enables the dep-graph view
+    scenarios: null                # demo scenarios json       → enables Try/scenarios
+    build_order: null              # build-order plan          → enables Roadmap build order
+  # 10-gate Epic-DoD compliance grid. Off by default; needs an epics model + a
+  # state-derive tool. enabled:false keeps @blueprint/gate-derive yielding empty.
+  gates:
+    enabled: false
+    epics_source: null             # repo-relative module/json supplying the EPICS list
+    gate_labels: []                # 10 labels for the gate columns; empty = generic
+  # board:    bucket labels, phase order, epic-tracker issue range (see portal-config.ts)
+  # excerpts: strategy-doc excerpts to surface on the home/strategy pages
+  # home / operate / inspect / surfaces / archaeology: navigation + content (Phase B)
+
+execution:
+  depth: lean                       # configure-first initiative: Stage 1 research is already banked
+                                    # (2026-07-09 session), Stage 2 "prototype" is a pilot protocol run
+                                    # in commerce's Slack/Claude admin — not code. standard/thorough
+                                    # depth would gold-plate a zero-build primary path.
+
+# ──────────────────────────────────────────────────────────────────
+# Stage 2 paradigm deviation (why-not-canonical, per working-style rule):
+# Canonical Stage 2 is a built prototype (static portal / embedded / hybrid).
+# Disqualifier: this initiative's riskiest assumptions (Shared-Drive connector
+# visibility, prompt-level authority-tier labeling, citation quality on the
+# real corpus) are testable only by CONFIGURING Claude Tag in a live SE
+# channel — code would prototype the fallback, not the primary.
+# Chosen alternative: Stage 2 = pilot protocol + instruction set + measurement
+# plan (docs + runbook), with the thin-build (Bolt + Messages API + federated
+# tools) as the contingent branch behind named pilot-failure triggers.
+# Full ADR: decisions/0001-configure-first-pilot-as-prototype.md
+# ──────────────────────────────────────────────────────────────────
+
+# Forge pipeline does not apply: the Stage 2 deliverable is a pilot protocol +
+# channel instruction set run inside commerce's Slack/Claude admin (ADR-0001),
+# not a branded generated surface; the stamped portal is methodology chrome.
+forge_pipeline:
+  skip: true
+  reason: "Configure-first initiative per ADR-0001 — Stage 2 output is a Claude Tag pilot protocol and instruction set, not a forge-branded prototype surface; no brand kit, signal content, or generated imagery is in scope for v1."
+
+cost:
+  default:
+    effort: medium
+    model_tier: inherit
+  stages:
+    research:    { effort: medium, model_tier: inherit, skip_justification: "Stage 1 substantively banked 2026-07-09 (vendor-canonical + market + internal prior-art + 2 verifications); remaining work is backfill into research/ docs" }
+    design:      { effort: medium, model_tier: inherit, skip_justification: "Stage 2 design principles are already locked as grill decisions (tier labels, conflict rule, citations, version pin, read-only) — the stage formalizes them into DESIGN.md + instruction set, not open-ended design work (ADR-0001)" }
+    prototype:   { effort: medium, model_tier: inherit, skip_justification: "Stage 2 paradigm deviation per ADR-0001 — prototype is a pilot protocol document run in commerce's Slack admin, not code; medium effort is the conscious ceiling for protocol authoring" }
+    fact_check:  { effort: xhigh,  model_tier: inherit }   # false-green guard — do not cheapen
+    documents:   { effort: medium, model_tier: sonnet }
+    deploy:      { effort: low,    model_tier: sonnet, skip_justification: "mechanical" }
+    iterate:     { effort: medium, model_tier: sonnet }

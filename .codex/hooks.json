@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/Users/nino/Workspace/dev/wip/se-docs-frontdoor/.codex/hooks/blueprint-session-start.py'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

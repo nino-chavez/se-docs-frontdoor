@@ -1,0 +1,112 @@
+/**
+ * @blueprint/design-tokens — CSS variables
+ *
+ * Canonical surface for tokens. Every other consumer (Tailwind preset,
+ * Svelte components, vanilla HTML in apps/demos) reads through these.
+ *
+ * Color uses OKLCH for perceptually uniform lightness. Derived backgrounds
+ * and foregrounds use `oklch(from var(...) L C h / alpha)` so re-theming
+ * is a single source-color change.
+ *
+ * Namespace: --sedo-* (se-docs-frontdoor). Never collides with merchant
+ * storefront tokens or BC platform tokens.
+ */
+
+:root {
+  /* -------- Color (OKLCH triplets: lightness chroma hue) -------- */
+
+  /* Brand — teal/cyan; distinct from BC blue, signals "data/subscriptions" */
+  --sedo-brand-lch:            0.55 0.13 215;
+  --sedo-brand-background-lch: 0.97 0.03 215;
+  --sedo-brand-foreground-lch: 0.28 0.06 215;
+
+  /* Semantic state */
+  --sedo-success-lch:            0.72 0.17 152;
+  --sedo-success-background-lch: 0.97 0.04 152;
+  --sedo-success-foreground-lch: 0.32 0.09 152;
+
+  --sedo-error-lch:            0.62 0.22 28;
+  --sedo-error-background-lch: 0.96 0.04 28;
+  --sedo-error-foreground-lch: 0.32 0.12 28;
+
+  --sedo-warning-lch:            0.78 0.16 78;
+  --sedo-warning-background-lch: 0.97 0.04 78;
+  --sedo-warning-foreground-lch: 0.36 0.10 78;
+
+  --sedo-info-lch:            0.62 0.13 245;
+  --sedo-info-background-lch: 0.97 0.03 245;
+  --sedo-info-foreground-lch: 0.32 0.08 245;
+
+  /* Neutral surfaces */
+  --sedo-background-lch: 1 0 0;
+  --sedo-foreground-lch: 0.16 0 0;
+
+  /* Neutral scale — 100 lightest, 500 darkest before foreground */
+  --sedo-contrast-100-lch: 0.96 0 0;
+  --sedo-contrast-200-lch: 0.88 0 0;
+  --sedo-contrast-300-lch: 0.78 0 0;
+  --sedo-contrast-400-lch: 0.62 0 0;
+  --sedo-contrast-500-lch: 0.42 0 0;
+
+  /* -------- Typography -------- */
+  --sedo-font-heading: 'Inter Display', 'Inter', system-ui, -apple-system, sans-serif;
+  --sedo-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --sedo-font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* -------- Motion -------- */
+  --sedo-duration-instant:    100ms;
+  --sedo-duration-fast:       150ms;
+  --sedo-duration-normal:     200ms;
+  --sedo-duration-slow:       300ms;
+  --sedo-duration-deliberate: 500ms;
+
+  --sedo-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --sedo-easing-decel:    cubic-bezier(0, 0, 0.2, 1);
+  --sedo-easing-accel:    cubic-bezier(0.4, 0, 1, 1);
+  --sedo-easing-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* -------- Focus rings -------- */
+  --sedo-focus-ring-width:  2px;
+  --sedo-focus-ring-offset: 2px;
+  --sedo-focus-ring-color:  oklch(var(--sedo-brand-lch));
+
+  /* -------- Elevation -------- */
+  --sedo-shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.04);
+  --sedo-shadow-md: 0 4px 8px -2px oklch(0 0 0 / 0.08), 0 2px 4px -2px oklch(0 0 0 / 0.04);
+  --sedo-shadow-lg: 0 12px 24px -8px oklch(0 0 0 / 0.10), 0 4px 8px -4px oklch(0 0 0 / 0.06);
+  --sedo-shadow-xl: 0 24px 48px -12px oklch(0 0 0 / 0.14);
+}
+
+/*
+ * Theme = light-mode-first, explicit-opt-in only.
+ *
+ * Dark-mode auto-flip (@media prefers-color-scheme) was removed
+ * 2026-05-20 — the lightness-inversion approach didn't carry the
+ * editorial register and produced an undesigned dark surface.
+ *
+ * Surfaces that explicitly opt in to dark via data-theme="dark"
+ * still get the override block below. A deliberate dark-mode design
+ * pass (correct chroma curves, separate contrast ladder, motion
+ * adjustments) belongs in the Slice 7 brand-identity beat — not as
+ * an automatic side-effect of OS preference.
+ */
+
+[data-theme="light"] {
+  --sedo-background-lch: 1 0 0;
+  --sedo-foreground-lch: 0.16 0 0;
+  --sedo-contrast-100-lch: 0.96 0 0;
+  --sedo-contrast-200-lch: 0.88 0 0;
+  --sedo-contrast-300-lch: 0.78 0 0;
+  --sedo-contrast-400-lch: 0.62 0 0;
+  --sedo-contrast-500-lch: 0.42 0 0;
+}
+
+[data-theme="dark"] {
+  --sedo-background-lch: 0.16 0 0;
+  --sedo-foreground-lch: 0.96 0 0;
+  --sedo-contrast-100-lch: 0.22 0 0;
+  --sedo-contrast-200-lch: 0.30 0 0;
+  --sedo-contrast-300-lch: 0.40 0 0;
+  --sedo-contrast-400-lch: 0.56 0 0;
+  --sedo-contrast-500-lch: 0.74 0 0;
+}

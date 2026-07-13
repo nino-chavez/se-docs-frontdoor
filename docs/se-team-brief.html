@@ -1,0 +1,537 @@
+<title>SE Docs Front Door — Decision Brief</title>
+<style>
+  :root {
+    --paper: #FBF9FB;
+    --surface: #F3EEF4;
+    --surface-2: #ECE4ED;
+    --ink: #241C25;
+    --muted: #6E6070;
+    --line: #E1D7E2;
+    --accent: #6D3A72;
+    --accent-ink: #FFFFFF;
+    --go: #2E7D4F;
+    --go-bg: #E7F2EB;
+    --hold: #91661D;
+    --hold-bg: #F5EDDD;
+    --dead: #8A7E8B;
+    --dead-bg: #EFEAEF;
+    --sans: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #191419;
+      --surface: #221B23;
+      --surface-2: #2B222C;
+      --ink: #ECE6ED;
+      --muted: #A395A5;
+      --line: #3A2F3B;
+      --accent: #D3A8DA;
+      --accent-ink: #241C25;
+      --go: #7FC79E;
+      --go-bg: #1E2E24;
+      --hold: #D9B36A;
+      --hold-bg: #322A1A;
+      --dead: #8A7E8B;
+      --dead-bg: #262027;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #FBF9FB; --surface: #F3EEF4; --surface-2: #ECE4ED; --ink: #241C25;
+    --muted: #6E6070; --line: #E1D7E2; --accent: #6D3A72; --accent-ink: #FFFFFF;
+    --go: #2E7D4F; --go-bg: #E7F2EB; --hold: #91661D; --hold-bg: #F5EDDD;
+    --dead: #8A7E8B; --dead-bg: #EFEAEF;
+  }
+  :root[data-theme="dark"] {
+    --paper: #191419; --surface: #221B23; --surface-2: #2B222C; --ink: #ECE6ED;
+    --muted: #A395A5; --line: #3A2F3B; --accent: #D3A8DA; --accent-ink: #241C25;
+    --go: #7FC79E; --go-bg: #1E2E24; --hold: #D9B36A; --hold-bg: #322A1A;
+    --dead: #8A7E8B; --dead-bg: #262027;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .page {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+  }
+  .prose { max-width: 68ch; }
+
+  h1, h2, h3 { font-family: var(--sans); text-wrap: balance; line-height: 1.15; }
+  h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.015em; margin: 0.6rem 0 0.9rem; }
+  h2 { font-size: 1.45rem; font-weight: 650; margin: 0 0 1rem; }
+  h3 { font-size: 1.05rem; font-weight: 650; margin: 0 0 0.5rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dek { font-size: 1.15rem; color: var(--muted); max-width: 60ch; margin-bottom: 0; }
+
+  section { margin-top: 4rem; }
+  .sec-head { border-top: 2px solid var(--ink); padding-top: 0.8rem; margin-bottom: 1.4rem; }
+  .sec-head .eyebrow { color: var(--accent); }
+
+  .decision {
+    margin-top: 2.6rem;
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.5rem 1.6rem;
+    background: var(--surface);
+  }
+  .decision h2 { margin: 0.35rem 0 0.7rem; font-size: 1.25rem; }
+  .decision p:last-child { margin-bottom: 0; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.go   { color: var(--go);   background: var(--go-bg); }
+  .pill.hold { color: var(--hold); background: var(--hold-bg); }
+  .pill.dead { color: var(--dead); background: var(--dead-bg); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  .table-wrap { overflow-x: auto; margin: 1.2rem 0; }
+  th {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); text-align: left;
+    padding: 0.5rem 0.9rem 0.5rem 0; border-bottom: 1.5px solid var(--ink);
+  }
+  td { padding: 0.6rem 0.9rem 0.6rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { font-family: var(--sans); font-weight: 600; font-size: 0.88rem; white-space: nowrap; }
+
+  ul.findings { padding-left: 1.1rem; margin: 0 0 1rem; }
+  ul.findings li { margin-bottom: 0.55rem; }
+  .src { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+
+  .tracks { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); margin-top: 1.4rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.15rem 1.25rem;
+  }
+  .card .eyebrow { display: block; margin-bottom: 0.55rem; }
+  .card p, .card ul { font-size: 0.95rem; }
+  .card ul { padding-left: 1.05rem; margin: 0; }
+  .card li { margin-bottom: 0.5rem; }
+  .card li:last-child { margin-bottom: 0; }
+
+  .flag {
+    border-left: 3px solid var(--hold);
+    background: var(--hold-bg);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 1.2rem 0;
+    font-size: 0.95rem;
+  }
+  .flag strong { font-family: var(--sans); font-size: 0.9rem; }
+
+  .round { margin-top: 2.4rem; }
+  .round-head {
+    display: flex; align-items: baseline; gap: 0.7rem;
+    border-bottom: 1px solid var(--line); padding-bottom: 0.5rem; margin-bottom: 1.2rem;
+  }
+  .round-num {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em;
+    color: var(--accent); text-transform: uppercase;
+  }
+  .round-title { font-family: var(--sans); font-weight: 650; font-size: 1rem; }
+
+  .q { margin-bottom: 1.9rem; }
+  .q-topic {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.3rem;
+  }
+  .q-text { font-size: 1rem; margin-bottom: 0.75rem; max-width: 68ch; }
+  .opts { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+  .opt {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: baseline;
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 0.55rem 0.85rem; font-size: 0.9rem; color: var(--muted);
+    background: transparent;
+  }
+  .opt .opt-label { font-family: var(--sans); font-weight: 600; color: inherit; white-space: nowrap; }
+  .opt.sel {
+    border-color: var(--accent);
+    background: var(--surface);
+    color: var(--ink);
+    border-left-width: 4px;
+  }
+  .opt.sel .opt-label { color: var(--accent); }
+  .opt .tag {
+    grid-column: 1 / -1;
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-top: 0.1rem;
+  }
+  .q-note { font-size: 0.88rem; color: var(--muted); margin-top: 0.55rem; font-style: italic; }
+
+  .asks { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin-top: 1.4rem; }
+  .ask-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 0.4rem; }
+
+  footer {
+    margin-top: 5rem; padding-top: 1rem; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em;
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="page">
+
+  <header>
+    <span class="eyebrow">Internal Brief &middot; SE Team &middot; July 2026 &middot; Read-only draft for discussion</span>
+    <h1>SE Docs Front Door</h1>
+    <p class="dek">One Slack question, one cited answer — drawn from every doc source we already use. This brief covers the problem, what three research tracks found, the decision analysis, and the full scoping interview that locked the design.</p>
+  </header>
+
+  <div class="decision">
+    <span class="eyebrow">The decision</span>
+    <h2>Configure first. Build only on evidence. Buy nothing.</h2>
+    <p>Anthropic already ships this product — <strong>Claude Tag</strong> (the successor to Claude in Slack) — and our org already runs Claude in Slack on Enterprise seats with the Atlassian connector live. Every SE has a seat. So the next step is a <strong>two-week pilot in one SE channel</strong>: zero code, admin toggles only. A thin custom bot is fully specced as the fallback and activates only if the pilot fails a named test. The buy shelf (Glean, Onyx, Dust, Slack's Agentforce) is retired — our access model and existing Claude spend remove both of its justifications.</p>
+    <p><span class="pill go">Configure — pilot now</span>&ensp;<span class="pill hold">Build — contingent</span>&ensp;<span class="pill dead">Buy — retired</span></p>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">01 &middot; Problem</span>
+      <h2>Research time goes to finding, not reasoning</h2>
+    </div>
+    <div class="prose">
+      <p>SEs assemble client solutions from documents scattered across Jira and Confluence, Google Drive, Slack threads, NotebookLM notebooks, one-off local files, and internal and public doc sites. None of these search each other. The working fallback is the shoulder-tap: ping one of the two or three senior SEs who hold the tribal knowledge.</p>
+      <p>That fallback is the measurable cost. It taxes the seniors, it caps how fast newer SEs ramp, and it means answer quality depends on who happens to be online. The front door exists to replace the shoulder-tap with something faster that cites its sources — so the metric for success is <strong>senior-SE deflection</strong>: fewer &ldquo;quick question&rdquo; pings, measured against a baseline we capture before launch.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">02 &middot; Research</span>
+      <h2>Three tracks, run in parallel, verified against primary sources</h2>
+    </div>
+
+    <div class="tracks">
+      <div class="card">
+        <span class="eyebrow">Track 1 &middot; What Anthropic ships</span>
+        <ul>
+          <li><strong>Claude Tag</strong> is this product off the shelf: @Claude in channels, access to enabled connectors, per-channel scoped identities, spend limits, audit log. Legacy Claude-in-Slack force-migrates to Tag on Aug 3, 2026.</li>
+          <li>Our rails already exist: <strong>Claude Enterprise seats org-wide, Atlassian connector live</strong> — proven by an adjacent internal POC (the GEM enablement-triage bot) that creates Jira tickets from Slack today.</li>
+          <li>If we ever build: Slack bot &rarr; Claude Messages API &rarr; search tools that return <code>search_result</code> blocks, which makes <strong>verifiable citations automatic</strong>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Track 2 &middot; The market</span>
+        <ul>
+          <li>Buy options ranked: Slack&rsquo;s native Slackbot/Agentforce (Salesforce&rsquo;s model, permission story undocumented), Glean (best surface, ~$60k/yr floor), Onyx and Dust (Claude-friendly, $0&ndash;$30/seat).</li>
+          <li>All four carry the same headwind: we already pay for Claude Enterprise. A second overlapping AI spend needs its own justification.</li>
+          <li>Adoption reality check: the median enterprise doc-bot falls under <strong>15% weekly-active by month six</strong>. The #1 retention lever in the data is <strong>citation quality</strong> — answers people can verify.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Track 3 &middot; Retrieval architecture</span>
+        <ul>
+          <li>2025&ndash;26 consensus: <strong>federated live search beats a copied index</strong> for permission-sensitive corpora — the agent queries each source&rsquo;s own search at question time, so nothing is duplicated and nothing goes stale.</li>
+          <li>Permission-leaking indexes are now the <strong>#2 risk on OWASP&rsquo;s LLM Top 10</strong>, with real incidents. Federation avoids the entire class.</li>
+          <li>Indexing earns a place only for sources with weak search. Our inventory has none of the usual suspects.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flag">
+      <strong>Verified the hard way #1 — NotebookLM is not a queryable source.</strong> Google publishes no API for asking a notebook questions (the Enterprise API manages notebooks; it cannot query them), and notebook sources are internal copies, invisible to Drive search unless they were imported from Drive. Norm, not code: originals live in Drive; notebooks import from Drive.
+    </div>
+    <div class="flag">
+      <strong>Verified the hard way #2 — a known Shared-Drive blind spot.</strong> An open Anthropic bug shows one variant of the Claude Drive connector silently sees only My Drive, not Shared Drives — empty results, no error. Whether our Enterprise connector is affected is undocumented, and most SE docs live in Shared Drives. This is pilot test #1; the custom-bot fallback fixes it with three API parameters.
+    </div>
+
+    <h3 style="margin-top:2rem;">Source coverage map</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>Covered how</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Jira / Confluence</td><td>Atlassian connector — already connected and working in our org</td><td><span class="pill go">Ready</span></td></tr>
+          <tr><td>Google Drive</td><td>Anthropic Drive connector (admin toggle) — pending the Shared-Drive check above</td><td><span class="pill hold">Test #1</span></td></tr>
+          <tr><td>Slack channels</td><td>Slack connector, scoped to named SE channels — thread knowledge is in scope</td><td><span class="pill go">Ready</span></td></tr>
+          <tr><td>Public dev docs</td><td>Web search, pinned to current-stable versions by instruction</td><td><span class="pill go">Ready</span></td></tr>
+          <tr><td>Internal doc sites</td><td>Confluence-backed portions already covered; CMS portions crawled only if pilot traffic demands</td><td><span class="pill hold">Partial</span></td></tr>
+          <tr><td>NotebookLM</td><td>Not queryable by anything (verified) — originals re-home to Drive on demand</td><td><span class="pill dead">Norm</span></td></tr>
+          <tr><td>Local one-off files</td><td>Demand-driven filing: when the bot misses one, that file gets filed into Drive/Confluence</td><td><span class="pill dead">Norm</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">03 &middot; Analysis</span>
+      <h2>Why configure wins, and exactly when build takes over</h2>
+    </div>
+    <div class="prose">
+      <p>The scoping interview (next section) settled the two facts that decide everything. First, <strong>access is uniform</strong> — every SE can already open every doc in scope — which removes the one hard requirement (per-user identity plumbing) that a custom build uniquely serves, and with it the entire case for buying a permission-syncing product. Second, <strong>every SE already has a Claude Enterprise seat</strong>, so Claude Tag reaches the whole team on day one at no incremental cost.</p>
+      <p>Everything else the interview locked — answer labels by source authority, surfacing conflicting docs instead of silently picking one, pinning public-doc answers to current-stable versions — is enforceable through channel instructions. Whether instruction-level enforcement is <em>good enough</em> is precisely what the pilot measures. The build branch stays fully specced and activates on any of four named triggers:</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>What it means</th><th>The build fix</th></tr></thead>
+        <tbody>
+          <tr><td>Shared-Drive blindness</td><td>Enterprise connector can&rsquo;t see Shared Drives</td><td>Custom Drive search tool — three API parameters</td></tr>
+          <tr><td>Label inadequacy</td><td>Prompt-level authority tiers / conflict flags prove too lossy</td><td>Bot formats answers deterministically</td></tr>
+          <tr><td>Scoping gaps</td><td>Tag can&rsquo;t restrict Slack search to named channels, or CMS sites matter</td><td>Custom tools with explicit scopes; targeted crawl</td></tr>
+          <tr><td>Telemetry ceiling</td><td>Deflection can&rsquo;t be measured by survey + senior self-report</td><td>Bot in the middle logs every question</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Design commitments that bind both branches: <strong>read-only v1 as a hard line</strong> (this tool researches; it never writes to Jira, docs, or anything else), citations on every answer, async-first (no mid-call latency engineering in v1), and wide corpus with authority-tier labels rather than a curated allowlist.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">04 &middot; The scoping interview</span>
+      <h2>Sixteen questions, four rounds — every answer routed the design</h2>
+    </div>
+    <p class="prose" style="color:var(--muted);">Each question exists because its answer changes what we configure versus build. Selected answers are marked; unselected options are kept to show what was considered and rejected.</p>
+
+    <div class="round">
+      <div class="round-head"><span class="round-num">Round 1</span><span class="round-title">The routing questions</span></div>
+
+      <div class="q">
+        <span class="q-topic">Access reality</span>
+        <p class="q-text">Can every SE see every doc in scope, or is access restricted per client, region, or deal? This is the single biggest router: uniform access permits a shared connection; restricted access mandates per-user identity.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Uniform — SEs see all</span><span>Every SE can already open every doc in scope.</span></li>
+          <li class="opt"><span class="opt-label">Mostly uniform, pockets</span><span>A few restricted areas that could be excluded from scope.</span></li>
+          <li class="opt"><span class="opt-label">Meaningfully restricted</span><span>Per-client/region/deal restrictions are real and in scope.</span></li>
+          <li class="opt sel"><span class="opt-label">(Answered with a question)</span><span>&ldquo;If we build it can we not incorporate some sort of ACL?&rdquo;</span><span class="tag">Response — re-asked in round 2</span></li>
+        </ul>
+        <p class="q-note">A build can incorporate access control — but that&rsquo;s a tech answer to a ground-truth question, so it was re-asked.</p>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Ownership</span>
+        <p class="q-text">Whose problem is this officially — and who owns it after a pilot proves out? Doc-bots die of orphanhood, not bad tech.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Skunkworks — mine</span><span>Prove it out first; ownership conversation after evidence.</span></li>
+          <li class="opt sel"><span class="opt-label">SE team ask</span><span>SE leadership knows the pain and would sponsor a pilot; long-term owner TBD.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Sanctioned path exists</span><span>A team (enablement, RevOps, IT) would own it if it works.</span></li>
+          <li class="opt"><span class="opt-label">Undefined — that&rsquo;s why</span><span>Defining ownership is part of what the initiative produces.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Corpus size</span>
+        <p class="q-text">How much material would the front door need to cover? Below roughly 500 pages of load-bearing content, retrieval infrastructure isn&rsquo;t needed at all — the whole corpus fits in the model&rsquo;s working context.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Small — hundreds of docs</span><span>A curated core could fit in-context; retrieval becomes optional.</span></li>
+          <li class="opt"><span class="opt-label">Medium — thousands</span><span>Retrieval required; federated search over 4&ndash;5 sources handles it.</span></li>
+          <li class="opt"><span class="opt-label">Large — tens of thousands+</span><span>Retrieval mandatory; cross-source ranking starts to matter.</span></li>
+          <li class="opt sel"><span class="opt-label">Genuinely unknown</span><span>Nobody has counted; the pilot includes a corpus census.</span><span class="tag">Selected</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Answer shape</span>
+        <p class="q-text">When an SE asks, what does the winning output look like? Fact-lookup with a citation is native to configure; synthesized deliverables are a different product.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Fact + citation</span><span>&ldquo;What&rsquo;s our SLA for X&rdquo; — a paragraph and a deep link.</span></li>
+          <li class="opt"><span class="opt-label">Synthesized draft</span><span>&ldquo;Draft a solution overview for client Y&rdquo; — multi-doc assembly.</span></li>
+          <li class="opt sel"><span class="opt-label">Both — lookup first</span><span>Lookup is the v1 wedge; synthesis is the roadmap, built on the same retrieval.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Navigation mostly</span><span>&ldquo;Which doc covers X&rdquo; — ranking beats summarization.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="round">
+      <div class="round-head"><span class="round-num">Round 2</span><span class="round-title">Sharpened by round 1</span></div>
+
+      <div class="q">
+        <span class="q-topic">Access reality, re-asked</span>
+        <p class="q-text">Per-user identity plumbing is roughly half the engineering of a build. If every SE already sees every doc, building it is pure waste. So the question stands: what is the actual access reality today?</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">Uniform — SEs see all</span><span>Same visibility for all SEs. Shared connection is safe; the build halves.</span><span class="tag">Selected — this answer retired the buy lane</span></li>
+          <li class="opt"><span class="opt-label">Pockets — exclude them</span><span>Keep restricted areas out of scope for v1.</span></li>
+          <li class="opt"><span class="opt-label">Restricted for real</span><span>Per-user identity mandatory; budget for it.</span></li>
+          <li class="opt"><span class="opt-label">I&rsquo;ll check with IT</span><span>Answer before pilot design freezes.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Seat coverage</span>
+        <p class="q-text">Do all SEs have Claude Enterprise seats? Claude Tag rides individual accounts — an unseated SE can&rsquo;t use the front door at all.</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">All SEs seated</span><span>Tag reaches the whole team. Configure lane fully viable.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Some — partial</span><span>Either expand seats or the build wins on reach.</span></li>
+          <li class="opt"><span class="opt-label">Few or none</span><span>Tag pilot could only test quality, not adoption.</span></li>
+          <li class="opt"><span class="opt-label">Don&rsquo;t know</span><span>One Slack message to the Claude admin answers this.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Slack as a source</span>
+        <p class="q-text">Where&rsquo;s the actual gold in Slack — files posted to channels, or the thread conversations themselves (deal workarounds, &ldquo;we solved this for client X last year&rdquo;)?</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Threads — tribal gold</span><span>Answers live in conversations; Slack search becomes first-class.</span></li>
+          <li class="opt"><span class="opt-label">Files posted mostly</span><span>Channels are transport; filing norms capture the value.</span></li>
+          <li class="opt sel"><span class="opt-label">Both, threads matter</span><span>Files get filed, but thread knowledge is real. Scope Slack search to named SE channels, not workspace-wide.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Honestly unsure</span><span>Seed ten real questions and count thread-only answers.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Pass metric</span>
+        <p class="q-text">What number has to move for this to be declared working? Without one, the pilot can&rsquo;t pass or fail.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Time-to-answer</span><span>Minutes from question to cited answer vs today&rsquo;s hunt.</span></li>
+          <li class="opt sel"><span class="opt-label">Senior-SE deflection</span><span>Fewer &ldquo;quick question&rdquo; pings to the two or three people who know everything.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Weekly active SEs</span><span>% of the team asking at least one question a week by week four.</span></li>
+          <li class="opt"><span class="opt-label">Answer trust rate</span><span>% of answers an SE would forward to a client unedited.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="round">
+      <div class="round-head"><span class="round-num">Round 3</span><span class="round-title">Design commitments</span></div>
+
+      <div class="q">
+        <span class="q-topic">V1 corpus</span>
+        <p class="q-text">Curated core (blessed docs only) or wide open? Curated builds trust slowly but never burns it; wide is useful day one but one confidently-wrong answer in front of a client resets adoption to zero.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Curated core first</span><span>Blessed sources only; widen as trust accrues.</span></li>
+          <li class="opt"><span class="opt-label">Wide from day one</span><span>Everything searchable; citations let SEs self-verify.</span></li>
+          <li class="opt sel"><span class="opt-label">Wide, tiered labels</span><span>Search everything, but label answers by source authority: official doc vs team doc vs Slack thread.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Let the pilot decide</span><span>Week one curated, week two wide; compare.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Internal doc sites</span>
+        <p class="q-text">The internal sites were the last unmapped source — what actually backs them?</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Confluence-backed</span><span>Already covered by the live Atlassian connector.</span></li>
+          <li class="opt"><span class="opt-label">CMS / custom site</span><span>Not searchable as-is; the one place a crawl might be justified.</span></li>
+          <li class="opt sel"><span class="opt-label">Mix of both</span><span>Cover the Confluence part now; the rest gets attention only if pilot questions actually route there.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Will find out</span><span>Identify the backing system before pilot design freezes.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Write-back</span>
+        <p class="q-text">Read-only, or will this eventually write? An adjacent internal bot already writes to Jira, so the pressure will exist. The moment ours writes anything, its risk class changes.</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">Read-only v1, hard line</span><span>No writes in v1, period. Revisiting is a deliberate v2 decision with its own review.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Read-only forever</span><span>Research tool; writes are someone else&rsquo;s product.</span></li>
+          <li class="opt"><span class="opt-label">Gap-filing is the value</span><span>Answer gaps should become tickets; design the write gate now.</span></li>
+          <li class="opt"><span class="opt-label">Undecided</span><span>Default read-only until forced.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Latency need</span>
+        <p class="q-text">Do SEs ask live on customer calls (seconds matter) or in async research (a minute is fine)? Live search across sources is the slower architecture.</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Async research mostly</span><span>Minutes are fine; live federation is sufficient.</span></li>
+          <li class="opt"><span class="opt-label">Live on calls — real</span><span>Mid-call lookup is core; design a fast lane.</span></li>
+          <li class="opt sel"><span class="opt-label">Both, async first</span><span>V1 targets async research; call-time speed is a later optimization, not a v1 constraint.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Unsure of the mix</span><span>Tag questions by context during the pilot.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="round">
+      <div class="round-head"><span class="round-num">Round 4</span><span class="round-title">Failure modes and adoption</span></div>
+
+      <div class="q">
+        <span class="q-topic">Conflicting docs</span>
+        <p class="q-text">When two docs disagree — the 2024 battlecard says X, a March Slack thread says Y — what wins? &ldquo;The bot picked arbitrarily&rdquo; is how a senior SE writes it off permanently.</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">Surface both, flag it</span><span>Never silently pick. Cite both, let the SE judge — and every conflict flag doubles as a doc-hygiene signal for the team.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Authority tier wins</span><span>Official beats team beats thread — wrong when the thread is newer and correct.</span></li>
+          <li class="opt"><span class="opt-label">Recency wins</span><span>Newest wins — wrong when speculation outranks the contract SLA.</span></li>
+          <li class="opt"><span class="opt-label">Domain owners decide</span><span>Human tiebreaker per domain; most correct, most overhead.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Filing reality</span>
+        <p class="q-text">The filing norms (local files into Drive, notebook originals re-homed) only work if someone files. Is the trapped-content volume an afternoon&rsquo;s fix or a real migration?</p>
+        <ul class="opts">
+          <li class="opt"><span class="opt-label">Small — norm handles it</span><span>A pinned announcement plus habit change covers it.</span></li>
+          <li class="opt"><span class="opt-label">Real volume — sweep</span><span>One-time collection sweep with a named owner.</span></li>
+          <li class="opt"><span class="opt-label">Unknown volume</span><span>Add a &ldquo;where do you keep your stuff&rdquo; question to the pilot survey.</span></li>
+          <li class="opt sel"><span class="opt-label">Let it surface</span><span>No pre-migration. When the bot misses something, that file gets filed. Demand-driven filing.</span><span class="tag">Selected</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Senior buy-in</span>
+        <p class="q-text">The deflection metric makes the senior SEs the adoption engine — the highest-leverage behavior in the pilot is a senior answering a ping with &ldquo;ask the bot first, then come back to me.&rdquo; Are they in?</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">They&rsquo;d champion it</span><span>They feel the ping pain most — they&rsquo;ll redirect and baseline willingly. Recruit them before go-live.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">They&rsquo;d tolerate it</span><span>Passive support; pair the metric with weekly-active as backup.</span></li>
+          <li class="opt"><span class="opt-label">Haven&rsquo;t asked yet</span><span>Their buy-in is a go/no-go condition for this metric.</span></li>
+          <li class="opt"><span class="opt-label">Measure passively</span><span>Infer deflection from usage patterns and surveys.</span></li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-topic">Version drift</span>
+        <p class="q-text">Public dev docs as a source: do SEs get burned by old API versions and deprecated patterns showing up in answers, or is that a non-issue at the solution level?</p>
+        <ul class="opts">
+          <li class="opt sel"><span class="opt-label">Real — pin to stable</span><span>Version confusion happens today. Instruct the bot: answer from current-stable docs, explicitly label anything version-specific.</span><span class="tag">Selected</span></li>
+          <li class="opt"><span class="opt-label">Non-issue for SEs</span><span>SE questions are solution-level, not API-version-level.</span></li>
+          <li class="opt"><span class="opt-label">Citations handle it</span><span>The deep link shows the version context.</span></li>
+          <li class="opt"><span class="opt-label">Unsure</span><span>Seed version-sensitive questions in the pilot.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">05 &middot; Next steps</span>
+      <h2>What the pilot needs before go-live</h2>
+    </div>
+    <div class="asks">
+      <div class="card">
+        <span class="ask-num">Ask 1</span>
+        <h3>A Claude Enterprise admin</h3>
+        <p style="font-size:0.95rem; margin:0;">Toggle the Drive and Slack connectors, bless one pilot SE channel, invite Claude. The rails were already cleared by the adjacent triage POC — this is minutes, not a project.</p>
+      </div>
+      <div class="card">
+        <span class="ask-num">Ask 2</span>
+        <h3>Two or three senior SEs</h3>
+        <p style="font-size:0.95rem; margin:0;">Baseline their current ping volume, then adopt one behavior: &ldquo;ask the bot first, then come back to me.&rdquo; They are both the measurement and the adoption engine.</p>
+      </div>
+      <div class="card">
+        <span class="ask-num">Ask 3</span>
+        <h3>Two weeks of real questions</h3>
+        <p style="font-size:0.95rem; margin:0;">The pilot tests four things: Shared-Drive visibility, label and conflict-flag quality, citation usefulness, and a corpus census. Any failure activates the specced build fallback — nothing is wasted.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    SE Docs Front Door &middot; decision brief &middot; research and interview conducted 2026-07-09 &middot; full sources and decision records live in the initiative repo
+  </footer>
+
+</div>
