@@ -1,0 +1,132 @@
+{
+  "schema": "actor-output-boot/1",
+  "initiative": "se-docs-frontdoor",
+  "generated_at": "2026-07-20T17:30:16.206Z",
+  "as_of": "23fe38a",
+  "recent": [
+    "chore: initial commit — se-docs-frontdoor Blueprint portal"
+  ],
+  "account": {
+    "decisions": [
+      {
+        "path": "decisions/",
+        "exists": true,
+        "entries": 1
+      }
+    ],
+    "research": [
+      {
+        "path": "research/sources/",
+        "exists": true,
+        "entries": 1
+      }
+    ],
+    "demand": [
+      {
+        "path": "research/sources/definition-and-grill-2026-07-09.md",
+        "exists": true
+      }
+    ],
+    "state": [
+      {
+        "path": "HANDOFF.md",
+        "exists": true
+      }
+    ]
+  },
+  "actors": [
+    {
+      "id": "maintainer",
+      "kind": "human",
+      "evidence": "intrinsic",
+      "outcomes": [
+        "recover-context"
+      ]
+    },
+    {
+      "id": "pilot-sponsor",
+      "kind": "human",
+      "evidence": "observed",
+      "outcomes": [
+        "decide-pilot"
+      ]
+    },
+    {
+      "id": "sales-engineer",
+      "kind": "human",
+      "evidence": "observed",
+      "outcomes": [
+        "get-cited-answer"
+      ]
+    },
+    {
+      "id": "senior-se",
+      "kind": "human",
+      "evidence": "observed",
+      "outcomes": [
+        "redirect-pings"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "id": "slack-frontdoor",
+      "type": "configured-surface",
+      "status": "planned",
+      "serves": [
+        "sales-engineer.get-cited-answer",
+        "senior-se.redirect-pings"
+      ]
+    },
+    {
+      "id": "sponsor-decision-brief",
+      "type": "view",
+      "status": "ready",
+      "serves": [
+        "pilot-sponsor.decide-pilot"
+      ]
+    },
+    {
+      "id": "pilot-protocol",
+      "type": "view",
+      "status": "planned",
+      "serves": [
+        "pilot-sponsor.decide-pilot",
+        "senior-se.redirect-pings"
+      ]
+    },
+    {
+      "id": "measurement-plan",
+      "type": "view",
+      "status": "planned",
+      "serves": [
+        "pilot-sponsor.decide-pilot"
+      ]
+    },
+    {
+      "id": "recovery-brief",
+      "type": "recovery-brief",
+      "status": "ready",
+      "serves": [
+        "maintainer.recover-context"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "file": "decisions/0001-configure-first-pilot-as-prototype.md",
+      "title": "ADR-0001 — Configure-first: the Stage 2 \"prototype\" is a Claude Tag pilot protocol, not code"
+    }
+  ],
+  "verdict": {
+    "state": "PENDING",
+    "route": "actor-output",
+    "errors": [],
+    "pendings": [
+      "[R2-lifecycle] outcome sales-engineer.get-cited-answer is served only by slack-frontdoor(planned) — PENDING, not green",
+      "[R2-lifecycle] outcome senior-se.redirect-pings is served only by slack-frontdoor(planned), pilot-protocol(planned) — PENDING, not green",
+      "[R6-preconds] precondition deflection-baseline unmet (research/pilot/baseline-pings.md missing) — slack-frontdoor may not advance to ready/issued until it exists"
+    ],
+    "warns": []
+  }
+}

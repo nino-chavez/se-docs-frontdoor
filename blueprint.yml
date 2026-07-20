@@ -44,7 +44,10 @@ tier: 1
 # initiative = Initiative Portal (Astro + @blueprint/ui, multi-audience platform front-door)
 # review     = Review Portal (static HTML + drawers, brownfield audit/redesign)
 # bespoke    = custom portal with mandatory divergence ADR in decisions/
-portal_type: initiative
+portal_type: initiative   # DEPRECATED, mid-migration (Blueprint decisions/05): the live
+                          # contract is actor-output.yml at the root — `npm run manifest:gate`.
+                          # Removed when migration completes upstream.
+migration: actor-output   # explicit mid-migration mode (decisions/05) — sanctions the pair
 
 # ──────────────────────────────────────────────────────────────────
 # Portal harness config (Initiative Portal). Read by apps/portal/src/lib/portal-config.ts.

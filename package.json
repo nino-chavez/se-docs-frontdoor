@@ -8,6 +8,9 @@
   "scripts": {
     "dev": "npm run dev -w apps/portal",
     "build": "npm run build -w apps/portal",
-    "typecheck": "npm run typecheck -w apps/portal"
+    "typecheck": "npm run typecheck -w apps/portal",
+    "manifest:check": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/actor-output.mjs\" actor-output.yml --root .",
+    "manifest:gate": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/actor-output.mjs\" actor-output.yml --root . --gate",
+    "derive": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/account-derive.mjs\" --root ."
   }
 }
