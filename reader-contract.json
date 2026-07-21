@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "project": "SE Docs Front Door",
+  "defaults": {
+    "reader": "a solution engineer deciding whether and how to improve documentation discovery",
+    "job": "understand the proposed front door, evaluate the pilot, and know what decision or contribution is needed",
+    "assumedKnowledge": [
+      "solution engineering work",
+      "the organization's documentation landscape"
+    ],
+    "plainness": "practitioner",
+    "precisionLocks": [
+      "pilot scope",
+      "baseline measures",
+      "source citations",
+      "named decisions and owners"
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "SE team brief",
+      "renderedRoots": [
+        "docs/se-team-brief.html"
+      ],
+      "sourceRoots": [
+        "docs/se-team-brief.html",
+        "research",
+        "decisions"
+      ],
+      "allowTerms": [
+        "AI",
+        "SE",
+        "Slack"
+      ],
+      "denyTerms": [],
+      "maxWordsPerText": 90
+    },
+    {
+      "name": "initiative portal",
+      "renderedRoots": [
+        "apps/portal/dist"
+      ],
+      "sourceRoots": [
+        "blueprint.yml",
+        "apps/portal/src"
+      ],
+      "reader": "a maintainer inspecting the initiative's evidence and current state",
+      "job": "find the governing decision, evidence, and next action without reconstructing the project history",
+      "assumedKnowledge": [
+        "software product work",
+        "solution engineering"
+      ],
+      "plainness": "specialist",
+      "precisionLocks": [
+        "decision identifiers",
+        "citations",
+        "pilot measurements"
+      ],
+      "allowTerms": [
+        "ADR",
+        "Blueprint"
+      ],
+      "denyTerms": []
+    }
+  ]
+}
