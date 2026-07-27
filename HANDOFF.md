@@ -30,6 +30,25 @@ Carried from the previous handoff and now wrong. Listed explicitly because they 
 - ~~Pilot protocol for surface `se-frontdoor-slack-channel` to clear forge-provenance~~ — that reviewer is greenfield-only.
 - ~~Measurement plan as senior-SE deflection alone~~ — still the right *kind* of measure, but the sponsor stated a second success criterion with no home in the manifest: a diagnosis of current documentation practice with recommended process changes.
 
+## Expected reviewer state (do not chase these)
+
+Full suite run 2026-07-27. **Six blocks are greenfield gates firing on an initiative that is changing variant.** They stop applying at the re-stamp; fixing any of them means building the thing we decided not to build.
+
+| Reviewer | Why it blocks | Action |
+| --- | --- | --- |
+| `design-principles-reviewer` | Wants `prototype/DESIGN.md` | None. On the do-not-do list above. |
+| `prototype-forge-provenance-reviewer` | `JTBD_LACKS_SURFACE` — reads the *old* persona frontmatter, which pins a surface that is now BD-3 | None. Canonical model is `research/personas-and-jtbd.md`. |
+| `prototype-smoke-runner` | No `serve.sh`, no `@smoke` specs | None. No prototype to boot. |
+| `portal-chrome-canonical-reviewer` | Portal chrome drift, 10 findings | None. Portal is scaffolding, drops at re-stamp. |
+| `portal-initiative-conformance-reviewer` | Portal IA contract | None. Same. |
+| `portal-review-conformance-reviewer` | Review-Portal gate on an Initiative-Portal initiative | None. Known misfire. |
+
+**Passing and meaningful**: `persona-fit-reviewer`, `doc-currency-reviewer`, `research-completeness-reviewer`, `prescription-jtbd-traceability-reviewer`, `stateful-claim-lint-reviewer`, `roadmap-registry-sync-reviewer`.
+
+**Passing but do not trust**: `pilot-profile-lock-reviewer` reads the superseded `pilot_profile` block as canonical. A green result here is not agreement with the framing.
+
+**Warnings worth knowing**: `cost-gate-reviewer` (3) — all three `cost.stages` skip justifications in `blueprint.yml` still cite the old plan (DESIGN.md, prototype-as-pilot-protocol). Left as-is because the research re-stamp rewrites that block; correcting them now is throwaway work. `terminology-linter` (30) — acronym heuristics, mostly in portal components; the reviewer flags them as likely false positives itself.
+
 ## Gotchas for the next session
 
 - Reviewer runner is NOT stamped into initiatives: run `node ~/Workspace/dev/tools/blueprint/template/tools/run-reviewers.mjs` from this root.

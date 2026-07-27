@@ -87,7 +87,7 @@
 
   <g id="success-signal" text-anchor="end">
     <text x="1136" y="406" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.4" fill="#4E545A">SUCCESS SIGNAL</text>
-    <text x="1136" y="431" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">senior-SE ping</text>
-    <text x="1136" y="451" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">deflection</text>
+    <text x="1136" y="431" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">answered without</text>
+    <text x="1136" y="451" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">asking a person</text>
   </g>
 </svg>

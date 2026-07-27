@@ -1,6 +1,6 @@
 # se-docs-frontdoor — recovery brief
 
-Derived 2026-07-27T20:33:41.268Z at commit `d73da0c` — rerun `npm run derive` to refresh; never hand-edit.
+Derived 2026-07-27T20:48:49.314Z at commit `bb4c459` — rerun `npm run derive` to refresh; never hand-edit.
 
 ## Where things stand — manifest verdict: PENDING
 
@@ -12,11 +12,11 @@ Open (PENDING is not green):
 
 ## Recent movement (git)
 
+- docs: bring both amendment entries to the wave-27 canonical shape
+- docs: flag the superseded model in personas and the pilot funnel
+- docs: purge superseded assertions that would regress the framing
 - docs: flag the superseded pilot_profile block in blueprint.yml
 - docs: restate the problem from first principles (supersedes founding framing)
-- docs: correct README command notes and hero citation labels
-- docs: add README with project-native hero
-- Add reader gate to SE briefing surfaces
 
 ## Outputs
 

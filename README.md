@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="se-docs-frontdoor — seven scattered doc sources gather into one Slack channel running Claude Tag in read-only mode, which answers with source citations, authority labels, and a conflict flag. Success is measured as senior-SE ping deflection.">
+  <img src="./assets/readme/hero.svg" width="100%" alt="se-docs-frontdoor — seven scattered doc sources gather into one Slack channel running Claude Tag in read-only mode, which answers with source citations, authority labels, and a conflict flag. Success is measured by how often a question is answered without interrupting a senior colleague.">
 </p>
 
 ## What this is
 
-Sales engineers at commerce.com assemble client solutions out of documents scattered across Jira, Confluence, Google Drive, Slack threads, NotebookLM, local files, and internal doc sites. Most of the research time goes into finding and cross-referencing, not reasoning. When that fails, the fallback is pinging one of the two or three senior SEs who hold the tribal knowledge.
+Sales engineers at commerce.com assemble client solutions out of documents scattered across Jira, Confluence, Google Drive, Slack threads, NotebookLM, local files, and internal doc sites. Most of the research time goes into finding and cross-referencing, not reasoning. When that fails, the fallback is interrupting one of the few long-tenured colleagues who hold the history. As of the 2026-07-27 kickoff that is effectively one person.
 
 The obvious fix is a single place to ask, answering with citations. That was this initiative's founding scope, and it is no longer the whole problem.
 
@@ -36,7 +36,7 @@ actor-output.yml: PENDING (route actor-output; 0 errors, 4 pending, 0 warns)
 
 Two things that gate deliberately:
 
-- The channel cannot go live until `research/pilot/baseline-pings.md` exists, because the deflection signal becomes permanently unmeasurable if launch precedes the baseline.
+- The channel cannot go live until `research/pilot/baseline-pings.md` exists, because the success signal — how often questions get answered without interrupting a senior colleague — becomes permanently unmeasurable if launch precedes the baseline.
 - The sponsor brief was demoted from `ready` to `draft`, which is why nothing currently `ready` serves the sponsor's decision. Its research content holds; its pilot shape, metric, and audience do not.
 
 Four open boundary decisions are named with owners in the problem statement, covering the read/write boundary, the audience, whether an existing internal assistant already owns this surface, and funding. Three need the sponsor.
@@ -49,7 +49,7 @@ The riskiest assumptions here are not answerable in code. Can the Enterprise con
 
 Buying was retired outright. Uniform ACLs removed the one requirement a purchased tool uniquely served, and existing Claude Enterprise spend removes the seat-economics argument. The kickoff did nothing to restore either justification.
 
-The kickoff moved this decision in both directions, recorded in the ADR's Amendments section. It got **stronger** — the sponsor independently reached for a Claude-native surface twice, and put the delivery floor at two months composed entirely of security review and hosting, which is overhead a configured path may avoid. It got **weaker** — Gong call recordings are a named in-scope source, are already pulled via a separate integration tool, and are not covered by the standard connectors. That is trigger 1's sibling below, not yet fired, and unresolvable until the corpus census runs.
+The kickoff moved this decision in both directions, recorded in the ADR's Amendments section. It got **stronger** — the sponsor independently reached for a Claude-native surface twice, and put the delivery floor at two months composed entirely of security review and hosting, which is overhead a configured path may avoid. It got **weaker** — Gong call recordings are a named in-scope source, are already pulled via a separate integration tool, and are not covered by the standard connectors. That is trigger 3 below, not yet fired, and unresolvable until the corpus census runs.
 
 One question outranks all of this and is still open: the sponsor referred twice to an existing internal assistant. If it exists, it is either the delivery vehicle or prior art, and it may already carry the approvals that make up the entire stated two-month floor.
 
@@ -60,7 +60,7 @@ A thin custom app — Slack Bolt, the Messages API, federated retrieval tools re
 1. **Shared-Drive blindness** — the connector cannot see Shared Drives.
 2. **Tier-label inadequacy** — prompt-level authority labels and conflict-surfacing prove too lossy.
 3. **Scoping gaps** — Tag cannot restrict search to named SE channels, or cannot cover the CMS-backed internal doc sites.
-4. **Telemetry ceiling** — deflection measurement needs per-question logging Tag does not expose, and manual survey plus senior self-report prove insufficient.
+4. **Telemetry ceiling** — measuring self-service resolution needs per-question logging Tag does not expose, and manual survey plus senior self-report prove insufficient.
 
 ### Commitments that bind either branch
 
@@ -68,7 +68,7 @@ A thin custom app — Slack Bolt, the Messages API, federated retrieval tools re
 - Wide corpus with authority-tier labels. Conflicts get surfaced and flagged, never silently resolved.
 - Citations on every answer, deep-linked where the source allows.
 - Async-first. No call-time fast lane in v1.
-- Demand-driven filing: when the bot misses on trapped content, that content moves into Drive or Confluence. No pre-migration sweep.
+- ~~Demand-driven filing: when the bot misses on trapped content, that content moves into Drive or Confluence.~~ **Falsified 2026-07-27.** This works when content exists and is misplaced. It does nothing when the content was never written because project hours ran out — which the kickoff established as structural, not incidental. It remains valid only for the narrow local-file case it was originally scoped to.
 - Answer from current-stable docs; label version-specific content.
 
 ## Working in this repo
@@ -122,4 +122,4 @@ The founding session locked four exclusions. Two still hold as written. Two were
 
 ## Before go-live
 
-Two human dependencies, both outside this repo: a Claude Enterprise admin to grant connector toggles and create the pilot channel, and two or three senior SEs recruited as deflection champions who redirect quick questions with "ask the bot first."
+Two human dependencies, both outside this repo: a Claude Enterprise admin to grant connector toggles and create the pilot channel, and the long-tenured colleague who currently fields those questions, to redirect them with "ask the bot first."

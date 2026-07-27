@@ -1,14 +1,14 @@
 {
   "schema": "actor-output-boot/1",
   "initiative": "se-docs-frontdoor",
-  "generated_at": "2026-07-27T20:33:41.268Z",
-  "as_of": "d73da0c",
+  "generated_at": "2026-07-27T20:48:49.314Z",
+  "as_of": "bb4c459",
   "recent": [
+    "docs: bring both amendment entries to the wave-27 canonical shape",
+    "docs: flag the superseded model in personas and the pilot funnel",
+    "docs: purge superseded assertions that would regress the framing",
     "docs: flag the superseded pilot_profile block in blueprint.yml",
-    "docs: restate the problem from first principles (supersedes founding framing)",
-    "docs: correct README command notes and hero citation labels",
-    "docs: add README with project-native hero",
-    "Add reader gate to SE briefing surfaces"
+    "docs: restate the problem from first principles (supersedes founding framing)"
   ],
   "account": {
     "decisions": [
