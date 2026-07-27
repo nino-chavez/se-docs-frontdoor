@@ -1,6 +1,6 @@
 # se-docs-frontdoor — recovery brief
 
-Derived 2026-07-27T22:19:50.949Z at commit `8c3eb87` — rerun `npm run derive` to refresh; never hand-edit.
+Derived 2026-07-27T22:23:30.299Z at commit `8bff273` — rerun `npm run derive` to refresh; never hand-edit.
 
 ## Where things stand — manifest verdict: PENDING
 
@@ -12,11 +12,11 @@ Open (PENDING is not green):
 
 ## Recent movement (git)
 
+- fix: stop recording a hand-substituted check as a passed gate
 - fix: correct name attributions after fact-check gate (Stage 4)
 - docs: close the open README findings from doc-quality
 - fix: close both doc-quality criticals and the sibling-scan blockers
 - docs: restructure the problem statement so it reads without lookups
-- fix: correct a hardened paraphrase, and refresh stale handoff state
 
 ## Outputs
 

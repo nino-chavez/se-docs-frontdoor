@@ -5,6 +5,8 @@
 
 > Read `research/problem-space/problem-statement.md` before doing anything else. It supersedes the founding framing and the `pilot_profile` block in `blueprint.yml`. Working from `blueprint.yml` alone will reproduce the old model.
 
+> **On the machine with internal access** (commerce.com tooling — Confluence, Drive, Jira, Slack, Gong, Make.com, Claude Enterprise admin), read `HANDOFF-INTERNAL-ACCESS.md` alongside this file. Four open questions are blocked on access rather than on thinking, and that file lists them in the order that changes the plan most. It also covers the setup that breaks when switching machines, and the data-governance call to make before pulling internal material into this repo.
+
 ## State
 
 - **The problem changed on 2026-07-27**, not just the evidence. The founding model treated the doc corpus as a noisy given whose quality would improve as a byproduct of retrieval use. The sponsor kickoff established it as the output of a delivery process with structural truncation points — documentation stops when IPM hours run out, smaller engagements often get no folder, the template is not uniformly followed, and some documents are actively wrong where the platform shipped past documented workarounds. Capture quality bounds retrieval quality.
