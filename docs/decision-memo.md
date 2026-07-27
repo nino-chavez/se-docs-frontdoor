@@ -1,148 +1,143 @@
-# Knowledge repository — straw man plan
+# Knowledge repository — revised plan
 
 **To:** Andrew (sponsor), Mark, Zac
 **From:** Nino
 **Date:** 2026-07-27
-**Status:** Draft for the first weekly sync. This is the "halfbaked within the week" I committed to on the kickoff — built to be argued with, not approved.
+**Status:** Draft v2 for the first weekly sync. Supersedes the version I circulated earlier the same day — the plan changed enough that patching it would have hidden the change.
 
 ---
 
 ## The short version
 
-Mark was right, and it changes the plan.
+I went looking for whether "ask commerce" existed. It does. And it already does most of what I proposed building.
 
-The premise going into the kickoff was that the documents exist and are hard to find. Mark's objection was that they often don't exist. Between the two of you, four distinct holes:
+That is the whole memo. The rest is what's left.
 
-- **One-off client conversations.** A lot of client discussion is Q&A that never enters a documented process at all (Mark).
-- **Smaller engagements often get no project folder.** Big or complex projects reliably do, with diagrams; the example was the ones with only twenty hours (Mark).
-- **Documentation stops when IPM hours run out.** Solutions half-worked-through, and no completed retrospective on a lot of real buildouts (Zac).
-- **The template is followed differently every time.** A standard template exists, but per-project variance defeats any universal schema over the whole corpus (Zac).
+**Ask Commerce** is a Claude surface the AI Operations team configured and maintains. It's live, it's shared with everyone by default, it's already in your Claude sidebar, and it searches Confluence, Jira, and Slack with your own permissions applied. It cites every claim with a link and a last-modified date. It flags sources older than twelve months. When two pages disagree, it shows both and names the conflict instead of picking one.
 
-That isn't a caveat on the plan. It's a different problem.
+I had written six guiding principles for a thing to build. Ask Commerce implements all six.
 
-A search tool over documents assumes the documents are the supply. What we actually have is a supply problem: the corpus — every document we'd search across — is a byproduct of billable work, so it thins out exactly where the billing stopped. No amount of retrieval quality recovers a retrospective nobody wrote.
+Andrew — when you said "something similar to ask commerce" and later "directly within CLA, like ask commerce," I read that as an analogy for the kind of thing you wanted. It wasn't. You were naming the actual system. You were right and I filed it as an open question.
 
-So I'd frame this as two efforts that were previously one:
+## What I got wrong, briefly
 
-1. **Get answers out of what exists** — and be honest about how much that is.
-2. **Change what gets written down** — so this is worth doing again in a year.
+The earlier memo planned a build over a corpus we hadn't measured. Two corrections:
 
-The second one bounds the first. That's the whole argument in this memo.
+The **retrieval problem is largely solved**, by another team, using a configured product rather than custom software. My "configure rather than build" recommendation was correct and also late — AI Ops got there first and shipped it company-wide.
 
-## The most valuable knowledge is also the least durable
+The **approval story is not what I thought.** I'd assumed a licensing and access problem. Every employee already has Claude — no request, no seat, usage-based billing. The two-month floor you put on this, Andrew, was real for a *build*. For what I'm now proposing, the path is an AI Use Case Review because Claude is already approved and we'd be pointing it at new data. That's a much smaller ask.
 
-Andrew, your strongest example was the deal we won because we told the client what the platform couldn't do, and how to solve it, while every other vendor hid it. That reframes what the valuable content actually is: not what the platform does, but what it doesn't, and the workaround.
+## What it can't see, and why that's the whole problem
 
-Here's the problem with that. It's also the fastest-decaying content we have. Mark's guest-tokenization example is exactly this — we have documents describing workarounds that exist *because* a capability was missing. The capability shipped. The documents are now wrong, not just old, and the current approach is undocumented because it's new.
+Ask Commerce reads Confluence, Jira, and Slack. **It cannot read Google Drive.** It can see that a Drive file exists and cannot open it.
 
-The most valuable category is the least durable. Any version of this that indexes documents without tracking *when* something was true will be most confidently wrong about the thing we most want it for.
+The tech scopes are in Drive. The SA project folders are in Drive. The `Opportunities` shared drive holds roughly **seven hundred client opportunity folders for 2026 alone** — one per opportunity, each with a tech scope built from the same template. That number is a floor from counting the folder listing directly; it isn't audited, and earlier years aren't in it.
 
-That single constraint drives most of what follows.
+For comparison, here's what's in Confluence, which Ask Commerce *can* read:
 
-## Guiding principles
+| Space | Pages | Touched in last 12 months |
+| --- | ---: | ---: |
+| Technical Project Management (IPM) | 1,599 | 335 |
+| Solutions Architects | 912 | 173 |
+| Technical Account Management | 441 | 252 |
+| **Solutions Engineering** | **155** | **35** |
+| Solution Architecture Knowledge Base | 66 | 22 |
 
-1. **Cite everything, or say nothing.** An answer with a link a person can open is useful. A confident answer with no source is worse than no answer, because someone will act on it in front of a client.
-2. **Recency is correctness here, not metadata.** Given the above, "when was this true" has to be first-class.
-3. **Surface conflicts; don't resolve them.** When two sources disagree, show both and flag it. We will have contradictions — silently picking one is how we ship a wrong answer with a real citation attached.
-4. **Don't require a structure we don't have.** Every project documents differently. Any design that needs a uniform schema across the corpus is designing for a corpus we don't have.
-5. **Measure against the current system, which is a person.** Today a hard question gets answered by a person-to-person round trip through one of the few people who carry the history. That's the baseline, and the round trip is the thing to displace.
-6. **Scope coverage by verified quality, not ambition.** Indexing everything means indexing the stale and the wrong alongside the good.
-7. **Present answers as a starting point, not a verdict.** Mark's ask on the call, and I'd make it a design rule: whoever asks has to understand the answer may not be the full or final response, and that some investigation is still theirs to do. This is separate from citing — a correctly cited answer can still be read as more settled than it is. It shapes how the answer is worded, not just what it links to.
+Three things fall out of that table.
 
-Andrew — your own guardrail on the call already implies most of this: don't ship a phase that returns bad or old information, because it's more damaging than useful. I've taken that as a hard constraint rather than a preference.
+**One year of Drive opportunity folders is four times the entire SE Confluence space.** The corpus that matters most is the corpus the tool can't open. Andrew, you proposed starting with tech scopes and the SA folder — that instinct now has a number behind it.
+
+**The SE space is the smallest and the stalest.** The knowledge lives in IPM, SA, and TAM. That is why a sales engineer asks a person: the answer was never filed anywhere an SE would look. The round trip isn't a habit anyone needs to break. It's the shape of where the documents are.
+
+**Three quarters of it hasn't been touched in a year.** Against Ask Commerce's own twelve-month rule, most of this corpus would arrive flagged as possibly stale.
+
+There's a fourth thing that isn't about coverage at all. Ask Commerce deliberately treats team spaces — SE, TAM, IPM among them — as *not authoritative*. It has a list of topics with a designated source of truth: tool approval, HR, insider trading, deployment. There is no entry for how we solve things for clients. So even the pages it can read, it will never treat as settled. **That's a standing problem, not a coverage problem, and it's the more interesting of the two.**
+
+## The argument that survives, now with evidence
+
+I claimed last time that what gets written down bounds what any search tool can return. I argued it from first principles. I can now show it from our own system.
+
+Ask Commerce's configuration contains hand-written patches for specific contradictions in our documentation. One page uses two different names for the same Slack channel, so the correct one is hardcoded. Two IT pages disagree about a GitHub organization name, so it's instructed not to state that name confidently and to send you to a human instead.
+
+Every contradiction in our corpus becomes a line of configuration that a person writes and maintains. That works. It does not scale. One team is absorbing our documentation defects by hand, one defect at a time.
+
+Mark, your guest-tokenization example is this same class — a documented workaround that exists because a capability was missing, still on the page after the capability shipped. No amount of retrieval quality fixes that. Somebody either updates the page or hardcodes an exception.
 
 ## The plan
 
-### Phase 0 — Count what we actually have
+### Phase 0 — Count what we have. Partially done.
 
-Before anything gets built. How much is there, how current is it, how much of it contradicts itself, and how does that break down by source.
+I ran the Confluence half; it's the table above. Drive is sized but not audited, and that needs real API access rather than me scrolling a file list.
 
-This is the cheapest work in the plan and every later decision depends on it. Right now nobody can answer "what fraction of real SE questions have an answer anywhere in our corpus" — and until we can, any build estimate is a guess. It also tells us which subset is good enough to serve, which is what Phase 1 needs.
+The hard part is untouched, and I want to name it rather than let it look finished. **Timestamps find stale. They don't find wrong.** Everything above measures when a document was last edited. Mark's guest-tokenization case is a document that is confidently, actively wrong, and it looks identical to a correct one in every count I can run. Sizing that means reading a sample and deciding what counts as wrong. I don't have that method yet, and it's the most valuable thing left to design.
 
-I'd rather spend two weeks finding out the corpus supports half of what we want than spend two months building for a corpus we assumed.
+### Phase 1 — Two requests, not a build
 
-### Phase 1 — A place to ask, over the good subset only
+Ask AI Operations for:
 
-Scoped by what Phase 0 found, not by what we wish we had. Andrew, you already proposed this scoping on the call: tech scopes and the SA folder first, Slack later.
+1. **Drive contents connected**, starting with tech scopes and the SA folders.
+2. **An authoritative source designated for solution knowledge**, so what we do have counts for something.
 
-On the how — you reached for a Claude-native surface twice, once as "something like ask commerce" and again as putting it directly in CLA. That instinct is right, and it's also the cheapest path. You put the floor at two months and attributed all of it to security review and hosting. A configured surface on seats and connectors we already have may avoid most of that.
+The second is the harder ask. Every current entry on that list is owned by a governance or platform team. Domain knowledge would be a new category. I'd start small and specific — the Solution Architecture Knowledge Base is 66 pages, small enough to actually vet — rather than asking them to bless the whole estate.
 
-Two things could break that, and I'd rather name them now:
+Your release guardrail, Andrew — don't ship a phase that returns bad or old information — is already built into how Ask Commerce behaves. That's an argument for working inside it rather than beside it.
 
-- **Gong.** It's a named source, we already pull it through Make, and it isn't something the standard connectors reach. If pilot questions genuinely route to call recordings, that's a custom piece of work.
-- **"Ask commerce."** I don't know what it is. See the open questions — this is the one that could change the plan most.
+### Phase 2 — Fix the capture side. This is now the real work.
 
-### Phase 2 — Fix the capture side
+Zac's failure is the one to solve: documentation stops when the hours stop. Any fix that asks for more writing on unbilled time loses to the same pressure that caused the problem. A template already exists and isn't followed uniformly, so the question isn't what the template should say. It's what we can derive from work that's already happening.
 
-This is where Phase 1's ceiling gets set, and it isn't a software project.
+One lead worth more than any framework I could bring: **TAM's documentation isn't decaying.** 57% of their pages were touched in the last year, against 19–21% for SA and IPM, under the same billing pressure. Something in how that team works produces documentation that stays current. I'd rather find out what it is than import a practice from outside.
 
-The specific failure to solve is Zac's: documentation stops when the hours stop. Any fix that asks people to write more, on unbilled time, loses to the billing pressure that caused the problem. So the useful question isn't "what should the template be" — a template already exists and isn't followed. It's "what can we derive from work that's already happening."
-
-Worth saying plainly: this is the half of the project that determines whether we're doing this again in eighteen months. It is also the half that might not be in scope — recording knowledge is a write, everything else here is read-only, and that's decision 1 below. I'd rather flag the tension than present this as settled.
+This is still the half that might be out of scope, because recording knowledge is a write and everything else here reads. That's decision 1.
 
 ### Phase 3 — Help ask the hard questions
 
-Mark put the shape of this well on the call: the tool spits out the twenty questions you have to ask a client, and some of them are the ones we can't do. Andrew's answer was that those are exactly the ones to ask — that's the whole point of scoping — and the tech scope he demonstrated is already doing a version of it.
-
-It's last because it depends on the negative knowledge being both present and current, which is the decay problem above. It's also not greenfield: the tech scope document you shared already does a version of this. I'd treat that as the starting point rather than building alongside it.
+Unchanged, and still last. Mark framed it as a concern on the call — the tool spits out twenty questions you have to ask, including ones we can't do. Andrew, your answer was that those are exactly the questions worth asking. It depends on the negative knowledge being present and current, which is the decay problem Phases 0 through 2 exist to address. The tech scope you demonstrated already does a version of this; I'd build from it rather than beside it.
 
 ## What changes for each of you
 
-Concretely, if this lands. Written as what someone can *do* afterward that they can't now — if any row reads as vague to the person named in it, that row is the problem.
-
-| Who | What you can do that you can't today | Which phase |
+| Who | What you'd be able to do | Phase |
 | --- | --- | --- |
-| **Sales engineers** | Ask what the platform can't do for a given requirement, and get an answer with a link you can open — or a straight "we have no record of this," which is also actionable. Today the honest options are guess or interrupt someone. | Phase 1 |
-| **Zac** | Pick up an implementation and see what was recommended in the sales cycle and why — including whether that recommendation predates a platform change that invalidates it. Also: stop being the person who reconstructs it from memory. | Phase 1 |
-| **Mark** | Receive a scope that already names the platform's limitations and the agreed workarounds, instead of finding them during implementation. You said you were glad this would help surface the solutions around the tough questions — this is where that lands. | Phase 3 |
-| **Andrew, as one of the few people who carry the history** | Redirect a repeat question and trust the answer, without checking it. Both halves matter: fewer interruptions is not a win if you end up correcting what the bot told someone. | Phase 1 |
-| **Delivery / IPM** | Have what you built recorded without spending unbilled hours to write it up. This is the one that needs decision 1. | Phase 2 |
-| **Andrew, as sponsor** | Approve a defined scope with a stated measurement, instead of an aspiration — see the open items below for what the measurement still needs. | This memo |
+| **Sales engineers** | Ask what the platform can't do for a requirement and get an answer with a link — or a clean "no record of this," which is also actionable. Today: guess, or interrupt someone. | 1 |
+| **Zac** | Pick up an implementation and see what was sold and why, including whether it predates a platform change that invalidates it. Stop reconstructing it from memory. | 1 |
+| **Mark** | Get a scope that already names the platform limits and agreed workarounds, rather than finding them mid-implementation. | 3 |
+| **Andrew, as one of the few who carry the history** | Redirect a repeat question without checking the answer afterward. Both halves matter — fewer interruptions isn't a win if you're correcting the bot. | 1 |
+| **Delivery / IPM** | Have what you built recorded without unbilled write-up hours. Needs decision 1. | 2 |
+| **Andrew, as sponsor** | Approve a scope that's mostly requests and one real piece of work, instead of a build. | This memo |
 
-The row I'd watch is delivery/IPM. It's the only one that can't be delivered by a read-only system, and it's the one I have the least direct evidence for — nobody in that role was on the call.
+The row I'd still watch is delivery/IPM — the only one a read-only system can't deliver, and the one I have the least direct evidence for, because nobody in that role was on the call.
 
 ## What I need decided
 
-Four things. Three of them are yours, and I can keep working without them — but not indefinitely. Number 3 I'd like an answer to before the first sync, because it could change the plan enough that designing Phase 0 around the wrong assumption wastes the week. The other three can wait until we've met once.
+Question 3 from the last memo is closed. What replaces it is smaller.
 
 | # | Decision | Why it matters | Owner |
 | --- | --- | --- | --- |
-| 1 | **Does this write, or only read?** | Phase 2 means recording knowledge going forward. That's a write system. Everything scoped so far is read-only, which is a much smaller security and privacy surface — the one you said accounts for the whole two-month floor. If Phase 2 is in, that floor changes. | Andrew + me |
-| 2 | **Who is this for?** | The kickoff went from SE, to SE and SA, to anyone in the company. Those are different products with different answers to "what's authoritative." I'd start narrow and widen on evidence. | Andrew |
-| 3 | **What is "ask commerce" / CLA?** | If a sanctioned internal assistant already exists, it's either where this belongs or the most relevant prior work there is — and it may already hold the approvals that make up your two-month estimate. Answering this changes more than any other open question. | Andrew or Levi/Shane |
-| 4 | **What's the budget?** | I asked on the call and we ended up on timeline and access instead. Related: Claude credits are already a standing blocker on your Monday checkpoint, and I'm currently running on personal subscriptions. That's fine for a straw man and not fine for a two-month build. | Andrew |
+| 1 | **Does this write, or only read?** | Phase 2 means changing what gets recorded. That's a write system and a bigger privacy surface. It's also where the remaining value is, now that retrieval is largely handled. This is the decision that determines whether this project is worth doing. | Andrew + me |
+| 2 | **Who is this for?** | The kickoff went SE, then SE and SA, then anyone. Ask Commerce already serves everyone, so this now means: whose questions do we optimize the authoritative sources for. I'd start with SE and SA. | Andrew |
+| 3 | **Do we ask AI Ops, or do we ask through you?** | Both Phase 1 requests go to a team I have no standing with. A sponsor request lands differently than an individual one, particularly the authoritative-source ask. | Andrew |
+| 4 | **What's the budget?** | Different question than last time. Claude is usage-based with a $1,000 monthly cap per person — I hit mine while researching this memo. If SE questions route here at volume, that cap is the cost model, and somebody should look at it before we encourage the traffic. | Andrew |
 
-## What this memo doesn't do yet
+## What this memo still doesn't do
 
-Named so you can see the holes rather than find them.
+**The measurement isn't defined.** Same gap as last time and I haven't closed it. What to displace is the person-to-person round trip. The obvious instrument was your DM history with the SAs, but you described that channel as you asking them — "I just bug them that often" — which counts your outbound questions, not inbound demand on you. Both are real, both worth displacing, and they aren't the same number. Naming the instrument is Phase 0 work.
 
-**The measurement isn't defined.** I've said Phase 1 should be measured and that the thing to displace is the person-to-person round trip, but I have not specified what gets counted, how, or over what period. I also don't yet have a clean instrument. The obvious candidate was your 1:1 direct-message history with the SAs, but on the call you described that channel as you asking them — "I just bug them that often" — which measures your outbound questions, not inbound demand on you. Both directions are real and both are worth displacing; they just aren't the same number. Naming the instrument is Phase 0 work. The scope in front of you has a measurement *slot*, not a measurement.
+**Your second success criterion still has no home.** You named two things on the call: the system working, and a written diagnosis of where our documentation practice breaks, with recommended changes. This memo now has considerably more material for the second — the census, the TAM contrast, the hand-patching evidence — but I still haven't scoped it as a deliverable with a date.
 
-**Your second definition of success is missing.** On the call you named two things: the system working, and a written diagnosis of where our documentation practice currently breaks with recommended changes. This memo plans the first and says nothing about the second. It isn't dropped — it's the natural output of Phase 0 and Phase 2, and it may matter more to you than the tool does. It needs a phase and an owner, and it has neither yet.
+**I haven't actually used Ask Commerce against real SE questions.** Everything above is from reading how it's configured, not from testing what it returns. I intended to run a dozen real questions through it and hit my usage cap first. That test is the single most useful thing to bring to the sync, and I'd like to run it before we meet.
 
-**Phase 0 has no duration.** I'll bring a concrete proposal — what gets counted, how, how long — to the first sync. Until then "two weeks" in the section above is a comparison, not an estimate.
-
-## Gaps I can't close from here
-
-- **No IPM in the room.** The clearest structural finding — documentation stopping at hours-exhaustion — came from Mark and Zac describing someone else's constraint. Before designing anything for it, I need to hear it from an IPM directly.
-- **Nobody owns "what's authoritative."** We can label sources by authority tier, but no one currently decides what's canonical or retires what's stale. That may be a real gap rather than a missing conversation.
-- **The corpus is unmeasured.** Phase 0.
-
-## Constraints I'm treating as fixed
-
-- Security and privacy review on anything that touches a data repository. Two months minimum on your estimate, and that's the floor, not the build.
-- No new headcount. I'm the developer; Mark and Zac are guides and reviewers.
-- No release that returns bad or stale information, per your own guardrail.
-- Uniform read access across the SE team — which simplifies a lot, and is why I'm not designing per-user permissions.
+**Phase 0 still has no duration**, and now it partly depends on how quickly the Drive access question moves.
 
 ## What I'd like from you three
 
-**Mark and Zac** — Andrew put you both on this call as the guides for where the documentation actually lives, across both the SE and SA sides. So: the bullet list from the call, whenever. Where tech scopes live, where you write things up, where you dump the stuff that doesn't have a home. Informal is fine; a Slack message beats a document. Plus GitHub usernames and I'll add you to the working repo.
+**Mark and Zac** — still the bullet list, and now a sharper version of it. Where the tech scopes and project folders actually live, which of them you'd trust a colleague to act on without checking, and where the stuff with no home ends up. Informal is fine; a Slack message beats a document. Plus GitHub usernames and I'll add you to the working repo.
 
-**Andrew** — decisions 2, 3, and 4 above. Number 3 first if you're picking one; it could reshape the plan.
+**Andrew** — decisions 1 and 3. Decision 1 is the one that decides whether this is a project or a support ticket.
 
-I'll set up the weekly sync and bring Phase 0 as a concrete proposal — what we'd count, how, and how long. Everything in this memo is meant to be pushed on, particularly the sequencing. If you think Phase 1 should come before Phase 0, that's worth an argument, and I'd rather have it now than in six weeks.
+I'll set up the weekly sync. I'll bring a Phase 0 proposal with a duration, and the results of actually testing Ask Commerce if my cap resets or gets raised in time.
+
+Push on the sequencing. My confidence in Phase 2 being the real work is higher than my confidence that Phase 1's two requests will be granted — and if AI Ops says no to connecting Drive, this plan needs rethinking rather than patching.
 
 ---
 
-<sub>**Traceability** — the "What changes for each of you" table above is this memo's statement of what each persona can do once this lands, written in the reader's language rather than the research vocabulary. Recommendations map to the jobs in `research/personas-and-jtbd.md` as follows: Phase 0 and Phase 1 serve `se/JOB-1` and `sa/JOB-1`. Phase 1's measurement serves `knowledge-holder/JOB-1`. Phase 2 serves `delivery-ipm/JOB-1`, which is the job that forces decision 1 — recording is a write. Phase 3 serves `sponsor/JOB-2`. The memo itself serves `sponsor/JOB-1`. Problem statement and evidence: `research/problem-space/problem-statement.md`.</sub>
+<sub>**Traceability** — the "What changes for each of you" table is this memo's statement of what each persona can do once this lands, written in the reader's language rather than research vocabulary. Recommendations map to `research/personas-and-jtbd.md` as follows: Phase 0 and Phase 1 serve `se/JOB-1` and `sa/JOB-1`. The measurement serves `knowledge-holder/JOB-1`. Phase 2 serves `delivery-ipm/JOB-1`, the job that forces decision 1. Phase 3 serves `sponsor/JOB-2`. The memo serves `sponsor/JOB-1`. Evidence: `research/problem-space/problem-statement.md` (canonical framing), `research/prior-art/ask-commerce.md` (`AC-1`–`AC-4`, what exists and what it can't see), `research/current-state/confluence-corpus-census.md` (`C-1`–`C-5`, the numbers), `research/current-state/ai-governance-constraints.md` (`G1`–`G8`, approval route).</sub>
