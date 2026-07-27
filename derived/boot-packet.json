@@ -1,14 +1,14 @@
 {
   "schema": "actor-output-boot/1",
   "initiative": "se-docs-frontdoor",
-  "generated_at": "2026-07-27T20:56:51.354Z",
-  "as_of": "b78910f",
+  "generated_at": "2026-07-27T21:00:48.945Z",
+  "as_of": "5289a86",
   "recent": [
+    "feat: switch to research variant; reviewer blocks 6 -> 1",
     "feat: Stage 1 personas/JTBD artifact + close two real reviewer findings",
     "docs: bring both amendment entries to the wave-27 canonical shape",
     "docs: flag the superseded model in personas and the pilot funnel",
-    "docs: purge superseded assertions that would regress the framing",
-    "docs: flag the superseded pilot_profile block in blueprint.yml"
+    "docs: purge superseded assertions that would regress the framing"
   ],
   "account": {
     "decisions": [
@@ -108,6 +108,14 @@
       ]
     },
     {
+      "id": "decision-memo",
+      "type": "view",
+      "status": "draft",
+      "serves": [
+        "pilot-sponsor.decide-pilot"
+      ]
+    },
+    {
       "id": "recovery-brief",
       "type": "recovery-brief",
       "status": "ready",
@@ -127,7 +135,7 @@
     "route": "actor-output",
     "errors": [],
     "pendings": [
-      "[R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned) — PENDING, not green",
+      "[R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned), decision-memo(draft) — PENDING, not green",
       "[R2-lifecycle] outcome sales-engineer.get-cited-answer is served only by slack-frontdoor(planned) — PENDING, not green",
       "[R2-lifecycle] outcome senior-se.redirect-pings is served only by slack-frontdoor(planned), pilot-protocol(planned) — PENDING, not green",
       "[R6-preconds] precondition deflection-baseline unmet (research/pilot/baseline-pings.md missing) — slack-frontdoor may not advance to ready/issued until it exists"

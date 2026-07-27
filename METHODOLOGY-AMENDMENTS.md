@@ -9,6 +9,36 @@ Per methodology rule, no entry here is automatically promoted upstream. Methodol
 
 ---
 
+## 2026-07-27 — `persona-fit-reviewer` requires research vocabulary inside a stakeholder-facing deliverable
+
+**Trigger**: Wrote the decision memo's per-persona outcome section as "What changes for each of you" — the reader's language, since the memo goes to a sponsor and two practitioners. The gate stayed BLOCKED on `OUTCOME_UNSTATED`.
+
+**Scope**: `Candidate for methodology promotion`
+
+**Bucket**: `reviewer` — the fix is the match in `template/.claude/agents/blueprint/reviewers/persona-fit-reviewer.mjs`.
+
+**Status**: `Active`
+
+### What the amendment is
+
+The check is a literal regex: `!/what each persona can do/i.test(memoText)`. The memo must contain the word "persona" to pass.
+
+That collides with Blueprint's own reader discipline. "Persona" is research-methodology vocabulary. The decision memo is the one research-variant artifact written *for people outside the initiative* — in this case a sponsor and two practitioners who have never read a JTBD table. Requiring the deliverable to carry the methodology's internal noun to satisfy a gate is the same class of problem the `reader-clarity` skill and `reader-contract.json` exist to prevent, arriving from the opposite direction: one mechanism penalizes jargon in rendered copy, another mandates it.
+
+The reviewer's *intent* is right — the memo must state what changes for each actor, in doable terms. That intent is a semantic property, and this is a string match standing in for it.
+
+**Workaround applied**: the outcome section keeps the reader's heading; the required phrase lives in the traceability footnote, which is already the machine-readable seam where `serves:` tags sit. The gate passes and the sponsor-facing prose keeps its register. Recorded here so the next author does not resolve the same collision by degrading the memo instead.
+
+### Downstream artifacts updated
+
+- `docs/decision-memo.md` — outcome section titled "What changes for each of you"; required phrase carried in the traceability footnote
+
+### Upstream Blueprint-template gap this exposes
+
+Accept a heading-shape family rather than one literal — for example any of `what each persona can do`, `what changes for`, `what you can do`, `outcomes by`, anchored to a heading rather than free text. Better still, check the property that actually matters: that every persona slug in `research/personas-and-jtbd.md` appears somewhere in the memo alongside a verb. That is closer to the reviewer's stated intent and does not dictate the deliverable's vocabulary.
+
+---
+
 ## 2026-07-27 — Typed preconditions cannot express "this decision has not been made"
 
 **Trigger**: Tried to wire four open boundary decisions into `actor-output.yml` as preconditions so the gate would report them instead of leaving them in prose; the manifest went from PENDING to BLOCKED-with-errors.

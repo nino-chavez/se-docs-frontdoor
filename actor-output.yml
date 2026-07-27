@@ -119,6 +119,17 @@ outputs:
     status: planned
     renderer: markdown
     clearance: internal
+  - id: decision-memo
+    type: view
+    serves: [pilot-sponsor.decide-pilot]
+    status: draft                               # authored 2026-07-27 and fit to send, but not yet
+                                                # sent and it explicitly invites revision at the
+                                                # first sync. `draft` keeps decide-pilot honestly
+                                                # PENDING — the sponsor has not decided and cannot
+                                                # until they read it. Promote to `issued` on send.
+    artifact: docs/decision-memo.md             # the research-variant deliverable
+    renderer: markdown
+    clearance: internal
   - id: recovery-brief
     type: recovery-brief
     serves: [maintainer.recover-context]

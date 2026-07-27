@@ -1,7 +1,7 @@
 # Handoff — se-docs-frontdoor
 
-**Last session**: 2026-07-27 (sponsor kickoff ingested; problem restated from first principles)
-**Position**: problem restated, variant change pending. **Not** at the old Stage 1 → Stage 2 boundary — that boundary belonged to a superseded framing.
+**Last session**: 2026-07-27 (kickoff ingested → problem restated → variant switched to research → Stage 1 + Stage 5 authored)
+**Position**: research variant, all reviewer gates green (0 blocks). Stage 5 deliverable drafted and not yet sent.
 
 > Read `research/problem-space/problem-statement.md` before doing anything else. It supersedes the founding framing and the `pilot_profile` block in `blueprint.yml`. Working from `blueprint.yml` alone will reproduce the old model.
 
@@ -13,13 +13,19 @@
 - Stage 1 research remains valid as evidence: three tracks, two adversarial verifications, the 16-question grill ledger, sibling scan, reference grade. None of it is retracted. What changed is the causal model the research was organized around.
 - **Four open boundary decisions** (BD-1 read/write boundary, BD-2 audience, BD-3 whether an existing internal assistant owns this surface, BD-4 funding) are documented with owners in the problem statement. Three need the sponsor.
 
+## Done this session (items 1–3 of the previous list)
+
+- `pilot_profile` extracted; `walkthrough_citation` now lives in `research/personas-and-jtbd.md`.
+- **Variant switched to `research` by hand, not by the stamper.** `blueprint-init` preserves an existing `blueprint.yml`/`actor-output.yml`/`reader-contract.json`/`package.json`, so re-running it changes nothing — and `copyTree()` writes `research/personas-and-jtbd.md` *unconditionally* with the blank template, so running it for real would have destroyed the Stage 1 artifact. **Do not run the stamper against this initiative.**
+- Stage 1 (`research/personas-and-jtbd.md`) and Stage 5 (`docs/decision-memo.md`) authored. All reviewers green.
+
 ## Next
 
-1. **Extract `pilot_profile` into a personas/JTBD artifact** derived from the problem statement. Four fields live only in that block and the research-variant re-stamp drops it entirely (`stamp.mjs`: research has no `pilot_profile`) — `walkthrough_citation`, `monetization_side`, `competitors_in_scope`, `out_of_scope_pilots`. Extract before re-stamping or they are silently lost.
-2. **Re-stamp as `--variant=research`.** Rationale in the problem statement and the 2026-07-27 amendment entry: the deliverable is a decision memo built from input assets, which is variant-tree question 0. `apps/portal/` and `packages/` are scaffolding under `template/CLAUDE.md` §1 and are safe to drop at that point — not before, since they currently carry `npm run dev`/`build`.
-3. **Sponsor's straw man plan** — the committed deliverable, "something halfbaked within the week" as of 2026-07-27. This is the research variant's Stage 5 decision memo. Load the voice guide before drafting; it goes to a sponsor.
-4. **Corpus census** is now phase zero, not a pilot line item. Every downstream decision depends on magnitude and quality distribution, and both are unknown.
-5. **Chase BD-3.** If the internal "ask commerce" / CLA assistant exists, it may already hold the approvals that constitute the sponsor's entire stated two-month floor.
+1. **Send the memo.** It is authored, gates green, and `status: draft` in the manifest because it has not been sent. Promote to `issued` on send. Set up the weekly sync alongside it.
+2. **Chase BD-3 first among the open decisions.** If the internal "ask commerce" / CLA assistant exists, it may already hold the approvals that constitute the sponsor's entire stated two-month floor. It is the question that most changes the plan.
+3. **Design Phase 0 (corpus census) concretely** — what gets counted, how, over how long. The memo promises this at the first sync. Every later decision depends on it and nobody can currently answer what fraction of real questions have an answer anywhere.
+4. **Two inputs to chase that are not researchable from here**: an actual IPM to confirm `delivery-ipm/JOB-1` (flagged `implied-not-represented`), and whatever delivery already uses to record project state.
+5. **Drop `apps/portal/` + `packages/`** when a memo-rendering surface replaces them. Deferred deliberately: they are scaffolding under `template/CLAUDE.md` §1 and safe to delete, but they currently carry `npm run dev`/`build` and `reader-contract.json` declares `apps/portal/dist` as a surface. Deleting before the replacement exists just leaves a broken build. `persona-fit-reviewer` WARNs `PORTAL_OVER_PROMOTED` until then, which is correct.
 
 ## Do not do these
 

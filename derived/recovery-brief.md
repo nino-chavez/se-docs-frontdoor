@@ -1,22 +1,22 @@
 # se-docs-frontdoor — recovery brief
 
-Derived 2026-07-27T20:56:51.354Z at commit `b78910f` — rerun `npm run derive` to refresh; never hand-edit.
+Derived 2026-07-27T21:00:48.945Z at commit `5289a86` — rerun `npm run derive` to refresh; never hand-edit.
 
 ## Where things stand — manifest verdict: PENDING
 
 Open (PENDING is not green):
-- [R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned) — PENDING, not green
+- [R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned), decision-memo(draft) — PENDING, not green
 - [R2-lifecycle] outcome sales-engineer.get-cited-answer is served only by slack-frontdoor(planned) — PENDING, not green
 - [R2-lifecycle] outcome senior-se.redirect-pings is served only by slack-frontdoor(planned), pilot-protocol(planned) — PENDING, not green
 - [R6-preconds] precondition deflection-baseline unmet (research/pilot/baseline-pings.md missing) — slack-frontdoor may not advance to ready/issued until it exists
 
 ## Recent movement (git)
 
+- feat: switch to research variant; reviewer blocks 6 -> 1
 - feat: Stage 1 personas/JTBD artifact + close two real reviewer findings
 - docs: bring both amendment entries to the wave-27 canonical shape
 - docs: flag the superseded model in personas and the pilot funnel
 - docs: purge superseded assertions that would regress the framing
-- docs: flag the superseded pilot_profile block in blueprint.yml
 
 ## Outputs
 
@@ -24,6 +24,7 @@ Open (PENDING is not green):
 - sponsor-decision-brief (view, draft) → pilot-sponsor.decide-pilot
 - pilot-protocol (view, planned) → pilot-sponsor.decide-pilot, senior-se.redirect-pings
 - measurement-plan (view, planned) → pilot-sponsor.decide-pilot
+- decision-memo (view, draft) → pilot-sponsor.decide-pilot
 - recovery-brief (recovery-brief, ready) → maintainer.recover-context
 
 ## The account (canonical truth)
