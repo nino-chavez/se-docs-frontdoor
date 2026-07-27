@@ -45,11 +45,43 @@ pilot_profile:
     - "Non-SE audiences (support, CS, partners) — expansion only after SE deflection moves"
 
 # Pipeline shape — see Blueprint docs/variant-selection.md (methodology source)
-variant: greenfield
+# CHANGED 2026-07-27 from `greenfield`. Rationale: research/problem-space/problem-statement.md
+# + METHODOLOGY-AMENDMENTS.md. Variant-tree question 0 — the deliverable is a decision memo
+# built from input assets, not a product. Greenfield was defensible at founding (the believed
+# deliverable was a configured channel); ADR-0001's "why not canonical" deviation was the first
+# strain signal, since a pilot protocol IS the research variant's native Stage 5 output.
+# NOTE: keep this line bare — an inline trailing comment here breaks
+# research-completeness-reviewer's variant parse (it captures the comment and falls back to
+# greenfield). pilot-profile-lock-reviewer uses \b and parses it either way.
+variant: research
 
 # Deliverable sophistication — see Blueprint docs/portal-and-tier-ladder.md (methodology source)
 # Variant × Tier matrix codified in that doc; do not deviate without an ADR.
 tier: 1
+
+# ──────────────────────────────────────────────────────────────────
+# Machine-readable stage requirements (research variant) — the reviewer gates
+# read this block. Shape matches the stamper's researchBody, hand-applied because
+# blueprint-init preserves an existing blueprint.yml rather than rewriting it.
+# ──────────────────────────────────────────────────────────────────
+stages:
+  stage_0:
+    output: "research/sources/"          # 2 input assets catalogued: founding grill + kickoff
+  stage_1:
+    output: "research/personas-and-jtbd.md"
+    requires:
+      - "research/sources/"
+      - "research/personas-and-jtbd.md"
+  stage_2:
+    requires:
+      - "research/problem-space/"        # problem-statement.md — canonical
+      - "research/competitive/"          # buy-landscape.md
+      - "research/prior-art/"            # workspace prior art lives in current-state/ today
+  stage_5:
+    output: "docs/decision-memo.md"      # the deliverable; committed to the sponsor 2026-07-27
+
+decisions:
+  dir: "decisions"                       # NNNN-slug.md ADRs; each carries a serves: persona-job tag
 
 # Portal type — which portal harness this initiative uses
 # initiative = Initiative Portal (Astro + @blueprint/ui, multi-audience platform front-door)
@@ -94,10 +126,13 @@ portal:
   # home / operate / inspect / surfaces / archaeology: navigation + content (Phase B)
 
 execution:
-  depth: lean                       # configure-first initiative: Stage 1 research is already banked
-                                    # (2026-07-09 session), Stage 2 "prototype" is a pilot protocol run
-                                    # in commerce's Slack/Claude admin — not code. standard/thorough
-                                    # depth would gold-plate a zero-build primary path.
+  depth: standard                   # RAISED 2026-07-27 from `lean` (research-variant default).
+                                    # The lean justification was "Stage 1 research is already banked,
+                                    # remaining work is backfill." That held while the problem was
+                                    # retrieval friction over a known corpus. The kickoff established
+                                    # an unmeasured corpus, an unscanned capture domain, and four open
+                                    # boundary decisions — none of which is backfill. Lean depth here
+                                    # would under-process the census that gates every later phase.
 
 # ──────────────────────────────────────────────────────────────────
 # Stage 2 paradigm deviation (why-not-canonical, per working-style rule):

@@ -1,0 +1,66 @@
+# Prior art — the capture domain (domain E)
+
+**Scanned 2026-07-27.** Scope: tooling and patterns that record knowledge *at the point of work*, rather than retrieving it afterward.
+
+**Why this file exists.** The founding prior-art scan (2026-07-09, in [`../current-state/workspace-prior-art.md`](../current-state/workspace-prior-art.md)) covered **retrieval** implementations, because the founding problem was framed as retrieval friction. The 2026-07-27 restatement established that capture quality bounds retrieval quality ([`../problem-space/problem-statement.md`](../problem-space/problem-statement.md) P7), which makes capture a first-class domain — and it was unscanned. This closes that gap.
+
+The transferable finding, stated up front: **every working capture mechanism found here replaces discipline with derivation.** None of them asks a person to remember to write something down. That is the structural answer to P2 (documentation stops when billable hours end), and it is the opposite of how the corpus is produced today.
+
+---
+
+## 1. Blueprint archaeology substrate — the closest analogue
+
+**Path:** `~/Workspace/dev/tools/blueprint/template/tools/archaeology/`
+**Pattern doc:** `~/Workspace/dev/tools/blueprint/docs/patterns/archaeology-substrate-pattern.md`
+**Status:** scaffolded template with a named proving ground (Phase 6 passed 2026-05-22)
+
+An append-only event log across project history streams, with explicit refs that join them. Its stated purpose is to answer *"what did we know on date T, why did we pick X, who decided Z"* — without a new tool per question.
+
+That is close to a restatement of the sponsor's ask (kickoff 00:08:23, 00:09:27): what were the known limitations, what did we recommend, what was actually implemented.
+
+**Why it matters for P4 and P6 specifically.** The corpus's sharpest defect is documents that are *wrong*, not merely old — guest-tokenization workarounds that describe a solution to a problem the platform since fixed. An append-only, timestamped event log is structurally immune to that failure: it never claims a past event is current. It records that X was true on date T. A document store overwrites or, worse, silently keeps both. Given P6 (negative knowledge decays fastest), this distinction is load-bearing rather than academic.
+
+**Mechanism, not discipline.** Capture runs through per-stream ingesters (`ingesters/git.py`, `adr.py`, `github.py`, `audits.py`, `iterations.py`, `inputs.py`, and others) — the log is derived from artifacts that already exist for other reasons.
+
+**Divergence — where it does not transfer.** Its ingesters read *structured developer streams* (git commits, ADR files, GitHub issues). This initiative's sources are unstructured and human-authored: Gong call recordings, project folders with no enforced template (P3), and a decade of direct messages. There is no `ingesters/gong.py` equivalent, and P3 means there is no schema to write one against. The pattern transfers; the ingester layer does not.
+
+## 2. claude-recall-cli — mining an ephemeral record for durable knowledge
+
+**Path:** `~/Workspace/dev/tools/claude-recall-cli/`
+
+Saves and searches reusable session entries, backed by SQLite + FTS5, surfaced as slash commands. Its `recall-scan` mode batch-scans session transcripts for recall-worthy patterns.
+
+**The transferable idea:** the durable artifact is *extracted from a record produced for a different purpose*. Nobody writes the entries; a scan finds them in transcripts that existed anyway.
+
+**Direct applicability.** This is the pattern for the kickoff's named-but-unexamined sources. Gong recordings and IPM notes both already exist as byproducts of work nobody did for documentation's sake — the same shape as a session transcript. The sponsor already reaches for this instinct (00:10:31: "a lot of the gong calls will be documented").
+
+**Divergence.** Recall operates on a single operator's own transcripts, with that operator as the judge of what is worth keeping. This initiative's corpus is multi-author across teams with uniform read access but no agreed authority ranking. "Is this worth keeping" becomes a question with no owner — which is exactly the third named gap in [`../personas-and-jtbd.md`](../personas-and-jtbd.md): no persona owns corpus curation.
+
+## 3. Blueprint's own working capture loop — the pattern this initiative is running
+
+Worth naming because this repository is a live instance of it, and the mechanism is visible in it right now:
+
+| Mechanism | What it captures | Why it survives attention ending |
+| --- | --- | --- |
+| `HANDOFF.md` | Position, next steps, do-not-do list | Written for a reader who has no context, including the same person later |
+| `METHODOLOGY-AMENDMENTS.md` | Process learnings, append-only | Append-only means no editing pass is required to add to it |
+| `npm run derive` → `derived/` | State snapshot from the manifest | Generated, never hand-edited — cannot go stale through neglect |
+| SessionEnd hook | Triggers capture without being asked | The person does not have to remember |
+
+**The finding.** Blueprint's answer to "documentation stops when attention stops" is a **hook plus a derive step**, not a template plus a reminder. Even so, this very session found `derived/` pinned two commits stale — which is the honest lesson: mechanical capture degrades more slowly than discipline-based capture, but it still needs a trigger that actually fires.
+
+**Divergence.** Blueprint's loop assumes one operator with commit access and a repo, and it captures *reasoning about work*. The SE/SA corpus is multi-author, spans systems nobody in this initiative controls, and captures *facts about a platform*. The hook-plus-derive shape is the transferable part; the git-native substrate is not, because the sources are Drive, Confluence, Slack, and Gong.
+
+## 4. Adjacent, weaker relevance
+
+- `~/Workspace/dev/tools/specchain/` — spec-driven implementation chain. Relevant only if domain E ends up standardizing a document *template*, which P3 suggests is the mechanism that already failed here: a template exists and is followed differently on every project. Named so a future scan does not treat "add a template" as unexplored.
+- `~/Workspace/dev/tools/local-dictation/` — voice capture. Speculative, but the P2 failure is that writing costs unbilled time; lowering the cost of recording is one of the few levers that does not require more hours.
+
+## Still unscanned — the two that matter most
+
+Neither is reachable from this workspace, and both are more important than anything above:
+
+1. **The internal assistant the sponsor called "ask commerce" / CLA** (kickoff 00:09:27, 00:33:23). BD-3. If it exists it is either the delivery vehicle or the most relevant prior art in existence, and it may already carry the approvals that constitute the stated two-month floor.
+2. **Whatever delivery/IPM already uses to record project state.** Named in the kickoff as a source ("IPM notes", "documented within their side of things", 00:12:48) but never examined as a system. `delivery-ipm/JOB-1` cannot be designed without it, and that persona is already flagged `implied-not-represented`.
+
+Both are operator- or sponsor-resolvable, not researchable from here.

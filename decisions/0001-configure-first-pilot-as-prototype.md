@@ -1,5 +1,6 @@
 # ADR-0001 — Configure-first: the Stage 2 "prototype" is a Claude Tag pilot protocol, not code
 
+- **serves**: `se/JOB-1`, `sponsor/JOB-1` — the delivery-path choice determines whether the SE ever gets a cited answer, and it is the load-bearing input to the sponsor's authorize-and-fund decision. Jobs defined in `research/personas-and-jtbd.md`.
 - **Status**: accepted — core decision stands; two qualifications added 2026-07-27 (see Amendments)
 - **Date**: 2026-07-09
 - **Source**: research/sources/definition-and-grill-2026-07-09.md (founding session + grill ledger)
