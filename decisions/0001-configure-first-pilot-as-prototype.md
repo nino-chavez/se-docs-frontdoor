@@ -1,7 +1,7 @@
 # ADR-0001 — Configure-first: the Stage 2 "prototype" is a Claude Tag pilot protocol, not code
 
 - **serves**: `se/JOB-1`, `sponsor/JOB-1` — the delivery-path choice determines whether the SE ever gets a cited answer, and it is the load-bearing input to the sponsor's authorize-and-fund decision. Jobs defined in `research/personas-and-jtbd.md`.
-- **Status**: accepted — core decision stands; three qualifications added 2026-07-27 (see Amendments). The third is a **prerequisite**: the proposed Claude Tag surface is unverified against internal AI governance on two counts and must be resolved with GRC before Stage 2 begins.
+- **Status**: accepted, and **largely overtaken by events**. Configure-first is confirmed correct; `Ask Commerce` already implements it org-wide (`research/prior-art/ask-commerce.md`). The Claude Tag pilot this ADR specifies as Stage 2 is superseded — Stage 2 becomes an evidenced AI Operations intake request. The contingent build branch is effectively dead. See the 2026-07-27 (later) amendment, which supersedes the one beneath it.
 - **Date**: 2026-07-09
 - **Source**: research/sources/definition-and-grill-2026-07-09.md (founding session + grill ledger)
 - **Context changed**: research/problem-space/problem-statement.md supersedes the problem framing this ADR was decided against. Read that before applying this ADR.
@@ -56,7 +56,26 @@ The decision is not reversed. Both directions of movement are recorded because t
 
 **Also invalidated by the restatement, though not part of this decision:** the "demand-driven filing" commitment in the standing-design-commitments list above. It presumes content exists and is misplaced. It does nothing where documentation was never written because billable hours ended, which the kickoff established as a structural rather than incidental failure.
 
-### 2026-07-27 — internal AI governance registers: the vendor surface is unverified, the pattern holds
+### 2026-07-27 (later) — SUPERSEDES the amendment below: configure-first is correct and already executed by another team
+
+The amendment immediately following was written from two stale governance registers and reached the wrong practical conclusion. Direct inspection of internal Confluence and the live Claude deployment the same day corrected it. Both are kept; the superseded one is instructive about method, not about this decision.
+
+**What is true.** Claude is deployed to **every Commerce employee** with no approval gate, usage-based at a $1,000/person monthly cap, spanning claude.ai, Desktop Chat, Cowork and Claude Code. There is a dedicated AI Operations team. And **`Ask Commerce` — Anthropic's native ask-your-org surface — already runs org-wide** with Confluence, Jira and Slack connected, per-user permission scoping, numbered citations with last-modified dates, explicit conflict-surfacing, and a 12-month staleness flag. Full detail in `research/prior-art/ask-commerce.md`.
+
+**This decision is vindicated and mostly obsolete at once.** Configure-first was right — so right that another team reached the same conclusion independently and shipped it at org scale before this initiative finished its research. Six of the decision memo's seven guiding principles are already implemented in production. The Claude Tag pilot this ADR proposes as Stage 2 would be a smaller, later, worse-scoped version of a live system.
+
+**What changes:**
+
+- **The contingent build branch is effectively dead.** Trigger 2 (tier-label inadequacy) and trigger 4 (telemetry ceiling) were arguments for putting a bot in the middle of a surface that now exists and is owned by another team; this initiative would not be the one to rebuild it. Trigger 1 survives in transformed form — see below. Trigger 3's reference implementation was already lost (amendment below), which now matters less rather than more.
+- **Trigger 1 was right and is now concrete.** Shared-Drive visibility was named at founding as the riskiest assumption. It is confirmed: Ask Commerce's own configuration states Drive is pointed to but **not a connected source** — it can surface Drive files and cannot read their contents. The tech scopes and SA project folders live in Drive. The trigger's resolution is not a custom build; it is an AI Operations intake request (`AC-1`).
+- **A gap the ADR never anticipated.** Ask Commerce structurally **demotes** team- and project-space pages, naming `SE`, `TAM` and `IPM` among others, and has no authoritative-source entry for solution knowledge at all. So 3,173 Confluence pages are searchable and can never be a source of truth (`AC-2`, `C-4`). Standing, not coverage, is the binding constraint on the Confluence portion of the corpus.
+- **Stage 2 is not a pilot protocol.** It is an evidenced intake request to AI Operations: connect Drive, and establish an authoritative source for solution knowledge. The census is what makes the second half actionable, which is why Phase 0 is gating rather than preliminary.
+
+**The strongest thing found, and it argues for the memo rather than against it.** Ask Commerce's instructions carry hand-written workarounds for specific corpus contradictions — a channel name that appears two ways on one page, two IT pages disagreeing on a GitHub org name. Each contradiction becomes a bespoke line of configuration maintained by one team. That is `P4` in production and the mitigation is O(contradictions) in human effort. **Retrieval is absorbing capture failure as manual debt.** `READ-ONLY v1` still stands as written, but `BD-1` — whether the capture standard sits inside this initiative — is now the decision that carries the initiative's remaining value.
+
+### 2026-07-27 — SUPERSEDED: internal AI governance registers: the vendor surface is unverified, the pattern holds
+
+> Superseded by the amendment above, written the same day. Retained because the failure mode is worth keeping: two internal registers were read carefully and treated as current, and the pessimistic reading was acted on without an independent source-pull. The hedging was correct and the conclusion was still wrong.
 
 Two internal Confluence pages were read into the corpus on 2026-07-27. Findings and their grades are in `research/current-state/ai-governance-constraints.md`; only what bears on this decision is recorded here.
 

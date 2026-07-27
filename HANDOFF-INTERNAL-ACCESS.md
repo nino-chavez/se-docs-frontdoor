@@ -7,7 +7,15 @@ Read `HANDOFF.md` first for where the initiative stands. This file covers only t
 
 > **The short version.** Four open questions have been blocked on access, not on thinking. The biggest is BD-3 — whether a sanctioned internal assistant already exists. If it does, and it already carries security and hosting approvals, the sponsor's stated two-month floor was composed *entirely* of those approvals, and the configure-versus-build decision changes. Answer BD-3 before designing anything.
 
-> **Update 2026-07-27 — read `research/current-state/ai-governance-constraints.md` before item 1.** Two internal governance registers (the AI use-case page and the software/hardware page) were read into the corpus from the personal machine. They move the plan in three ways: the security review in the sponsor's two-month floor is a **named process with named intake forms**, not an unknown; the **Claude Tag surface ADR-0001 proposes is unverified on two counts** (input class, and beta-not-approved-by-default) and is now a prerequisite to resolve with GRC before Stage 2, not a task inside it; and **NotebookLM Pro is already approved for an input class that is a superset of this corpus**, which is the first configured path found whose approval burden may be near zero. That file also records the data-governance decision this handoff asked for — see its second section.
+> **Update 2026-07-27 — most of this file's premise has changed. Read `research/prior-art/ask-commerce.md` first.**
+>
+> **Internal access turned out to be available from the personal machine**, via the `browse-tool` CLI at `~/Workspace/dev/tools/browse-tool` launched with `--profile` (it seeds a persistent Chrome profile from the real one, carrying the Okta/Atlassian session). Confluence, Jira and claude.ai were all reachable. This file's framing — that these questions are blocked until the employee laptop — no longer holds for anything reachable through a browser.
+>
+> **`BD-3` is resolved: `Ask Commerce` exists and is live.** That was item 1 below and the question this handoff said "changes the plan most." It did. Phase 1 largely collapses; Phase 2 (capture) is where the remaining value sits.
+>
+> **`G4` was corrected.** An earlier version of this note said the Claude surface was unverified and a Stage 2 prerequisite. Wrong — Claude is deployed to every employee with no approval gate. The software register is stale. `G5`'s NotebookLM recommendation went with it.
+>
+> Items below are amended in place where they moved. Item 1 is closed; **1b, 2 and 3 changed shape**; the data-governance decision this file asked for is recorded in `ai-governance-constraints.md` § 2.
 
 ---
 
@@ -55,7 +63,17 @@ If you decide differently, decide it explicitly and write it down here.
 
 ## What to go get, in the order that changes the plan most
 
-### 1. BD-3 — does "ask commerce" / CLA already exist?
+### 1. ~~BD-3 — does "ask commerce" / CLA already exist?~~ — CLOSED 2026-07-27
+
+**Yes.** `Ask Commerce` is Anthropic's native ask-your-org surface at `claude.ai/ask-your-org`, configured and maintained by an internal **AI Operations team** (`ai-ops@bigcommerce.com`), active, reviewed June 2026, shared with every employee by default with no access request. Connected to Confluence, Jira and Slack. Respects per-user permissions. Runs Opus 4.7.
+
+The four questions this section asked, answered: it is a configured Anthropic product surface rather than a build; AI Operations owns it; it can be pointed at new sources **through their intake form**, which is the mechanism this initiative should use; and yes, this initiative plausibly belongs inside it.
+
+**Four gaps define the remaining work** — `AC-1` Drive is not readable and the tech scopes live there; `AC-2` solution knowledge has no authoritative source and the `SE`/`TAM`/`IPM` spaces are structurally demoted; `AC-3` Gong is not connected; `AC-4` capture is untouched and the system is visibly hand-patching corpus contradictions one at a time. Detail in `research/prior-art/ask-commerce.md`.
+
+**Still worth doing on the employee machine:** the empirical probe. Run real SE questions at Ask Commerce and record what comes back — it is the strongest single artifact for the first sponsor sync, and it is blocked only by the **$1,000/person monthly Claude spend cap**, which was hit on 2026-07-27. Wait for the 1st, get the cap raised, or run from an account with headroom.
+
+**Superseded framing, retained for the record:**
 
 **Why first:** the sponsor put the delivery floor at two months and said it was composed *entirely* of security review and hosting overhead (00:31:14). If a sanctioned internal assistant already holds those approvals, that floor mostly evaporates, and it becomes either the delivery vehicle or the most relevant prior art in existence. No other open question moves the plan this much.
 
@@ -69,20 +87,24 @@ What to establish:
 
 Record the answer in `research/prior-art/capture-domain-prior-art.md` § "Still unscanned", which names this as item 1.
 
-### 1b. GRC — resolve the tool-approval question before designing Stage 2
+### 1b. AI Operations — the conversation that now matters most
 
-**Why here:** it is the same *kind* of conversation as BD-3, it is cheaper, and unlike BD-3 it can stop Stage 2 outright. Added 2026-07-27 from `research/current-state/ai-governance-constraints.md`. Front door is Slack `#compliance-grc`; the intake paths are the AI Use Case Approval Form and the GRC & Security Use Case Intake Form.
+**Revised 2026-07-27.** This slot previously held four GRC questions about whether Claude was approved. Three of them are answered and the fourth moved. The conversation to have is with **AI Operations**, not GRC, and it is a request rather than a clearance check.
 
-Four questions, in the order that costs least to ask:
+**Two asks, both of which the census is the evidence for:**
 
-1. **Which roster is authoritative?** The software register's in-page tables link a separate *Approved GenAI Tool List*. Everything below depends on which one governs. The register is banner-marked "Currently In Review" and its last recorded annual review is 2025-01-07.
-2. **What is Claude's actual approved input class here?** (`G4`) The register lists Claude (Desktop) as *Restricted* — unidentifiable and public data only — and lists no Claude surface as *Approved*. The founding session records Enterprise seats live with an MCP connector performing writes. Those conflict. **Deployment is not authorization**, and that is the reading under which a pilot proceeds confidently and wrongly.
-3. **Does Claude Tag clear the beta rule?** It is beta by the founding session's own description, and BETA software is not approved by default.
-4. **How long does an AI Use Case review actually take** for a Submit-for-Approval corpus? This is the number that either confirms or corrects the sponsor's two-month floor, and nobody in this initiative has it.
+1. **Connect Google Drive contents** (`AC-1`). Ask Commerce can surface Drive files and cannot read them — stated in its own configuration. The tech scopes and SA project folders the sponsor proposed starting with (00:30:03) are in Drive. Without this, the corpus that matters most is invisible to the surface that already works.
+2. **Establish an authoritative source for solution knowledge** (`AC-2`). The routing table has entries for GRC, PEOP, Equity/MNPI, Claude access and IT deployment — and none for SE/SA. Worse, the demotion rules name `SE`, `TAM` and `IPM` as non-authoritative, so 3,173 already-searchable pages can never be a source of truth. **Standing, not coverage, is the binding constraint on the Confluence portion.**
 
-While there: **MCP servers have a blank row in both the Approved and Not-Approved tables** — genuinely undetermined status, and a connector-based configure-first design likely rests on it. Ask it as its own question, not folded into a larger request.
+Ask 2 is likely the harder one: every existing authoritative entry is owned by a governance or platform function, and domain knowledge would be a new category. Worth scoping — a single small space like `SIPR` (66 pages, readable end to end) is a more grantable first request than "the SE corpus."
 
-**Also worth pricing in the same conversation:** NotebookLM Pro is approved with an input class covering Non-public, Customer, Sensitive and Partner data (`G5`). That does not make it the answer — connector reach and citation behaviour are unassessed and either could disqualify it — but it is the cheapest configured path currently visible, and it deserves an assessment rather than a default to the incumbent choice.
+**Three questions to bring, in the order that costs least:**
+
+- **How long does an AI Use Case Review take?** (`G2`) The route is settled — this is **Use-Case #2**, existing approved tool, new data type, so an AI Use Case Review with a Privacy Impact Assessment rather than a Vendor Intake. The clock is the number that confirms or corrects the sponsor's two-month floor, and nobody has it. Contact `ai-review@commerce.com`.
+- **What raises a per-person spend cap, and who pays?** (`BD-4`) Claude is usage-based at **$1,000/person/month**, and the cap binds — it was hit on 2026-07-27. Routing SE question traffic into Claude makes this a capacity question with a real funding line, which `BD-4` previously lacked entirely.
+- **How is Ask Commerce's authoritative-source list maintained?** Its instructions carry a dated source-dependency contract over ten hardcoded page IDs. That is the *authority tier* mechanism running in production. Understanding its maintenance cost is directly relevant to whether ask 2 is realistic.
+
+**One thing to notice rather than ask.** Ask Commerce hand-patches individual corpus contradictions in its instructions — a channel name that appears two ways, two pages disagreeing on a GitHub org name. Each one is a bespoke line maintained by one team (`AC-4`). That is the memo's central argument, evidenced from their system rather than ours, and it is the strongest thing to bring to the sponsor.
 
 ### 2. Whatever delivery/IPM uses to record project state
 

@@ -14,7 +14,15 @@ The two source pages are internal and one is classified SENSITIVE. This repo is 
 
 This mirrors the recommendation already standing for the Phase 0 census: **counts, distributions, and structural findings travel; raw content does not.**
 
-**Recency caveat, and it is not decorative.** The software register is banner-marked "Currently In Review" and its last recorded annual review is 2025-01-07 — roughly eighteen months stale at time of reading. It carries a date typo (`Aug 30, 2202`), several dead internal links the page itself annotates as "Can't find link", and a deactivated account as the approver of record on nearly every version row. It separately links an *Approved GenAI Tool List* as a distinct resource, so **the in-page tables may not be the authoritative roster.** Every finding below is therefore a *checkable question with a named front door*, not a settled fact. See `G8`.
+**Recency caveat, and it is not decorative.** The software register is banner-marked "Currently In Review" and its last recorded annual review is 2025-01-07 — roughly eighteen months stale at time of reading. It carries a date typo (`Aug 30, 2202`), several dead internal links the page itself annotates as "Can't find link", and a deactivated account as the approver of record on nearly every version row.
+
+> ## Correction, 2026-07-27 — the caveat above was load-bearing and this document under-weighted it
+>
+> The first version of this file was written from the two registers alone. Direct inspection of internal Confluence and the live Claude deployment later the same day **reversed `G4` and voided `G5`'s recommendation.** Both are corrected in place below and the superseded reasoning is retained, because the failure mode is more instructive than the finding.
+>
+> **What went wrong:** a stale artifact was read carefully and treated as current. The hedging held — three readings were offered and "the register is stale" was one of them — but the *practical conclusion drawn* (treat the Claude surface as a Stage 2 blocker) acted on the pessimistic reading without an independent source-pull. Reading one document more closely cannot correct for not having read a second.
+>
+> **The corpus-wide lesson, which is this initiative's own thesis turned on itself:** the register is a governance artifact that is *wrong rather than merely old* — `P4`, in the document that governs the initiative. Its staleness is not visible from its contents. Only an external source exposed it. That is exactly what the memo argues about the SE corpus, and it is why *recency is correctness* has to be a design invariant rather than a nicety.
 
 Read alongside: this document is itself a specimen of `P4` — a governance artifact that is wrong-or-uncertain rather than merely old, whose reader cannot tell which. That is the defect class this whole initiative exists to address, found in the document that governs it.
 
@@ -53,6 +61,12 @@ The sponsor placed the delivery floor at two months and attributed it entirely t
 
 **This retires an unknown and replaces it with an estimate nobody in this initiative has yet made:** how long the AI Use Case review actually takes for a Submit-for-Approval corpus. That is answerable on the internal machine, and it is the single cheapest correction available to the memo's timeline discussion.
 
+**Route resolved 2026-07-27.** The canonical GRC page — *AI Responsible Use Process, Workflow, and Resources* (v7, 2026-05-27), which supersedes the older Legal-space page and is the source Ask Commerce itself treats as authoritative — opens with "Almost all AI usage requires review and approval" and splits the process three ways. This initiative is unambiguously **Use-Case #2: an existing approved tool processing a new type of data.**
+
+That means: **an AI Use Case Review, including Privacy Impact Assessment questions where PII is involved.** Not a Vendor Intake Form, because Claude is already a procured and approved tool — the expensive path is the one this initiative does *not* take. Contact is `ai-review@commerce.com`.
+
+Duration remains unmeasured. Two known cost drivers, from the SOP's process steps: an **AppSec review is triggered by new or updated MCP, integrations, open-source software, or custom code**, and escalations requiring an ethical or regulatory decision go to an **AI Review Committee that meets quarterly** — a tail risk that could exceed the sponsor's entire stated two-month floor on its own. A configured path that adds no custom code and no new MCP avoids the first entirely.
+
 ## `G3` — Proof-of-concept rules forbid the obvious Phase 0 / Phase 1 shortcut
 
 During a PoC the register permits only: public or dummy data as input, **no connections to other tools or systems**, and no use of output in the codebase — the stated reason being that a free trial does not carry the contractual protections.
@@ -61,7 +75,26 @@ During a PoC the register permits only: public or dummy data as input, **no conn
 
 Related: **BETA software is not approved by default**, and free or trial tiers are not for official business use absent Security/Legal/Privacy sign-off. Any pilot design resting on a preview feature is out before it starts.
 
-## `G4` — Claude does not appear on the approved GenAI list; it appears as Restricted, with an input class that excludes this corpus
+## `G4` — CORRECTED: Claude is deployed org-wide with no approval gate. The register is stale.
+
+> **This finding was reversed on 2026-07-27.** The original reading is preserved beneath the correction because the reasoning pattern matters more than the conclusion.
+
+**What is actually true**, from the internal AI Operations `Claude Knowledge Hub` (reviewed July 2026) and direct inspection of the live deployment:
+
+- **Every Commerce employee has Claude.** No application, no approval, no license request. Stated in those terms on the hub page.
+- Access is **usage-based, not seat-based** — a **$1,000 monthly spend cap per person**, resetting on the 1st. Contrast ChatGPT, which is seat-limited to 1,000 purchased licenses with 30-day inactivity revocation.
+- Surfaces in use: **claude.ai** (web/mobile), and Desktop Claude covering Chat, Cowork, and **Claude Code**. Entry is the Claude tile in Okta.
+- Connectors (MCP) for Atlassian, Gmail, and Google Calendar are user-enablable.
+- A dedicated **AI Operations team** owns Projects, Skills, Plugins and an intake form. `Ask Commerce` runs org-wide on this deployment — see `research/prior-art/ask-commerce.md`.
+- The GRC **AI Registry** (2026-04-01) records *Anthropic — Claude (Desktop, CLI) — Medium risk — **Confidential** data classification — human-in-the-loop — SEC-AI-001*. Broader than the software register, newer, and it explicitly includes CLI.
+
+**The cap is real and it binds.** An attempt to run empirical questions against Ask Commerce on 2026-07-27 was refused for having reached the monthly spend limit. That is a live input to `BD-4`, which previously had none: routing SE question traffic into Claude makes per-person caps a capacity question.
+
+**Consequence for `ADR-0001`:** the configure-first path is not blocked, was never blocked, and the beta concern below is moot for the surface that matters — `Ask Commerce` is generally available and in production use, not a beta pilot. The ADR's third amendment is rewritten accordingly.
+
+---
+
+**Superseded reading, retained deliberately.** What follows was the original `G4`, written from the software register alone. It is wrong in effect. It is kept because the corpus should show its own corrections rather than quietly absorb them, and because the register text it describes is still on the page today — anyone reading that register without the AI Operations context will reach the same wrong conclusion.
 
 The load-bearing finding, and it lands on `decisions/0001-configure-first-pilot-as-prototype.md`.
 
@@ -89,7 +122,21 @@ The third reading is the one that should worry us, because it is invisible from 
 
 Recorded as a third qualification on ADR-0001's Amendments section, not as a reversal.
 
-## `G5` — NotebookLM Pro carries the broadest input authorization on the approved list
+## `G5` — CORRECTED: NotebookLM Pro's approval breadth is real; the recommendation built on it is void
+
+> **The factual claim below stands. The conclusion drawn from it does not.**
+
+The register entry is accurate: NotebookLM Pro is approved for every input class except Shopper PII, output internal-only. That remains the broadest stated input authorization on the approved list.
+
+**But the argument it was carrying has collapsed.** The recommendation was "cheapest configured path by approval burden" — and that rested on `G4`'s premise that the Claude path carried an unresolved approval question. It does not. Claude is deployed org-wide with no approval gate, and `Ask Commerce` already runs on it with Confluence, Jira and Slack connected, citations, conflict-surfacing and staleness flags in production (`research/prior-art/ask-commerce.md`).
+
+Approval burden does not discriminate between the two options, so it cannot decide between them. **NotebookLM Pro is not disqualified — it is simply no longer privileged**, and would now have to win on fitness (connector reach, citation behaviour, refresh semantics, corpus scoping) against an incumbent that already serves the whole company. On current evidence it does not, and no assessment is planned.
+
+Recorded so a future reader does not revive the recommendation without the premise.
+
+---
+
+**Original finding, retained for the factual record:**
 
 Also under **Approved Software → GenAI**:
 
@@ -133,18 +180,27 @@ Two approved entries are direct prior art for the shape this initiative proposes
 
 Neither is "ask commerce" / CLA. **`BD-3` is untouched by these documents** — no entry in either register matches the sponsor's description. But both prove the approval shape exists and has been navigated, which lowers the prior on `BD-3`'s answer being "no such thing exists."
 
-## `G8` — What these documents do not settle
+## `G8` — What remains open, after the 2026-07-27 corrections
 
-- **The authoritative GenAI roster.** The tables here may be superseded by the linked *Approved GenAI Tool List*. Resolve before treating `G4` or `G5` as final.
-- **MCP servers.** A row exists in both the Not-Approved and Approved tables, **blank in both**. Status genuinely undetermined — and a connector-based configure-first design likely depends on it. Worth raising with GRC as its own question rather than inside a larger request.
-- **Review duration.** `G2` names the process, not its clock.
-- **Connector reach for any approved tool.** Governance and technical capability are separate questions; only the first is answered here.
-- **`BD-3`.** Unmoved.
+**Resolved since first writing:**
+
+- ~~The authoritative GenAI roster.~~ Settled. The SOP names *Approved/Not Approved Software/Hardware* (page `19368090`) as the record of approval, and Ask Commerce's own configuration treats it as authoritative — "if a tool is not listed on this page, it is NOT approved." The current canonical *process* page is *AI Responsible Use Process, Workflow, and Resources* (`2887843868`). The register being the system of record is precisely why its staleness on Claude matters beyond this initiative: **it is stale in the authoritative direction**, and Ask Commerce is instructed to treat absence from it as a negative answer.
+- ~~MCP servers, undetermined.~~ Partly settled, and better than "undetermined": MCP is not a blank in the process — it is a **named trigger for AppSec review** in the SOP's process steps. A design that adds no new MCP avoids that review entirely.
+- ~~`BD-3`, unmoved.~~ **Resolved.** See `research/prior-art/ask-commerce.md`.
+
+**Still open:**
+
+- **Review duration.** `G2` names the route precisely and still has no clock on it.
+- **Connector reach.** Governance is not what stops Ask Commerce reading Drive — connection is (`AC-1`). Whether AI Operations will connect it, at what cost, is unasked.
+- **Whether a domain-knowledge authoritative source is grantable** (`AC-2`). Every existing entry is owned by a governance or platform function. Solution knowledge would be a new category.
+- **The empirical probe of Ask Commerce.** Blocked on the per-person spend cap, not on access or permission.
 
 ---
 
 # Reference — citation handles
 
-`G1` corpus sits in Submit-for-Approval territory · `G2` the two-month floor has a named intake process · `G3` PoC rules forbid real-corpus prototyping · `G4` Claude is Restricted to unidentifiable/public input in this register · `G5` NotebookLM Pro carries the broadest approved input class · `G6` per-source constraints · `G7` internal prior art for reasoning-over-internal-data · `G8` what remains open
+`G1` corpus sits in Submit-for-Approval territory · `G2` the route is Use-Case #2, an AI Use Case Review; duration still unknown · `G3` PoC rules forbid real-corpus prototyping · `G4` **corrected** — Claude is deployed org-wide with no approval gate; the software register is stale · `G5` **corrected** — NotebookLM Pro's approval breadth is real but no longer privileges it · `G6` per-source constraints · `G7` internal prior art for reasoning-over-internal-data · `G8` what remains open
+
+Two handles cite outward: `AC-1`–`AC-4` are in `research/prior-art/ask-commerce.md`; `C-1`–`C-4` are in `research/current-state/confluence-corpus-census.md`.
 
 Convention matches `research/problem-space/problem-statement.md`: prefer the claim in prose and attach the handle.

@@ -135,7 +135,11 @@ Recording knowledge going forward is a write system. The founding decision locke
 The founding scope was sales engineers, with other audiences explicitly deferred. The sponsor asked for SE and SA, then for anyone in the company (00:09:27, 00:16:58). **Unresolved. Owner: operator with sponsor.**
 
 **Does an existing internal assistant already own this surface?** — `BD-3`
-The sponsor referred twice to an existing internal capability — "something similar to ask commerce that we do for everything within commerce" (00:09:27), and later placing this "directly within CLA, like ask commerce" (00:33:23). If that platform exists, it is either the delivery vehicle or prior art that must be reviewed before any tooling decision, and it may already hold the approvals that constitute the stated timeline floor. **Unverified. Owner: sponsor to identify.**
+The sponsor referred twice to an existing internal capability — "something similar to ask commerce that we do for everything within commerce" (00:09:27), and later placing this "directly within CLA, like ask commerce" (00:33:23).
+
+> **RESOLVED 2026-07-27. It exists, and the sponsor was naming the actual system rather than an analogy.** `Ask Commerce` is Anthropic's native ask-your-org surface, configured and maintained by an internal AI Operations team, live, shared with every employee by default, connected to Confluence, Jira and Slack, with per-user permission scoping, numbered citations carrying last-modified dates, explicit conflict-surfacing, and a 12-month staleness flag. Six of the decision memo's seven guiding principles are already implemented in it.
+>
+> Full detail, including the four gaps that define this initiative's remaining work, in `research/prior-art/ask-commerce.md`. The successor question is no longer *whether* it exists but whether this initiative lives inside it — and the answer looks like yes, via the AI Operations intake process, rather than build-alongside. **Owner: operator, with AI Operations.**
 
 **What is the funding line?** — `BD-4`
 No budget was established. The question was raised and answered on a different axis (00:31:14). Tooling costs are currently absorbed personally by the single named developer (00:37:28). **Unresolved. Owner: sponsor.**
@@ -144,7 +148,16 @@ No budget was established. The question was raised and answered on a different a
 
 Derived from the dependency above, not from a preferred architecture. Each phase exists because something downstream cannot be decided without it.
 
+> **Revised 2026-07-27, after `BD-3` resolved.** The dependency structure above is unchanged and still carries the argument — the question surface is still downstream of source trust, and source trust is still bounded by capture. What changed is who builds the question surface. **It already exists.** So Phase 1 contracts sharply, Phase 0 becomes more load-bearing rather than less, and Phase 2 is where this initiative's differentiated value now sits. Each phase below carries its revision inline.
+
 **Phase 0 — Count the corpus.**
+
+> **Revised: partially executed, and now more load-bearing rather than less.** The Confluence portion ran on 2026-07-27 — 3,173 pages across five spaces, 26% touched within 12 months, 59% untouched for two years (`confluence-corpus-census.md`). Drive, Gong, Slack and the direct messages remain uncounted, and the tech scopes the sponsor wants to start with are **not** in those numbers.
+>
+> Its role changed. The census is no longer only an input to a build decision — it is **the evidence that makes the two Phase 1 requests to AI Operations actionable**. "Connect Drive" and "make solution knowledge authoritative" are asks that need a sized, characterized corpus behind them. The census is what turns them from opinion into request.
+>
+> The hard part is unchanged and still unmethoded: **timestamps cannot find the wrong-not-stale defect.** `P4`'s guest-tokenization class is invisible to every count run so far, `P6` says it is the most valuable and least durable category, and sizing it needs content sampling with a definition of "wrong" a sampler can apply. That method does not exist yet and is the most valuable thing left to design.
+
 Every downstream decision depends on magnitude and quality distribution, and both are unknown. The founding session recorded corpus size as "genuinely unknown" and deferred the census into the pilot. The kickoff makes the census the gating question instead: how much exists, how current, how contradictory, and how it distributes across sources. This is cheap relative to everything else being discussed, and it is the only work that no other decision can proceed without.
 
 It also produces the first real answer to *coverage follows verified quality* — which subset is trustworthy enough to serve.
@@ -152,10 +165,23 @@ It also produces the first real answer to *coverage follows verified quality* �
 **Phase 1 — A question surface over the highest-trust subset.**
 Scoped by the census rather than by ambition. Structured tech scopes are more uniform than a decade of direct messages; the sponsor independently proposed exactly this scoping — tech scopes and the SA folder first, Slack later (00:30:03) — along with the release guardrail that a phase shipping bad or old information is worse than shipping nothing.
 
-Configure-first remains the leading candidate, because the sponsor's own opening instinct was a Claude-native surface and because the stated timeline floor is composed entirely of security review and hosting overhead that a configured path may avoid. That candidacy is now qualified: sources the existing connectors do not reach are a named trigger for a custom build in ADR-0001, and at least one such source is already in scope.
+> **Revised: this phase largely collapses.** The question surface exists and serves the whole company. Phase 1 stops being *build or configure a surface* and becomes *close the coverage and standing gaps on the surface that already runs* — two requests to AI Operations, both of which the census is what justifies:
+>
+> 1. **Connect Drive contents** (`AC-1`). Ask Commerce can see Drive files and cannot read them; the tech scopes and SA folders the sponsor named live there.
+> 2. **Establish an authoritative source for solution knowledge** (`AC-2`). The routing table has entries for GRC, HR, equity, IT and tool approval, and none for what an SE needs. The `SE`, `TAM` and `IPM` spaces are explicitly demoted, so 3,173 already-searchable Confluence pages can never stand as a source of truth.
+>
+> The sponsor's release guardrail survives intact and now has teeth: the demotion rules already encode "don't ship bad or old information," and the 12-month staleness flag already fires against roughly three-quarters of this corpus (`confluence-corpus-census.md`).
+
+Configure-first is confirmed rather than merely leading — see `ADR-0001`'s 2026-07-27 (later) amendment. It was not just the right call; another team reached it independently and shipped it at org scale first.
 
 **Phase 2 — Fix how work produces knowledge, and set the capture standard.**
 Phase 1's ceiling is set here, because retrieval quality is bounded by capture quality. This determines whether the product improves or plateaus. It is organizational change, not software, and it cannot be delivered by shipping a retrieval surface. `BD-1` decides whether it lives in this initiative.
+
+> **Revised: this is now where the initiative's differentiated value sits**, and there is first-party evidence for it that did not exist when this document was written. Ask Commerce's instructions carry hand-written workarounds for individual corpus contradictions — one page using two names for the same Slack channel, two pages disagreeing on a GitHub organization name. Every contradiction becomes a bespoke line of configuration maintained by one team (`AC-4`).
+>
+> **The retrieval layer is already absorbing capture failure as manual maintenance debt, at O(contradictions).** That is `P7` observed in production rather than argued from first principles, and it is the strongest available argument to the sponsor — made from Commerce's own system rather than from theory. `BD-1` is consequently the decision that now carries the most weight.
+>
+> A lead worth more than a framework: `TAM` is the one space in the census whose documentation is not decaying — 57% touched within 12 months against 19–21% for `SA` and `IPM`, under the same billing pressure (`C-3`). A working internal practice beats an imported one, and finding out what they do costs one conversation.
 
 **Phase 3 — Discovery support.**
 The sponsor's actual enthusiasm — generating the hard questions to ask a given merchant, including the disqualifying ones. Sequenced last because it depends on negative knowledge being both present and current, which is the decay problem that Phases 0 through 2 exist to address. A partial version already exists in the tech scope document the sponsor demonstrated (00:26:50); it is prior art, not a greenfield surface.
@@ -178,7 +204,9 @@ The lookup layer. Other documents and tools cite these; nothing above requires t
 
 **Domains** — `A` source trust · `B` the question surface · `C` how work produces knowledge · `D` existing integration tooling · `E` the capture standard
 
-**Open decisions** — `BD-1` does the capture standard sit inside this initiative · `BD-2` audience boundary · `BD-3` does an existing internal assistant own this surface · `BD-4` funding line
+**Open decisions** — `BD-1` does the capture standard sit inside this initiative (**now the heaviest**) · `BD-2` audience boundary · ~~`BD-3` does an existing internal assistant own this surface~~ **RESOLVED 2026-07-27 — yes, `Ask Commerce`** · `BD-4` funding line (**first real input**: Claude runs on a $1,000/person monthly usage cap, and it binds)
+
+**Outward handles** — `G1`–`G8` in `research/current-state/ai-governance-constraints.md` · `AC-1`–`AC-4` in `research/prior-art/ask-commerce.md` · `C-1`–`C-4` in `research/current-state/confluence-corpus-census.md`
 
 **Solution constraints** — cite or say nothing · recency is correctness · surface conflicts, do not adjudicate · assume no schema · measure against the person · coverage follows verified quality
 

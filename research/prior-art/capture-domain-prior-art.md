@@ -95,12 +95,24 @@ Register entry: *Merchant AI Support product*. Input spans Public, Non-public, U
 
 This is the closest existing analogue to the question surface (domain `B`) anywhere in the scan, internal or external — an AI answer surface over commerce knowledge that has already cleared security, including the exception process. Two questions worth more than anything the workspace scan produced: what corpus does it answer over, and what did its approval actually require? **Not scanned. Reachable only from the employee machine.**
 
-## Still unscanned — the three that matter most
+### 8. Ask Commerce — the most relevant prior art in existence, and it is live
 
-None is reachable from this workspace, and all three are more important than anything above:
+**Scanned 2026-07-27. Full artifact: `research/prior-art/ask-commerce.md`.** Kept short here so this index stays an index.
 
-1. **The internal assistant the sponsor called "ask commerce" / CLA** (kickoff 00:09:27, 00:33:23). BD-3. If it exists it is either the delivery vehicle or the most relevant prior art in existence, and it may already carry the approvals that constitute the stated two-month floor. Note that neither governance register contains an entry matching the sponsor's description — that is not evidence of absence (the registers cover tools and integrations, not internal builds), but it does mean BD-3 stays exactly where it was.
-2. **Whatever delivery/IPM already uses to record project state.** Named in the kickoff as a source ("IPM notes", "documented within their side of things", 00:12:48) but never examined as a system. `delivery-ipm/JOB-1` cannot be designed without it, and that persona is already flagged `implied-not-represented`.
-3. **Discoverist AI's corpus and approval path** — item 7 above. Cheaper to answer than either of the others, and it is the only known instance of this exact shape surviving commerce's security review.
+`Ask Commerce` is Anthropic's native ask-your-org surface, configured by an internal AI Operations team, live and shared with every employee. Confluence, Jira and Slack connected; per-user permission scoping; numbered citations with last-modified dates; conflict-surfacing; 12-month staleness flags. **Six of the decision memo's seven guiding principles are already implemented in it.**
 
-All three are operator- or sponsor-resolvable, not researchable from here.
+Three things to take from it rather than rebuild: its **source hierarchy with explicit demotions**, its **"reasoning about absence"** instruction (a null result *is* an answer, not a failure to find one), and its **dated maintainer contract** over ten hardcoded authoritative page IDs — which is the founding grill's *authority tier* concept running in production with a named owner.
+
+And one thing to take as evidence rather than as design: it carries hand-written patches for individual corpus contradictions, one per contradiction (`AC-4`). That is `P7` observed in someone else's production system.
+
+## Still unscanned — what is left
+
+Item 1 below was the highest-priority unknown in this scan and is now **resolved** (see 8 above). The remainder, in order:
+
+1. ~~**The internal assistant the sponsor called "ask commerce" / CLA**~~ — **RESOLVED 2026-07-27.** It exists, it is `Ask Commerce`, and it is documented at item 8. Worth recording *why the earlier scan missed it*: neither governance register contained a matching entry, and that absence was correctly noted as non-evidence — the registers cover procured tools and integrations, not org-level product features a team configured. The system was found by searching Confluence directly, not by reading registers about it.
+2. **Whatever delivery/IPM uses to record project state.** Named in the kickoff as a source ("IPM notes", "documented within their side of things", 00:12:48) but never examined as a system. **Substantially answered** by the census: the `IPM` space holds 1,599 pages of per-client project documentation, the largest single corpus counted (`C-1`). What remains is whether hours-tracking and scheduling live elsewhere, and `delivery-ipm/JOB-1` still needs a real IPM to talk to rather than second-hand description.
+3. **What TAM does differently.** New, and the cheapest high-value item on this list. `TAM` is the one space whose documentation is not decaying — 57% touched within 12 months against 19–21% elsewhere, under the same billing pressure (`C-3`). A working internal counterexample to `P2` is worth more to Phase 2 than any external framework.
+4. **Discoverist AI's corpus and approval path** — item 7 above. The only known instance of a customer-facing AI answer surface clearing commerce's security review, including an approved security exception.
+5. **Atlassian Rovo.** In the GRC AI Registry, Confluence-native, and never considered as a candidate surface.
+
+All are operator- or sponsor-resolvable, and items 3 through 5 are now reachable from the employee machine rather than blocked.
