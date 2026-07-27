@@ -47,6 +47,7 @@ That single constraint drives most of what follows.
 4. **Don't require a structure we don't have.** Every project documents differently. Any design that needs a uniform schema across the corpus is designing for a corpus we don't have.
 5. **Measure against the current system, which is a person.** Today a hard question gets answered by a person-to-person round trip through one of the few people who carry the history. That's the baseline, and the round trip is the thing to displace.
 6. **Scope coverage by verified quality, not ambition.** Indexing everything means indexing the stale and the wrong alongside the good.
+7. **Present answers as a starting point, not a verdict.** Mark's ask on the call, and I'd make it a design rule: whoever asks has to understand the answer may not be the full or final response, and that some investigation is still theirs to do. This is separate from citing — a correctly cited answer can still be read as more settled than it is. It shapes how the answer is worded, not just what it links to.
 
 Andrew — your own guardrail on the call already implies most of this: don't ship a phase that returns bad or old information, because it's more damaging than useful. I've taken that as a hard constraint rather than a preference.
 

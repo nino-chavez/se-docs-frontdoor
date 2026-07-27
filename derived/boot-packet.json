@@ -1,14 +1,14 @@
 {
   "schema": "actor-output-boot/1",
   "initiative": "se-docs-frontdoor",
-  "generated_at": "2026-07-27T22:18:15.628Z",
-  "as_of": "932c3a3",
+  "generated_at": "2026-07-27T22:19:50.949Z",
+  "as_of": "8c3eb87",
   "recent": [
+    "fix: correct name attributions after fact-check gate (Stage 4)",
     "docs: close the open README findings from doc-quality",
     "fix: close both doc-quality criticals and the sibling-scan blockers",
     "docs: restructure the problem statement so it reads without lookups",
-    "fix: correct a hardened paraphrase, and refresh stale handoff state",
-    "feat: author the decision memo — Stage 5 deliverable, 0 reviewer blocks"
+    "fix: correct a hardened paraphrase, and refresh stale handoff state"
   ],
   "account": {
     "decisions": [

@@ -21,7 +21,13 @@
 
 ## Next
 
-1. **The memo is sendable on attribution grounds; one thing remains before sending.** All four judgment gates have now run and every blocking finding is closed — including fact-check, which caught a misattribution between two named recipients. The remaining item is the reference-grading corpus-wide re-grade: it ran without web-fetch, so **no external URL has been re-derived**. Two claims carry forward as "cited, not re-derived" (NotebookLM API assertion; GH#53442 connector transfer). Neither is in the memo, so this is a judgment call rather than a block — re-derive them or accept the label. Once sent, promote `decision-memo` to `issued` and set up the weekly sync.
+1. **The memo's attribution defects are closed. Two caveats before sending — read both, they are not the same thing.**
+
+   **`fact-check-loop-reviewer` never executed as specified.** Its agent went idle twice without reporting, so the *attribution* check was run by hand against the source PDF. That check is closed and its findings are fixed. But the gate's spec fans out to `citation-checker`, `current-state-claim-verifier`, and variant sub-checkers, then decides convergence — none of that ran. Do not record this gate as passed. One sub-check was hand-substituted; the gate is still owed. Stating otherwise here would be the same self-attestation this section warns about two paragraphs down.
+
+   **A `citation-checker` run was in flight at session end** and its scope overlaps the open reference-grading item: the corpus-wide re-grade ran without web-fetch, so **no external URL has been re-derived**, and two claims carry forward as "cited, not re-derived" (NotebookLM API assertion; GH#53442 connector transfer). If that run came back having actually fetched those pages, the item resolves; if it came back empty, the label stands. Reconcile before trusting either state. Neither claim appears in the memo, so this gates the research corpus, not the send.
+
+   Once sent, promote `decision-memo` to `issued` and set up the weekly sync.
 2. **Chase BD-3 first among the open decisions.** If the internal "ask commerce" / CLA assistant exists, it may already hold the approvals that constitute the sponsor's entire stated two-month floor. It is the question that most changes the plan.
 3. **Design Phase 0 (corpus census) concretely** — what gets counted, how, over how long. The memo promises this at the first sync. Every later decision depends on it and nobody can currently answer what fraction of real questions have an answer anywhere.
 4. **Two inputs to chase that are not researchable from here**: an actual IPM to confirm `delivery-ipm/JOB-1` (flagged `implied-not-represented`), and whatever delivery already uses to record project state.
@@ -47,7 +53,7 @@ Carried from the previous handoff and now wrong. Listed explicitly because they 
 | `doc-quality-auditor` | BLOCKED, 2 critical | Both criticals **closed**. Several HIGH/MEDIUM open — see below. |
 | `research-sibling-scanner` | BLOCKED | **Closed.** Broken `knowledge-index` citation corrected at 5 sites; missed capture sibling (`claude-docs-toolkit`) added; gate's required H2 added. |
 | `research-reference-grader` | BLOCKED | **Partly closed.** Canonical fix landed. Corpus-wide re-grade still open. |
-| `fact-check-loop-reviewer` | BLOCKED, 1 critical + 3 high | **Closed** for attribution. Run by hand against the source PDF after the dispatched agent went idle twice without reporting. See below. |
+| `fact-check-loop-reviewer` | **did not execute** — attribution sub-check hand-run instead: 1 critical + 3 high | Attribution findings **closed**. The gate itself is **still owed** — its agent went idle twice without reporting, and the convergence loop plus the other sub-checkers never ran. |
 
 **What the two criticals were**, because both are instructive:
 1. The memo promised the sponsor "a measurement attached" and defined no measurement anywhere, while never naming that as open. Hidden incompleteness, not named. Fixed by adding a "What this memo doesn't do yet" section — which also surfaced that the sponsor's *second* stated success criterion (a written diagnosis of documentation practice) was absent from the memo entirely.

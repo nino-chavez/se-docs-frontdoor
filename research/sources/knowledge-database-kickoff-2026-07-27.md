@@ -65,6 +65,10 @@ Cited by `research/problem-space/problem-statement.md`, `research/personas-and-j
 *Speaker: Mark Seung.*
 > "The biggest problem I kind of foresee is some of the older documents don't relate anymore. Like guest tokenization. We have docs out there that just has workarounds because we never had guest tokenization, right? … old data that might conflict with new features now. That just was never available two years ago. And that's available now. But we've probably never documented a new approach yet because it's brand new."
 
+**00:19:15 — answers must be framed as provisional**
+*Speaker: Mark Seung.* A requirement from a named recipient, distinct from the citation invariant: it governs how an answer is *worded*, not whether it is sourced. Added to the memo's guiding principles after the 2026-07-27 fact-check found it carried nowhere.
+> "I just want to make sure the [SEs] are just aware that hey, this is not — you know, this solution may not be like the full final response, feedback. There's going to be some investigation you guys might need to go through."
+
 **00:20:18 — documentation stops when billing stops (P2)**
 *Speaker: Zac Abbruzzese.*
 > "it's all point in time and as well as with something from two years ago might be very out of date based on features today. There's also a problem I ran into where the second they run out of IPM hours, the documentation stops. So there's also things where there's halfway through working through a solution or an implementation and the documentation just stops. So we don't actually have a lot of the completed retrospective or anything like that on a lot of these solutions and buildouts."
