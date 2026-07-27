@@ -24,4 +24,4 @@
 - Reviewer runner is NOT stamped into initiatives: run `node ~/Workspace/dev/tools/blueprint/template/tools/run-reviewers.mjs` from this root.
 - Persona JTBDs must stay in list shape (`jtbd:` then `- surface: ...`) — forge-provenance parses only that shape.
 - Portal-chrome-canonical reports TEMPLATE_MISSING against the methodology repo itself — possible upstream blueprint issue; consider a methodology amendment when next in `tools/blueprint`.
-- Not a git repo yet — `git init` before any multi-session work (worktree rule applies after that).
+- Git repo initialized; remote is `git@github.com:nino-chavez/se-docs-frontdoor.git` (private). Worktree rule applies to any multi-session work.

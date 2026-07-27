@@ -57,7 +57,7 @@ migration: actor-output   # explicit mid-migration mode (decisions/05) — sanct
 # A typo'd path simply keeps the section hidden — it never crashes the build.
 # ──────────────────────────────────────────────────────────────────
 portal:
-  repo_url: "https://github.com/your-org/se-docs-frontdoor"
+  repo_url: "https://github.com/nino-chavez/se-docs-frontdoor"
   decisions:
     dir: "decisions"               # folder of NNNN-slug.md decision records (ADRs)
     # filename_pattern: "^(?:ADR-)?(\\d{4})-(.+)\\.md$"  # override the matcher if your ADRs are named differently

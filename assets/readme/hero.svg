@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="510" viewBox="0 0 1200 510"
+     role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">se-docs-frontdoor</title>
+  <desc id="hero-desc">Seven scattered documentation sources — Jira, Confluence, Google Drive, Slack threads, NotebookLM, local files and doc sites — gather into a single Slack channel running Claude Tag in read-only mode, which returns an answer carrying source citations, authority labels and a conflict flag. The success signal is senior-SE ping deflection.</desc>
+
+  <rect width="1200" height="510" rx="18" fill="#0B0D0F"/>
+  <rect x="0.5" y="0.5" width="1199" height="509" rx="18" fill="none" stroke="#1B1F23"/>
+
+  <g id="title-block">
+    <text x="64" y="66" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="2.6" fill="#767D85">BLUEPRINT INITIATIVE · CONFIGURE-FIRST · INTERNAL</text>
+    <text x="64" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="46" font-weight="640" fill="#F1EFEB">se-docs-frontdoor</text>
+    <text x="64" y="161" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="21" fill="#B9BEC4">A Slack front door over every SE doc source — one cited answer away.</text>
+    <text x="64" y="193" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">greenfield · tier 1 · read-only v1 · stage 1 closed → stage 2</text>
+  </g>
+
+  <line x1="64" y1="224" x2="1136" y2="224" stroke="#23272B"/>
+
+  <g id="sources">
+    <text x="64" y="258" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.4" fill="#767D85">SCATTERED TODAY</text>
+    <text x="1136" y="258" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.4" fill="#4E545A">7 SOURCE FAMILIES</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#B9BEC4">
+      <rect x="64"   y="278" width="64"  height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="96"   y="300" text-anchor="middle">Jira</text>
+
+      <rect x="170"  y="288" width="118" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="229"  y="310" text-anchor="middle">Confluence</text>
+
+      <rect x="330"  y="274" width="136" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="398"  y="296" text-anchor="middle">Google Drive</text>
+
+      <rect x="508"  y="292" width="145" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="580"  y="314" text-anchor="middle">Slack threads</text>
+
+      <rect x="695"  y="276" width="118" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="754"  y="298" text-anchor="middle">NotebookLM</text>
+
+      <rect x="855"  y="286" width="127" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="918"  y="308" text-anchor="middle">local files</text>
+
+      <rect x="1024" y="272" width="109" height="34" rx="5" fill="#101316" stroke="#23272B"/>
+      <text x="1078" y="294" text-anchor="middle">doc sites</text>
+    </g>
+
+    <g stroke="#2E343A" stroke-width="1">
+      <line x1="96"   y1="312" x2="96"   y2="348"/>
+      <line x1="229"  y1="322" x2="229"  y2="348"/>
+      <line x1="398"  y1="308" x2="398"  y2="348"/>
+      <line x1="580"  y1="326" x2="580"  y2="348"/>
+      <line x1="754"  y1="310" x2="754"  y2="348"/>
+      <line x1="918"  y1="320" x2="918"  y2="348"/>
+      <line x1="1078" y1="306" x2="1078" y2="348"/>
+      <line x1="96"   y1="348" x2="1078" y2="348"/>
+    </g>
+  </g>
+
+  <g id="front-door">
+    <path d="M164 348 L164 382" stroke="#9FC3D2" stroke-width="1.5" opacity="0.55"/>
+    <path d="M158 376 L164 384 L170 376" fill="none" stroke="#9FC3D2" stroke-width="1.5" opacity="0.55"/>
+
+    <rect x="64" y="388" width="200" height="60" rx="8" fill="#12161A" stroke="#9FC3D2" stroke-opacity="0.45"/>
+    <text x="164" y="415" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#F1EFEB"># se-frontdoor</text>
+    <text x="164" y="435" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="0.5" fill="#767D85">CLAUDE TAG · READ-ONLY</text>
+
+    <path d="M270 418 L304 418" stroke="#767D85" stroke-width="1.5"/>
+    <path d="M298 412 L306 418 L298 424" fill="none" stroke="#767D85" stroke-width="1.5"/>
+  </g>
+
+  <g id="cited-answer">
+    <rect x="310" y="374" width="618" height="96" rx="8" fill="#101316" stroke="#23272B"/>
+    <text x="330" y="400" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.4" fill="#767D85">CITED ANSWER</text>
+    <rect x="330" y="412" width="470" height="5" rx="2.5" fill="#2E343A"/>
+    <rect x="330" y="425" width="352" height="5" rx="2.5" fill="#2E343A"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#9FC3D2">
+      <rect x="330" y="438" width="178" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="340" y="453">Confluence · canonical</text>
+
+      <rect x="522" y="438" width="178" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="532" y="453">Drive doc · supporting</text>
+
+      <rect x="714" y="438" width="135" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="724" y="453">conflict flagged</text>
+    </g>
+  </g>
+
+  <g id="success-signal" text-anchor="end">
+    <text x="1136" y="406" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="2.4" fill="#4E545A">SUCCESS SIGNAL</text>
+    <text x="1136" y="431" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">senior-SE ping</text>
+    <text x="1136" y="451" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#767D85">deflection</text>
+  </g>
+</svg>
