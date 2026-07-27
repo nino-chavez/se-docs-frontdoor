@@ -74,14 +74,14 @@
     <rect x="330" y="425" width="352" height="5" rx="2.5" fill="#2E343A"/>
 
     <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#9FC3D2">
-      <rect x="330" y="438" width="178" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
-      <text x="340" y="453">Confluence · canonical</text>
+      <rect x="330" y="438" width="186" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="340" y="453">Confluence · tier label</text>
 
-      <rect x="522" y="438" width="178" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
-      <text x="532" y="453">Drive doc · supporting</text>
+      <rect x="530" y="438" width="178" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="540" y="453">Drive doc · tier label</text>
 
-      <rect x="714" y="438" width="135" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
-      <text x="724" y="453">conflict flagged</text>
+      <rect x="722" y="438" width="135" height="22" rx="4" fill="none" stroke="#9FC3D2" stroke-opacity="0.4"/>
+      <text x="732" y="453">conflict flagged</text>
     </g>
   </g>
 

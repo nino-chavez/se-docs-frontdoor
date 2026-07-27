@@ -65,15 +65,16 @@ A thin custom app — Slack Bolt, the Messages API, federated retrieval tools re
 The first useful action is grading the manifest, not installing anything.
 
 ```bash
-npm install
-
 npm run manifest:gate   # readiness — does a real output serve every outcome? (expect PENDING)
 npm run manifest:check  # lint the manifest without grading readiness
 npm run reader:check    # audit rendered surfaces against reader-contract.json
-npm run dev             # serve the Blueprint portal locally
+
+npm install && npm run dev   # only if you want the portal running locally
 ```
 
-The Blueprint reviewer runner is not stamped into initiatives. Run it from the methodology source:
+`manifest:*` and `derive` shell out to the Blueprint methodology source rather than to anything vendored here. Set `BLUEPRINT_HOME` if that checkout is not at `~/Workspace/dev/tools/blueprint`, or those commands will fail to resolve their module.
+
+The Blueprint reviewer runner is not stamped into initiatives either. Run it from the same source:
 
 ```bash
 node ~/Workspace/dev/tools/blueprint/template/tools/run-reviewers.mjs
