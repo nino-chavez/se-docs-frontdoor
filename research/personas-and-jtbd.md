@@ -45,13 +45,13 @@ Those two files still hold `jtbd:` frontmatter pinning `surface: se-frontdoor-sl
 
 - **Slug:** `knowledge-holder`
 - **Source:** kickoff 00:07:09 (departures: nine-year and seven-year tenures, plus the sponsor's own role change); 00:35:32 ("I'm the only one remaining")
-- **Who:** The remaining long-tenured person holding a decade of platform history. **Effectively one person, and the same person as `sponsor`.** The founding research modelled this as "2–3 senior SEs"; the kickoff corrects that.
+- **Who:** A long-tenured person holding years of platform history. A small and shrinking population, **overlapping with `sponsor`** — the sponsor is one of them. The founding research modelled this as "2–3 senior SEs"; the kickoff narrows it but does not reduce it to one. Two scopes must not be collapsed: the sponsor is the last remaining member of the old all-SE channel (00:35:32), which is narrower than being the only holder of platform history — he names Mark as another holder at 00:07:09 ("they don't have the same historical knowledge that you have, Mark, that I've had and some of the rest of the team has").
 - **Jobs:**
   - **JOB-1:** When someone asks me a question I have answered before, I need to redirect them to a source that answers it as well as I would, so I stop being the retrieval system.
-    - **Acceptance:** Question volume into their direct channel drops against a captured baseline, **and** no redirected question comes back with a wrong cited answer they must correct. Both halves are required — deflection achieved by degrading answers is a regression.
-    - **Today:** Answers in a 1:1 direct-message channel. Every SA change is added to that channel; it is the de facto system of record.
+    - **Acceptance:** The volume of person-to-person question round trips drops against a captured baseline, **and** no redirected question comes back with a wrong cited answer they must correct. Both halves are required — deflection achieved by degrading answers is a regression.
+    - **Today:** A 1:1 direct-message channel carries this, and it runs in both directions. The transcript documents the outbound direction explicitly: the sponsor maintains a standing 1:1 with every SA (each new SA is added to it) and describes himself as the one asking, because the SAs hold the implementation experience — "I just bug them that often" (00:35:32). Inbound questions also reach him, since he is one of the few carrying platform history (00:07:09, 00:27:46).
     - **Decision dependency:** none. This job is stable across all four boundary decisions.
-    - **Measurement note:** because this persona is a single named individual, their channel volume is the most tractable baseline instrument available — which is what makes the otherwise-unmet `deflection-baseline` precondition capturable.
+    - **⚠ Measurement note:** the channel is the most tractable instrument available, but it is **not yet a usable baseline**. Its volume records the sponsor's *outbound* questions to SAs, which is the opposite direction from the deflection this job describes. Any baseline built on it must declare which direction it counts, and the inbound direction has no captured instrument at all. This is a real gap in the `deflection-baseline` precondition, not a satisfied one — Phase 0 has to close it.
 
 ### Delivery / IPM (`delivery-ipm`)
 

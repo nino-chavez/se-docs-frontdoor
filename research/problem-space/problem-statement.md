@@ -34,7 +34,7 @@ Full jobs-to-be-done belong in the Stage 1 gate artifact, `research/personas-and
 | Delivery/IPM | Produces much of the corpus, under billing constraints that truncate it |
 | Sponsor | Owns the outcome; needs discovery quality to improve measurably |
 
-The tribal-knowledge holder and the sponsor are currently the same person, which concentrates both the pain and the authority to fix it (kickoff 00:35:32 — "I'm the only one remaining").
+The sponsor is himself one of the tribal-knowledge holders, which concentrates both the pain and the authority to fix it. Two scopes should not be collapsed here: he is the last remaining member of the old all-SE channel (00:35:32 — "I'm the only one remaining"), which is narrower than being the only person who holds platform history. He names at least one other holder in the room (00:07:09 — "they don't have the same historical knowledge that you have, Mark, that I've had and some of the rest of the team has"). The holder population is small and shrinking; it is not one person.
 
 ## Why the corpus is the way it is
 
@@ -61,8 +61,10 @@ A derivation, not a citation: it follows from the two claims above. A limitation
 **`P7` — Retrieval quality is bounded above by capture quality.**
 Also a derivation, from the byproduct, schema, and wrongness claims together. No retrieval technique recovers a retrospective that was never written.
 
-**`P8` — Demand is real and currently served by interrupting a person.**
-The incumbent behavior is the shoulder-tap. Every SA change routes through a single 1:1 channel with the sponsor (00:35:32). Demand does not need to be created, only redirected.
+**`P8` — Demand is real and currently served by a person-to-person round trip.**
+The incumbent mechanism is one person asking another. It runs in both directions through the same few long-tenured people, and the transcript is explicit about the direction it documents: the sponsor maintains a standing 1:1 channel with every SA — each new SA is added to it — and describes himself as the one asking, because the SAs hold the implementation experience ("I just bug them that often", 00:35:32). Questions also arrive *at* him, since he is one of the few who carry the platform history (00:07:09, 00:27:46).
+
+The distinction matters for measurement: the sponsor's direct-message volume is a record of his outbound questions, not of inbound demand on him, so it cannot serve as a deflection baseline without saying which direction is being counted. Demand does not need to be created, only redirected — but the round trip, not one person's inbox, is the thing being displaced.
 
 ## What the founding framing had backwards
 
@@ -109,7 +111,7 @@ Six constraints that follow from the claims above. Each is named so it can be re
 2. **Recency is correctness.** Because parts of the corpus are wrong rather than merely old, document age carries information about whether the content is still true. Authority tier alone is insufficient — an authoritative document can be confidently wrong.
 3. **Surface conflicts; do not adjudicate them.** Contradictory sources are guaranteed. A single confident answer will sometimes be the stale one. Locked at founding (grill row 7) and unchanged.
 4. **Assume no schema.** Every project documents differently, which rules out designs that presuppose uniform structure across the corpus.
-5. **Measure against the person.** The shoulder-tap is the baseline. Displacing it is the outcome; usage is a proxy.
+5. **Measure against the person.** The person-to-person round trip is the baseline. Displacing it is the outcome; usage is a proxy. Whichever instrument is chosen has to state which direction of the round trip it counts — see `P8`.
 6. **Coverage follows verified quality, not ambition.** Quality is unevenly distributed across sources. Indexing everything indexes the wrong things too.
 
 > **Note on the adoption statistics.** An earlier version of this document grounded the citation
@@ -172,7 +174,7 @@ The sponsor's actual enthusiasm — generating the hard questions to ask a given
 
 The lookup layer. Other documents and tools cite these; nothing above requires them.
 
-**Claims** — `P1` knowledge is in people · `P2` corpus is a byproduct of billable work · `P3` no enforced schema · `P4` parts are wrong, not stale · `P5` negative knowledge is most valuable · `P6` negative knowledge decays fastest · `P7` retrieval is bounded by capture · `P8` demand exists, served by interrupting a person
+**Claims** — `P1` knowledge is in people · `P2` corpus is a byproduct of billable work · `P3` no enforced schema · `P4` parts are wrong, not stale · `P5` negative knowledge is most valuable · `P6` negative knowledge decays fastest · `P7` retrieval is bounded by capture · `P8` demand exists, served by a person-to-person round trip
 
 **Domains** — `A` source trust · `B` the question surface · `C` how work produces knowledge · `D` existing integration tooling · `E` the capture standard
 

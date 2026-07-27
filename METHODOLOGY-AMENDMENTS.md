@@ -9,6 +9,49 @@ Per methodology rule, no entry here is automatically promoted upstream. Methodol
 
 ---
 
+## 2026-07-27 — A multi-party input asset needs per-quote speaker attribution, or every downstream name claim is unverifiable
+
+**Trigger**: The Stage 4 fact-check went to verify claims attributed to named people in `docs/decision-memo.md`. The Stage 0 provenance record — `research/sources/knowledge-database-kickoff-2026-07-27.md` — carried sixteen load-bearing quotes with timestamps and content but **no speaker labels**, while simultaneously asserting that downstream claims were "verifiable from this repo alone." Verifying a single attribution required reopening the source PDF, which the same file flags as living only in `~/Downloads` and "not durable." One misattribution had already shipped: a no-enforced-schema observation belonging to one practitioner was enumerated in the memo as another practitioner's objection, in a memo addressed to both men by name.
+
+**Scope**: `Candidate for methodology promotion`
+
+**Bucket**: `template` — the fix is the Stage 0 input-asset record shape in `template/research/sources/`.
+
+**Status**: `Active`
+
+### What the amendment is
+
+The template's provenance-record guidance treats an input asset as a source of *content*: transcribe the load-bearing passages so claims stay checkable without the binary. That is sufficient for a single-author asset — a doc, a spec, a one-person walkthrough. It is not sufficient for a **multi-party** asset, where the identity of each speaker is itself load-bearing data, and where the deliverable is a document sent back to those same people.
+
+Two failure modes follow from omitting speakers, both observed here:
+
+1. **Misattribution across participants.** With no speaker column, nothing in the repo can distinguish "Mark said X" from "Zac said X." A reviewer reading only the repo sees a well-cited claim. The error is invisible until someone reopens the source — or until the recipient reads it.
+2. **Direction collapse.** A quote about a communication channel loses its direction when the speaker is dropped. Here, the sponsor describing himself *asking* the SAs ("I just bug them that often") was read downstream as inbound demand *on* him, and that reading propagated into a persona acceptance criterion and a proposed measurement baseline before it was caught.
+
+The second is the more dangerous one, because it survives review as a plausible-sounding claim and gets built on.
+
+**Also**: a provenance record must not claim self-sufficiency it does not have. The file's own "verifiable from this repo alone" sentence is what suppressed the check — a reviewer reads that sentence and treats the repo as closed. Any such claim needs a stated scope: what these quotes do and do not verify.
+
+**Fix applied**: every quote now carries `*Speaker: <name> (<role>).*`; the false self-sufficiency claim is replaced with an explicit scope statement; the attendee row names all four participants; a transcription-quality caveat records that the machine transcript garbles domain vocabulary ("SA" → *essay*) and chops turn boundaries in interleaved regions, so speaker labels are reliable in clean blocks and must be re-derived for interleaved ones.
+
+### Downstream artifacts updated
+
+- `research/sources/knowledge-database-kickoff-2026-07-27.md` — speaker labels on all quotes; scope statement replacing the self-sufficiency claim; attendee and participant-role rows; transcription caveat; four quotes added that downstream artifacts had begun resting on without citation
+- `docs/decision-memo.md` — misattribution corrected; two hardened paraphrases reduced to what was actually said; org-line labels on two named recipients removed as unsupported; measurement-instrument claim corrected for direction
+- `research/problem-space/problem-statement.md` — `P8` restated as a person-to-person round trip with the direction made explicit; knowledge-holder population corrected from one person to a small set
+- `research/personas-and-jtbd.md` — `knowledge-holder/JOB-1` acceptance criterion and measurement note corrected; the `deflection-baseline` precondition is now recorded as an open gap rather than a satisfied one
+
+### Upstream Blueprint-template gap this exposes
+
+Two changes, both cheap:
+
+1. **Input-asset records should declare authorship cardinality.** A `participants:` field, plus a rule that any asset with more than one participant records a speaker per quoted passage. The Stage 0 intake prompt can ask for it directly.
+2. **`fact-check-loop-reviewer` should treat name attribution as its own check class.** Content fidelity and attribution fidelity are different properties and fail independently — a quote can be transcribed perfectly and credited to the wrong person. The check is mechanical wherever speakers are recorded: every proper name in a deliverable adjacent to a claim must resolve to that speaker in the provenance record.
+
+A third, softer: the reviewer set has no check for a document asserting its own verifiability. Self-attestation is exactly what `global-rules/audit-discipline.md` says not to trust, and the methodology's own templates can emit it.
+
+---
+
 ## 2026-07-27 — `persona-fit-reviewer` requires research vocabulary inside a stakeholder-facing deliverable
 
 **Trigger**: Wrote the decision memo's per-persona outcome section as "What changes for each of you" — the reader's language, since the memo goes to a sponsor and two practitioners. The gate stayed BLOCKED on `OUTCOME_UNSTATED`.

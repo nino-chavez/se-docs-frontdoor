@@ -11,7 +11,12 @@
 
 Mark was right, and it changes the plan.
 
-The premise going into the kickoff was that the documents exist and are hard to find. Mark's objection was that they often don't exist: one-off client conversations never enter a documented process, smaller engagements often get no project folder — your example was the ones with only twenty hours, where big or complex projects do get one — and the template that does exist gets followed differently every time. Zac added the sharpest version — documentation stops the moment IPM hours run out, so we're missing the completed retrospective on a lot of real buildouts.
+The premise going into the kickoff was that the documents exist and are hard to find. Mark's objection was that they often don't exist. Between the two of you, four distinct holes:
+
+- **One-off client conversations.** A lot of client discussion is Q&A that never enters a documented process at all (Mark).
+- **Smaller engagements often get no project folder.** Big or complex projects reliably do, with diagrams; the example was the ones with only twenty hours (Mark).
+- **Documentation stops when IPM hours run out.** Solutions half-worked-through, and no completed retrospective on a lot of real buildouts (Zac).
+- **The template is followed differently every time.** A standard template exists, but per-project variance defeats any universal schema over the whole corpus (Zac).
 
 That isn't a caveat on the plan. It's a different problem.
 
@@ -40,7 +45,7 @@ That single constraint drives most of what follows.
 2. **Recency is correctness here, not metadata.** Given the above, "when was this true" has to be first-class.
 3. **Surface conflicts; don't resolve them.** When two sources disagree, show both and flag it. We will have contradictions — silently picking one is how we ship a wrong answer with a real citation attached.
 4. **Don't require a structure we don't have.** Every project documents differently. Any design that needs a uniform schema across the corpus is designing for a corpus we don't have.
-5. **Measure against the current system, which is a person.** Today the answer to a hard question is "ask Andrew." That's the baseline, and it's the thing to displace.
+5. **Measure against the current system, which is a person.** Today a hard question gets answered by a person-to-person round trip through one of the few people who carry the history. That's the baseline, and the round trip is the thing to displace.
 6. **Scope coverage by verified quality, not ambition.** Indexing everything means indexing the stale and the wrong alongside the good.
 
 Andrew — your own guardrail on the call already implies most of this: don't ship a phase that returns bad or old information, because it's more damaging than useful. I've taken that as a hard constraint rather than a preference.
@@ -76,7 +81,7 @@ Worth saying plainly: this is the half of the project that determines whether we
 
 ### Phase 3 — Help ask the hard questions
 
-Andrew, this is the part you were actually excited about — surfacing the twenty questions to ask a merchant, including the ones where the answer is "we can't."
+Mark put the shape of this well on the call: the tool spits out the twenty questions you have to ask a client, and some of them are the ones we can't do. Andrew's answer was that those are exactly the ones to ask — that's the whole point of scoping — and the tech scope he demonstrated is already doing a version of it.
 
 It's last because it depends on the negative knowledge being both present and current, which is the decay problem above. It's also not greenfield: the tech scope document you shared already does a version of this. I'd treat that as the starting point rather than building alongside it.
 
@@ -87,9 +92,9 @@ Concretely, if this lands. Written as what someone can *do* afterward that they 
 | Who | What you can do that you can't today | Which phase |
 | --- | --- | --- |
 | **Sales engineers** | Ask what the platform can't do for a given requirement, and get an answer with a link you can open — or a straight "we have no record of this," which is also actionable. Today the honest options are guess or interrupt someone. | Phase 1 |
-| **Zac, and the SA side** | Pick up an implementation and see what was recommended in the sales cycle and why — including whether that recommendation predates a platform change that invalidates it. Also: stop being the person who reconstructs it from memory. | Phase 1 |
-| **Mark, and services delivery** | Receive a scope that already names the platform's limitations and the agreed workarounds, instead of finding them during implementation. This is the one you said you'd want most. | Phase 3 |
-| **Andrew, as the person people ask** | Redirect a repeat question and trust the answer, without checking it. Both halves matter: fewer interruptions is not a win if you end up correcting what the bot told someone. | Phase 1 |
+| **Zac** | Pick up an implementation and see what was recommended in the sales cycle and why — including whether that recommendation predates a platform change that invalidates it. Also: stop being the person who reconstructs it from memory. | Phase 1 |
+| **Mark** | Receive a scope that already names the platform's limitations and the agreed workarounds, instead of finding them during implementation. You said you were glad this would help surface the solutions around the tough questions — this is where that lands. | Phase 3 |
+| **Andrew, as one of the few people who carry the history** | Redirect a repeat question and trust the answer, without checking it. Both halves matter: fewer interruptions is not a win if you end up correcting what the bot told someone. | Phase 1 |
 | **Delivery / IPM** | Have what you built recorded without spending unbilled hours to write it up. This is the one that needs decision 1. | Phase 2 |
 | **Andrew, as sponsor** | Approve a defined scope with a stated measurement, instead of an aspiration — see the open items below for what the measurement still needs. | This memo |
 
@@ -110,7 +115,7 @@ Four things. Three of them are yours, and I can keep working without them — bu
 
 Named so you can see the holes rather than find them.
 
-**The measurement isn't defined.** I've said Phase 1 should be measured and that the thing to displace is "ask Andrew," but I have not specified what gets counted, how, or over what period. That's deliberate — the baseline instrument is your direct-message volume, and I'd rather propose a specific count after Phase 0 than guess now. It does mean the scope in front of you has a measurement *slot*, not a measurement. Phase 0 fills it.
+**The measurement isn't defined.** I've said Phase 1 should be measured and that the thing to displace is the person-to-person round trip, but I have not specified what gets counted, how, or over what period. I also don't yet have a clean instrument. The obvious candidate was your 1:1 direct-message history with the SAs, but on the call you described that channel as you asking them — "I just bug them that often" — which measures your outbound questions, not inbound demand on you. Both directions are real and both are worth displacing; they just aren't the same number. Naming the instrument is Phase 0 work. The scope in front of you has a measurement *slot*, not a measurement.
 
 **Your second definition of success is missing.** On the call you named two things: the system working, and a written diagnosis of where our documentation practice currently breaks with recommended changes. This memo plans the first and says nothing about the second. It isn't dropped — it's the natural output of Phase 0 and Phase 2, and it may matter more to you than the tool does. It needs a phase and an owner, and it has neither yet.
 
@@ -131,7 +136,7 @@ Named so you can see the holes rather than find them.
 
 ## What I'd like from you three
 
-**Mark and Zac** — the bullet list from the call, whenever. Where tech scopes live, where you write things up, where you dump the stuff that doesn't have a home. Informal is fine; a Slack message beats a document. Plus GitHub usernames and I'll add you to the working repo.
+**Mark and Zac** — Andrew put you both on this call as the guides for where the documentation actually lives, across both the SE and SA sides. So: the bullet list from the call, whenever. Where tech scopes live, where you write things up, where you dump the stuff that doesn't have a home. Informal is fine; a Slack message beats a document. Plus GitHub usernames and I'll add you to the working repo.
 
 **Andrew** — decisions 2, 3, and 4 above. Number 3 first if you're picking one; it could reshape the plan.
 

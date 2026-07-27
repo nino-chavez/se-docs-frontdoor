@@ -21,7 +21,7 @@
 
 ## Next
 
-1. **Do not send the memo until the judgment-gate remediation is closed** — see the reviewer-state section below for what is done and what is open. A green mechanical board was what made this look ready on the first pass; it wasn't. Once closed, promote `decision-memo` to `issued` and set up the weekly sync.
+1. **The memo is sendable on attribution grounds; one thing remains before sending.** All four judgment gates have now run and every blocking finding is closed — including fact-check, which caught a misattribution between two named recipients. The remaining item is the reference-grading corpus-wide re-grade: it ran without web-fetch, so **no external URL has been re-derived**. Two claims carry forward as "cited, not re-derived" (NotebookLM API assertion; GH#53442 connector transfer). Neither is in the memo, so this is a judgment call rather than a block — re-derive them or accept the label. Once sent, promote `decision-memo` to `issued` and set up the weekly sync.
 2. **Chase BD-3 first among the open decisions.** If the internal "ask commerce" / CLA assistant exists, it may already hold the approvals that constitute the sponsor's entire stated two-month floor. It is the question that most changes the plan.
 3. **Design Phase 0 (corpus census) concretely** — what gets counted, how, over how long. The memo promises this at the first sync. Every later decision depends on it and nobody can currently answer what fraction of real questions have an answer anywhere.
 4. **Two inputs to chase that are not researchable from here**: an actual IPM to confirm `delivery-ipm/JOB-1` (flagged `implied-not-represented`), and whatever delivery already uses to record project state.
@@ -47,13 +47,27 @@ Carried from the previous handoff and now wrong. Listed explicitly because they 
 | `doc-quality-auditor` | BLOCKED, 2 critical | Both criticals **closed**. Several HIGH/MEDIUM open — see below. |
 | `research-sibling-scanner` | BLOCKED | **Closed.** Broken `knowledge-index` citation corrected at 5 sites; missed capture sibling (`claude-docs-toolkit`) added; gate's required H2 added. |
 | `research-reference-grader` | BLOCKED | **Partly closed.** Canonical fix landed. Corpus-wide re-grade still open. |
-| `fact-check-loop-reviewer` | still running at session end | **Open.** Highest-value outstanding gate — the memo attributes claims to named people. |
+| `fact-check-loop-reviewer` | BLOCKED, 1 critical + 3 high | **Closed** for attribution. Run by hand against the source PDF after the dispatched agent went idle twice without reporting. See below. |
 
 **What the two criticals were**, because both are instructive:
 1. The memo promised the sponsor "a measurement attached" and defined no measurement anywhere, while never naming that as open. Hidden incompleteness, not named. Fixed by adding a "What this memo doesn't do yet" section — which also surfaced that the sponsor's *second* stated success criterion (a written diagnosis of documentation practice) was absent from the memo entirely.
 2. `assets/readme/hero.svg` still rendered `greenfield · tier 1 · stage 1 closed → stage 2` as the README's first element, contradicting `variant: research` and the three paragraphs directly beneath it. Stakeholder-facing: Mark and Zac land on that README.
 
-**Still open from doc-quality (HIGH, not blocking):** README does not mention `docs/decision-memo.md` anywhere, and its repo map still describes `docs/` as "the sponsor brief". Memo L14 is a ~90-word single sentence carrying the whole reframe. No glossary for "authority tier".
+**What fact-check found**, and why it had to be run by hand: the dispatched agent went idle twice without producing a report, so the check was re-run directly against the source PDF in `~/Downloads`. That detour *was* the finding. The Stage 0 provenance record carried all sixteen load-bearing quotes with content and timestamps but **no speaker labels**, while asserting downstream claims were "verifiable from this repo alone." Nothing inside the repo could check a single name attribution.
+
+| Sev | Finding | Fix |
+| --- | --- | --- |
+| CRITICAL | Memo enumerated Zac's no-enforced-schema observation (00:21:21) as part of **Mark's** objection, in a memo addressed to both by name | L14 split into four attributed bullets — which also closes doc-quality's 90-word-sentence HIGH and kills an ambiguous second-person "your" |
+| HIGH | "This is the one you said you'd want most" attributed to Mark — a ranking he never gave | Replaced with what he did say (00:25:41, "I'm glad that this will actually kind of help") |
+| HIGH | Measurement baseline named the sponsor's DM volume, but that channel runs **outbound** — he described himself asking the SAs ("I just bug them that often", 00:35:32) | Corrected in memo, `P8`, and the `knowledge-holder/JOB-1` acceptance criterion. `deflection-baseline` is now recorded as an open gap, which matches what `manifest:check` already reports |
+| HIGH | Org-line labels on two named recipients ("Zac, and the SA side" / "Mark, and services delivery") — unsupported, and "services delivery" appears nowhere in the transcript. The sponsor explicitly declines to split them | Labels dropped; replaced with the sponsor's own assignment — guides to where the documentation lives |
+| MEDIUM | `knowledge-holder` persona modelled as one person on "I'm the only one remaining," which is scoped to the old all-SE channel, not the holder population | Corrected; sponsor names Mark as another holder at 00:07:09 |
+| MEDIUM | Twenty-questions framing credited to the sponsor's enthusiasm; it originates with Mark as a *concern* | Both attributions corrected |
+| MEDIUM | "one-off client conversations **never** enter a documented process" — Mark said "sometimes… they don't" | Fourth hardened paraphrase this session. Softened |
+
+Root cause is filed as a methodology amendment: a multi-party input asset needs per-quote speaker attribution, and a provenance record must not assert self-sufficiency it lacks. All quotes now carry `*Speaker:*`; four quotes downstream artifacts had begun resting on were added.
+
+**Still open from doc-quality (HIGH, not blocking):** no glossary for "authority tier". `<title>` of `docs/se-team-brief.html` carries no superseded marker. This blockquote still has no destructive-action line.
 
 **Still open from reference-grading:** the corpus-wide re-grade. The grader ran without web-fetch or shell, so **no external URL was re-derived** — it says so explicitly and does not count that as confirmation. Two specific downgrades to carry forward: the NotebookLM "(verified)" claim cites a product-chooser page for an API assertion, so it is "cited, not re-derived"; and GH#53442 documents the Cowork/MCP connector while the pilot risk is the claude.ai Enterprise connector, a transfer the sources doc caveats but the grading tables did not.
 
