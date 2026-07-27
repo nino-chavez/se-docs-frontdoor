@@ -11,7 +11,7 @@
 
 Mark was right, and it changes the plan.
 
-The premise going into the kickoff was that the documents exist and are hard to find. Mark's objection was that they often don't exist: one-off client conversations never enter a documented process, projects under about twenty hours get no folder, and the template that does exist gets followed differently every time. Zac added the sharpest version — documentation stops the moment IPM hours run out, so we're missing the completed retrospective on a lot of real buildouts.
+The premise going into the kickoff was that the documents exist and are hard to find. Mark's objection was that they often don't exist: one-off client conversations never enter a documented process, smaller engagements often get no project folder — your example was the ones with only twenty hours, where big or complex projects do get one — and the template that does exist gets followed differently every time. Zac added the sharpest version — documentation stops the moment IPM hours run out, so we're missing the completed retrospective on a lot of real buildouts.
 
 That isn't a caveat on the plan. It's a different problem.
 

@@ -38,7 +38,7 @@ Each claim below is load-bearing, and each is grounded in an input asset rather 
 Staff with nine and seven years of platform history left; the sponsor is no longer in the SE role that generated the knowledge. The current team is described as talented and lacking the historical context (00:07:09).
 
 **P2 — The corpus is a byproduct of billable work, so it stops when billing stops.**
-Documentation ends when IPM hours are exhausted, leaving solutions half-documented and retrospectives absent (00:20:18). Projects below roughly twenty hours get no project folder or diagrams at all (00:11:54).
+Documentation ends when IPM hours are exhausted, leaving solutions half-documented and retrospectives absent (00:20:18). Whether a project gets a folder and diagrams depends on its size: big or complex ones reliably do, and "a lot of our projects" — the example given was ones with only 20 hours — do not (00:11:54). Stated as a tendency by the practitioner, not a threshold; do not harden it into a rule.
 
 **P3 — The corpus has no enforced schema.**
 A standard template exists and is followed differently on every project, which defeats any universal schema over the aggregate (00:21:21).

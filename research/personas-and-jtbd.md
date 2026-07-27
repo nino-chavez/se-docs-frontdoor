@@ -38,7 +38,7 @@ Those two files still hold `jtbd:` frontmatter pinning `surface: se-frontdoor-sl
 - **Jobs:**
   - **JOB-1:** When picking up an implementation, I need to know what was recommended during the sales cycle and why, so I can tell whether the scoped solution still matches what the platform can currently do.
     - **Acceptance:** Can retrieve the tech scope and its recommendation for a named project, and can see whether that recommendation predates a platform change that invalidates it.
-    - **Today:** Reads the project folder when one exists. Projects around 20 hours or less often have none (00:11:54).
+    - **Today:** Reads the project folder when one exists. Smaller engagements often have none — big or complex projects reliably do (00:11:54).
     - **Decision dependency:** BD-2 (audience).
 
 ### Knowledge holder (`knowledge-holder`)

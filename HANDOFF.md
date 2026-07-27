@@ -7,7 +7,7 @@
 
 ## State
 
-- **The problem changed on 2026-07-27**, not just the evidence. The founding model treated the doc corpus as a noisy given whose quality would improve as a byproduct of retrieval use. The sponsor kickoff established it as the output of a delivery process with structural truncation points — documentation stops when IPM hours run out, sub-20-hour projects get no folder, the template is not uniformly followed, and some documents are actively wrong where the platform shipped past documented workarounds. Capture quality bounds retrieval quality.
+- **The problem changed on 2026-07-27**, not just the evidence. The founding model treated the doc corpus as a noisy given whose quality would improve as a byproduct of retrieval use. The sponsor kickoff established it as the output of a delivery process with structural truncation points — documentation stops when IPM hours run out, smaller engagements often get no folder, the template is not uniformly followed, and some documents are actively wrong where the platform shipped past documented workarounds. Capture quality bounds retrieval quality.
 - **One founding decision is falsified**, not narrowed: grill row 13 (demand-driven filing) works when content exists but is misplaced, and does nothing when content was never written. This is why the founding scope cannot simply be widened.
 - **ADR-0001 (configure-first) still holds**, with two qualifications now recorded in its Amendments section — the sponsor independently reached for a Claude-native surface twice, which strengthens it; and Gong is a named source outside the standard connectors, which is trigger 3 territory.
 - Stage 1 research remains valid as evidence: three tracks, two adversarial verifications, the 16-question grill ledger, sibling scan, reference grade. None of it is retracted. What changed is the causal model the research was organized around.
@@ -36,29 +36,24 @@ Carried from the previous handoff and now wrong. Listed explicitly because they 
 - ~~Pilot protocol for surface `se-frontdoor-slack-channel` to clear forge-provenance~~ — that reviewer is greenfield-only.
 - ~~Measurement plan as senior-SE deflection alone~~ — still the right *kind* of measure, but the sponsor stated a second success criterion with no home in the manifest: a diagnosis of current documentation practice with recommended process changes.
 
-## Expected reviewer state (do not chase these)
+## Reviewer state
 
-Full suite run 2026-07-27. **Six blocks are greenfield gates firing on an initiative that is changing variant.** They stop applying at the re-stamp; fixing any of them means building the thing we decided not to build.
+Full suite run 2026-07-27, after the variant switch: **0 blocks.** The six greenfield/portal blocks that existed before the switch are gone — those reviewers correctly skip for `variant: research`.
 
-| Reviewer | Why it blocks | Action |
-| --- | --- | --- |
-| `design-principles-reviewer` | Wants `prototype/DESIGN.md` | None. On the do-not-do list above. |
-| `prototype-forge-provenance-reviewer` | `JTBD_LACKS_SURFACE` — reads the *old* persona frontmatter, which pins a surface that is now BD-3 | None. Canonical model is `research/personas-and-jtbd.md`. |
-| `prototype-smoke-runner` | No `serve.sh`, no `@smoke` specs | None. No prototype to boot. |
-| `portal-chrome-canonical-reviewer` | Portal chrome drift, 10 findings | None. Portal is scaffolding, drops at re-stamp. |
-| `portal-initiative-conformance-reviewer` | Portal IA contract | None. Same. |
-| `portal-review-conformance-reviewer` | Review-Portal gate on an Initiative-Portal initiative | None. Known misfire. |
+Passing: `persona-fit-reviewer`, `doc-currency-reviewer`, `research-completeness-reviewer`, `stateful-claim-lint-reviewer`. The suite drops from 17 reviewers to 5 under this variant; that reduction is expected, not a coverage loss.
 
-**Passing and meaningful**: `persona-fit-reviewer`, `doc-currency-reviewer`, `research-completeness-reviewer`, `prescription-jtbd-traceability-reviewer`, `stateful-claim-lint-reviewer`, `roadmap-registry-sync-reviewer`.
+Two warnings, both correct and both deliberate:
 
-**Passing but do not trust**: `pilot-profile-lock-reviewer` reads the superseded `pilot_profile` block as canonical. A green result here is not agreement with the framing.
+- `persona-fit-reviewer` — `PORTAL_OVER_PROMOTED` while `apps/portal/` exists. This is the only thing between the current state and a fully clean board, and it clears with item 5 above.
+- `terminology-linter` (30) — acronym heuristics, almost all in portal components. The reviewer labels them likely false positives itself.
 
-**Warnings worth knowing**: `cost-gate-reviewer` (3) — all three `cost.stages` skip justifications in `blueprint.yml` still cite the old plan (DESIGN.md, prototype-as-pilot-protocol). Left as-is because the research re-stamp rewrites that block; correcting them now is throwaway work. `terminology-linter` (30) — acronym heuristics, mostly in portal components; the reviewer flags them as likely false positives itself.
+Agent-run judgment gates have **not** been run and are not covered by the above: `doc-quality-auditor`, `fact-check-loop-reviewer`, `research-reference-grader`, `research-sibling-scanner`. A green mechanical board is not full coverage. `fact-check-loop-reviewer` is the highest-value one outstanding — the memo makes claims attributed to named people.
 
 ## Gotchas for the next session
 
 - Reviewer runner is NOT stamped into initiatives: run `node ~/Workspace/dev/tools/blueprint/template/tools/run-reviewers.mjs` from this root.
-- `blueprint.yml` still declares `variant: greenfield` and retains the superseded `pilot_profile` block behind a SUPERSEDED banner. `pilot-profile-lock-reviewer` reads that block as canonical and will pass it. Do not treat a passing gate as agreement with the framing.
+- `blueprint.yml` declares `variant: research` and retains the superseded `pilot_profile` block behind a SUPERSEDED banner. `pilot-profile-lock-reviewer` now short-circuits to PASS as out-of-scope for this variant, so the block is inert rather than authoritative — but it is still on disk and still reads as intent to a human skimming the file.
+- **Do not put a trailing comment on the `variant:` line.** `research-completeness-reviewer` captures it, reports the variant as unrecognized, and silently falls back to greenfield — which defeated variant detection in three reviewers at once.
 - `manifest:*` and `derive` resolve `BLUEPRINT_HOME` against the methodology source; set it if the checkout is not at `~/Workspace/dev/tools/blueprint`.
 - The sponsor brief at `docs/se-team-brief.html` carries a superseded banner locally, but **the published artifact copy is unchanged** and still presents the old framing. Republishing is an operator call.
 - The kickoff source PDF exists only in `~/Downloads`. Load-bearing quotes are transcribed into `research/sources/knowledge-database-kickoff-2026-07-27.md` so claims stay verifiable, but the binary is not durable.

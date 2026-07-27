@@ -6,7 +6,7 @@
 > Step 5 enumerates two miss classes: content *trapped* (exists, wrong place → demand-driven
 > filing fires) and bot *inadequate* (falls back to a senior). The 2026-07-27 sponsor kickoff
 > established a third, which this funnel cannot represent: **content was never written.**
-> Documentation stops when project hours run out, sub-20-hour projects get no folder, and some
+> Documentation stops when project hours run out, smaller engagements often get no folder, and some
 > documents are actively wrong where the platform shipped past a documented workaround.
 >
 > That is not a rarer branch — it may be the dominant one. Demand-driven filing does nothing
