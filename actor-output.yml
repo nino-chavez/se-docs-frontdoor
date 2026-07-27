@@ -2,18 +2,25 @@
 # The first wave's configuration-first case: the product surface is a Slack channel
 # (Claude Tag), so the load-bearing output is externally hosted CONFIG, not a file.
 # Validate: npm run manifest:check (lint) · npm run manifest:gate (readiness)
-# Expected state today: PENDING — slack-frontdoor/pilot-protocol/measurement-plan are
-# `planned` (Stage 2), and the deflection-baseline precondition is deliberately unmet:
-# the gate refuses go-live until the ping baseline exists, because the pilot's success
-# signal becomes permanently unmeasurable if launch precedes it.
+#
+# ⚠ 2026-07-27 — this manifest encodes outputs shaped by a SUPERSEDED problem framing.
+# See research/problem-space/problem-statement.md. The outputs below are retained so the
+# gate keeps reporting honestly, but slack-frontdoor / pilot-protocol / measurement-plan
+# each presuppose the retrieval-first model that the sponsor kickoff replaced. They get
+# re-derived from the personas/JTBD artifact at the research-variant re-stamp.
+#
+# Expected state today: PENDING — three outputs `planned`, and three preconditions
+# deliberately unmet (one measurement baseline, two undecided boundary calls).
 
 initiative: se-docs-frontdoor
 
 account:
-  decisions: decisions/                       # ADR-0001 configure-first; buy retired
-  research: research/sources/                 # definition + 16-question grill ledger
-  demand: research/sources/definition-and-grill-2026-07-09.md
-  state: HANDOFF.md                           # stage position, gates, gotchas
+  decisions: decisions/                       # ADR-0001 configure-first (see its Amendments)
+  research: research/sources/                 # founding grill ledger + 2026-07-27 kickoff
+  demand: research/sources/knowledge-database-kickoff-2026-07-27.md   # sponsor kickoff — current
+                                              # demand evidence; the 2026-07-09 grill ledger is
+                                              # the superseded founding record in the same dir
+  state: HANDOFF.md                           # position, next steps, explicit do-not-do list
 
 # Typed precondition — replaces the old open-vocabulary label
 # `freshness: baseline-before-golive`, which no validator could interpret
@@ -25,6 +32,13 @@ preconditions:
     blocks: slack-frontdoor                      # slack-frontdoor may not reach status issued
                                                  # while this is unmet: the deflection signal
                                                  # becomes permanently unmeasurable post-launch
+  # The four open boundary decisions (BD-1..BD-4) from problem-statement.md are NOT wired
+  # here. Attempted 2026-07-27 and reverted: pointing a precondition at its resolving ADR
+  # (decisions/000N-*.md) makes R7-paths raise a hard error, because `decisions/` is a
+  # declared account root and citations under declared roots must resolve. The gate went
+  # BLOCKED-with-errors instead of PENDING-with-reasons, which is strictly worse signal.
+  # deflection-baseline avoids this only because research/pilot/ is not a declared root.
+  # BDs stay in prose. See METHODOLOGY-AMENDMENTS.md 2026-07-27 (preconditions entry).
 
 actors:
   - id: maintainer
@@ -33,10 +47,10 @@ actors:
     outcomes:
       - id: recover-context
         success:
-          statement: resume at the Stage 1→2 boundary without re-deriving the grill
+          statement: resume from the restated problem without re-deriving it, and without picking up the superseded retrieval-first framing
           proof:
-            target: { method: observed-human, signal: operator resumes at "next - DESIGN.md + pilot protocol" without re-derivation }
-            interim: { method: cold-agent, signal: session reaches the same point from HANDOFF alone }
+            target: { method: observed-human, signal: operator resumes at "extract pilot_profile then re-stamp as research variant" and does not act on the do-not-do list }
+            interim: { method: cold-agent, signal: session reads problem-statement.md before blueprint.yml and reaches the same next step from HANDOFF alone }
   - id: pilot-sponsor                          # SE leadership at the employer org
     kind: human
     evidence: { status: observed, source: research/sources/definition-and-grill-2026-07-09.md }
@@ -69,17 +83,28 @@ outputs:
   - id: slack-frontdoor
     type: configured-surface                   # ← the library extension this specimen forces:
     serves: [sales-engineer.get-cited-answer, senior-se.redirect-pings]
-    status: planned                            # Stage 2 pending; config source not authored yet —
-    renderer: external                         #   which is WHY config_source may dangle at this
-    config_source: prototype/DESIGN.md         #   status (validator checks it from status draft up)
+    status: planned                            # config source not authored — and the previous
+    renderer: external                         #   pointer (prototype/DESIGN.md) was actively
+    config_source: research/problem-space/problem-statement.md   # harmful: HANDOFF instructed the
+                                               #   next session to CREATE that file, which would
+                                               #   have re-encoded the superseded model to clear a
+                                               #   greenfield gate. Points at the problem statement
+                                               #   until the real config source exists.
     clearance: internal
     assurance:
       read_only: hard-line                     # ADR-0001 invariant, checkable in config
   - id: sponsor-decision-brief
     type: view
     serves: [pilot-sponsor.decide-pilot]
-    status: ready
-    artifact: docs/se-team-brief.html          # published artifact, verified on disk
+    status: draft                               # DEMOTED from `ready` 2026-07-27. The artifact
+                                                # exists and its research content holds, but its
+                                                # framing (two-week pilot in one SE channel,
+                                                # deflection-only metric, SE-only audience) is
+                                                # superseded. `ready` asserted it was fit to put in
+                                                # front of the sponsor; it is not, until the memo
+                                                # replaces it. NOTE: the published artifact copy is
+                                                # unchanged and still shows the old framing.
+    artifact: docs/se-team-brief.html
     renderer: html
     clearance: internal
   - id: pilot-protocol

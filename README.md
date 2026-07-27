@@ -6,41 +6,52 @@
 
 Sales engineers at commerce.com assemble client solutions out of documents scattered across Jira, Confluence, Google Drive, Slack threads, NotebookLM, local files, and internal doc sites. Most of the research time goes into finding and cross-referencing, not reasoning. When that fails, the fallback is pinging one of the two or three senior SEs who hold the tribal knowledge.
 
-This repository plans one fix: a single Slack channel that answers those questions, cites its sources, and labels how authoritative each source is.
+The obvious fix is a single place to ask, answering with citations. That was this initiative's founding scope, and it is no longer the whole problem.
 
-**The deliverable is a configured Slack channel, not shipped software.** Claude Tag — Anthropic's Claude-in-Slack app — already runs on commerce's existing Claude Enterprise seats. The work here is the pilot design and the decision record behind it. Nothing under `apps/` is the product.
+A sponsor kickoff on 2026-07-27 established that the documents are produced as a byproduct of billable delivery work: documentation stops when project hours run out, small projects get no folder at all, the template is not uniformly followed, and some documents are actively wrong where the platform shipped features that invalidated documented workarounds. **Capture quality bounds retrieval quality** — no search technique recovers a retrospective nobody wrote.
 
-Private, internal planning repo. It runs on [Blueprint](https://github.com/nino-chavez/blueprint), a delivery methodology that stages work as research → design → prototype → validate → ship.
+So the problem has two halves that were previously treated as one: getting answers out of what exists, and fixing what gets written down. Read `research/problem-space/problem-statement.md` first — it is canonical and supersedes the narrower framing still recorded in `blueprint.yml`.
+
+Private, internal planning repo. It runs on [Blueprint](https://github.com/nino-chavez/blueprint), a delivery methodology that stages work from research through to a shipped decision.
 
 ## Where it stands
 
-Stage 1 (research) closed on 2026-07-09. Stage 2 (design principles, then the pilot protocol) is next.
+Research from the founding session (2026-07-09) is banked and still valid. The **problem it was organized around changed** on 2026-07-27, so the initiative is between framings: the problem has been restated, and the pipeline has not yet been re-shaped to match.
 
 The state is checkable rather than asserted. `actor-output.yml` declares every actor, the outcome they need, and the output that serves it; a gate grades whether those outputs actually exist:
 
 ```console
 $ npm run manifest:gate
-actor-output.yml: PENDING (route actor-output; 0 errors, 3 pending, 0 warns)
+actor-output.yml: PENDING (route actor-output; 0 errors, 4 pending, 0 warns)
 ```
 
 | Output | What it is | State |
 | --- | --- | --- |
-| `docs/se-team-brief.html` | Decision brief for the SE leadership sponsor | ready |
-| `HANDOFF.md` | Session recovery — where work stopped, what's next | ready |
-| `decisions/0001-…` | The configure-first decision record | accepted |
+| `research/problem-space/problem-statement.md` | Canonical problem statement | current |
+| `HANDOFF.md` | Session recovery, including an explicit do-not-do list | current |
+| `decisions/0001-…` | Configure-first. Stands, with two 2026-07-27 qualifications | accepted |
+| `docs/se-team-brief.html` | Sponsor brief | **draft** — framing superseded |
 | Slack front door | The configured channel itself | planned |
-| Pilot protocol | Three tests plus a corpus census | planned |
-| Measurement plan | Deflection baseline and weekly-active backup signal | planned |
+| Pilot protocol · Measurement plan | Both presuppose the superseded model | planned |
 
-One precondition is unmet **on purpose**. The gate refuses to let the channel go live until `research/pilot/baseline-pings.md` exists, because the pilot's success signal — fewer "quick question" pings to senior SEs — becomes permanently unmeasurable if launch happens before the baseline is captured.
+Two things that gate deliberately:
+
+- The channel cannot go live until `research/pilot/baseline-pings.md` exists, because the deflection signal becomes permanently unmeasurable if launch precedes the baseline.
+- The sponsor brief was demoted from `ready` to `draft`, which is why nothing currently `ready` serves the sponsor's decision. Its research content holds; its pilot shape, metric, and audience do not.
+
+Four open boundary decisions are named with owners in the problem statement, covering the read/write boundary, the audience, whether an existing internal assistant already owns this surface, and funding. Three need the sponsor.
 
 ## Why configure instead of build
 
 Blueprint's Stage 2 normally produces a working prototype. This initiative deliberately does not, and [ADR-0001](decisions/0001-configure-first-pilot-as-prototype.md) records why.
 
-The riskiest assumptions here are not answerable in code. Can the Enterprise connector actually see Shared Drives? Are prompt-level authority labels good enough, or do they lose too much? Is citation quality acceptable against the real corpus? Every one of those is only testable by configuring Claude Tag against live sources. A built prototype would have tested the fallback while leaving the primary path unexamined.
+The riskiest assumptions here are not answerable in code. Can the Enterprise connector actually see Shared Drives? Are prompt-level authority labels good enough, or do they lose too much? Is citation quality acceptable against the real corpus? Every one of those is only testable by configuring against live sources. A built prototype would have tested the fallback while leaving the primary path unexamined.
 
-Buying was retired outright. Uniform ACLs removed the one requirement a purchased tool uniquely served, and existing Claude Enterprise spend removes the seat-economics argument.
+Buying was retired outright. Uniform ACLs removed the one requirement a purchased tool uniquely served, and existing Claude Enterprise spend removes the seat-economics argument. The kickoff did nothing to restore either justification.
+
+The kickoff moved this decision in both directions, recorded in the ADR's Amendments section. It got **stronger** — the sponsor independently reached for a Claude-native surface twice, and put the delivery floor at two months composed entirely of security review and hosting, which is overhead a configured path may avoid. It got **weaker** — Gong call recordings are a named in-scope source, are already pulled via a separate integration tool, and are not covered by the standard connectors. That is trigger 1's sibling below, not yet fired, and unresolvable until the corpus census runs.
+
+One question outranks all of this and is still open: the sponsor referred twice to an existing internal assistant. If it exists, it is either the delivery vehicle or prior art, and it may already carry the approvals that make up the entire stated two-month floor.
 
 ### What would restart a build
 
@@ -86,22 +97,28 @@ Two gotchas worth knowing before you edit: persona job-to-be-done entries must s
 
 | Path | What's there |
 | --- | --- |
-| `decisions/` | Decision records. ADR-0001 is the configure-first call. |
-| `research/` | Stage 1 corpus — personas, buy landscape, current-state source map, and the founding session's 16-question grill ledger. |
-| `docs/` | `se-team-brief.html`, the brief for SE leadership. |
-| `actor-output.yml` | The live contract: actors, outcomes, outputs, preconditions. |
-| `HANDOFF.md` | Session state and next steps. |
-| `apps/portal/` | Blueprint's stamped Astro portal, at Tier 0 — no data sources wired, so it renders the decisions catalog and little else. Methodology chrome, not the product. |
-| `packages/`, `tools/` | Portal UI and design tokens; the reader-contract audit script. |
+| `research/problem-space/` | **Start here.** The canonical problem statement. Supersedes the founding framing. |
+| `research/sources/` | Input assets with provenance — the 2026-07-09 founding grill ledger, and the 2026-07-27 sponsor kickoff with load-bearing quotes transcribed. |
+| `research/` (rest) | Founding corpus — personas, buy landscape, current-state source map. Valid as evidence; organized around the superseded causal model. |
+| `decisions/` | Decision records. ADR-0001 is configure-first, with a 2026-07-27 Amendments section recording what the kickoff strengthened and weakened. |
+| `docs/` | The sponsor brief. Carries a superseded banner; research content holds, framing does not. |
+| `actor-output.yml` | The live contract: actors, outcomes, outputs, preconditions. Currently encodes outputs shaped by the superseded framing, flagged inline. |
+| `HANDOFF.md` | Position, next steps, and an explicit do-not-do list of actions that would regress the framing. |
+| `METHODOLOGY-AMENDMENTS.md` | Blueprint gaps this initiative hit, as promotion candidates. |
+| `derived/` | Generated from `actor-output.yml` by `npm run derive`. Never hand-edit. |
+| `apps/portal/`, `packages/` | Blueprint's stamped Astro portal at Tier 0 — no data sources wired. Scaffolding, not the product; drops at the research-variant re-stamp. |
+| `tools/` | The reader-contract audit script. |
 
-## Not in v1
+## Scope lines, and which ones reopened
 
-Named out of scope so they do not creep back in:
+The founding session locked four exclusions. Two still hold as written. Two were reopened by the kickoff and are now tracked as boundary decisions rather than settled scope.
 
-- **Synthesis deliverables** — solution overviews, RFP drafting. Lookup first; synthesis is v2.
-- **Write-back of any kind** — including gap-filing tickets and KB writes.
-- **A call-time fast lane** — prompt-cached core for mid-call latency. v1 is async-first.
-- **Non-SE audiences** — support, CS, partners. Expansion waits until SE deflection actually moves.
+| Exclusion | Status |
+| --- | --- |
+| **Synthesis deliverables** — solution overviews, RFP drafting | Holds. Lookup first. |
+| **A call-time fast lane** — prompt-cached core for mid-call latency | Holds. Async-first. |
+| **Write-back of any kind** | **Reopened.** The kickoff introduced a capture-standard concern — tooling that records knowledge going forward — which is a write system by definition. `READ-ONLY v1` is still a hard line, and ADR-0001 requires a dedicated ADR to reopen it. That ADR is the decision, not a drift. |
+| **Non-SE audiences** | **Reopened.** The sponsor asked for SE and SA, then for anyone in the company. |
 
 ## Before go-live
 

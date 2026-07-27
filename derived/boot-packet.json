@@ -1,10 +1,14 @@
 {
   "schema": "actor-output-boot/1",
   "initiative": "se-docs-frontdoor",
-  "generated_at": "2026-07-20T17:30:16.206Z",
-  "as_of": "23fe38a",
+  "generated_at": "2026-07-27T20:33:41.268Z",
+  "as_of": "d73da0c",
   "recent": [
-    "chore: initial commit — se-docs-frontdoor Blueprint portal"
+    "docs: flag the superseded pilot_profile block in blueprint.yml",
+    "docs: restate the problem from first principles (supersedes founding framing)",
+    "docs: correct README command notes and hero citation labels",
+    "docs: add README with project-native hero",
+    "Add reader gate to SE briefing surfaces"
   ],
   "account": {
     "decisions": [
@@ -18,12 +22,12 @@
       {
         "path": "research/sources/",
         "exists": true,
-        "entries": 1
+        "entries": 2
       }
     ],
     "demand": [
       {
-        "path": "research/sources/definition-and-grill-2026-07-09.md",
+        "path": "research/sources/knowledge-database-kickoff-2026-07-27.md",
         "exists": true
       }
     ],
@@ -81,7 +85,7 @@
     {
       "id": "sponsor-decision-brief",
       "type": "view",
-      "status": "ready",
+      "status": "draft",
       "serves": [
         "pilot-sponsor.decide-pilot"
       ]
@@ -123,6 +127,7 @@
     "route": "actor-output",
     "errors": [],
     "pendings": [
+      "[R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned) — PENDING, not green",
       "[R2-lifecycle] outcome sales-engineer.get-cited-answer is served only by slack-frontdoor(planned) — PENDING, not green",
       "[R2-lifecycle] outcome senior-se.redirect-pings is served only by slack-frontdoor(planned), pilot-protocol(planned) — PENDING, not green",
       "[R6-preconds] precondition deflection-baseline unmet (research/pilot/baseline-pings.md missing) — slack-frontdoor may not advance to ready/issued until it exists"

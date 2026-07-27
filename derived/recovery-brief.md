@@ -1,22 +1,27 @@
 # se-docs-frontdoor — recovery brief
 
-Derived 2026-07-20T17:30:16.206Z at commit `23fe38a` — rerun `npm run derive` to refresh; never hand-edit.
+Derived 2026-07-27T20:33:41.268Z at commit `d73da0c` — rerun `npm run derive` to refresh; never hand-edit.
 
 ## Where things stand — manifest verdict: PENDING
 
 Open (PENDING is not green):
+- [R2-lifecycle] outcome pilot-sponsor.decide-pilot is served only by sponsor-decision-brief(draft), pilot-protocol(planned), measurement-plan(planned) — PENDING, not green
 - [R2-lifecycle] outcome sales-engineer.get-cited-answer is served only by slack-frontdoor(planned) — PENDING, not green
 - [R2-lifecycle] outcome senior-se.redirect-pings is served only by slack-frontdoor(planned), pilot-protocol(planned) — PENDING, not green
 - [R6-preconds] precondition deflection-baseline unmet (research/pilot/baseline-pings.md missing) — slack-frontdoor may not advance to ready/issued until it exists
 
 ## Recent movement (git)
 
-- chore: initial commit — se-docs-frontdoor Blueprint portal
+- docs: flag the superseded pilot_profile block in blueprint.yml
+- docs: restate the problem from first principles (supersedes founding framing)
+- docs: correct README command notes and hero citation labels
+- docs: add README with project-native hero
+- Add reader gate to SE briefing surfaces
 
 ## Outputs
 
 - slack-frontdoor (configured-surface, planned) → sales-engineer.get-cited-answer, senior-se.redirect-pings
-- sponsor-decision-brief (view, ready) → pilot-sponsor.decide-pilot
+- sponsor-decision-brief (view, draft) → pilot-sponsor.decide-pilot
 - pilot-protocol (view, planned) → pilot-sponsor.decide-pilot, senior-se.redirect-pings
 - measurement-plan (view, planned) → pilot-sponsor.decide-pilot
 - recovery-brief (recovery-brief, ready) → maintainer.recover-context
@@ -24,8 +29,8 @@ Open (PENDING is not green):
 ## The account (canonical truth)
 
 - decisions: `decisions/` (1 entries)
-- research: `research/sources/` (1 entries)
-- demand: `research/sources/definition-and-grill-2026-07-09.md`
+- research: `research/sources/` (2 entries)
+- demand: `research/sources/knowledge-database-kickoff-2026-07-27.md`
 - state: `HANDOFF.md`
 
 ## Decisions

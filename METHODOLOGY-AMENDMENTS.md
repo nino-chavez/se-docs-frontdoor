@@ -4,6 +4,28 @@ Append-only, reverse-chronological. Convention: `$BLUEPRINT_HOME/template/docs/m
 
 ---
 
+## 2026-07-27 — Typed preconditions cannot express "this decision has not been made"
+
+**Trigger**: Tried to wire four open boundary decisions into `actor-output.yml` as preconditions so the gate would report them, rather than leaving them in prose. The manifest went from PENDING to BLOCKED-with-errors.
+**Scope**: Candidate for methodology promotion
+**Status**: Active
+
+The `preconditions` mechanism asserts that an artifact exists. For a *decision*, the natural resolving artifact is an ADR — no ADR means the call has not been made. But pointing a precondition at `decisions/000N-*.md` makes `R7-paths` raise a hard error, because `decisions/` is a declared `account` root and citations under declared roots must resolve.
+
+Result: two ERRORs alongside the two PENDs, flipping the verdict to BLOCKED. That is strictly worse signal than prose — a reader cannot distinguish "an open decision is correctly gating this" from "the manifest is malformed." The existing `deflection-baseline` precondition avoids the collision only incidentally: `research/pilot/` is not a declared account root, so R7 never checks it.
+
+The mechanism works for *measurement artifacts that will exist* and breaks for *decisions that will exist as ADRs* — which is the more common gating case in a research-variant initiative, where the deliverable is a set of decisions.
+
+**What this initiative did**: reverted the four preconditions, left the boundary decisions in `research/problem-space/problem-statement.md` § Open boundary decisions with named owners, and recorded the reason inline in `actor-output.yml` so the next session does not re-attempt it and re-break the gate.
+
+**Suggested promotion shape**: either (a) exempt `preconditions[].artifact` from `R7-paths` resolution — the whole point of the field is to name something that does not exist yet, so the check is arguably wrong there regardless of root; or (b) add a distinct assertion type (`assertion: decided`) whose artifact is expected-absent-until-resolved and which R7 skips. (a) is smaller and fixes the root inconsistency rather than adding vocabulary.
+
+**References**:
+- `actor-output.yml` (inline comment in the `preconditions` block)
+- `research/problem-space/problem-statement.md` § Open boundary decisions
+
+---
+
 ## 2026-07-27 — Research variant has no problem-statement slot upstream of the personas gate
 
 **Trigger**: A sponsor kickoff replaced this initiative's founding problem framing. There was nowhere canonical to record the superseding problem statement — Stage 0 is Inputs Intake (a provenance catalog of assets), Stage 1 is the personas/JTBD gate, and `research/problem-space/` is listed as a Stage 2 output directory.
