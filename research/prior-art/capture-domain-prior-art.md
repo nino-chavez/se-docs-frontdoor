@@ -79,11 +79,28 @@ Ten documentation commands, of which two are the relevant ones: `/doc-audit` (co
 - `~/Workspace/dev/tools/local-dictation/` — voice capture. Speculative, but the P2 failure is that writing costs unbilled time; lowering the cost of recording is one of the few levers that does not require more hours.
 
 
-## Still unscanned — the two that matter most
+## Prior Art (internal, from the AI governance registers)
 
-Neither is reachable from this workspace, and both are more important than anything above:
+Added 2026-07-27 from the two internal Confluence registers read into `research/current-state/ai-governance-constraints.md` (`G7`). Both are **internal products already through security review**, which is a category this scan previously had nothing in — everything above is workspace tooling with no approval history.
 
-1. **The internal assistant the sponsor called "ask commerce" / CLA** (kickoff 00:09:27, 00:33:23). BD-3. If it exists it is either the delivery vehicle or the most relevant prior art in existence, and it may already carry the approvals that constitute the stated two-month floor.
+### 6. Actively — a reasoning layer over internal systems, already approved
+
+Described in the register as a go-to-market intelligence layer that "unifies and reasons over" Salesforce and Snowflake data. Approved, with a stated operating boundary: stay inside the approved sources, and **a new data connection requires a fresh risk assessment**.
+
+Relevance is the boundary, not the product. It is the working template for how *this* initiative's source list will be governed as it grows — each additional source is a new assessment, not a free extension of an existing approval. That has direct consequences for Phase 1 scoping: a narrow high-trust subset is cheaper to approve *and* cheaper to widen later, which is the same conclusion *coverage follows verified quality* reaches from a different direction.
+
+### 7. Discoverist AI — an approved AI answer surface over commerce knowledge
+
+Register entry: *Merchant AI Support product*. Input spans Public, Non-public, Unidentifiable and Customer data; output usage is **Internal and Public**; it carries an approved security exception.
+
+This is the closest existing analogue to the question surface (domain `B`) anywhere in the scan, internal or external — an AI answer surface over commerce knowledge that has already cleared security, including the exception process. Two questions worth more than anything the workspace scan produced: what corpus does it answer over, and what did its approval actually require? **Not scanned. Reachable only from the employee machine.**
+
+## Still unscanned — the three that matter most
+
+None is reachable from this workspace, and all three are more important than anything above:
+
+1. **The internal assistant the sponsor called "ask commerce" / CLA** (kickoff 00:09:27, 00:33:23). BD-3. If it exists it is either the delivery vehicle or the most relevant prior art in existence, and it may already carry the approvals that constitute the stated two-month floor. Note that neither governance register contains an entry matching the sponsor's description — that is not evidence of absence (the registers cover tools and integrations, not internal builds), but it does mean BD-3 stays exactly where it was.
 2. **Whatever delivery/IPM already uses to record project state.** Named in the kickoff as a source ("IPM notes", "documented within their side of things", 00:12:48) but never examined as a system. `delivery-ipm/JOB-1` cannot be designed without it, and that persona is already flagged `implied-not-represented`.
+3. **Discoverist AI's corpus and approval path** — item 7 above. Cheaper to answer than either of the others, and it is the only known instance of this exact shape surviving commerce's security review.
 
-Both are operator- or sponsor-resolvable, not researchable from here.
+All three are operator- or sponsor-resolvable, not researchable from here.

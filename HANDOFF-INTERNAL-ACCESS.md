@@ -7,6 +7,8 @@ Read `HANDOFF.md` first for where the initiative stands. This file covers only t
 
 > **The short version.** Four open questions have been blocked on access, not on thinking. The biggest is BD-3 — whether a sanctioned internal assistant already exists. If it does, and it already carries security and hosting approvals, the sponsor's stated two-month floor was composed *entirely* of those approvals, and the configure-versus-build decision changes. Answer BD-3 before designing anything.
 
+> **Update 2026-07-27 — read `research/current-state/ai-governance-constraints.md` before item 1.** Two internal governance registers (the AI use-case page and the software/hardware page) were read into the corpus from the personal machine. They move the plan in three ways: the security review in the sponsor's two-month floor is a **named process with named intake forms**, not an unknown; the **Claude Tag surface ADR-0001 proposes is unverified on two counts** (input class, and beta-not-approved-by-default) and is now a prerequisite to resolve with GRC before Stage 2, not a task inside it; and **NotebookLM Pro is already approved for an input class that is a superset of this corpus**, which is the first configured path found whose approval burden may be near zero. That file also records the data-governance decision this handoff asked for — see its second section.
+
 ---
 
 ## Before you start — five things that will bite
@@ -47,6 +49,8 @@ That is a decision to make deliberately, not a default to drift into. The proven
 
 If you decide differently, decide it explicitly and write it down here.
 
+**Decided 2026-07-27, and it went the way this section recommends.** Two internal Confluence registers were read on the personal machine; the derived constraints landed in `research/current-state/ai-governance-constraints.md` and the source tables did not. That file's second section states the rule in full — derived constraints, thresholds and structural findings travel; registers, per-integration risk-and-owner rosters, and internal staff names stay in Confluence, quoted minimally and attributed only where a decision cannot be stated without them. One of the two source pages is classified **SENSITIVE**, which sharpens the rule rather than changing it. Apply the same rule to census output.
+
 ---
 
 ## What to go get, in the order that changes the plan most
@@ -64,6 +68,21 @@ What to establish:
 - If it exists, does this initiative belong inside it? That is the question the memo asks the sponsor to decide.
 
 Record the answer in `research/prior-art/capture-domain-prior-art.md` § "Still unscanned", which names this as item 1.
+
+### 1b. GRC — resolve the tool-approval question before designing Stage 2
+
+**Why here:** it is the same *kind* of conversation as BD-3, it is cheaper, and unlike BD-3 it can stop Stage 2 outright. Added 2026-07-27 from `research/current-state/ai-governance-constraints.md`. Front door is Slack `#compliance-grc`; the intake paths are the AI Use Case Approval Form and the GRC & Security Use Case Intake Form.
+
+Four questions, in the order that costs least to ask:
+
+1. **Which roster is authoritative?** The software register's in-page tables link a separate *Approved GenAI Tool List*. Everything below depends on which one governs. The register is banner-marked "Currently In Review" and its last recorded annual review is 2025-01-07.
+2. **What is Claude's actual approved input class here?** (`G4`) The register lists Claude (Desktop) as *Restricted* — unidentifiable and public data only — and lists no Claude surface as *Approved*. The founding session records Enterprise seats live with an MCP connector performing writes. Those conflict. **Deployment is not authorization**, and that is the reading under which a pilot proceeds confidently and wrongly.
+3. **Does Claude Tag clear the beta rule?** It is beta by the founding session's own description, and BETA software is not approved by default.
+4. **How long does an AI Use Case review actually take** for a Submit-for-Approval corpus? This is the number that either confirms or corrects the sponsor's two-month floor, and nobody in this initiative has it.
+
+While there: **MCP servers have a blank row in both the Approved and Not-Approved tables** — genuinely undetermined status, and a connector-based configure-first design likely rests on it. Ask it as its own question, not folded into a larger request.
+
+**Also worth pricing in the same conversation:** NotebookLM Pro is approved with an input class covering Non-public, Customer, Sensitive and Partner data (`G5`). That does not make it the answer — connector reach and citation behaviour are unassessed and either could disqualify it — but it is the cheapest configured path currently visible, and it deserves an assessment rather than a default to the incumbent choice.
 
 ### 2. Whatever delivery/IPM uses to record project state
 
@@ -85,6 +104,8 @@ This is the work no other decision can proceed without, and it is the reason the
 | The sponsor's 1:1 DMs with SAs | A decade of them. Also the measurement problem in 6 below |
 | Internal doc sites | CMS-backed; relevant to ADR-0001 trigger 3 |
 
+**Governance constraint added 2026-07-27** (`G1`, `G3`). Counting and characterizing documents is not an AI use case — but *using an AI tool to do the counting over the real corpus* is, and the corpus is Submit-for-Approval data at minimum. That is a design choice to make deliberately: a census run with scripts and file metadata needs no approval; a census run by pointing a model at the folder does. Note also that the PoC rules explicitly forbid the shortcut — public or dummy data only, no connections to other systems — so "just pilot it on the real folder and see" is not available as a fast path.
+
 Beyond volume, the census has to answer three things the problem statement says nothing can proceed without:
 
 - **How much is wrong rather than merely old.** The guest-tokenization class — a documented workaround that exists because a capability was missing, where the capability has since shipped. This is `P4`, and `P6` says it is the fastest-decaying and most valuable category. Any count that treats "old" and "wrong" as one bucket misses the point.
@@ -98,6 +119,8 @@ Beyond volume, the census has to answer three things the problem statement says 
 Gong is a named in-scope source, already pulled via Make.com, and **not** a standard Claude Enterprise connector. That is trigger 3 in `decisions/0001-configure-first-pilot-as-prototype.md` — "Tag can't cover the sources that pilot traffic actually needs." The trigger is not fired, because whether pilot traffic routes to Gong is unknown until the census runs. It is no longer hypothetical.
 
 Check what Make.com already moves and where it lands. If Gong content already arrives somewhere a standard connector can see, the trigger may never fire.
+
+**Partly answered 2026-07-27** (`G6`): Gong is an approved integration and Make AI (Enterprise) is approved tooling, so this path is not a governance dead end — the trigger's real question is connector *reach*, which stays technical. One constraint travels with it, and it is a design constraint rather than a checkbox: **AI-generated Gong output must not be used for employee performance management.** A surface that summarizes who-knew-what across SA calls edges toward exactly that, and the line has to be held in the design, not in a policy footnote.
 
 **One caveat carried forward:** trigger 3 lost its reference implementation. `~/Workspace/dev/archive/knowledge-index` — named in the research corpus as the contingent crawl-and-index seam — no longer exists on disk. If the trigger fires, that branch has no reference implementation to adapt and is more expensive than the ADR assumed.
 
