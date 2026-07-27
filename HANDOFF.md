@@ -1,7 +1,7 @@
 # Handoff — se-docs-frontdoor
 
 **Last session**: 2026-07-27 (kickoff ingested → problem restated → variant switched to research → Stage 1 + Stage 5 authored)
-**Position**: research variant, all reviewer gates green (0 blocks). Stage 5 deliverable drafted and not yet sent.
+**Position**: research variant. **Mechanical** reviewers green (0 blocks); the four agent-run judgment gates were run 2026-07-27 and **three returned BLOCKED**. Stage 5 deliverable drafted, partially remediated, not yet sent.
 
 > Read `research/problem-space/problem-statement.md` before doing anything else. It supersedes the founding framing and the `pilot_profile` block in `blueprint.yml`. Working from `blueprint.yml` alone will reproduce the old model.
 
@@ -21,7 +21,7 @@
 
 ## Next
 
-1. **Send the memo.** It is authored, gates green, and `status: draft` in the manifest because it has not been sent. Promote to `issued` on send. Set up the weekly sync alongside it.
+1. **Do not send the memo until the judgment-gate remediation is closed** — see the reviewer-state section below for what is done and what is open. A green mechanical board was what made this look ready on the first pass; it wasn't. Once closed, promote `decision-memo` to `issued` and set up the weekly sync.
 2. **Chase BD-3 first among the open decisions.** If the internal "ask commerce" / CLA assistant exists, it may already hold the approvals that constitute the sponsor's entire stated two-month floor. It is the question that most changes the plan.
 3. **Design Phase 0 (corpus census) concretely** — what gets counted, how, over how long. The memo promises this at the first sync. Every later decision depends on it and nobody can currently answer what fraction of real questions have an answer anywhere.
 4. **Two inputs to chase that are not researchable from here**: an actual IPM to confirm `delivery-ipm/JOB-1` (flagged `implied-not-represented`), and whatever delivery already uses to record project state.
@@ -38,16 +38,24 @@ Carried from the previous handoff and now wrong. Listed explicitly because they 
 
 ## Reviewer state
 
-Full suite run 2026-07-27, after the variant switch: **0 blocks.** The six greenfield/portal blocks that existed before the switch are gone — those reviewers correctly skip for `variant: research`.
+**Mechanical suite** (`run-reviewers.mjs`): 0 blocks. 5 reviewers apply under `variant: research`, down from 17 — that reduction is correct, not lost coverage. One standing warn, `PORTAL_OVER_PROMOTED`, clears with the portal deletion above.
 
-Passing: `persona-fit-reviewer`, `doc-currency-reviewer`, `research-completeness-reviewer`, `stateful-claim-lint-reviewer`. The suite drops from 17 reviewers to 5 under this variant; that reduction is expected, not a coverage loss.
+**Agent-run judgment gates, run 2026-07-27.** Three of four returned BLOCKED. The mechanical board was green throughout, which is exactly why it is not evidence of readiness.
 
-Two warnings, both correct and both deliberate:
+| Gate | Verdict | Status of remediation |
+| --- | --- | --- |
+| `doc-quality-auditor` | BLOCKED, 2 critical | Both criticals **closed**. Several HIGH/MEDIUM open — see below. |
+| `research-sibling-scanner` | BLOCKED | **Closed.** Broken `knowledge-index` citation corrected at 5 sites; missed capture sibling (`claude-docs-toolkit`) added; gate's required H2 added. |
+| `research-reference-grader` | BLOCKED | **Partly closed.** Canonical fix landed. Corpus-wide re-grade still open. |
+| `fact-check-loop-reviewer` | still running at session end | **Open.** Highest-value outstanding gate — the memo attributes claims to named people. |
 
-- `persona-fit-reviewer` — `PORTAL_OVER_PROMOTED` while `apps/portal/` exists. This is the only thing between the current state and a fully clean board, and it clears with item 5 above.
-- `terminology-linter` (30) — acronym heuristics, almost all in portal components. The reviewer labels them likely false positives itself.
+**What the two criticals were**, because both are instructive:
+1. The memo promised the sponsor "a measurement attached" and defined no measurement anywhere, while never naming that as open. Hidden incompleteness, not named. Fixed by adding a "What this memo doesn't do yet" section — which also surfaced that the sponsor's *second* stated success criterion (a written diagnosis of documentation practice) was absent from the memo entirely.
+2. `assets/readme/hero.svg` still rendered `greenfield · tier 1 · stage 1 closed → stage 2` as the README's first element, contradicting `variant: research` and the three paragraphs directly beneath it. Stakeholder-facing: Mark and Zac land on that README.
 
-Agent-run judgment gates have **not** been run and are not covered by the above: `doc-quality-auditor`, `fact-check-loop-reviewer`, `research-reference-grader`, `research-sibling-scanner`. A green mechanical board is not full coverage. `fact-check-loop-reviewer` is the highest-value one outstanding — the memo makes claims attributed to named people.
+**Still open from doc-quality (HIGH, not blocking):** README does not mention `docs/decision-memo.md` anywhere, and its repo map still describes `docs/` as "the sponsor brief". Memo L14 is a ~90-word single sentence carrying the whole reframe. No glossary for "authority tier".
+
+**Still open from reference-grading:** the corpus-wide re-grade. The grader ran without web-fetch or shell, so **no external URL was re-derived** — it says so explicitly and does not count that as confirmation. Two specific downgrades to carry forward: the NotebookLM "(verified)" claim cites a product-chooser page for an API assertion, so it is "cited, not re-derived"; and GH#53442 documents the Cowork/MCP connector while the pilot risk is the claude.ai Enterprise connector, a transfer the sources doc caveats but the grading tables did not.
 
 ## Gotchas for the next session
 

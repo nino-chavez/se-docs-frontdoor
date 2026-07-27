@@ -19,11 +19,11 @@
 
 ### Sibling 2 — knowledge-index (retrieval component)
 
-- **Location**: `~/Workspace/dev/archive/knowledge-index` (archived, not active)
+- **Location**: `~/Workspace/dev/archive/knowledge-index` — **[ARTIFACT GONE — verified 2026-07-27]** the entire `~/Workspace/dev/archive/` directory no longer exists. Confirmed three ways: the path is absent while sibling `~/Workspace/dev/ref` resolves; a filesystem-wide search for `*knowledge-index*` returns nothing; and `~/.config/git/ignore` holds only `.claude/settings.local.json` and `.worktrees/`, so this is not an ignore-rule artifact. Workspace drift since 2026-07-09, not research that degraded.
 - **What they shipped**: vector-embedding knowledge index with semantic search over workspace markdown — better-sqlite3 + sqlite-vec local vector store, pluggable embedding providers (local transformers or OpenAI), exposed as an MCP server with `search_knowledge` / `index_status` / `reindex` tools plus a CLI.
-- **Audit artifact**: `~/Workspace/dev/archive/knowledge-index/src/mcp-server.ts` (no ADR exists; the source is the record) — reviewed 2026-07-09.
+- **Audit artifact**: `~/Workspace/dev/archive/knowledge-index/src/mcp-server.ts` — no longer readable (see above). It was reviewed 2026-07-09 and the read summary below stands as the record of that review, but the claim is **no longer independently checkable**. Treat it as testimony, not as a verifiable citation.
 - **What it teaches** (evidence of read): the chunk→embed→sqlite-vec→search pipeline works as a small local system with a clean provider abstraction (`src/embeddings/{local,openai,provider}.ts`); no Anthropic/Voyage provider ships, so adopting it means adding one.
-- **Diverged**: we do not index in v1 — **because the retrieval consensus and our uniform-ACL, live-source inventory favor federated search** (no index to go stale, no copy to leak). knowledge-index is the named contingency if the CMS-backed internal-site portion ever needs a crawl+index seam (ADR-0001 trigger 3).
+- **Diverged**: we do not index in v1 — **because the retrieval consensus and our uniform-ACL, live-source inventory favor federated search** (no index to go stale, no copy to leak). knowledge-index *was* the named contingency if the CMS-backed internal-site portion ever needs a crawl+index seam (ADR-0001 trigger 3). **That fallback now points at nothing.** If trigger 3 ever fires, the contingent architecture has no reference implementation in this workspace and would be designed from scratch — which raises the cost of that branch and should be weighed when the census tells us whether internal doc sites are in pilot traffic.
 
 ### Sibling 3 — hackathon-hive mcp-server (MCP-with-auth component)
 

@@ -1,14 +1,14 @@
 {
   "schema": "actor-output-boot/1",
   "initiative": "se-docs-frontdoor",
-  "generated_at": "2026-07-27T21:03:11.476Z",
-  "as_of": "95393aa",
+  "generated_at": "2026-07-27T21:35:12.880Z",
+  "as_of": "a145fcb",
   "recent": [
+    "docs: restructure the problem statement so it reads without lookups",
+    "fix: correct a hardened paraphrase, and refresh stale handoff state",
     "feat: author the decision memo — Stage 5 deliverable, 0 reviewer blocks",
     "feat: switch to research variant; reviewer blocks 6 -> 1",
-    "feat: Stage 1 personas/JTBD artifact + close two real reviewer findings",
-    "docs: bring both amendment entries to the wave-27 canonical shape",
-    "docs: flag the superseded model in personas and the pilot funnel"
+    "feat: Stage 1 personas/JTBD artifact + close two real reviewer findings"
   ],
   "account": {
     "decisions": [

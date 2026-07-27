@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="se-docs-frontdoor — seven scattered doc sources gather into one Slack channel running Claude Tag in read-only mode, which answers with source citations, authority labels, and a conflict flag. Success is measured by how often a question is answered without interrupting a senior colleague.">
+  <img src="./assets/readme/hero.svg" width="100%" alt="se-docs-frontdoor — seven scattered doc sources gather into one Slack channel running Claude Tag in read-only mode, which answers with source citations, authority labels, and a conflict flag. Scattered sources are only half the problem; the rest was never written down. Success is measured by how often a question is answered without interrupting a senior colleague.">
 </p>
 
 ## What this is

@@ -18,14 +18,14 @@ commerce.com sales engineers rely on isolated, distributed documents for client-
 
 - Buy shelf: Slack native Slackbot/Agentforce (2026-03 overhaul; Salesforce-model, ACLs undocumented), Glean (best 3rd-party surface, ~$60k/yr floor), Onyx (open-source, $0–20/seat, ACL-sync connectors, runs Claude), Dust ($30–150/seat, Claude-native).
 - Retrieval consensus 2025-26: **agentic/federated search inheriting caller OAuth beats indexed RAG on permissions** — ACL-sync drift leak is OWASP LLM Top 10 **#2** with real incidents (EchoLeak, vector-DB bypass). Index only weak-search sources. https://www.osohq.com/post/right-approach-to-authorization-in-rag
-- Adoption data: median enterprise doc-bot < 15% weekly-active by month 6; **citations are the #1 adoption driver**; feedback capture + HITL on low-confidence answers are standard mitigations.
+- Adoption data **[UNSOURCED — flagged by reference grading 2026-07-27]**: median enterprise doc-bot < 15% weekly-active by month 6; citations are the #1 adoption driver; feedback capture + HITL on low-confidence answers are standard mitigations. This is the only bullet in this section without a URL, and this document's own line 3 attests that URLs cite the canonical doc for each load-bearing claim. Do not cite these figures. `research/problem-space/problem-statement.md` no longer rests on them.
 - Slack UX canon: `agent_view` container, `assistant.threads.setStatus`, streaming via `chat.startStream`, `feedback_buttons`, deep-linked citations, explicit human-escalation path. https://docs.slack.dev/ai/ai-apps-best-practices
 
 ## Research track 3 — internal prior art (~/Workspace/dev)
 
 - **No Slack code anywhere** — that surface is greenfield.
 - `wip/ask-bc/workers/agent-runtime/src/index.ts` — strong agent-runtime reference (tool loop, model routing, per-tenant creds, write-confirm gate). Its "doc search" is a hardcoded ~50-entry keyword array — **not** a retrieval precedent. Auth posture failed a prior security audit — reuse the shape, not the posture.
-- `archive/knowledge-index` — the vector-RAG reference (sqlite-vec + MCP search tool, pluggable embeddings; no Anthropic provider yet). The contingent indexing seam.
+- `archive/knowledge-index` — the vector-RAG reference (sqlite-vec + MCP search tool, pluggable embeddings; no Anthropic provider yet). The contingent indexing seam. **[ARTIFACT GONE — verified 2026-07-27]** path no longer exists as of 2026-07-27; the record of the 2026-07-09 read stands but is no longer checkable. See `research/current-state/workspace-prior-art.md` § Sibling 2.
 - `ref/hackathon-hive/mcp-server` — MCP-with-auth template.
 
 ## Organizational facts (via Alex Vela's GEM enablement-triage POC doc)

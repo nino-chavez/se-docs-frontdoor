@@ -8,7 +8,9 @@ The transferable finding, stated up front: **every working capture mechanism fou
 
 ---
 
-## 1. Blueprint archaeology substrate — the closest analogue
+## Prior Art (Workspace)
+
+### 1. Blueprint archaeology substrate — the closest analogue
 
 **Path:** `~/Workspace/dev/tools/blueprint/template/tools/archaeology/`
 **Pattern doc:** `~/Workspace/dev/tools/blueprint/docs/patterns/archaeology-substrate-pattern.md`
@@ -24,7 +26,7 @@ That is close to a restatement of the sponsor's ask (kickoff 00:08:23, 00:09:27)
 
 **Divergence — where it does not transfer.** Its ingesters read *structured developer streams* (git commits, ADR files, GitHub issues). This initiative's sources are unstructured and human-authored: Gong call recordings, project folders with no enforced template (P3), and a decade of direct messages. There is no `ingesters/gong.py` equivalent, and P3 means there is no schema to write one against. The pattern transfers; the ingester layer does not.
 
-## 2. claude-recall-cli — mining an ephemeral record for durable knowledge
+### 2. claude-recall-cli — mining an ephemeral record for durable knowledge
 
 **Path:** `~/Workspace/dev/tools/claude-recall-cli/`
 
@@ -36,7 +38,7 @@ Saves and searches reusable session entries, backed by SQLite + FTS5, surfaced a
 
 **Divergence.** Recall operates on a single operator's own transcripts, with that operator as the judge of what is worth keeping. This initiative's corpus is multi-author across teams with uniform read access but no agreed authority ranking. "Is this worth keeping" becomes a question with no owner — which is exactly the third named gap in [`../personas-and-jtbd.md`](../personas-and-jtbd.md): no persona owns corpus curation.
 
-## 3. Blueprint's own working capture loop — the pattern this initiative is running
+### 3. Blueprint's own working capture loop — the pattern this initiative is running
 
 Worth naming because this repository is a live instance of it, and the mechanism is visible in it right now:
 
@@ -51,10 +53,31 @@ Worth naming because this repository is a live instance of it, and the mechanism
 
 **Divergence.** Blueprint's loop assumes one operator with commit access and a repo, and it captures *reasoning about work*. The SE/SA corpus is multi-author, spans systems nobody in this initiative controls, and captures *facts about a platform*. The hook-plus-derive shape is the transferable part; the git-native substrate is not, because the sources are Drive, Confluence, Slack, and Gong.
 
-## 4. Adjacent, weaker relevance
+
+
+### 4. claude-docs-toolkit — documentation audit, not just generation
+
+**Path:** `~/Workspace/dev/tools/claude-docs-toolkit/`
+**Found:** 2026-07-27, by re-derivation of this scan. **Missed by both prior passes**, including this file's first version.
+
+Ten documentation commands, of which two are the relevant ones: `/doc-audit` (coverage analysis and gap detection over an existing codebase) and `/doc-strategic` (health assessment). It also carries `docs/research/autonomous-knowledge-synthesis.md`, a treatise on documentation drift. All verified present on disk.
+
+**Why this matters more than the others.** It maps onto the two pieces of scope with no prior-art coverage anywhere in the corpus:
+
+1. **The corpus census** — which `../problem-space/problem-statement.md` calls the only work no other decision can proceed without. `/doc-audit` is coverage-analysis-and-gap-detection, which is what a census *is*.
+2. **The sponsor's second success criterion** — a written diagnosis of where documentation practice currently breaks, with recommended changes. `/doc-strategic` is a health assessment. `docs/decision-memo.md` now names this criterion as having no phase or owner; this is the closest existing instrument.
+
+**Divergence.** It audits a *codebase* — files in one repo, on disk, with a git history. This corpus spans Drive, Confluence, Slack, and Gong, across systems nobody in this initiative controls, with no schema to audit against. The gap-detection *method* transfers; the substrate assumption does not.
+
+**Secondary:** `~/Workspace/dev/tools/fleet-observability/` (which absorbed `repo-health-check`) is the census-instrument shape and carries real ADRs. Worth reading before designing Phase 0 rather than after.
+
+**Why both passes missed it.** The capture primitive was written here as a category description — "tooling and patterns that record knowledge at the point of work" — rather than as a searchable primitive, unlike the retrieval side. A tool literally named for autonomous documentation generation did not surface against a description that abstract. The lesson is about how the primitive is stated, not about scan effort.
+
+### 5. Adjacent, weaker relevance
 
 - `~/Workspace/dev/tools/specchain/` — spec-driven implementation chain. Relevant only if domain E ends up standardizing a document *template*, which P3 suggests is the mechanism that already failed here: a template exists and is followed differently on every project. Named so a future scan does not treat "add a template" as unexplored.
 - `~/Workspace/dev/tools/local-dictation/` — voice capture. Speculative, but the P2 failure is that writing costs unbilled time; lowering the cost of recording is one of the few levers that does not require more hours.
+
 
 ## Still unscanned — the two that matter most
 

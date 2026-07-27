@@ -38,7 +38,7 @@ The tribal-knowledge holder and the sponsor are currently the same person, which
 
 ## Why the corpus is the way it is
 
-Eight claims. Each is load-bearing, and each is grounded in an input asset rather than inferred.
+Eight claims. Each is load-bearing. Six are grounded directly in an input asset; two (`P6`, `P7`) are derived from the others and say so where they appear.
 
 **`P1` — The knowledge is in people, more reliably than in documents.**
 Staff with nine and seven years of platform history left; the sponsor is no longer in the SE role that generated the knowledge. The current team is described as talented and lacking the historical context (00:07:09).
@@ -105,12 +105,22 @@ They are not parallel. The arrows carry the argument.
 
 Six constraints that follow from the claims above. Each is named so it can be referred to without a lookup.
 
-1. **Cite or say nothing.** Trust in negative knowledge requires provenance a reader can check. Citations were already identified as the primary adoption driver for internal document assistants (grill, research track 2).
+1. **Cite or say nothing.** This does not rest on adoption research — see the note below. It follows from the two claims about negative knowledge: an answer about what the platform *cannot* do gets acted on in front of a client, and parts of the corpus are wrong rather than merely old. A reader therefore has to be able to check the source themselves. The supporting evidence is first-party: the engagement won by disclosing a limitation with its workaround (00:24:47) turned on the disclosure being verifiable, not on it being confident.
 2. **Recency is correctness.** Because parts of the corpus are wrong rather than merely old, document age carries information about whether the content is still true. Authority tier alone is insufficient — an authoritative document can be confidently wrong.
 3. **Surface conflicts; do not adjudicate them.** Contradictory sources are guaranteed. A single confident answer will sometimes be the stale one. Locked at founding (grill row 7) and unchanged.
 4. **Assume no schema.** Every project documents differently, which rules out designs that presuppose uniform structure across the corpus.
 5. **Measure against the person.** The shoulder-tap is the baseline. Displacing it is the outcome; usage is a proxy.
 6. **Coverage follows verified quality, not ambition.** Quality is unevenly distributed across sources. Indexing everything indexes the wrong things too.
+
+> **Note on the adoption statistics.** An earlier version of this document grounded the citation
+> invariant in market research — "under 15% weekly-active by month six", "citations are the #1
+> adoption driver". Reference grading on 2026-07-27 found those figures carry no citation anywhere
+> in the corpus, in a source document that attests every load-bearing claim has one. They are not
+> weak evidence; they are unsourced. Removed from the argument rather than re-labelled. The
+> invariant stands without them. Same finding applies to the "federated beats indexed retrieval"
+> consensus claim, whose sole citation is a vendor advocating for its own product category — the
+> independent reason federated fits here is uniform read access plus freshness sensitivity, which
+> needs no external authority.
 
 ## The four decisions still open
 

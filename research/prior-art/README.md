@@ -14,7 +14,7 @@ Retrieval-side and external prior art was written before this directory existed 
 
 | Artifact | What it covers |
 | --- | --- |
-| [`../current-state/workspace-prior-art.md`](../current-state/workspace-prior-art.md) | Internal **retrieval** implementations across `~/Workspace/dev` — the `ask-bc` agent-runtime reference (tool loop, model routing, per-tenant creds; its "doc search" is a hardcoded keyword array, so **not** a retrieval precedent, and its auth posture failed a prior security audit), the `knowledge-index` vector-RAG reference as the contingent indexing seam, and an MCP-with-auth template. Holds the **§ Sibling-Project Scan** section that `research-sibling-scanner` resolves. |
+| [`../current-state/workspace-prior-art.md`](../current-state/workspace-prior-art.md) | Internal **retrieval** implementations across `~/Workspace/dev` — the `ask-bc` agent-runtime reference (tool loop, model routing, per-tenant creds; its "doc search" is a hardcoded keyword array, so **not** a retrieval precedent, and its auth posture failed a prior security audit), the `knowledge-index` vector-RAG reference as the contingent indexing seam (**artifact gone as of 2026-07-27** — the fallback for ADR-0001 trigger 3 now has no reference implementation), and an MCP-with-auth template. Holds the **§ Sibling-Project Scan** section that `research-sibling-scanner` resolves. |
 | [`../sibling-scan.md`](../sibling-scan.md) | The scanner's own output artifact. Path is fixed by the reviewer spec. |
 | [`../competitive/buy-landscape.md`](../competitive/buy-landscape.md) | External prior art — the buy shelf, retired. Lives under `competitive/` because that is its own canonical Stage 2 leg. |
 

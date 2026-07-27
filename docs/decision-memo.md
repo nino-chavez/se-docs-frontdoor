@@ -15,7 +15,7 @@ The premise going into the kickoff was that the documents exist and are hard to 
 
 That isn't a caveat on the plan. It's a different problem.
 
-A search tool over documents assumes the documents are the supply. What we actually have is a supply problem: the corpus is a byproduct of billable work, so it thins out exactly where the billing stopped. No amount of retrieval quality recovers a retrospective nobody wrote.
+A search tool over documents assumes the documents are the supply. What we actually have is a supply problem: the corpus — every document we'd search across — is a byproduct of billable work, so it thins out exactly where the billing stopped. No amount of retrieval quality recovers a retrospective nobody wrote.
 
 So I'd frame this as two efforts that were previously one:
 
@@ -24,7 +24,7 @@ So I'd frame this as two efforts that were previously one:
 
 The second one bounds the first. That's the whole argument in this memo.
 
-## One thing worth pulling out separately
+## The most valuable knowledge is also the least durable
 
 Andrew, your strongest example was the deal we won because we told the client what the platform couldn't do, and how to solve it, while every other vendor hid it. That reframes what the valuable content actually is: not what the platform does, but what it doesn't, and the workaround.
 
@@ -59,7 +59,7 @@ I'd rather spend two weeks finding out the corpus supports half of what we want 
 
 Scoped by what Phase 0 found, not by what we wish we had. Andrew, you already proposed this scoping on the call: tech scopes and the SA folder first, Slack later.
 
-On the how — you reached for a Claude-native surface twice, once as "something like ask commerce" and again as putting it directly in CLA. I think that instinct is right, and it's also the cheapest path. You put the floor at two months and attributed all of it to security review and hosting. A configured surface on seats and connectors we already have may avoid most of that.
+On the how — you reached for a Claude-native surface twice, once as "something like ask commerce" and again as putting it directly in CLA. That instinct is right, and it's also the cheapest path. You put the floor at two months and attributed all of it to security review and hosting. A configured surface on seats and connectors we already have may avoid most of that.
 
 Two things could break that, and I'd rather name them now:
 
@@ -72,7 +72,7 @@ This is where Phase 1's ceiling gets set, and it isn't a software project.
 
 The specific failure to solve is Zac's: documentation stops when the hours stop. Any fix that asks people to write more, on unbilled time, loses to the billing pressure that caused the problem. So the useful question isn't "what should the template be" — a template already exists and isn't followed. It's "what can we derive from work that's already happening."
 
-Worth saying plainly: this is the half of the project that determines whether we're doing this again in eighteen months.
+Worth saying plainly: this is the half of the project that determines whether we're doing this again in eighteen months. It is also the half that might not be in scope — recording knowledge is a write, everything else here is read-only, and that's decision 1 below. I'd rather flag the tension than present this as settled.
 
 ### Phase 3 — Help ask the hard questions
 
@@ -84,20 +84,20 @@ It's last because it depends on the negative knowledge being both present and cu
 
 Concretely, if this lands. Written as what someone can *do* afterward that they can't now — if any row reads as vague to the person named in it, that row is the problem.
 
-| Who | What you can do that you can't today | Which phase delivers it |
+| Who | What you can do that you can't today | Which phase |
 | --- | --- | --- |
-| **Sales engineer** | Ask what the platform can't do for a given requirement, and get an answer with a link you can open — or a straight "we have no record of this," which is also actionable. Today the honest options are guess or interrupt someone. | Phase 1 (`se/JOB-1`) |
-| **Solutions architect** | Pick up an implementation and see what was recommended in the sales cycle and why — including whether that recommendation predates a platform change that invalidates it. | Phase 1 (`sa/JOB-1`) |
-| **Andrew, as the person people ask** | Redirect a repeat question and trust the answer, without checking it. Both halves matter: fewer interruptions is not a win if you end up correcting what the bot told someone. | Phase 1, measured (`knowledge-holder/JOB-1`) |
-| **Delivery / IPM** | Have what you built recorded without spending unbilled hours to write it up. This is the one that needs decision 1. | Phase 2 (`delivery-ipm/JOB-1`) |
-| **Andrew, as sponsor** | Hand delivery a scope that already names the platform's limitations and the agreed workarounds, so implementation doesn't discover them. | Phase 3 (`sponsor/JOB-2`) |
-| **Andrew, deciding** | Approve a defined scope with a measurement attached, instead of an aspiration. | This memo (`sponsor/JOB-1`) |
+| **Sales engineers** | Ask what the platform can't do for a given requirement, and get an answer with a link you can open — or a straight "we have no record of this," which is also actionable. Today the honest options are guess or interrupt someone. | Phase 1 |
+| **Zac, and the SA side** | Pick up an implementation and see what was recommended in the sales cycle and why — including whether that recommendation predates a platform change that invalidates it. Also: stop being the person who reconstructs it from memory. | Phase 1 |
+| **Mark, and services delivery** | Receive a scope that already names the platform's limitations and the agreed workarounds, instead of finding them during implementation. This is the one you said you'd want most. | Phase 3 |
+| **Andrew, as the person people ask** | Redirect a repeat question and trust the answer, without checking it. Both halves matter: fewer interruptions is not a win if you end up correcting what the bot told someone. | Phase 1 |
+| **Delivery / IPM** | Have what you built recorded without spending unbilled hours to write it up. This is the one that needs decision 1. | Phase 2 |
+| **Andrew, as sponsor** | Approve a defined scope with a stated measurement, instead of an aspiration — see the open items below for what the measurement still needs. | This memo |
 
 The row I'd watch is delivery/IPM. It's the only one that can't be delivered by a read-only system, and it's the one I have the least direct evidence for — nobody in that role was on the call.
 
 ## What I need decided
 
-Four things. Three of them are yours, and I can keep working without them — but not indefinitely.
+Four things. Three of them are yours, and I can keep working without them — but not indefinitely. Number 3 I'd like an answer to before the first sync, because it could change the plan enough that designing Phase 0 around the wrong assumption wastes the week. The other three can wait until we've met once.
 
 | # | Decision | Why it matters | Owner |
 | --- | --- | --- | --- |
@@ -105,6 +105,16 @@ Four things. Three of them are yours, and I can keep working without them — bu
 | 2 | **Who is this for?** | The kickoff went from SE, to SE and SA, to anyone in the company. Those are different products with different answers to "what's authoritative." I'd start narrow and widen on evidence. | Andrew |
 | 3 | **What is "ask commerce" / CLA?** | If a sanctioned internal assistant already exists, it's either where this belongs or the most relevant prior work there is — and it may already hold the approvals that make up your two-month estimate. Answering this changes more than any other open question. | Andrew or Levi/Shane |
 | 4 | **What's the budget?** | I asked on the call and we ended up on timeline and access instead. Related: Claude credits are already a standing blocker on your Monday checkpoint, and I'm currently running on personal subscriptions. That's fine for a straw man and not fine for a two-month build. | Andrew |
+
+## What this memo doesn't do yet
+
+Named so you can see the holes rather than find them.
+
+**The measurement isn't defined.** I've said Phase 1 should be measured and that the thing to displace is "ask Andrew," but I have not specified what gets counted, how, or over what period. That's deliberate — the baseline instrument is your direct-message volume, and I'd rather propose a specific count after Phase 0 than guess now. It does mean the scope in front of you has a measurement *slot*, not a measurement. Phase 0 fills it.
+
+**Your second definition of success is missing.** On the call you named two things: the system working, and a written diagnosis of where our documentation practice currently breaks with recommended changes. This memo plans the first and says nothing about the second. It isn't dropped — it's the natural output of Phase 0 and Phase 2, and it may matter more to you than the tool does. It needs a phase and an owner, and it has neither yet.
+
+**Phase 0 has no duration.** I'll bring a concrete proposal — what gets counted, how, how long — to the first sync. Until then "two weeks" in the section above is a comparison, not an estimate.
 
 ## Gaps I can't close from here
 
