@@ -2,17 +2,21 @@
   <img src="./assets/readme/hero.svg" width="100%" alt="se-docs-frontdoor — seven scattered doc sources gather into one Slack channel running Claude Tag in read-only mode, which answers with source citations, authority labels, and a conflict flag. Scattered sources are only half the problem; the rest was never written down. Success is measured by how often a question is answered without interrupting a senior colleague.">
 </p>
 
+**Private, internal planning repo.** An initiative at commerce.com to give sales engineers and solutions architects a way to get answers out of a decade of scattered platform knowledge. It runs on [Blueprint](https://github.com/nino-chavez/blueprint), a delivery methodology that stages work from research through to a shipped decision.
+
+**The deliverable is a decision memo, not software** — [`docs/decision-memo.md`](docs/decision-memo.md). Nothing under `apps/` is the product.
+
+> **Start here:** [`research/problem-space/problem-statement.md`](research/problem-space/problem-statement.md) is the canonical statement of the problem. It supersedes the narrower framing still recorded in `blueprint.yml`, so reading that file alone will reproduce a model we've since replaced.
+
 ## What this is
 
 Sales engineers at commerce.com assemble client solutions out of documents scattered across Jira, Confluence, Google Drive, Slack threads, NotebookLM, local files, and internal doc sites. Most of the research time goes into finding and cross-referencing, not reasoning. When that fails, the fallback is interrupting one of the few long-tenured colleagues who hold the history. As of the 2026-07-27 kickoff that is effectively one person.
 
 The obvious fix is a single place to ask, answering with citations. That was this initiative's founding scope, and it is no longer the whole problem.
 
-A sponsor kickoff on 2026-07-27 established that the documents are produced as a byproduct of billable delivery work: documentation stops when project hours run out, small projects get no folder at all, the template is not uniformly followed, and some documents are actively wrong where the platform shipped features that invalidated documented workarounds. **Capture quality bounds retrieval quality** — no search technique recovers a retrospective nobody wrote.
+A sponsor kickoff on 2026-07-27 established that the documents are produced as a byproduct of billable delivery work: documentation stops when project hours run out, smaller engagements often get no project folder, the template is not uniformly followed, and some documents are actively wrong where the platform shipped features that invalidated documented workarounds. **Capture quality bounds retrieval quality** — no search technique recovers a retrospective nobody wrote.
 
-So the problem has two halves that were previously treated as one: getting answers out of what exists, and fixing what gets written down. Read `research/problem-space/problem-statement.md` first — it is canonical and supersedes the narrower framing still recorded in `blueprint.yml`.
-
-Private, internal planning repo. It runs on [Blueprint](https://github.com/nino-chavez/blueprint), a delivery methodology that stages work from research through to a shipped decision.
+So the problem has two halves that were previously treated as one: getting answers out of what exists, and fixing what gets written down.
 
 ## Where it stands
 
@@ -27,6 +31,7 @@ actor-output.yml: PENDING (route actor-output; 0 errors, 4 pending, 0 warns)
 
 | Output | What it is | State |
 | --- | --- | --- |
+| `docs/decision-memo.md` | **The deliverable.** Phased plan + four decisions for the sponsor | **draft** — authored, not yet sent |
 | `research/problem-space/problem-statement.md` | Canonical problem statement | current |
 | `HANDOFF.md` | Session recovery, including an explicit do-not-do list | current |
 | `decisions/0001-…` | Configure-first. Stands, with two 2026-07-27 qualifications | accepted |
@@ -49,7 +54,11 @@ The riskiest assumptions here are not answerable in code. Can the Enterprise con
 
 Buying was retired outright. Uniform ACLs removed the one requirement a purchased tool uniquely served, and existing Claude Enterprise spend removes the seat-economics argument. The kickoff did nothing to restore either justification.
 
-The kickoff moved this decision in both directions, recorded in the ADR's Amendments section. It got **stronger** — the sponsor independently reached for a Claude-native surface twice, and put the delivery floor at two months composed entirely of security review and hosting, which is overhead a configured path may avoid. It got **weaker** — Gong call recordings are a named in-scope source, are already pulled via a separate integration tool, and are not covered by the standard connectors. That is trigger 3 below, not yet fired, and unresolvable until the corpus census runs.
+The kickoff moved this decision in both directions, recorded in the ADR's Amendments section:
+
+- **Stronger.** The sponsor independently reached for a Claude-native surface twice, unprompted. They also put the delivery floor at two months composed *entirely* of security review and hosting — overhead a configured path may largely avoid.
+- **Weaker.** Gong call recordings are a named in-scope source, already pulled via a separate integration tool, and not covered by the standard connectors. That is trigger 3 below: not fired, and unresolvable until the corpus census runs.
+- **Also weaker, found later.** Trigger 3's fallback architecture named a reference implementation (`archive/knowledge-index`) that no longer exists anywhere on disk. If that trigger fires, the alternative is more expensive than the ADR assumed.
 
 One question outranks all of this and is still open: the sponsor referred twice to an existing internal assistant. If it exists, it is either the delivery vehicle or prior art, and it may already carry the approvals that make up the entire stated two-month floor.
 
@@ -101,7 +110,7 @@ Two gotchas worth knowing before you edit: persona job-to-be-done entries must s
 | `research/sources/` | Input assets with provenance — the 2026-07-09 founding grill ledger, and the 2026-07-27 sponsor kickoff with load-bearing quotes transcribed. |
 | `research/` (rest) | Founding corpus — personas, buy landscape, current-state source map. Valid as evidence; organized around the superseded causal model. |
 | `decisions/` | Decision records. ADR-0001 is configure-first, with a 2026-07-27 Amendments section recording what the kickoff strengthened and weakened. |
-| `docs/` | The sponsor brief. Carries a superseded banner; research content holds, framing does not. |
+| `docs/` | `decision-memo.md` — the deliverable. Also `se-team-brief.html`, the earlier brief, which carries a superseded banner; its research content holds, its framing does not. |
 | `actor-output.yml` | The live contract: actors, outcomes, outputs, preconditions. Currently encodes outputs shaped by the superseded framing, flagged inline. |
 | `HANDOFF.md` | Position, next steps, and an explicit do-not-do list of actions that would regress the framing. |
 | `METHODOLOGY-AMENDMENTS.md` | Blueprint gaps this initiative hit, as promotion candidates. |
