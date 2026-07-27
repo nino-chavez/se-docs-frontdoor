@@ -14,6 +14,17 @@ project:
 # Reviewer: pilot-profile-lock-reviewer (blocks Stage 1 until filled)
 # Derived from the 2026-07-09 definition + grill session (three research
 # tracks + 16-question grill); ledger in research/sources/.
+#
+# ⚠ SUPERSEDED 2026-07-27 by research/problem-space/problem-statement.md.
+# The 2026-07-27 sponsor kickoff replaced the problem this block encodes:
+# the corpus is a delivery-process output with structural truncation points,
+# not a noisy given, which inverts capture/retrieval dependency and falsifies
+# grill row 13 (demand-driven filing). The narrow SE-only pilot, the
+# deflection-only success metric, and out_of_scope_pilots below are all
+# under open boundary decisions BD-1/BD-2 in that document.
+# Fields are retained verbatim pending extraction into the personas/JTBD
+# artifact — the research-variant re-stamp drops pilot_profile entirely
+# (stamp.mjs: research has no pilot_profile). Do not treat as current intent.
 # ──────────────────────────────────────────────────────────────────
 pilot_profile:
   slug: "commerce-se-solution-research"
