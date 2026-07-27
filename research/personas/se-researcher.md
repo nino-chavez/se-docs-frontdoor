@@ -9,6 +9,22 @@ jtbd:
 
 # Persona — SE researcher
 
+> **⚠ SUPERSEDED 2026-07-27.** See `research/problem-space/problem-statement.md`. Do not derive
+> the personas/JTBD artifact from this file without reconciling three changes:
+>
+> - **The job assumes the answer exists to be found.** "Get a correct, source-cited answer…
+>   without pinging a senior SE" is a retrieval job. The kickoff established that the answer is
+>   frequently absent rather than hidden — documentation stops when project hours end. A job
+>   framed purely as retrieval cannot fail in the way this persona will actually fail.
+> - **The audience is wider.** This models a sales engineer only. The sponsor asked for SE and
+>   SA, then "anyone within the company" (00:09:27, 00:16:58). That is BD-2, open.
+> - **`surface:` presupposes the solution**, same as the senior-se file. Whether the front door
+>   is a Slack channel is BD-3, open.
+>
+> The acceptance criterion ("8 of 10 real pilot questions") is still the right *shape* — it is
+> observable and countable. It just cannot be evaluated before the corpus census establishes
+> what fraction of real questions have an answer anywhere in the corpus at all.
+
 The core user: a commerce.com sales engineer assembling a client solution. Mid-ramp to experienced; knows the product but not where every fact lives. Today their research loop is: search Confluence, search Drive, scroll Slack, give up, ping a senior.
 
 ## Context from the grill (2026-07-09)

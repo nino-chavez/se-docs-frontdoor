@@ -9,6 +9,19 @@ jtbd:
 
 # Persona — Senior SE (the deflection target and the adoption engine)
 
+> **⚠ SUPERSEDED 2026-07-27.** See `research/problem-space/problem-statement.md`. Do not derive
+> the personas/JTBD artifact from this file without reconciling three changes:
+>
+> - **The population is smaller than stated.** This file says "one of the 2–3 people." The
+>   sponsor kickoff states "I'm the only one remaining" (00:35:32), with every SA change routed
+>   into a single 1:1 DM channel. The holder count is effectively one.
+> - **The holder and the sponsor are the same person.** That concentrates the pain and the
+>   authority to fix it in one actor, which this file models as two. It also means that DM
+>   volume is the best available instrument for the deflection baseline.
+> - **`surface:` presupposes the solution.** The frontmatter pins `se-frontdoor-slack-channel`.
+>   Whether that is the surface is BD-3, and the audience is BD-2. A persona job should name the
+>   job, not the channel that was assumed to serve it.
+
 One of the 2–3 people who hold the tribal knowledge. Today they are the search engine: "quick question" pings arrive all day, each costing context-switch time. They feel the pain the metric measures — which is why the grill (2026-07-09) recorded that they'd **champion** the pilot, not merely tolerate it.
 
 ## Role in the pilot

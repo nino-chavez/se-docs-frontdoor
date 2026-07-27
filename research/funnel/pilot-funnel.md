@@ -1,5 +1,22 @@
 # Pilot funnel — how a question becomes a deflected ping
 
+> **⚠ SUPERSEDED 2026-07-27 — this funnel has a missing branch, not just dated framing.**
+> See `research/problem-space/problem-statement.md`.
+>
+> Step 5 enumerates two miss classes: content *trapped* (exists, wrong place → demand-driven
+> filing fires) and bot *inadequate* (falls back to a senior). The 2026-07-27 sponsor kickoff
+> established a third, which this funnel cannot represent: **content was never written.**
+> Documentation stops when project hours run out, sub-20-hour projects get no folder, and some
+> documents are actively wrong where the platform shipped past a documented workaround.
+>
+> That is not a rarer branch — it may be the dominant one. Demand-driven filing does nothing
+> for it, because there is no artifact to re-home. Any planning that routes content misses
+> through step 5 as written will under-count the failure mode that matters most.
+>
+> Do not extend this funnel. Re-derive it from the problem statement's domain dependency
+> (capture → source quality → question surface), which puts the missing branch upstream of
+> the funnel entirely.
+
 The v1 funnel has one surface for both personas:
 
 surface: se-frontdoor-slack-channel
