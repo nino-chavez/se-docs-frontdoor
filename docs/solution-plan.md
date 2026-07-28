@@ -1,7 +1,7 @@
 # Solution Plan — SE/SA Knowledge Capture
 
 **Author**: Nino Chavez · **Date**: 2026-07-28 · **Format**: SCQ-R
-**Status**: Pre-decision. One decision and two requests are outstanding; both are named in §6.
+**Status**: Pre-decision. One decision and two requests are outstanding; §3 names all three.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
 ---
@@ -38,7 +38,7 @@ The evidence for that claim is a principle-by-principle comparison, and it is wo
 
 Six of seven, and the seventh was never something a search tool could satisfy — it is a measurement question. The honest reading is that every principle a question surface *could* implement, is implemented. Building our own would produce a smaller, later, worse-supported version of something the whole company already has, which is why the first thing I am recommending is that we stop.
 
-## 2. The capture problem is not solved, and we can now size it
+## 2. The corpus is the problem, and the unsolved part is invalidation
 
 Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce does not read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. That one is a setup that was never finished rather than something the platform cannot do, which is why it belongs in a request and not in a build. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
 
@@ -48,11 +48,13 @@ Drive is larger by an order of magnitude. The 2026 opportunity folder alone hold
 
 The strongest evidence is not a number. Ask Commerce's own configuration carries hand-written patches for individual contradictions in our documentation — one page that uses two different names for the same Slack channel, two pages that disagree on a GitHub organisation name, with an instruction not to state that name confidently. Every contradiction in our corpus becomes a line of configuration that a person writes and maintains. It works, and it does not scale. **One team is already absorbing our documentation defects by hand, one defect at a time**, which is the argument for fixing capture made from our own systems rather than from theory.
 
-One correction to how I first put this. I claimed capture was unsolved without having scanned that market, and it is not: drafting a record from an existing artifact, routing it to a named owner, and expiring it on a clock all ship commercially. What did not turn up in that scan is anything that invalidates a document *because a shipped capability made it wrong*, or that keeps negative knowledge as a record rather than as prose. **The unsolved part is invalidation, not capture** — a narrower claim, and a much smaller thing to build. `research/competitive/buy-landscape.md` owns the scan and grades it, including where it is thin.
+Capture itself is not the unsolved part, and a scan of that market is what narrows it. Drafting a record from an existing artifact, routing it to a named owner and expiring it on a clock all ship commercially today. What does not ship: invalidating a document *because a shipped capability made it wrong*, or holding negative knowledge as a record rather than as prose. **The gap is invalidation** — narrower than the claim this section used to make, and a much smaller thing to build. `research/competitive/buy-landscape.md` owns that scan and grades it, including where it is thin.
 
 ## 3. Three things block the path, and none of them are mine to decide
 
-Two of the three are requests to a team I have no authority over, which is the part of this that needs you rather than me. AI Operations would need to connect Drive contents to Ask Commerce, and to designate an authoritative source for solution knowledge. The first is a connector change. The second is harder, because every current entry on that list is owned by a governance or platform function and domain knowledge would be a new category — which is why I would open with a small, vettable space rather than asking them to bless the estate. Annex B is the request, written and ready to send.
+Two of the three are requests to a team I have no authority over, which is the part of this that needs you rather than me. AI Operations would need to connect Drive contents to Ask Commerce, and to designate an authoritative source for solution knowledge.
+
+The first is completing a setup their own platform documents — Drive is a supported source for the surface Ask Commerce runs on, and was never connected here. The second is harder, because every current entry on that list is owned by a governance or platform function and domain knowledge would be a new category — which is why I would open with a small, vettable space rather than asking them to bless the estate. Annex B is the request, written and ready to send.
 
 Those two requests are not independent, and it took me too long to see it. Records produced by capture would land in Confluence, which Ask Commerce reads — but they would land in a *team* space, which its rules structurally demote. Without the authoritative-source designation, capture manufactures records the search tool is instructed not to believe. **The Drive request unblocks the corpus we already have; the authority request unblocks the corpus we would create.**
 
@@ -66,7 +68,9 @@ Governance is not the obstacle I expected it to be. Claude is already deployed t
 
 **Finish the census. Two weeks, roughly four hours of senior time.** The Confluence half is done and is where the figures above come from. Drive needs real API access rather than the file-listing scrape that produced the floor. The quality half matters more than the volume half, because timestamps find *stale* and cannot find *wrong* — Mark's guest-tokenization case is a document that is confidently, actively incorrect and looks identical to a good one in every count I can run. Finding those means joining shipped platform capabilities against documents that predate them, plus a small adjudicated sample to establish a rate.
 
-**Send the two requests now, in parallel.** They do not depend on the census finishing, and the answer to the Drive request determines whether the rest of this plan survives.
+That join is also the one capability the market scan found nobody shipping, so the census as already designed measures the exact thing that would justify building anything. The narrowing in §2 costs no redesign.
+
+**Send the two requests now, in parallel.** Neither depends on the census finishing. The Drive one should be cheap to grant, since it asks for a documented setup rather than a new capability; the authority request is the one that needs a sponsor behind it.
 
 **Build capture only after one record exists by hand.** Before any pipeline, I would take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available.
 
@@ -82,6 +86,7 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 | --- | --- | --- |
 | Building a question surface | It exists, org-wide, maintained by another team | AI Ops deprecating it |
 | Building connectors ourselves | A request to AI Ops, not an engineering task. Our own would trigger an AppSec review and duplicate their roadmap | A refusal — which is a stop-and-replan signal, not a build trigger |
+| Building capture workflow from scratch | Draft-from-artifact, route to an owner, expire on a clock all ship commercially. But §4's write-where-the-reader-can-read constraint rules those products out as destinations, because Ask Commerce cannot see them. Take the pattern, not the tool | A capture product that writes natively into Confluence or Drive |
 | Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
 | Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
 | Adjudicating contradictions automatically | Locked at founding: surface conflicts, do not resolve them | Nothing foreseen. An invariant |
@@ -92,7 +97,9 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 
 Two assumptions carry it, and both are weaker than the rest of this document.
 
-**That the wrong-not-stale problem is big enough to justify the work.** This rests on a single example — guest tokenization, from Mark. Everything in §4 depends on it and nothing has measured it. If the census sample comes back showing a low rate, the honest conclusion is that better search over a mostly-accurate corpus was enough, and this project ends with the two requests. That is the outcome I consider most likely to prove me wrong.
+**That the wrong-not-stale problem is big enough to justify the work.** This rests on a single example — guest tokenization, from Mark. Everything in §4 depends on it and nothing has measured it. If the census sample comes back showing a low rate, the honest conclusion is that better search over a mostly-accurate corpus was enough, and this project ends with the two requests.
+
+That is a cleaner test than it was a week ago: invalidation is the only capability the market scan found nobody shipping, so **if invalidation is not needed there is nothing left to build** — not a smaller build, none. That is the outcome I consider most likely to prove me wrong.
 
 **That an SA would actually want a derived record.** Untested, and the one-record test in §4 is designed to find out cheaply before anything is built.
 
@@ -100,7 +107,7 @@ Two assumptions carry it, and both are weaker than the rest of this document.
 
 Negative knowledge has the same problem in a sharper form. Knowing what the platform cannot do, and whether that limitation still holds, looks more like a maintained register than a search index — and `P6` says that is the category which decays fastest and matters most. If Phase 0's demand work shows those questions are common, *don't rebuild retrieval* narrows to *don't rebuild search*, and a small query surface over the structured records earns its place. That is a far smaller build than the one we started with, and it is not decidable until we know what people actually ask.
 
-Two more that would change the shape rather than the direction: if AI Operations refuses the Drive connection, the plan needs rethinking rather than patching; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
+Two more that would change the shape rather than the direction: if AI Operations declines the Drive connection — less likely now it reads as a documented setup, but it would leave the largest corpus invisible whatever else we do; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
 
 I would rather these be written down and wrong than unwritten and right.
 
