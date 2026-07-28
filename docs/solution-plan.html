@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution Plan: SE/SA Knowledge Capture</title>
+
+  <style>
+    :root {
+      --color-brand-violet: #7c3aed;
+      --color-brand-navy: #1a365d;
+      --color-text-primary: #171717;
+      --color-text-secondary: #404040;
+      --color-text-body: #525252;
+      --color-bg-primary: #ffffff;
+      --color-bg-secondary: #f5f5f5;
+      --color-bg-dark: #111827;
+      --color-success: #059669;
+      --color-warning: #d97706;
+      --color-info: #0284c7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--color-bg-secondary);
+      color: var(--color-text-body);
+      line-height: 1.6;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--color-bg-primary);
+      border-right: 1px solid #e5e5e5;
+      padding: 24px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .nav-title {
+      font-weight: 700;
+      color: var(--color-brand-violet);
+      font-size: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-brand-violet);
+    }
+
+    .toc {
+      list-style: none;
+    }
+
+    .toc-item {
+      margin-bottom: 8px;
+    }
+
+    .toc-item a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.15s;
+    }
+
+    .toc-item a:hover {
+      background: var(--color-bg-secondary);
+      color: var(--color-brand-violet);
+    }
+
+    .main {
+      margin-left: 280px;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .section {
+      background: var(--color-bg-primary);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: var(--color-brand-violet);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-brand-violet);
+    }
+
+    h3 {
+      font-size: 16px;
+      color: var(--color-text-primary);
+      margin: 24px 0 12px;
+    }
+
+    h4 {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin: 16px 0 8px;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    th {
+      background: var(--color-bg-secondary);
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    tr:hover {
+      background: #fafafa;
+    }
+
+    .highlight-row {
+      background: #f0fdf4;
+      font-weight: 600;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--color-brand-violet), #6d28d9);
+      color: white;
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .stat-card.secondary {
+      background: linear-gradient(135deg, var(--color-brand-navy), #1e40af);
+    }
+
+    .stat-card.success {
+      background: linear-gradient(135deg, var(--color-success), #047857);
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .code-block {
+      background: var(--color-bg-dark);
+      color: #e5e5e5;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 16px 0;
+      white-space: pre;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-primary {
+      background: #ede9fe;
+      color: var(--color-brand-violet);
+    }
+
+    .badge-success {
+      background: #d1fae5;
+      color: var(--color-success);
+    }
+
+    .badge-warning {
+      background: #fef3c7;
+      color: var(--color-warning);
+    }
+
+    .badge-info {
+      background: #e0f2fe;
+      color: var(--color-info);
+    }
+
+    ul, ol {
+      margin: 12px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background: #fef3c7;
+      border-left: 4px solid var(--color-warning);
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+
+    .info-box {
+      background: #e0f2fe;
+      border-left: 4px solid var(--color-info);
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+
+    blockquote {
+      background: #f5f5f5;
+      border-left: 4px solid var(--color-brand-violet);
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    @media print {
+      @page {
+        size: landscape;
+        margin: 0.5in;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 0;
+      }
+
+      .section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #e5e5e5;
+        margin-bottom: 16px;
+        padding: 24px;
+      }
+
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        font-size: 11px;
+      }
+
+      h1 { font-size: 22px; }
+      h2 { font-size: 16px; }
+      h3 { font-size: 13px; }
+      h4 { font-size: 11px; }
+
+      table { font-size: 10px; }
+      th, td { padding: 6px 8px; }
+
+      .stat-grid {
+        gap: 12px;
+      }
+
+      .stat-card {
+        padding: 16px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .stat-value { font-size: 24px; }
+      .stat-label { font-size: 11px; }
+
+      .code-block {
+        font-size: 9px;
+        padding: 12px;
+        background: #1a1a1a !important;
+        color: #e5e5e5 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .badge {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .highlight-row {
+        background: #f0fdf4 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-title">SE/SA KNOWLEDGE CAPTURE</div>
+    <ul class="toc">
+      <li class="toc-item"><a href="#summary">Summary</a></li>
+      <li class="toc-item"><a href="#analysis">Analysis</a></li>
+      <li class="toc-item"><a href="#research">Known Research</a></li>
+      <li class="toc-item"><a href="#principles">Guiding Principles</a></li>
+      <li class="toc-item"><a href="#plan">The Plan</a></li>
+      <li class="toc-item"><a href="#assumptions">Assumptions</a></li>
+      <li class="toc-item"><a href="#gaps">Gaps &amp; Open Questions</a></li>
+      <li class="toc-item"><a href="#asks">Asks</a></li>
+      <li class="toc-item"><a href="#traceability">Traceability</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+
+    <div class="section" id="summary">
+      <h1>Solution Plan: SE/SA Knowledge Capture</h1>
+      <div class="meta">Draft for review | Executive Advisory | 27 July 2026 | Nino Chavez<br>
+        Audience: Andrew (sponsor), Mark, Zac &mdash; and AI Operations for &sect;8.3</div>
+
+      <h2>Summary</h2>
+      <p>A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery &mdash; so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value">6 of 7</div><div class="stat-label">Guiding principles already implemented by an existing system</div></div>
+        <div class="stat-card secondary"><div class="stat-value">3,173</div><div class="stat-label">Confluence pages across five spaces &mdash; 26% touched in 12 months</div></div>
+        <div class="stat-card success"><div class="stat-value">692+</div><div class="stat-label">Opportunity folders in Drive for 2026 alone, unreadable by the search tool</div></div>
+      </div>
+
+      <p>Discovery changed what this project is. <strong>The retrieval half is already built and running.</strong> <em>Ask Commerce</em>, maintained by AI Operations, does six of the seven things this project set out to do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.</p>
+
+      <blockquote>
+        <p style="margin:0"><strong>So the plan is: measure the corpus, ask AI Operations for two things, and build the capture side.</strong> Only the third is a build, and it is gated on a decision that has not been made.</p>
+      </blockquote>
+
+      <p><span class="badge badge-warning">Status</span> &nbsp;Six asks in &sect;8 are unanswered. Four are decisions, not work.</p>
+    </div>
+
+    <div class="section" id="analysis">
+      <h2>1. Analysis &mdash; how the problem was reframed twice</h2>
+
+      <h3>1.1 The founding framing, and why it broke</h3>
+      <p>The 9 July framing was: <em>SEs rely on scattered documents; build a front door to query across them.</em> That treated the corpus as a noisy given whose hygiene would improve as a byproduct of use.</p>
+      <p>The sponsor kickoff on 27 July broke it. Between Mark and Zac, four structural holes:</p>
+      <ul>
+        <li>One-off client conversations sometimes never enter a documented process <em>(Mark)</em>.</li>
+        <li>Smaller engagements often get no project folder; the example given was twenty-hour projects <em>(Mark)</em>.</li>
+        <li>Documentation stops when IPM hours run out, leaving solutions half-worked and retrospectives absent <em>(Zac)</em>.</li>
+        <li>A standard template exists and is followed differently every project <em>(Zac)</em>.</li>
+      </ul>
+      <p>That inverts the dependency. Hygiene is an <strong>input</strong> to retrieval quality, not an output of it. One founding decision was falsified rather than narrowed: demand-driven filing works when content exists and is misplaced, and does nothing when content was never written.</p>
+
+      <h3>1.2 The second reframe, and it was the bigger one</h3>
+      <p>The kickoff left an open question &mdash; the sponsor twice referred to an existing internal capability, &ldquo;something similar to ask commerce&rdquo; (00:09:27) and &ldquo;directly within CLA, like ask commerce&rdquo; (00:33:23). That was recorded as the question that would most change the plan.</p>
+      <div class="note">
+        <p style="margin:0">It was not an analogy. Discovery found <em>Ask Commerce</em> live, org-wide, and already implementing most of what this project had specified. <strong>A memo proposing to build it had been drafted and was one decision away from being sent.</strong></p>
+      </div>
+
+      <h3>1.3 What discovery actually consisted of</h3>
+      <p>Stated so the findings can be weighted, and so a reader knows which are measured and which are read.</p>
+      <table>
+        <thead><tr><th>Method</th><th>What it covered</th></tr></thead>
+        <tbody>
+          <tr><td>Sponsor kickoff, transcribed with speaker attribution</td><td>The four structural holes; sponsor intent; the two-month floor</td></tr>
+          <tr><td>Two internal governance registers</td><td>Data classification, approval routes, tool status</td></tr>
+          <tr><td>Confluence REST API, authenticated</td><td>Corpus counts and recency across five spaces</td></tr>
+          <tr><td>Google Drive, web UI</td><td>Opportunity corpus structure and an order-of-magnitude count</td></tr>
+          <tr><td><em>Ask Commerce</em> configuration, read directly</td><td>What exists, what it can reach, how it ranks and demotes</td></tr>
+          <tr class="highlight-row"><td>Empirical probe of Ask Commerce <span class="badge badge-warning">did not run</span></td><td>Blocked on a per-person Claude spend cap, not on access. The most valuable outstanding measurement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="research">
+      <h2>2. Known research &mdash; what we have established</h2>
+
+      <h3>2.1 The corpus is measured in Confluence, sized in Drive</h3>
+      <table>
+        <thead><tr><th>Space</th><th>Pages</th><th>Touched &lt; 12 months</th><th>Share fresh</th></tr></thead>
+        <tbody>
+          <tr><td>Technical Project Management (IPM)</td><td>1,599</td><td>335</td><td>21%</td></tr>
+          <tr><td>Solutions Architects (SA)</td><td>912</td><td>173</td><td>19%</td></tr>
+          <tr class="highlight-row"><td>Technical Account Management (TAM)</td><td>441</td><td>252</td><td>57%</td></tr>
+          <tr><td>Solutions Engineering (SE)</td><td>155</td><td>35</td><td>23%</td></tr>
+          <tr><td>Solution Architecture Knowledge Base (SIPR)</td><td>66</td><td>22</td><td>33%</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>3,173</strong></td><td><strong>817</strong></td><td><strong>26%</strong></td></tr>
+        </tbody>
+      </table>
+      <p>59% has not been touched in two years.</p>
+
+      <p><strong>Drive is where the volume is.</strong> The <em>Opportunities</em> shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds <strong>at least 692</strong> &mdash; more than four times the entire SE Confluence space.</p>
+      <div class="note">
+        <p style="margin:0"><span class="badge badge-warning">Not audited</span> &nbsp;692 is a floor taken from a file listing, not a certified count. Earlier years are uncounted. Sound enough for order of magnitude; not sound enough to present as an inventory.</p>
+      </div>
+
+      <p>Three structural findings matter more than the totals:</p>
+      <ul>
+        <li><strong>The primary persona&rsquo;s own space is the smallest and stalest.</strong> The knowledge lives in IPM, SA and TAM &mdash; other organisations. That is why an SE asks a person: the answer was never filed where an SE would look.</li>
+        <li><strong>TAM&rsquo;s documentation is not decaying</strong> &mdash; 57% touched within twelve months against 19&ndash;21% for SA and IPM, under identical billing pressure. A working internal counterexample.</li>
+        <li><strong>Timestamps cannot find wrong.</strong> Every number above measures editing, not truth.</li>
+      </ul>
+
+      <h3>2.2 The question surface exists</h3>
+      <p><em>Ask Commerce</em> &mdash; Anthropic&rsquo;s native ask-your-org surface, configured and maintained by AI Operations. Active, shared with every employee by default, no access request. Connected to <strong>Confluence, Jira and Slack</strong>. Respects each user&rsquo;s permissions. Cites every claim with source, last-modified date and URL. Flags sources over twelve months old. Surfaces conflicts instead of picking between them.</p>
+      <p>Two gaps define the remaining work:</p>
+      <table>
+        <thead><tr><th>Gap</th><th>Consequence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cannot read Google Drive</strong> &mdash; sees that a file exists, cannot open it</td><td>The tech scopes, the largest and most uniform corpus, are invisible to it</td></tr>
+          <tr><td><strong>No authoritative source for solution knowledge</strong>, and SE / TAM / IPM spaces are explicitly demoted</td><td>3,173 searchable pages can never be treated as settled</td></tr>
+        </tbody>
+      </table>
+      <p>The routing table designates sources of truth for tool approval, HR, insider trading and deployment. Nothing for how we solve things for clients.</p>
+
+      <h3>2.3 The capture argument now has first-party evidence</h3>
+      <p>Ask Commerce&rsquo;s configuration contains <strong>hand-written patches for individual contradictions in our documentation</strong> &mdash; one page using two names for the same Slack channel, two pages disagreeing on a GitHub organisation name, with an instruction not to state that name confidently.</p>
+      <blockquote>
+        <p style="margin:0 0 8px"><strong>Every contradiction becomes a line of configuration a person maintains. It works. It does not scale.</strong></p>
+        <p style="margin:0">One team is absorbing our documentation defects by hand, one defect at a time. This is the strongest available argument for the capture work, and it comes from Commerce&rsquo;s own system rather than from theory.</p>
+      </blockquote>
+
+      <h3>2.4 Governance is not the obstacle it appeared to be</h3>
+      <p>Every employee already has Claude &mdash; no request, no seat, usage-based billing with a <strong>$1,000 monthly cap per person</strong>. The relevant route is <strong>Use-Case #2</strong>: an existing approved tool processing a new type of data, which means an AI Use Case Review with a Privacy Impact Assessment, not a vendor intake.</p>
+      <div class="info-box">
+        <p style="margin:0">Two cost drivers to respect: an <strong>AppSec review triggers on new MCP, integrations, or custom code</strong>, and escalations go to an <strong>AI Review Committee meeting quarterly</strong> &mdash; a tail that could exceed the sponsor&rsquo;s entire stated two-month floor. A configured path adding no custom code avoids the first entirely.</p>
+      </div>
+    </div>
+
+    <div class="section" id="principles">
+      <h2>3. Guiding principles</h2>
+      <p>The first six are carried from the problem statement and hold unchanged. The last three are new, and follow from discovery.</p>
+      <table>
+        <thead><tr><th>#</th><th>Principle</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Cite or say nothing</strong></td><td>An answer about what the platform cannot do gets acted on in front of a client, and parts of the corpus are wrong rather than old</td></tr>
+          <tr><td>2</td><td><strong>Recency is correctness, not metadata</strong></td><td>Document age carries information about whether the content is still true</td></tr>
+          <tr><td>3</td><td><strong>Surface conflicts; do not adjudicate</strong></td><td>Contradiction is guaranteed. A single confident answer will sometimes be the stale one</td></tr>
+          <tr><td>4</td><td><strong>Assume no schema</strong></td><td>Every project documents differently</td></tr>
+          <tr><td>5</td><td><strong>Measure against the person</strong></td><td>The person-to-person round trip is the baseline; usage is only a proxy</td></tr>
+          <tr><td>6</td><td><strong>Coverage follows verified quality</strong></td><td>Indexing everything indexes the wrong things too</td></tr>
+          <tr class="highlight-row"><td>7</td><td><strong>Do not rebuild what already runs</strong> <span class="badge badge-primary">new</span></td><td>The retrieval surface exists and is owned. Effort goes where nothing exists</td></tr>
+          <tr class="highlight-row"><td>8</td><td><strong>Derive; never ask for more writing</strong> <span class="badge badge-primary">new</span></td><td>Documentation stops when hours stop. Any design depending on unbilled writing loses to the pressure that created the gap</td></tr>
+          <tr class="highlight-row"><td>9</td><td><strong>Verify before publishing</strong> <span class="badge badge-primary">new</span></td><td>A generated record that is wrong is the corpus&rsquo;s worst defect, mass-produced and carrying a citation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="plan">
+      <h2>4. The plan</h2>
+
+      <h3>Phase 0 &mdash; Measure the corpus <span class="badge badge-success">designed &middot; partly run</span></h3>
+      <p>Two weeks elapsed, roughly four hours of senior SE/SA time.</p>
+      <ul>
+        <li><strong>Inventory.</strong> Confluence is done. Drive needs API access, not more scraping.</li>
+        <li><strong>Quality.</strong> A changelog join finds the wrong-not-stale class cheaply, by joining shipped platform capabilities against documents that predate them and describe a workaround for their absence. A 50-document adjudicated sample gives a rate at roughly &plusmn;14 points.</li>
+        <li><strong>Demand baseline.</strong> Must be captured now &mdash; it is unmeasurable after launch, and Phase 0 is the only pre-launch window.</li>
+      </ul>
+      <p>The single most useful output: <strong>what fraction of engagements have no tech scope at all.</strong> That is the closest available answer to &ldquo;what fraction of questions have an answer anywhere.&rdquo;</p>
+
+      <h3>Phase 1 &mdash; Two requests to AI Operations <span class="badge badge-info">not a build</span></h3>
+      <ol>
+        <li><strong>Connect Drive contents</strong>, starting with tech scopes and SA folders.</li>
+        <li><strong>Designate an authoritative source for solution knowledge.</strong> Start narrow &mdash; SIPR is 66 pages, small enough to actually vet &mdash; rather than asking them to bless the estate.</li>
+      </ol>
+      <p>The second is harder: every current entry is owned by a governance or platform function, so domain knowledge is a new category.</p>
+
+      <h3>Phase 2 &mdash; Build the capture side <span class="badge badge-warning">the only build</span></h3>
+      <p>Derive a solution record per engagement from artifacts that already exist &mdash; call transcripts, tech scope sheets, ticket history &mdash; verify it with the person who ran the engagement, publish it where Ask Commerce will trust it.</p>
+
+      <svg viewBox="0 0 900 300" role="img" style="width:100%;height:auto;margin:20px 0" aria-label="Capture pipeline: existing artifacts are derived into a draft record, verified by an SA or IPM, then published to an authoritative source feeding Ask Commerce. An invalidation detector returns records to verification when a shipped capability contradicts them.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#737373"/></marker>
+          <marker id="arv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+        </defs>
+        <g font-family="system-ui" >
+          <rect x="8" y="62" width="152" height="80" rx="8" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="1.5"/>
+          <text x="84" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">Existing artifacts</text>
+          <text x="84" y="110" text-anchor="middle" font-size="11" fill="#737373">transcripts &middot; scopes</text>
+          <text x="84" y="126" text-anchor="middle" font-size="11" fill="#737373">tickets</text>
+
+          <rect x="210" y="70" width="132" height="64" rx="8" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="1.5"/>
+          <text x="276" y="97" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">Derive draft</text>
+          <text x="276" y="116" text-anchor="middle" font-size="11" fill="#737373">no new writing</text>
+
+          <path d="M457,60 L525,102 L457,144 L389,102 Z" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+          <text x="457" y="98" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">Verify</text>
+          <text x="457" y="116" text-anchor="middle" font-size="11" fill="#525252">SA or IPM</text>
+
+          <rect x="578" y="70" width="150" height="64" rx="8" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="1.5"/>
+          <text x="653" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">Authoritative</text>
+          <text x="653" y="112" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">source</text>
+
+          <rect x="774" y="70" width="118" height="64" rx="8" fill="#1a365d" stroke="#1a365d"/>
+          <text x="833" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Ask</text>
+          <text x="833" y="112" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Commerce</text>
+
+          <rect x="389" y="8" width="136" height="34" rx="8" fill="#ffffff" stroke="#e5e5e5" stroke-width="1.5"/>
+          <text x="457" y="30" text-anchor="middle" font-size="11" fill="#737373">Discarded &middot; reason kept</text>
+
+          <rect x="548" y="220" width="210" height="60" rx="8" fill="#f5f5f5" stroke="#7c3aed" stroke-width="1.5"/>
+          <text x="653" y="245" text-anchor="middle" font-size="13" font-weight="600" fill="#171717">Invalidation detector</text>
+          <text x="653" y="263" text-anchor="middle" font-size="11" fill="#737373">capability shipped &rarr; contradicts</text>
+
+          <path d="M160,102 L204,102" stroke="#737373" stroke-width="1.5" marker-end="url(#ar)"/>
+          <path d="M342,102 L383,102" stroke="#737373" stroke-width="1.5" marker-end="url(#ar)"/>
+          <path d="M525,102 L572,102" stroke="#737373" stroke-width="1.5" marker-end="url(#ar)"/>
+          <path d="M728,102 L768,102" stroke="#737373" stroke-width="1.5" marker-end="url(#ar)"/>
+          <path d="M457,60 L457,46" stroke="#737373" stroke-width="1.5" marker-end="url(#ar)"/>
+          <text x="548" y="94" text-anchor="middle" font-size="10" fill="#737373">approved</text>
+          <text x="470" y="54" font-size="10" fill="#737373">rejected</text>
+
+          <path d="M653,134 L653,216" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arv)"/>
+          <path d="M548,250 L457,250 L457,148" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arv)"/>
+        </g>
+      </svg>
+      <p style="font-size:13px;color:#737373;margin-top:-4px">The loop matters as much as the forward path: the changelog join from Phase 0 becomes a standing job, so records invalidated by a shipped capability return to the queue instead of rotting silently.</p>
+
+      <h4>Decisions this phase rests on</h4>
+      <table>
+        <thead><tr><th>#</th><th>Decision</th><th>Trade-off</th></tr></thead>
+        <tbody>
+          <tr><td>D1</td><td>Capture writes, scoped to one new record type; never modifies existing documents</td><td>+ Addresses the actual failure<br>&minus; Reopens a locked read-only invariant</td></tr>
+          <tr><td>D2</td><td>Derive from existing artifacts; never request net-new writing</td><td>+ Survives billing pressure<br>&minus; Bounded by what sources contain</td></tr>
+          <tr class="highlight-row"><td>D3</td><td>No record publishes without human verification</td><td>+ Prevents industrialising the defect<br>&minus; Throughput capped by reviewer time</td></tr>
+          <tr><td>D4</td><td>Publish into a designated authoritative source</td><td>+ Records count as truth<br>&minus; Depends on a grant we do not control</td></tr>
+          <tr><td>D5</td><td>Extend <code>forge-signal</code> rather than build a pipeline</td><td>+ Weeks not months<br>&minus; Inherits its assumptions</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <p style="margin:0"><strong>Sequencing note.</strong> Stage one of this phase is to produce <strong>one record by hand</strong> for a closed engagement and ask the SA who ran it whether they would have wanted it. That answers the only question that matters, costs a day, and precedes any build.</p>
+      </div>
+
+      <h3>Phase 3 &mdash; Discovery support <span class="badge badge-info">unchanged &middot; still last</span></h3>
+      <p>Generating the hard questions for a given merchant, including the disqualifying ones. Depends on negative knowledge being present and current, which is what Phases 0&ndash;2 exist to address. The tech scope Andrew demonstrated already does a version of it; build from that rather than beside it.</p>
+    </div>
+
+    <div class="section" id="assumptions">
+      <h2>5. Assumptions</h2>
+      <p>Each is stated with what would falsify it. Where an assumption is load-bearing and untested, that is the honest status.</p>
+      <table>
+        <thead><tr><th>#</th><th>Assumption</th><th>Basis</th><th>What would falsify it</th></tr></thead>
+        <tbody>
+          <tr><td>A1</td><td>Ask Commerce remains the org&rsquo;s question surface</td><td>Active, maintained, org-wide, reviewed June 2026</td><td>AI Ops deprecating or restructuring it</td></tr>
+          <tr><td>A2</td><td>AI Operations accepts source and authority requests from outside their team</td><td>They publish an intake form for exactly this</td><td>A refusal, or a scope limit on qualifying sources</td></tr>
+          <tr class="highlight-row"><td>A3</td><td>The wrong-not-stale class is material enough to justify capture</td><td><strong>One example</strong> &mdash; guest tokenization. Unmeasured</td><td>Phase 0 returning a low rate. <strong>Most likely to be wrong</strong></td></tr>
+          <tr><td>A4</td><td>Tech scopes are the most uniform corpus because template-derived</td><td>Structure observed; contents not sampled</td><td>Sampling showing variance as wide as elsewhere</td></tr>
+          <tr class="highlight-row"><td>A5</td><td>SAs would find a derived record worth having</td><td><strong>Untested.</strong> Phase 2 stage one tests it</td><td>An SA saying they would not have used it</td></tr>
+          <tr><td>A6</td><td>Verifying a derived record costs less than authoring one</td><td>Plausible, unmeasured</td><td>Reviewers reporting rewrite rather than check</td></tr>
+          <tr><td>A7</td><td>Enough source material exists per engagement to derive from</td><td>Uncertain by construction &mdash; the corpus stops where billing stopped</td><td>A high rate of &ldquo;insufficient source material&rdquo;</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <p style="margin:0"><strong>A3 and A5 carry the plan.</strong> If either fails, Phase 2 should not be built, and the honest outcome is that Phase 1&rsquo;s two requests were the whole project.</p>
+      </div>
+    </div>
+
+    <div class="section" id="gaps">
+      <h2>6. Gaps and open questions</h2>
+      <table>
+        <thead><tr><th>#</th><th>Question</th><th>Owner</th><th>Unblocked by</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td>Q1</td><td>Does capture sit inside this initiative, or go to a successor?</td><td>Sponsor + Nino</td><td>A decision. Nothing else</td></tr>
+          <tr><td>Q2</td><td>Audited Drive count, and what fraction of engagements have no tech scope?</td><td>Nino</td><td>Drive API access</td></tr>
+          <tr><td>Q3</td><td>What is the wrong-not-stale rate?</td><td>Nino + a senior reviewer</td><td>Phase 0, and four hours of senior time</td></tr>
+          <tr class="highlight-row"><td>Q4</td><td>What does TAM do that keeps their documentation current?</td><td>Nino</td><td>One conversation. <strong>Cheapest high-value item</strong></td></tr>
+          <tr><td>Q5</td><td>What does Ask Commerce actually return for real SE questions?</td><td>Nino</td><td>A Claude spend cap reset or increase</td></tr>
+          <tr><td>Q6</td><td>Who is this for &mdash; SE, SE+SA, or everyone?</td><td>Sponsor</td><td>A decision</td></tr>
+          <tr><td>Q7</td><td>How long does an AI Use Case Review take?</td><td>Sponsor or Nino</td><td>Asking GRC</td></tr>
+          <tr><td>Q8</td><td>Is there an IPM to talk to, and does hours-tracking live outside Confluence?</td><td>Sponsor</td><td>An introduction</td></tr>
+          <tr><td>Q9</td><td>What is the funding line, given a $1,000/person usage cap?</td><td>Sponsor</td><td>A decision</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Q1 gates the largest block of work. Q4 is the cheapest and may reduce it.</strong></p>
+    </div>
+
+    <div class="section" id="asks">
+      <h2>7. Asks</h2>
+
+      <h3>7.1 &nbsp;Andrew &mdash; four decisions and an introduction</h3>
+      <ol>
+        <li><strong>Decide Q1</strong> &mdash; does this write, or stay read-only. Everything in Phase 2 depends on it, and it determines whether this is a project or a support ticket.</li>
+        <li><strong>Make the two AI Operations requests</strong> in Phase 1, or tell me to make them. A sponsor request lands differently, particularly the authoritative-source one.</li>
+        <li><strong>Commit reviewer time</strong> &mdash; roughly four hours of senior SE/SA time for Phase 0&rsquo;s sample, and a per-record budget for Phase 2 verification. Unbilled senior time is the exact constraint that caused this problem, so it needs granting rather than assuming.</li>
+        <li><strong>Answer Q9.</strong> The $1,000 monthly cap is the cost model if SE questions route to Claude at volume. I hit mine researching this.</li>
+        <li><strong>An introduction to an IPM</strong> (Q8).</li>
+      </ol>
+
+      <h3>7.2 &nbsp;Mark and Zac &mdash; three things, all informal</h3>
+      <ol>
+        <li><strong>The source list</strong> &mdash; where tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking.</li>
+        <li><strong>One closed engagement</strong> you would be willing to see a derived record for, so Phase 2 stage one has a subject.</li>
+        <li><strong>A pointer into TAM</strong> (Q4).</li>
+      </ol>
+
+      <h3>7.3 &nbsp;AI Operations &mdash; two requests and a question</h3>
+      <ol>
+        <li><strong>Connect Google Drive contents</strong> to Ask Commerce, starting with the tech scope and SA folders.</li>
+        <li><strong>Designate an authoritative source for solution knowledge</strong> &mdash; scoped initially to a small, vettable space rather than the estate.</li>
+        <li><strong>Context on the maintenance cost</strong> of the hardcoded authoritative-source list, which bears directly on whether request 2 is realistic.</li>
+      </ol>
+
+      <h3>7.4 &nbsp;Without waiting &mdash; what proceeds regardless</h3>
+      <p>Run the Confluence half of Phase 0 <span class="badge badge-success">done</span>, design the census <span class="badge badge-success">done</span>, draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from &sect;7.2.</p>
+    </div>
+
+    <div class="section" id="traceability">
+      <h2>Traceability</h2>
+      <table>
+        <thead><tr><th>Claim set</th><th>Source of record</th></tr></thead>
+        <tbody>
+          <tr><td>Problem framing, claim handles P1&ndash;P8, BD-1&ndash;BD-4</td><td><code>research/problem-space/problem-statement.md</code></td></tr>
+          <tr><td>Existing surface and its gaps, AC-1&ndash;AC-4</td><td><code>research/prior-art/ask-commerce.md</code></td></tr>
+          <tr><td>Corpus measurements, C-1&ndash;C-5</td><td><code>research/current-state/confluence-corpus-census.md</code></td></tr>
+          <tr><td>Approval route and data classification, G1&ndash;G8</td><td><code>research/current-state/ai-governance-constraints.md</code></td></tr>
+          <tr><td>Census method</td><td><code>research/pilot/phase-0-census-design.md</code></td></tr>
+          <tr><td>Sponsor memo</td><td><code>docs/decision-memo.md</code></td></tr>
+          <tr><td>Read-only invariant that D1 reopens</td><td><code>decisions/0001-configure-first-pilot-as-prototype.md</code></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:#737373">Markdown source of record: <code>docs/solution-plan.md</code>. This page is an export of it &mdash; if the two diverge, the markdown wins.</p>
+    </div>
+
+  </main>
+</body>
+</html>

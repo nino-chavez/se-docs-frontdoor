@@ -36,6 +36,42 @@
       "maxWordsPerText": 90
     },
     {
+      "name": "Solution plan",
+      "renderedRoots": [
+        "docs/solution-plan.html"
+      ],
+      "sourceRoots": [
+        "docs/solution-plan.md",
+        "research",
+        "decisions"
+      ],
+      "reader": "a sponsor or delivery lead deciding whether to fund and unblock this work",
+      "job": "understand what discovery established, what is assumed, and which decisions are being asked for",
+      "assumedKnowledge": [
+        "solution engineering work",
+        "the organization's documentation landscape"
+      ],
+      "plainness": "practitioner",
+      "precisionLocks": [
+        "named decisions and owners",
+        "corpus measurements",
+        "assumptions and what falsifies them",
+        "source citations"
+      ],
+      "allowTerms": [
+        "AI",
+        "SE",
+        "SA",
+        "IPM",
+        "TAM",
+        "Drive",
+        "Confluence",
+        "Jira",
+        "Slack"
+      ],
+      "denyTerms": []
+    },
+    {
       "name": "initiative portal",
       "renderedRoots": [
         "apps/portal/dist"
