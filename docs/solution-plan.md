@@ -40,13 +40,15 @@ Six of seven, and the seventh was never something a search tool could satisfy �
 
 ## 2. The capture problem is not solved, and we can now size it
 
-Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce cannot read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
+Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce does not read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. That one is a setup that was never finished rather than something the platform cannot do, which is why it belongs in a request and not in a build. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
 
 The measurements support taking this seriously. Across the five spaces holding SE, SA and delivery knowledge there are **3,173 pages, of which 26% have been touched in the last twelve months** and 59% have not been touched in two years. The `SE` space is the smallest of the five at 155 pages, which explains the round trip better than any theory: an SE asks a person because the answer was never filed anywhere an SE would look.
 
 Drive is larger by an order of magnitude. The 2026 opportunity folder alone holds **at least 692 opportunity folders** — a floor rather than an audit, and counting folders where the Confluence figures count pages, so the comparison holds directionally and not as a multiple. The census owns these numbers and the queries behind them.
 
 The strongest evidence is not a number. Ask Commerce's own configuration carries hand-written patches for individual contradictions in our documentation — one page that uses two different names for the same Slack channel, two pages that disagree on a GitHub organisation name, with an instruction not to state that name confidently. Every contradiction in our corpus becomes a line of configuration that a person writes and maintains. It works, and it does not scale. **One team is already absorbing our documentation defects by hand, one defect at a time**, which is the argument for fixing capture made from our own systems rather than from theory.
+
+One correction to how I first put this. I claimed capture was unsolved without having scanned that market, and it is not: drafting a record from an existing artifact, routing it to a named owner, and expiring it on a clock all ship commercially. What did not turn up in that scan is anything that invalidates a document *because a shipped capability made it wrong*, or that keeps negative knowledge as a record rather than as prose. **The unsolved part is invalidation, not capture** — a narrower claim, and a much smaller thing to build. `research/competitive/buy-landscape.md` owns the scan and grades it, including where it is thin.
 
 ## 3. Three things block the path, and none of them are mine to decide
 

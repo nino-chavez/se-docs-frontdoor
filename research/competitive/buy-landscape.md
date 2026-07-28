@@ -20,6 +20,21 @@ The pilot's real competition is not a product — it is the **shoulder-tap to a 
 - **Indexed RAG** — ingest + embed into a vector store with ACL sync. Wins on latency and cross-source ranking at large corpus scale; loses on the ACL-sync-drift leak class, which OWASP's 2025 LLM Top 10 ranks #2 with documented incidents.
 - **Fit for this initiative**: moderate source count, all with real search APIs, uniform ACLs, freshness-sensitive → federated, with indexing held as a scoped contingency for weak-search sources only.
 
+## The capture shelf — added 2026-07-28, and it should have been here from the start
+
+Everything above scans the **retrieval** shelf. The capture shelf was never scanned, which left `solution-plan.md` §2 asserting "the capture problem is not solved" against an unexamined market. Partly wrong, and the correction is useful because it narrows what is actually differentiated.
+
+**What ships commercially today.** Guru's own product page claims "verification workflows" with "built-in review cycles and expert recommendations," lifecycle controls, agents that "verify and unverify info *for* you," and a system that "identifies knowledge gaps and suggests content updates automatically." Third-party reviews describe ticket monitoring that turns a resolved ticket into a draft card in one click; IrisAgent markets `AutoKB` as writing articles from resolved tickets. So **derive-a-draft-from-an-artifact, route it to a named owner, expire it on a clock** is a shipping category, not an open problem. §2 cannot claim otherwise.
+
+**What did not turn up.** Guru's page contains no mention of product changelogs, known-limitation registers, or invalidating a document because a shipped capability made it wrong. The category's staleness model is **time-based and owner-prompted** — review cycles, expiration dates, gap suggestions. That is the model `P6` and `solution-plan.md` §4 already argue is insufficient, and the market appears to agree with the framing while not having solved it.
+
+**So the differentiated claim is narrower and stronger than the one §2 was making.** Not *capture is unsolved* — it is *invalidation-by-evidence is unsolved*: joining shipped platform capabilities against documents that predate them, and maintaining negative knowledge as a first-class record rather than as prose someone remembers to revise. That is also a much smaller thing to build than a capture system, which strengthens rather than weakens the recommendation.
+
+| Reference | Track | Evidence | Used for | Gate-status |
+|---|---|---|---|---|
+| Guru product documentation (`getguru.com/reference/ai-knowledge-base`) | Quality | Vendor-authored primary; resolved 2026-07-28 | Verification-workflow and gap-suggestion capabilities exist commercially; **absence** of changelog/invalidation claims | pass — but absence from one page is weak evidence of absence from the product. Upgrade before this appears in any external-facing claim |
+| Guru ticket→draft-card monitoring; IrisAgent `AutoKB` | Convention | Third-party reviews and a competitor's marketing, not vendor-primary | Breadth of the capture shelf only | **warn** — one source is a direct competitor describing Guru. Not load-bearing; do not cite as fact |
+
 ## Reference grading table
 
 Track classification per the two-track framework (convention = "users/market recognize it"; quality = "the claim is anchored in an authoritative source"). Product references below are cited as competitive context; authority references carry the load-bearing claims.
