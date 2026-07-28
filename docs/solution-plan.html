@@ -360,6 +360,7 @@
       <li class="toc-item"><a href="#assumptions">Assumptions</a></li>
       <li class="toc-item"><a href="#gaps">Gaps &amp; Open Questions</a></li>
       <li class="toc-item"><a href="#asks">Asks</a></li>
+      <li class="toc-item"><a href="#evidence">Evidence</a></li>
       <li class="toc-item"><a href="#traceability">Traceability</a></li>
     </ul>
   </nav>
@@ -375,10 +376,10 @@
       <p>A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery &mdash; so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.</p>
 
       <div class="stat-grid" style="grid-template-columns:minmax(220px,320px)">
-        <div class="stat-card"><div class="stat-value">6 of 7</div><div class="stat-label">Guiding principles this project set out to deliver that an existing system already implements</div></div>
+        <div class="stat-card"><div class="stat-value">6 of 7</div><div class="stat-label">Guiding principles an existing system already implements <span style="opacity:.8">&mdash; assessed, mapping shown in &sect;2.2</span></div></div>
       </div>
 
-      <p>Discovery changed what this project is. <strong>The retrieval half is already built and running.</strong> <em>Ask Commerce</em>, maintained by AI Operations, does six of the seven things this project set out to do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.</p>
+      <p>Discovery changed what this project is. <strong>The retrieval half is already built and running.</strong> <em>Ask Commerce</em>, maintained by AI Operations, implements six of the seven guiding principles this project committed to &mdash; <a href="#research">the mapping is in &sect;2.2</a>, and the seventh was never something a search tool could do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.</p>
 
       <blockquote>
         <p style="margin:0"><strong>So the plan is: measure the corpus, ask AI Operations for two things, and build the capture side.</strong> Only the third is a build, and it is gated on a decision that has not been made.</p>
@@ -476,9 +477,9 @@
       </table>
       <p>59% has not been touched in two years.</p>
 
-      <p><strong>Drive is where the volume is.</strong> The <em>Opportunities</em> shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds <strong>at least 692</strong> &mdash; more than four times the entire SE Confluence space.</p>
+      <p><strong>Drive is where the volume is.</strong> The <em>Opportunities</em> shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds <strong>at least 692 opportunity folders</strong>. Earlier years are uncounted.</p>
       <div class="note">
-        <p style="margin:0"><span class="badge badge-warning">Not audited</span> &nbsp;692 is a floor taken from a file listing, not a certified count. Earlier years are uncounted. Sound enough for order of magnitude; not sound enough to present as an inventory.</p>
+        <p style="margin:0"><span class="badge badge-warning">Floor, not a count</span> &nbsp;692 counts <em>folders</em> in Drive; 155 counts <em>pages</em> in the SE space &mdash; different units, and each folder holds several files, so this understates Drive rather than flattering it. The defensible statement is <strong>an order of magnitude larger</strong>, never a specific multiple. Taken by scrolling a file listing, covering names A&ndash;W only; an audited count needs Drive API access.</p>
       </div>
 
       <p>Three structural findings matter more than the totals:</p>
@@ -488,7 +489,22 @@
         <li><strong>Timestamps cannot find wrong.</strong> Every number above measures editing, not truth.</li>
       </ul>
 
-      <h3>2.2 The question surface exists</h3>
+      <h3>2.2 The question surface exists &mdash; the evidence behind &ldquo;six of seven&rdquo;</h3>
+      <p><em>Ask Commerce</em> is Anthropic&rsquo;s native ask-your-org surface, configured and maintained by AI Operations, active and shared with every employee by default. The headline claim is an <strong>assessment</strong>, not a measurement, so here is the mapping it rests on. Disagree with a row and the count changes.</p>
+      <table>
+        <thead><tr><th>Guiding principle (&sect;3)</th><th>Implemented?</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>1. Cite or say nothing</td><td><span class="badge badge-success">Yes</span></td><td>Numbered citations; answers close with source name, last-modified date and URL. Instructed never to invent URLs, owners or dates</td></tr>
+          <tr><td>2. Recency is correctness</td><td><span class="badge badge-success">Yes</span></td><td>Flags sources over twelve months old on fast-moving topics</td></tr>
+          <tr><td>3. Surface conflicts, do not adjudicate</td><td><span class="badge badge-success">Yes</span></td><td>On unresolved conflict, surfaces both with dates rather than picking</td></tr>
+          <tr><td>4. Assume no schema</td><td><span class="badge badge-success">Yes</span></td><td>Federated search across three systems</td></tr>
+          <tr class="highlight-row"><td>5. Measure against the person</td><td><span class="badge badge-warning">No</span></td><td>Not a product capability. A measurement question, and still ours</td></tr>
+          <tr><td>6. Coverage follows verified quality</td><td><span class="badge badge-success">Yes</span></td><td>Source hierarchy plus explicit demotion rules</td></tr>
+          <tr><td>7. Answers are a starting point</td><td><span class="badge badge-success">Yes</span></td><td>Staleness and DRAFT flags framed as risk signals</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box"><p style="margin:0"><strong>Six of seven.</strong> Note what the denominator holds: principle 5 was never something a retrieval tool could satisfy, so the honest reading is <em>&ldquo;every principle a question surface could implement, is implemented.&rdquo;</em></p></div>
+      
       <p><em>Ask Commerce</em> &mdash; Anthropic&rsquo;s native ask-your-org surface, configured and maintained by AI Operations. Active, shared with every employee by default, no access request. Connected to <strong>Confluence, Jira and Slack</strong>. Respects each user&rsquo;s permissions. Cites every claim with source, last-modified date and URL. Flags sources over twelve months old. Surfaces conflicts instead of picking between them.</p>
       <p>Two gaps define the remaining work:</p>
       <ul>
@@ -623,7 +639,7 @@
       <table>
         <thead><tr><th>Not doing</th><th>Why</th><th>What would reopen it</th></tr></thead>
         <tbody>
-          <tr class="highlight-row"><td><strong>Building a question surface</strong></td><td><em>Ask Commerce</em> implements six of the seven guiding principles, org-wide, maintained by another team. Building one would be waste, and a worse version</td><td>AI Ops deprecating it (A1)</td></tr>
+          <tr class="highlight-row"><td><strong>Building a question surface</strong></td><td>It exists, org-wide, maintained by another team &mdash; see &sect;2.2. Building one would be waste, and a worse version</td><td>AI Ops deprecating it (A1)</td></tr>
           <tr class="highlight-row"><td><strong>Building connectors</strong></td><td>Drive access is a request to AI Operations, not an engineering task. Building our own would trigger an AppSec review and duplicate their roadmap</td><td>A refusal &mdash; which is a stop-and-re-plan signal, not a build trigger</td></tr>
           <tr><td><strong>Migrating or remediating the existing corpus</strong></td><td>3,173 Confluence pages plus Drive. Cleaning them is unbounded, and does not address why they got that way</td><td>A specific high-traffic subset shown to be actively harmful</td></tr>
           <tr><td><strong>Designing a documentation template</strong></td><td>One exists and is followed differently every project. The constraint is unbilled hours, not template quality</td><td>Evidence that the template, not the time, is what fails</td></tr>
@@ -705,6 +721,41 @@
 
       <h3>8.4 &nbsp;Without waiting &mdash; what proceeds regardless</h3>
       <p>Run the Confluence half of Phase 0 <span class="badge badge-success">done</span>, design the census <span class="badge badge-success">done</span>, draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from &sect;8.2.</p>
+    </div>
+
+    <div class="section" id="evidence">
+      <h2>9. Evidence &mdash; how each claim was established</h2>
+      <p>Every load-bearing claim in this plan, with how it was produced. If someone asks <em>&ldquo;where did that number come from?&rdquo;</em>, the answer is a row in this table, not a memory.</p>
+      <p><strong>Grades</strong>, because these are not equally strong and should not be read as if they were: <span class="badge badge-success">Measured</span> run as a query, method recorded, re-runnable &middot; <span class="badge badge-warning">Floor</span> a lower bound from an incomplete method &middot; <span class="badge badge-info">Read</span> stated in a source read directly &middot; <span class="badge badge-info">Observed</span> happened during the work &middot; <span class="badge badge-primary">Assessed</span> a judgement, with the comparison shown &middot; <span class="badge badge-primary">Reported</span> someone said it, attributed and timestamped.</p>
+      <table>
+        <thead><tr><th>Claim</th><th>Grade</th><th>How it was produced</th><th>Source of record</th></tr></thead>
+        <tbody>
+          <tr><td>3,173 pages across five spaces; per-space counts</td><td><span class="badge badge-success">Measured</span></td><td>Confluence REST search, <code>totalSize</code> of a CQL count per space, 2026-07-27</td><td><code>confluence-corpus-census.md</code> &mdash; literal queries in its method block</td></tr>
+          <tr><td>26% touched &lt; 12 months; 59% untouched &ge; 24 months</td><td><span class="badge badge-success">Measured</span></td><td>Same queries, <code>lastmodified</code> cuts at literal dates 2025-07-27 / 2024-07-27</td><td>as above</td></tr>
+          <tr><td>TAM 57% vs SA 19%, IPM 21%</td><td><span class="badge badge-success">Measured</span></td><td>Derived from the same counts</td><td>as above</td></tr>
+          <tr class="highlight-row"><td>&ge; 692 opportunity folders in Drive, 2026</td><td><span class="badge badge-warning">Floor</span></td><td>Scrolled the Drive listing, accumulated unique rows. Covers A&ndash;W; a second pass from the top returned fewer and was discarded. Drive&rsquo;s API is not reachable from a browser session</td><td><code>confluence-corpus-census.md</code> C-5</td></tr>
+          <tr><td>Connects Confluence, Jira, Slack &mdash; and cannot read Drive</td><td><span class="badge badge-info">Read</span></td><td>Its configuration states Drive is pointed at but not a connected source</td><td><code>ask-commerce.md</code> AC-1</td></tr>
+          <tr><td>Demotes SE / TAM / IPM; no authoritative source for solution knowledge</td><td><span class="badge badge-info">Read</span></td><td>Demotion rules and authoritative-source routing table</td><td><code>ask-commerce.md</code> AC-2</td></tr>
+          <tr class="highlight-row"><td><strong>Six of seven principles implemented</strong></td><td><span class="badge badge-primary">Assessed</span></td><td>Principle-by-principle mapping against the above</td><td>&sect;2.2 of this document &mdash; dispute a row and the count changes</td></tr>
+          <tr><td>Contradictions hand-patched into its configuration</td><td><span class="badge badge-info">Read</span></td><td>Two instances: one page with two names for the same Slack channel; two pages disagreeing on a GitHub org name</td><td><code>ask-commerce.md</code> AC-4. Configuration not reproduced &mdash; see the governance note</td></tr>
+          <tr><td>Claude org-wide, usage-based, $1,000/person/month</td><td><span class="badge badge-info">Read</span></td><td>AI Operations&rsquo; Claude hub page</td><td><code>ai-governance-constraints.md</code> G4</td></tr>
+          <tr><td>The cap binds</td><td><span class="badge badge-info">Observed</span></td><td>An attempt to run questions on 2026-07-27 was refused for reaching the monthly limit</td><td><code>ask-commerce.md</code></td></tr>
+          <tr><td>Route is Use-Case #2 &mdash; AI Use Case Review + Privacy Impact Assessment</td><td><span class="badge badge-info">Read</span></td><td>GRC canonical page, v7, 2026-05-27</td><td><code>ai-governance-constraints.md</code> G2</td></tr>
+          <tr><td>AppSec triggers on new MCP / custom code; quarterly escalation committee</td><td><span class="badge badge-info">Read</span></td><td>GRC SOP, v15</td><td><code>ai-governance-constraints.md</code> G2</td></tr>
+          <tr><td>The four structural holes</td><td><span class="badge badge-primary">Reported</span></td><td>Sponsor kickoff, attributed per speaker</td><td><code>research/sources/knowledge-database-kickoff-2026-07-27.md</code></td></tr>
+          <tr><td>Two-month floor is security review plus hosting</td><td><span class="badge badge-primary">Reported</span></td><td>Sponsor, 00:31:14</td><td>as above</td></tr>
+          <tr class="highlight-row"><td>Guest tokenization as the wrong-not-stale example</td><td><span class="badge badge-primary">Reported</span></td><td>Mark, 00:18:13. <strong>One example &mdash; A3 rests on it</strong></td><td>as above</td></tr>
+          <tr><td>Deflection instrument must state direction</td><td><span class="badge badge-primary">Reported</span></td><td>Sponsor describing his channel as outbound &mdash; &ldquo;I just bug them that often&rdquo;, 00:35:32</td><td>as above</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <p style="margin:0 0 8px"><strong>Three honest weaknesses</strong>, stated here rather than left to be found:</p>
+        <ol style="margin:0">
+          <li><strong>A3 rests on a single reported example.</strong> Everything Phase 2 is for depends on it. It is the most likely claim here to be wrong, and Phase 0&rsquo;s sample is what tests it.</li>
+          <li><strong>No claim about Ask Commerce has been verified by using it.</strong> All of it is read from configuration and documentation; the behavioural test is designed and blocked on the spend cap.</li>
+          <li><strong>The Drive figure is a floor and mixes units</strong> with the Confluence counts &mdash; folders against pages. Order of magnitude, never a multiple.</li>
+        </ol>
+      </div>
     </div>
 
     <div class="section" id="traceability">

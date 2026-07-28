@@ -11,7 +11,7 @@
 
 A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery, so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.
 
-Discovery changed what this project is. **The retrieval half is already built and running** — `Ask Commerce`, maintained by AI Operations, does six of the seven things this project set out to do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.
+Discovery changed what this project is. **The retrieval half is already built and running.** `Ask Commerce`, maintained by AI Operations, implements six of the seven guiding principles this project committed to — the mapping is in §3.2, and the seventh was never something a search tool could do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.
 
 So the plan is: **measure the corpus, ask AI Operations for two things, and build the capture side.** Only the third is a build, and it is gated on a decision that has not been made.
 
@@ -71,7 +71,9 @@ Every claim below is sourced. Handles in brackets are citable from the research 
 
 59% has not been touched in two years. `[C-1..C-4]`
 
-**Drive is where the volume is.** The `Opportunities` shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds **at least 692** — more than four times the entire `SE` Confluence space. That number is a floor from a file listing, **not an audited count**; earlier years are uncounted. `[C-5]`
+**Drive is where the volume is.** The `Opportunities` shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds **at least 692 opportunity folders** `[floor]`. Earlier years are uncounted. `[C-5]`
+
+> **Read that comparison carefully.** 692 counts *folders* in Drive; 155 counts *pages* in the `SE` Confluence space. Different units — each folder holds several files, so this understates Drive rather than flattering it. The defensible statement is that the opportunity corpus is an order of magnitude larger than the SE space, not a specific multiple. An audited count needs Drive API access; the figure came from scrolling a file listing and covers names A–W only.
 
 Three structural findings matter more than the totals:
 
@@ -79,9 +81,21 @@ Three structural findings matter more than the totals:
 - **TAM's documentation is not decaying** — 57% touched within twelve months against 19–21% for SA and IPM, under identical billing pressure. A working internal counterexample. `[C-3]`
 - **Timestamps cannot find wrong.** Every number above measures editing, not truth. `[C-4]`
 
-### 3.2 The question surface exists
+### 3.2 The question surface exists — the evidence behind "six of seven"
 
-`Ask Commerce` — Anthropic's native ask-your-org surface, configured and maintained by AI Operations. Active, shared with every employee by default, no access request. Connected to **Confluence, Jira and Slack**. Respects each user's permissions. Cites every claim with source, last-modified date and URL. Flags sources over twelve months old. Surfaces conflicts instead of picking between them. `[AC]`
+`Ask Commerce` is Anthropic's native ask-your-org surface, configured and maintained by AI Operations, active and shared with every employee by default. The summary's headline claim is an **assessment**, not a measurement, so here is the mapping it rests on. Each row is checkable against the source in the evidence appendix; disagree with a row and the count changes.
+
+| Guiding principle (§4) | Implemented? | What it does |
+| --- | --- | --- |
+| 1. Cite or say nothing | Yes | Every factual claim carries a numbered citation; answers close with source name, last-modified date and URL. Its instructions forbid inventing URLs, owners or dates |
+| 2. Recency is correctness | Yes | Flags sources over twelve months old on fast-moving topics; checks last-updated on every source relied on |
+| 3. Surface conflicts, do not adjudicate | Yes | On unresolved conflict, instructed to surface both with dates rather than pick |
+| 4. Assume no schema | Yes | Federated search across three systems, no structural assumption |
+| 5. Measure against the person | **No** | Not a product capability. A measurement question, and still ours |
+| 6. Coverage follows verified quality | Yes | Source hierarchy plus explicit demotion rules |
+| 7. Answers are a starting point | Yes | Staleness and DRAFT flags framed as risk signals; high-stakes answers routed to source verification |
+
+**Six of seven.** Note what the denominator contains: principle 5 was never something a retrieval tool could satisfy, so the honest reading is *"every principle a question surface could implement, is implemented."*
 
 Two gaps define the remaining work:
 
@@ -178,7 +192,7 @@ The most useful section in a plan whose headline finding is that most of what wa
 
 | Not doing | Why | What would reopen it |
 | --- | --- | --- |
-| **Building a question surface** | `Ask Commerce` implements six of the seven guiding principles, org-wide, maintained by another team. Building one would be waste, and a worse version | AI Ops deprecating it (`A1`) |
+| **Building a question surface** | It exists, org-wide, maintained by another team — see §3.2. Building one would be waste, and a worse version | AI Ops deprecating it (`A1`) |
 | **Building connectors** | Drive access is a request to AI Operations, not an engineering task. Building our own would trigger an AppSec review and duplicate their roadmap | A refusal, which is a stop-and-re-plan signal rather than a build trigger |
 | **Migrating or remediating the existing corpus** | 3,173 Confluence pages plus Drive. Cleaning them is unbounded, and it does not address why they got that way. Fixing the production process is the durable version | A specific high-traffic subset shown to be actively harmful |
 | **Designing a documentation template** | One exists and is followed differently every project. The constraint is unbilled hours, not template quality — a better template loses to the same pressure | Evidence that the template, not the time, is what fails |
@@ -250,6 +264,49 @@ Each is stated with what would falsify it. Where an assumption is load-bearing a
 ### 9.4 What I will do without waiting
 
 Run the Confluence half of Phase 0 (done), design the census (done), draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from § 9.2.
+
+---
+
+## 10. Evidence — how each claim was established
+
+Every load-bearing claim in this plan, with how it was produced. If someone asks *"where did that number come from?"*, the answer is a row in this table, not a memory.
+
+**Grades**, because they are not equally strong and should not be read as if they were:
+
+| Grade | Meaning |
+| --- | --- |
+| **Measured** | Produced by a query or count that was run, with the method recorded. Re-runnable |
+| **Floor** | A lower bound from an incomplete method. Directionally sound, not an inventory |
+| **Read** | Stated in a source document read directly. Quotable |
+| **Observed** | Something that happened during the work and was recorded |
+| **Assessed** | A judgement comparing two things. The comparison is shown so it can be disputed |
+| **Reported** | Someone said it. Attributed and timestamped, not independently verified |
+
+| Claim | Grade | How it was produced | Source of record |
+| --- | --- | --- | --- |
+| 3,173 pages across five spaces; per-space counts | **Measured** | Confluence REST search, `totalSize` of a CQL count per space, 2026-07-27 | `confluence-corpus-census.md` — literal queries in its method block |
+| 26% touched < 12 months; 59% untouched ≥ 24 months | **Measured** | Same queries with `lastmodified` cuts at the literal dates 2025-07-27 / 2024-07-27 | as above |
+| TAM 57% vs SA 19%, IPM 21% | **Measured** | Derived from the same counts | as above |
+| ≥ 692 opportunity folders in Drive 2026 | **Floor** | Scrolled the Drive folder listing and accumulated unique rows. Covers names A–W; a second pass from the top returned fewer and was discarded. Drive's API is not reachable from a browser session | `confluence-corpus-census.md` `C-5`, with the caveat stated inline |
+| Ask Commerce connects Confluence, Jira, Slack — and **cannot read Drive** | **Read** | Its own configuration states Drive is pointed at but not a connected source | `research/prior-art/ask-commerce.md` `AC-1` |
+| It demotes SE / TAM / IPM spaces; no authoritative source for solution knowledge | **Read** | Demotion rules and the authoritative-source routing table, read directly | `ask-commerce.md` `AC-2` |
+| It cites with last-modified dates, flags > 12-month sources, surfaces conflicts | **Read** | Its configuration and its AI Operations documentation page | `ask-commerce.md` |
+| **Six of seven principles implemented** | **Assessed** | Principle-by-principle mapping against the above | §3.2 of this document — the mapping is shown; dispute a row and the count changes |
+| Contradictions are hand-patched into its configuration | **Read** | Two specific instances: one page using two names for the same Slack channel; two pages disagreeing on a GitHub org name | `ask-commerce.md` `AC-4`. The configuration itself is not reproduced — see the governance note in `ai-governance-constraints.md` |
+| Claude is org-wide, usage-based, $1,000/person/month | **Read** | AI Operations' Claude hub page | `ai-governance-constraints.md` `G4` |
+| The cap binds | **Observed** | An attempt to run questions against Ask Commerce on 2026-07-27 was refused for reaching the monthly limit | `ask-commerce.md`, "Still unverified" |
+| Route is Use-Case #2 — AI Use Case Review plus Privacy Impact Assessment | **Read** | GRC canonical page, v7, 2026-05-27 | `ai-governance-constraints.md` `G2` |
+| AppSec triggers on new MCP / custom code; escalations go to a quarterly committee | **Read** | GRC SOP, v15 | `ai-governance-constraints.md` `G2` |
+| The four structural holes | **Reported** | Sponsor kickoff, attributed per speaker | `research/sources/knowledge-database-kickoff-2026-07-27.md` |
+| Two-month floor is security review plus hosting | **Reported** | Sponsor, 00:31:14 | as above |
+| Guest tokenization as the wrong-not-stale example | **Reported** | Mark, 00:18:13. **One example. `A3` rests on it** | as above |
+| Deflection instrument must state direction | **Reported** | Sponsor describing his own channel as outbound — "I just bug them that often", 00:35:32 | as above |
+
+**Three honest weaknesses**, stated here rather than left to be found:
+
+1. **`A3` — that the wrong-not-stale class is material — rests on a single reported example.** Everything Phase 2 is for depends on it, and Phase 0's sample is what tests it. It is the most likely claim in this plan to be wrong.
+2. **No claim about Ask Commerce has been verified by using it.** All of it is read from configuration and documentation. The behavioural test is designed and blocked on the spend cap.
+3. **The Drive figure is a floor and mixes units with the Confluence counts** — folders against pages. Treated as an order of magnitude, never as a multiple. See the note in §3.1.
 
 ---
 

@@ -2,7 +2,22 @@
 
 **Date**: 2026-07-27
 **Status**: first hard measurement of corpus magnitude. Partial — Confluence only.
-**Method**: Confluence Cloud REST search API (`/wiki/rest/api/search`, CQL), executed against the live instance from an authenticated session. Counts are `type = page` and `type = attachment` per space, with recency cuts at `lastmodified >= 2025-07-27` and `>= 2024-07-27`. Reproducible: the query shape is four counts per space key.
+**Method**: Confluence Cloud REST search API, executed against the live instance from a browser-authenticated session on 2026-07-27.
+
+**Reproduce it.** Four counts per space key. The count is the `totalSize` field of the response, with `limit=1` — the result rows are not read, only the total:
+
+```
+GET /wiki/rest/api/search?cql=<query>&limit=1     →  response.totalSize
+
+pages          space = "<KEY>" and type = page
+fresh <12mo    space = "<KEY>" and type = page and lastmodified >= "2025-07-27"
+fresh <24mo    space = "<KEY>" and type = page and lastmodified >= "2024-07-27"
+attachments    space = "<KEY>" and type = attachment
+```
+
+Space keys counted: `IPM`, `SA`, `TAM`, `SE`, `SIPR`. The candidate set was enumerated rather than guessed — `GET /wiki/rest/api/space?limit=500&type=global`, filtered on names matching `solution|architect|engineer|project management|account management`.
+
+**What the dates mean.** `lastmodified` is Confluence's last-edit timestamp. The cuts are relative to the run date, so re-running later shifts the window; to reproduce the figures below exactly, keep the literal dates above rather than recomputing "12 months ago."
 
 > The founding session recorded corpus size as "genuinely unknown" and deferred the census into the pilot. The problem statement made it Phase 0 and gating. **This is the first of it to actually run.**
 
