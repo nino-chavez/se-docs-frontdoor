@@ -2,8 +2,8 @@
 
 **Author**: Nino Chavez
 **Date**: 2026-07-27
-**Status**: Draft for review. Six asks in § 8 are unanswered; four are decisions, not work.
-**Audience**: Andrew (sponsor), Mark, Zac, and AI Operations for § 8.3.
+**Status**: **Pre-decision.** Nothing here is committed. Four of the nine open questions in § 8 are decisions that have not been made, and the two assumptions that carry the plan (`A3`, `A5`) are untested. Read § 6 first if you want the short version — it is what this initiative has ruled out.
+**Audience**: Andrew (sponsor), Mark, Zac, and AI Operations for § 9.3.
 
 ---
 
@@ -172,7 +172,24 @@ Generating the hard questions for a given merchant, including the disqualifying 
 
 ---
 
-## 6. Assumptions
+## 6. What we are deliberately not doing
+
+The most useful section in a plan whose headline finding is that most of what was proposed already exists. Each of these was in scope at some point in this initiative's history, and each is now excluded on evidence rather than on preference.
+
+| Not doing | Why | What would reopen it |
+| --- | --- | --- |
+| **Building a question surface** | `Ask Commerce` implements six of the seven guiding principles, org-wide, maintained by another team. Building one would be waste, and a worse version | AI Ops deprecating it (`A1`) |
+| **Building connectors** | Drive access is a request to AI Operations, not an engineering task. Building our own would trigger an AppSec review and duplicate their roadmap | A refusal, which is a stop-and-re-plan signal rather than a build trigger |
+| **Migrating or remediating the existing corpus** | 3,173 Confluence pages plus Drive. Cleaning them is unbounded, and it does not address why they got that way. Fixing the production process is the durable version | A specific high-traffic subset shown to be actively harmful |
+| **Designing a documentation template** | One exists and is followed differently every project. The constraint is unbilled hours, not template quality — a better template loses to the same pressure | Evidence that the template, not the time, is what fails |
+| **Adjudicating contradictions automatically** | Locked at founding and unchanged: surface conflicts, do not resolve them. Automated resolution produces a confident answer that is sometimes the stale one | Nothing currently foreseen. This is an invariant, not a trade-off |
+| **Indexing everything** | Coverage follows verified quality. Indexing the whole estate indexes the wrong things alongside the good | A census showing quality is uniformly high, which nobody expects |
+| **Using DM volume as the deflection metric** | It counts the sponsor's *outbound* questions, not inbound demand on him. Both are real; they are not the same number | Nothing — but the inbound instrument still has to be built |
+| **Writing any code before one record exists by hand** | Phase 2 stage one produces a single record manually and asks the SA who ran that engagement whether they wanted it. A day, and it can end the project | That test passing |
+
+**The pattern worth noticing.** Six of these eight are things a reasonable person would have built. Two of them — the question surface and the connectors — this initiative had actively planned. They are excluded because discovery found the work already done or already owned, not because they were bad ideas.
+
+## 7. Assumptions
 
 Each is stated with what would falsify it. Where an assumption is load-bearing and untested, that is the honest status.
 
@@ -190,7 +207,7 @@ Each is stated with what would falsify it. Where an assumption is load-bearing a
 
 ---
 
-## 7. Gaps and open questions
+## 8. Gaps and open questions
 
 | # | Question | Owner | Unblocked by |
 | --- | --- | --- | --- |
@@ -208,9 +225,9 @@ Each is stated with what would falsify it. Where an assumption is load-bearing a
 
 ---
 
-## 8. Asks
+## 9. Asks
 
-### 8.1 Andrew
+### 9.1 Andrew
 
 1. **Decide Q1** — does this write, or stay read-only. Everything in Phase 2 depends on it, and it determines whether this is a project or a support ticket.
 2. **Make the two AI Operations requests** in Phase 1, or tell me to make them. A sponsor request lands differently, particularly the authoritative-source one.
@@ -218,21 +235,21 @@ Each is stated with what would falsify it. Where an assumption is load-bearing a
 4. **Answer Q9.** The $1,000 monthly cap is the cost model if SE questions route to Claude at volume. I hit mine researching this.
 5. **An introduction to an IPM** (Q8).
 
-### 8.2 Mark and Zac
+### 9.2 Mark and Zac
 
 1. **The source list** — where tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking. Informal is fine.
 2. **One closed engagement** you would be willing to see a derived record for, so Phase 2 stage one has a subject.
 3. **A pointer into TAM** (Q4).
 
-### 8.3 AI Operations
+### 9.3 AI Operations
 
 1. **Connect Google Drive contents** to Ask Commerce, starting with the tech scope and SA folders.
 2. **Designate an authoritative source for solution knowledge** — scoped initially to a small, vettable space rather than the estate.
 3. **Context on the maintenance cost** of the hardcoded authoritative-source list, which bears directly on whether request 2 is realistic.
 
-### 8.4 What I will do without waiting
+### 9.4 What I will do without waiting
 
-Run the Confluence half of Phase 0 (done), design the census (done), draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from § 8.2.
+Run the Confluence half of Phase 0 (done), design the census (done), draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from § 9.2.
 
 ---
 

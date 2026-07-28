@@ -356,6 +356,7 @@
       <li class="toc-item"><a href="#research">Known Research</a></li>
       <li class="toc-item"><a href="#principles">Guiding Principles</a></li>
       <li class="toc-item"><a href="#plan">The Plan</a></li>
+      <li class="toc-item"><a href="#not-doing">What We're Not Doing</a></li>
       <li class="toc-item"><a href="#assumptions">Assumptions</a></li>
       <li class="toc-item"><a href="#gaps">Gaps &amp; Open Questions</a></li>
       <li class="toc-item"><a href="#asks">Asks</a></li>
@@ -367,8 +368,8 @@
 
     <div class="section" id="summary">
       <h1>Solution Plan: SE/SA Knowledge Capture</h1>
-      <div class="meta">Draft for review | Executive Advisory | 27 July 2026 | Nino Chavez<br>
-        Audience: Andrew (sponsor), Mark, Zac &mdash; and AI Operations for &sect;8.3</div>
+      <div class="meta">Pre-decision draft | Executive Advisory | 27 July 2026 | Nino Chavez<br>
+        Audience: Andrew (sponsor), Mark, Zac &mdash; and AI Operations for &sect;7.3</div>
 
       <h2>Summary</h2>
       <p>A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery &mdash; so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.</p>
@@ -385,7 +386,7 @@
         <p style="margin:0"><strong>So the plan is: measure the corpus, ask AI Operations for two things, and build the capture side.</strong> Only the third is a build, and it is gated on a decision that has not been made.</p>
       </blockquote>
 
-      <p><span class="badge badge-warning">Status</span> &nbsp;Six asks in &sect;8 are unanswered. Four are decisions, not work.</p>
+      <div class="note"><p style="margin:0"><span class="badge badge-warning">Pre-decision</span> &nbsp;<strong>Nothing here is committed.</strong> Four of the nine open questions are decisions that have not been made, and the two assumptions carrying the plan (A3, A5) are untested. If you want the short version, read <a href="#not-doing">&sect;5 &mdash; what we are deliberately not doing</a>.</p></div>
     </div>
 
     <div class="section" id="analysis">
@@ -587,8 +588,29 @@
       <p>Generating the hard questions for a given merchant, including the disqualifying ones. Depends on negative knowledge being present and current, which is what Phases 0&ndash;2 exist to address. The tech scope Andrew demonstrated already does a version of it; build from that rather than beside it.</p>
     </div>
 
+    <div class="section" id="not-doing">
+      <h2>5. What we are deliberately not doing</h2>
+      <p>The most useful section in a plan whose headline finding is that most of what was proposed already exists. Each of these was in scope at some point in this initiative&rsquo;s history, and each is now excluded on evidence rather than on preference.</p>
+      <table>
+        <thead><tr><th>Not doing</th><th>Why</th><th>What would reopen it</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>Building a question surface</strong></td><td><em>Ask Commerce</em> implements six of the seven guiding principles, org-wide, maintained by another team. Building one would be waste, and a worse version</td><td>AI Ops deprecating it (A1)</td></tr>
+          <tr class="highlight-row"><td><strong>Building connectors</strong></td><td>Drive access is a request to AI Operations, not an engineering task. Building our own would trigger an AppSec review and duplicate their roadmap</td><td>A refusal &mdash; which is a stop-and-re-plan signal, not a build trigger</td></tr>
+          <tr><td><strong>Migrating or remediating the existing corpus</strong></td><td>3,173 Confluence pages plus Drive. Cleaning them is unbounded, and does not address why they got that way</td><td>A specific high-traffic subset shown to be actively harmful</td></tr>
+          <tr><td><strong>Designing a documentation template</strong></td><td>One exists and is followed differently every project. The constraint is unbilled hours, not template quality</td><td>Evidence that the template, not the time, is what fails</td></tr>
+          <tr><td><strong>Adjudicating contradictions automatically</strong></td><td>Locked at founding: surface conflicts, do not resolve them. Automated resolution produces a confident answer that is sometimes the stale one</td><td>Nothing foreseen. An invariant, not a trade-off</td></tr>
+          <tr><td><strong>Indexing everything</strong></td><td>Coverage follows verified quality. Indexing the estate indexes the wrong things alongside the good</td><td>A census showing uniformly high quality, which nobody expects</td></tr>
+          <tr><td><strong>Using DM volume as the deflection metric</strong></td><td>It counts the sponsor&rsquo;s <em>outbound</em> questions, not inbound demand on him. Both real; not the same number</td><td>Nothing &mdash; but the inbound instrument still has to be built</td></tr>
+          <tr class="highlight-row"><td><strong>Writing any code before one record exists by hand</strong></td><td>Phase 2 stage one produces a single record manually and asks the SA who ran that engagement whether they wanted it</td><td>That test passing</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box">
+        <p style="margin:0"><strong>The pattern worth noticing.</strong> Six of these eight are things a reasonable person would have built. Two &mdash; the question surface and the connectors &mdash; this initiative had actively planned. They are excluded because discovery found the work already done or already owned, not because they were bad ideas.</p>
+      </div>
+    </div>
+
     <div class="section" id="assumptions">
-      <h2>5. Assumptions</h2>
+      <h2>6. Assumptions</h2>
       <p>Each is stated with what would falsify it. Where an assumption is load-bearing and untested, that is the honest status.</p>
       <table>
         <thead><tr><th>#</th><th>Assumption</th><th>Basis</th><th>What would falsify it</th></tr></thead>
@@ -608,7 +630,7 @@
     </div>
 
     <div class="section" id="gaps">
-      <h2>6. Gaps and open questions</h2>
+      <h2>7. Gaps and open questions</h2>
       <table>
         <thead><tr><th>#</th><th>Question</th><th>Owner</th><th>Unblocked by</th></tr></thead>
         <tbody>
@@ -627,9 +649,9 @@
     </div>
 
     <div class="section" id="asks">
-      <h2>7. Asks</h2>
+      <h2>8. Asks</h2>
 
-      <h3>7.1 &nbsp;Andrew &mdash; four decisions and an introduction</h3>
+      <h3>8.1 &nbsp;Andrew &mdash; four decisions and an introduction</h3>
       <ol>
         <li><strong>Decide Q1</strong> &mdash; does this write, or stay read-only. Everything in Phase 2 depends on it, and it determines whether this is a project or a support ticket.</li>
         <li><strong>Make the two AI Operations requests</strong> in Phase 1, or tell me to make them. A sponsor request lands differently, particularly the authoritative-source one.</li>
@@ -638,22 +660,22 @@
         <li><strong>An introduction to an IPM</strong> (Q8).</li>
       </ol>
 
-      <h3>7.2 &nbsp;Mark and Zac &mdash; three things, all informal</h3>
+      <h3>8.2 &nbsp;Mark and Zac &mdash; three things, all informal</h3>
       <ol>
         <li><strong>The source list</strong> &mdash; where tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking.</li>
         <li><strong>One closed engagement</strong> you would be willing to see a derived record for, so Phase 2 stage one has a subject.</li>
         <li><strong>A pointer into TAM</strong> (Q4).</li>
       </ol>
 
-      <h3>7.3 &nbsp;AI Operations &mdash; two requests and a question</h3>
+      <h3>8.3 &nbsp;AI Operations &mdash; two requests and a question</h3>
       <ol>
         <li><strong>Connect Google Drive contents</strong> to Ask Commerce, starting with the tech scope and SA folders.</li>
         <li><strong>Designate an authoritative source for solution knowledge</strong> &mdash; scoped initially to a small, vettable space rather than the estate.</li>
         <li><strong>Context on the maintenance cost</strong> of the hardcoded authoritative-source list, which bears directly on whether request 2 is realistic.</li>
       </ol>
 
-      <h3>7.4 &nbsp;Without waiting &mdash; what proceeds regardless</h3>
-      <p>Run the Confluence half of Phase 0 <span class="badge badge-success">done</span>, design the census <span class="badge badge-success">done</span>, draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from &sect;7.2.</p>
+      <h3>8.4 &nbsp;Without waiting &mdash; what proceeds regardless</h3>
+      <p>Run the Confluence half of Phase 0 <span class="badge badge-success">done</span>, design the census <span class="badge badge-success">done</span>, draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from &sect;8.2.</p>
     </div>
 
     <div class="section" id="traceability">
