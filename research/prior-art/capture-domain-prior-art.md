@@ -1,5 +1,6 @@
 # Prior art — the capture domain (domain E)
 
+**Doc type**: Reference (Diátaxis) — Look things up. Owns the prior-art scan and what remains unscanned.
 **Scanned 2026-07-27.** Scope: tooling and patterns that record knowledge *at the point of work*, rather than retrieving it afterward.
 
 **Why this file exists.** The founding prior-art scan (2026-07-09, in [`../current-state/workspace-prior-art.md`](../current-state/workspace-prior-art.md)) covered **retrieval** implementations, because the founding problem was framed as retrieval friction. The 2026-07-27 restatement established that capture quality bounds retrieval quality ([`../problem-space/problem-statement.md`](../problem-space/problem-statement.md) P7), which makes capture a first-class domain — and it was unscanned. This closes that gap.

@@ -1,5 +1,6 @@
 # Phase 0 — census design
 
+**Doc type**: How-to (Diátaxis) — Follow it to run the census. Owns the method, sequence and duration.
 **Date**: 2026-07-27
 **Status**: draft protocol, for the first sponsor sync. The decision memo promises "what gets counted, how, and over how long" and has no duration attached; this is that.
 **Supersedes in practice**: the `pilot-protocol` output's original scope (a Claude Tag pilot in one SE channel). That pilot is superseded — see `decisions/0001` 2026-07-27 (later). What survives is the census, which was always the gating half.

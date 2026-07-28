@@ -1,5 +1,6 @@
 # Problem Statement — SE/SA knowledge access
 
+**Doc type**: Explanation (Diátaxis) — Read straight through, once. Argues why the problem has this shape. The handle index at the end is Reference and is not needed to read it.
 **Date**: 2026-07-27
 **Status**: canonical. Supersedes the founding framing in `research/sources/definition-and-grill-2026-07-09.md` § "The idea" and the `pilot_profile` block in `blueprint.yml`.
 **Derived from**:

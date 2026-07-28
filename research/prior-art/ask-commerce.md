@@ -1,5 +1,6 @@
 # Ask Commerce — BD-3's answer, and most of Phase 1
 
+**Doc type**: Reference (Diátaxis) — Look things up. Owns what `Ask Commerce` is, reaches, and cannot do, as `AC-1`–`AC-4`.
 **Date**: 2026-07-27
 **Status**: canonical for what already exists. Resolves `BD-3`.
 **Derived from**: direct inspection on 2026-07-27 of the live system at `claude.ai/ask-your-org`, its Project instructions panel (visible to any employee with the Project open, per its own Confluence documentation), and the `Ask Commerce` and `Claude Knowledge Hub` pages in the internal AI Operations space.

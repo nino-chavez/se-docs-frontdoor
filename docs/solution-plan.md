@@ -21,16 +21,11 @@ So the plan is: **measure the corpus, ask AI Operations for two things, and buil
 
 ### 2.1 The founding framing, and why it broke
 
-The 2026-07-09 definition was: *SEs rely on scattered documents; build a front door to query across them.* That treated the corpus as a noisy given whose hygiene would improve as a byproduct of use.
+The founding definition treated the corpus as a noisy given whose hygiene would improve as a byproduct of use. The sponsor kickoff broke that: between Mark and Zac, four structural holes established that documentation stops where billing stops, that smaller engagements often get no folder, and that the template is followed differently every project.
 
-The sponsor kickoff on 2026-07-27 broke it. Between Mark and Zac, four structural holes:
+The consequence is the inversion this whole plan rests on — **hygiene is an input to retrieval quality, not an output of it.**
 
-- One-off client conversations sometimes never enter a documented process (Mark).
-- Smaller engagements often get no project folder; the example given was twenty-hour projects (Mark).
-- Documentation stops when IPM hours run out, leaving solutions half-worked and retrospectives absent (Zac).
-- A standard template exists and is followed differently every project (Zac).
-
-That inverts the dependency. Hygiene is an **input** to retrieval quality, not an output of it. One founding decision was falsified rather than narrowed: demand-driven filing works when content exists and is misplaced, and does nothing when content was never written.
+**Owner: `research/problem-space/problem-statement.md`.** It carries the four holes with their attributions, the eight claims `P1`–`P8`, and the argument for why the founding scope could not simply be widened. It is written to be read straight through; do that rather than take this paragraph's word for it.
 
 ### 2.2 The second reframe, and it was the bigger one
 
@@ -60,20 +55,10 @@ Every claim below is sourced. Handles in brackets are citable from the research 
 
 ### 3.1 The corpus is measured in Confluence, sized in Drive
 
-| Space | Pages | Touched < 12 months |
-| --- | ---: | ---: |
-| Technical Project Management (`IPM`) | 1,599 | 335 |
-| Solutions Architects (`SA`) | 912 | 173 |
-| Technical Account Management (`TAM`) | 441 | 252 |
-| Solutions Engineering (`SE`) | 155 | 35 |
-| Solution Architecture Knowledge Base (`SIPR`) | 66 | 22 |
-| **Total** | **3,173** | **817 (26%)** |
+**Owner of these numbers: `research/current-state/confluence-corpus-census.md`.** It carries the full per-space table, the literal CQL, and the reproduction notes. Repeating the table here would create a second copy that rots at a different rate, so this section states only what the plan turns on:
 
-59% has not been touched in two years. `[C-1..C-4]`
-
-**Drive is where the volume is.** The `Opportunities` shared drive holds one folder per client opportunity, with the tech scope as a Sheet from a shared template. The 2026 folder alone holds **at least 692 opportunity folders** `[floor]`. Earlier years are uncounted. `[C-5]`
-
-> **Read that comparison carefully.** 692 counts *folders* in Drive; 155 counts *pages* in the `SE` Confluence space. Different units — each folder holds several files, so this understates Drive rather than flattering it. The defensible statement is that the opportunity corpus is an order of magnitude larger than the SE space, not a specific multiple. An audited count needs Drive API access; the figure came from scrolling a file listing and covers names A–W only.
+- **3,173 pages** across the five SE/SA/delivery spaces; **26%** touched in the last 12 months, **59%** untouched for two years or more. `[measured]`
+- **At least 692 opportunity folders** in Drive for 2026 alone. `[floor]` Counts *folders*, where the Confluence figures count *pages* — different units, so the defensible claim is an order of magnitude larger than the SE space, never a specific multiple.
 
 Three structural findings matter more than the totals:
 
@@ -118,19 +103,13 @@ Two cost drivers to respect: an **AppSec review triggers on new MCP, integration
 
 ## 4. Guiding principles
 
-The first six are carried from the problem statement and hold unchanged. The last three are new, and follow from discovery.
+**The first six are owned by `research/problem-space/problem-statement.md`** and hold unchanged: *cite or say nothing · recency is correctness · surface conflicts, do not adjudicate · assume no schema · measure against the person · coverage follows verified quality.* Read them there; they are argued, not just listed.
 
-1. **Cite or say nothing.** An answer about what the platform *cannot* do gets acted on in front of a client, and parts of the corpus are wrong rather than old. The reader must be able to check.
-2. **Recency is correctness, not metadata.** Document age carries information about whether the content is still true.
-3. **Surface conflicts; do not adjudicate them.** Contradiction is guaranteed. A single confident answer will sometimes be the stale one.
-4. **Assume no schema.** Every project documents differently.
-5. **Measure against the person.** The person-to-person round trip is the baseline; usage is only a proxy.
-6. **Coverage follows verified quality, not ambition.** Indexing everything indexes the wrong things too.
-7. **Do not rebuild what already runs.** The retrieval surface exists and is owned. Effort goes where nothing exists.
+Three are new, and this plan owns them because they follow from discovery rather than from the problem:
+
+7. **Do not rebuild what already runs.** The retrieval surface exists and is owned by another team. Effort goes where nothing exists.
 8. **Derive; never ask for more writing.** Documentation stops when hours stop. Any design whose adoption depends on unbilled writing loses to the pressure that created the gap.
 9. **Verify before publishing.** A generated record that is wrong is the corpus's worst defect, mass-produced and carrying a citation. Unverified output does not ship in a degraded state; it does not ship.
-
----
 
 ## 5. The plan
 

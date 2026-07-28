@@ -1,5 +1,6 @@
 # Confluence corpus census — Phase 0, partial
 
+**Doc type**: Reference (Diátaxis) — Look things up. Owns the corpus numbers and the queries that produced them — every other surface cites, never restates.
 **Date**: 2026-07-27
 **Status**: first hard measurement of corpus magnitude. Partial — Confluence only.
 **Method**: Confluence Cloud REST search API, executed against the live instance from a browser-authenticated session on 2026-07-27.

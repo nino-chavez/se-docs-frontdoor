@@ -426,7 +426,7 @@
       <h3>2.1 The corpus is measured in Confluence, sized in Drive</h3>
       <figure style="margin:20px 0">
         <figcaption style="font-size:14px;color:#171717;font-weight:600;margin-bottom:4px">Share of pages touched in the last 12 months, by space</figcaption>
-        <figcaption style="font-size:13px;color:#737373;margin-bottom:12px">TAM is the outlier &mdash; and the only corpus here that is not decaying.</figcaption>
+        <figcaption style="font-size:13px;color:#737373;margin-bottom:12px">TAM is the outlier &mdash; and the only corpus here that is not decaying.<br><strong>Snapshot, 27 July 2026.</strong> Maintained record: <code>research/current-state/confluence-corpus-census.md</code>, which owns these numbers and the queries behind them. This chart is a copy and will not update itself.</figcaption>
         <svg viewBox="0 0 760 268" style="width:100%;height:auto" role="img" aria-label="Horizontal bar chart of the share of pages touched in the last 12 months. TAM 57 percent of 441 pages; SIPR 33 percent of 66; SE 23 percent of 155; IPM 21 percent of 1,599; SA 19 percent of 912. The corpus average is 26 percent.">
           <g font-family="system-ui">
             <line x1="420" y1="34" x2="420" y2="248" stroke="#d4d4d4" stroke-width="1"/>
@@ -529,17 +529,12 @@
 
     <div class="section" id="principles">
       <h2>3. Guiding principles</h2>
-      <p>The first six are carried from the problem statement and hold unchanged. The last three are new, and follow from discovery.</p>
+      <p><strong>The first six are owned by the problem statement</strong> (<code>research/problem-space/problem-statement.md</code>) and hold unchanged: <em>cite or say nothing &middot; recency is correctness &middot; surface conflicts, do not adjudicate &middot; assume no schema &middot; measure against the person &middot; coverage follows verified quality.</em> They are argued there, not merely listed.</p>
+      <p>Three are new, and this plan owns them because they follow from discovery rather than from the problem:</p>
       <ol style="list-style:none;padding-left:0">
-        <li><strong>1. Cite or say nothing</strong> &mdash; An answer about what the platform cannot do gets acted on in front of a client, and parts of the corpus are wrong rather than old</li>
-        <li><strong>2. Recency is correctness, not metadata</strong> &mdash; Document age carries information about whether the content is still true</li>
-        <li><strong>3. Surface conflicts; do not adjudicate</strong> &mdash; Contradiction is guaranteed. A single confident answer will sometimes be the stale one</li>
-        <li><strong>4. Assume no schema</strong> &mdash; Every project documents differently</li>
-        <li><strong>5. Measure against the person</strong> &mdash; The person-to-person round trip is the baseline; usage is only a proxy</li>
-        <li><strong>6. Coverage follows verified quality</strong> &mdash; Indexing everything indexes the wrong things too</li>
-        <li><strong>7. Do not rebuild what already runs</strong> <span class="badge badge-primary">new</span> &mdash; The retrieval surface exists and is owned. Effort goes where nothing exists</li>
-        <li><strong>8. Derive; never ask for more writing</strong> <span class="badge badge-primary">new</span> &mdash; Documentation stops when hours stop. Any design depending on unbilled writing loses to the pressure that created the gap</li>
-        <li><strong>9. Verify before publishing</strong> <span class="badge badge-primary">new</span> &mdash; A generated record that is wrong is the corpus&rsquo;s worst defect, mass-produced and carrying a citation</li>
+        <li><strong>7. Do not rebuild what already runs.</strong> The retrieval surface exists and is owned by another team. Effort goes where nothing exists.</li>
+        <li><strong>8. Derive; never ask for more writing.</strong> Documentation stops when hours stop. Any design whose adoption depends on unbilled writing loses to the pressure that created the gap.</li>
+        <li><strong>9. Verify before publishing.</strong> A generated record that is wrong is the corpus&rsquo;s worst defect, mass-produced and carrying a citation. Unverified output does not ship in a degraded state; it does not ship.</li>
       </ol>
     </div>
 
@@ -772,6 +767,10 @@
           <tr><td>Read-only invariant that D1 reopens</td><td><code>decisions/0001-configure-first-pilot-as-prototype.md</code></td></tr>
         </tbody>
       </table>
+      <div class="info-box">
+        <p style="margin:0 0 8px"><strong>How to read the sourcing.</strong> Every claim here has <em>one</em> owning document, listed above. This plan cites and links; it does not restate in full, because duplicated claims rot at different rates and the partial update is how a corpus goes wrong &mdash; which is the defect this initiative exists to fix.</p>
+        <p style="margin:0">The exception is deliberate: figures reproduced in this shareable export (the freshness chart) are <strong>dated snapshots</strong>, labelled as copies, because a reader outside the repository cannot follow a file pointer. A declared copy with a date is safe; a silent one is not.</p>
+      </div>
       <p style="font-size:13px;color:#737373">Markdown source of record: <code>docs/solution-plan.md</code>. This page is an export of it &mdash; if the two diverge, the markdown wins.</p>
     </div>
 

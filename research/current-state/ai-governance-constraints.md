@@ -1,5 +1,6 @@
 # AI governance constraints — what commerce.com already permits
 
+**Doc type**: Reference (Diátaxis) — Look things up. Owns the approval routes, data classification, and tool status as `G1`–`G8`.
 **Date**: 2026-07-27
 **Status**: canonical for tooling and data-handling constraints. Supplements `research/problem-space/problem-statement.md`; does not supersede it.
 **Derived from** two internal Confluence pages, supplied by the operator on 2026-07-27:

@@ -35,15 +35,13 @@ The tech scopes are in Drive. The SA project folders are in Drive. The `Opportun
 
 For comparison, here's what's in Confluence, which Ask Commerce *can* read:
 
-| Space | Pages | Touched in last 12 months |
-| --- | ---: | ---: |
-| Technical Project Management (IPM) | 1,599 | 335 |
-| Solutions Architects | 912 | 173 |
-| Technical Account Management | 441 | 252 |
-| **Solutions Engineering** | **155** | **35** |
-| Solution Architecture Knowledge Base | 66 | 22 |
+Across the five spaces that hold SE, SA and delivery knowledge: **3,173 pages, of which 26% have been touched in the last twelve months.** The `SE` space itself is the smallest at 155 pages. `TAM` is the healthiest by a distance at 57% fresh; `SA` and `IPM` sit at 19–21%.
 
-Three things fall out of that table.
+*(Full per-space table, the queries behind it, and the caveats live in the census — `research/current-state/confluence-corpus-census.md`. I'm not restating it here so there's only one copy to keep true.)*
+
+Three things fall out of those numbers.
+
+
 
 **One year of Drive opportunity folders is four times the entire SE Confluence space.** The corpus that matters most is the corpus the tool can't open. Andrew, you proposed starting with tech scopes and the SA folder — that instinct now has a number behind it.
 
