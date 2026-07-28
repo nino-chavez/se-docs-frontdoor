@@ -374,10 +374,8 @@
       <h2>Summary</h2>
       <p>A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery &mdash; so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.</p>
 
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-value">6 of 7</div><div class="stat-label">Guiding principles already implemented by an existing system</div></div>
-        <div class="stat-card secondary"><div class="stat-value">3,173</div><div class="stat-label">Confluence pages across five spaces &mdash; 26% touched in 12 months</div></div>
-        <div class="stat-card success"><div class="stat-value">155</div><div class="stat-label">Pages in the SE space &mdash; smallest of the five. The knowledge lives in other orgs</div></div>
+      <div class="stat-grid" style="grid-template-columns:minmax(220px,320px)">
+        <div class="stat-card"><div class="stat-value">6 of 7</div><div class="stat-label">Guiding principles this project set out to deliver that an existing system already implements</div></div>
       </div>
 
       <p>Discovery changed what this project is. <strong>The retrieval half is already built and running.</strong> <em>Ask Commerce</em>, maintained by AI Operations, does six of the seven things this project set out to do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.</p>
@@ -411,23 +409,60 @@
 
       <h3>1.3 What discovery actually consisted of</h3>
       <p>Stated so the findings can be weighted, and so a reader knows which are measured and which are read.</p>
-      <table>
-        <thead><tr><th>Method</th><th>What it covered</th></tr></thead>
-        <tbody>
-          <tr><td>Sponsor kickoff, transcribed with speaker attribution</td><td>The four structural holes; sponsor intent; the two-month floor</td></tr>
-          <tr><td>Two internal governance registers</td><td>Data classification, approval routes, tool status</td></tr>
-          <tr><td>Confluence REST API, authenticated</td><td>Corpus counts and recency across five spaces</td></tr>
-          <tr><td>Google Drive, web UI</td><td>Opportunity corpus structure and an order-of-magnitude count</td></tr>
-          <tr><td><em>Ask Commerce</em> configuration, read directly</td><td>What exists, what it can reach, how it ranks and demotes</td></tr>
-          <tr class="highlight-row"><td>Empirical probe of Ask Commerce <span class="badge badge-warning">did not run</span></td><td>Blocked on a per-person Claude spend cap, not on access. The most valuable outstanding measurement</td></tr>
-        </tbody>
-      </table>
+      <ul>
+        <li><strong>Sponsor kickoff</strong>, transcribed with speaker attribution &mdash; the four structural holes, sponsor intent, the two-month floor.</li>
+        <li><strong>Two internal governance registers</strong> &mdash; data classification, approval routes, tool status.</li>
+        <li><strong>Confluence REST API</strong>, authenticated &mdash; corpus counts and recency across five spaces.</li>
+        <li><strong>Google Drive</strong>, web UI &mdash; opportunity corpus structure and an order-of-magnitude count.</li>
+        <li><strong><em>Ask Commerce</em> configuration</strong>, read directly &mdash; what exists, what it reaches, how it ranks and demotes.</li>
+      </ul>
+      <div class="note"><p style="margin:0"><strong>One method was attempted and failed.</strong> Running real SE questions through Ask Commerce and recording the answers &mdash; blocked on a per-person Claude spend cap, not on access. It remains the most valuable outstanding measurement.</p></div>
     </div>
 
     <div class="section" id="research">
       <h2>2. Known research &mdash; what we have established</h2>
 
       <h3>2.1 The corpus is measured in Confluence, sized in Drive</h3>
+      <figure style="margin:20px 0">
+        <figcaption style="font-size:14px;color:#171717;font-weight:600;margin-bottom:4px">Share of pages touched in the last 12 months, by space</figcaption>
+        <figcaption style="font-size:13px;color:#737373;margin-bottom:12px">TAM is the outlier &mdash; and the only corpus here that is not decaying.</figcaption>
+        <svg viewBox="0 0 760 268" style="width:100%;height:auto" role="img" aria-label="Horizontal bar chart of the share of pages touched in the last 12 months. TAM 57 percent of 441 pages; SIPR 33 percent of 66; SE 23 percent of 155; IPM 21 percent of 1,599; SA 19 percent of 912. The corpus average is 26 percent.">
+          <g font-family="system-ui">
+            <line x1="420" y1="34" x2="420" y2="248" stroke="#d4d4d4" stroke-width="1"/>
+            <text x="424" y="30" font-size="11" fill="#737373">corpus average 26%</text>
+
+            <g><title>TAM — 252 of 441 pages touched in 12 months (57%)</title>
+              <text x="190" y="58" text-anchor="end" font-size="13" font-weight="600" fill="#171717">TAM</text>
+              <text x="190" y="74" text-anchor="end" font-size="11" fill="#737373">441 pages</text>
+              <path d="M210,50 H672 Q676,50 676,54 V70 Q676,74 672,74 H210 Z" fill="#7c3aed"/>
+              <text x="686" y="66" font-size="13" font-weight="600" fill="#171717">57%</text></g>
+
+            <g><title>SIPR — 22 of 66 pages touched in 12 months (33%)</title>
+              <text x="190" y="102" text-anchor="end" font-size="13" font-weight="600" fill="#171717">SIPR</text>
+              <text x="190" y="118" text-anchor="end" font-size="11" fill="#737373">66 pages</text>
+              <path d="M210,94 H478 Q482,94 482,98 V114 Q482,118 478,118 H210 Z" fill="#7c3aed"/>
+              <text x="492" y="110" font-size="13" font-weight="600" fill="#171717">33%</text></g>
+
+            <g><title>SE — 35 of 155 pages touched in 12 months (23%). Smallest space of the five.</title>
+              <text x="190" y="146" text-anchor="end" font-size="13" font-weight="600" fill="#171717">SE</text>
+              <text x="190" y="162" text-anchor="end" font-size="11" fill="#737373">155 pages &middot; smallest</text>
+              <path d="M210,138 H391 Q395,138 395,142 V158 Q395,162 391,162 H210 Z" fill="#7c3aed"/>
+              <text x="405" y="154" font-size="13" font-weight="600" fill="#171717">23%</text></g>
+
+            <g><title>IPM — 335 of 1,599 pages touched in 12 months (21%). Largest space of the five.</title>
+              <text x="190" y="190" text-anchor="end" font-size="13" font-weight="600" fill="#171717">IPM</text>
+              <text x="190" y="206" text-anchor="end" font-size="11" fill="#737373">1,599 pages &middot; largest</text>
+              <path d="M210,182 H377 Q381,182 381,186 V202 Q381,206 377,206 H210 Z" fill="#7c3aed"/>
+              <text x="391" y="198" font-size="13" font-weight="600" fill="#171717">21%</text></g>
+
+            <g><title>SA — 173 of 912 pages touched in 12 months (19%)</title>
+              <text x="190" y="234" text-anchor="end" font-size="13" font-weight="600" fill="#171717">SA</text>
+              <text x="190" y="250" text-anchor="end" font-size="11" fill="#737373">912 pages</text>
+              <path d="M210,226 H361 Q365,226 365,230 V246 Q365,250 361,250 H210 Z" fill="#7c3aed"/>
+              <text x="375" y="242" font-size="13" font-weight="600" fill="#171717">19%</text></g>
+          </g>
+        </svg>
+      </figure>
       <table>
         <thead><tr><th>Space</th><th>Pages</th><th>Touched &lt; 12 months</th><th>Share fresh</th></tr></thead>
         <tbody>
@@ -456,13 +491,10 @@
       <h3>2.2 The question surface exists</h3>
       <p><em>Ask Commerce</em> &mdash; Anthropic&rsquo;s native ask-your-org surface, configured and maintained by AI Operations. Active, shared with every employee by default, no access request. Connected to <strong>Confluence, Jira and Slack</strong>. Respects each user&rsquo;s permissions. Cites every claim with source, last-modified date and URL. Flags sources over twelve months old. Surfaces conflicts instead of picking between them.</p>
       <p>Two gaps define the remaining work:</p>
-      <table>
-        <thead><tr><th>Gap</th><th>Consequence</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Cannot read Google Drive</strong> &mdash; sees that a file exists, cannot open it</td><td>The tech scopes, the largest and most uniform corpus, are invisible to it</td></tr>
-          <tr><td><strong>No authoritative source for solution knowledge</strong>, and SE / TAM / IPM spaces are explicitly demoted</td><td>3,173 searchable pages can never be treated as settled</td></tr>
-        </tbody>
-      </table>
+      <ul>
+        <li><strong>It cannot read Google Drive.</strong> It sees that a file exists and cannot open it &mdash; so the tech scopes, the largest and most uniform corpus, are invisible to it.</li>
+        <li><strong>Solution knowledge has no authoritative source</strong>, and the SE, TAM and IPM spaces are explicitly demoted &mdash; so 3,173 searchable pages can never be treated as settled.</li>
+      </ul>
       <p>The routing table designates sources of truth for tool approval, HR, insider trading and deployment. Nothing for how we solve things for clients.</p>
 
       <h3>2.3 The capture argument now has first-party evidence</h3>
@@ -482,20 +514,17 @@
     <div class="section" id="principles">
       <h2>3. Guiding principles</h2>
       <p>The first six are carried from the problem statement and hold unchanged. The last three are new, and follow from discovery.</p>
-      <table>
-        <thead><tr><th>#</th><th>Principle</th><th>Why</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><strong>Cite or say nothing</strong></td><td>An answer about what the platform cannot do gets acted on in front of a client, and parts of the corpus are wrong rather than old</td></tr>
-          <tr><td>2</td><td><strong>Recency is correctness, not metadata</strong></td><td>Document age carries information about whether the content is still true</td></tr>
-          <tr><td>3</td><td><strong>Surface conflicts; do not adjudicate</strong></td><td>Contradiction is guaranteed. A single confident answer will sometimes be the stale one</td></tr>
-          <tr><td>4</td><td><strong>Assume no schema</strong></td><td>Every project documents differently</td></tr>
-          <tr><td>5</td><td><strong>Measure against the person</strong></td><td>The person-to-person round trip is the baseline; usage is only a proxy</td></tr>
-          <tr><td>6</td><td><strong>Coverage follows verified quality</strong></td><td>Indexing everything indexes the wrong things too</td></tr>
-          <tr class="highlight-row"><td>7</td><td><strong>Do not rebuild what already runs</strong> <span class="badge badge-primary">new</span></td><td>The retrieval surface exists and is owned. Effort goes where nothing exists</td></tr>
-          <tr class="highlight-row"><td>8</td><td><strong>Derive; never ask for more writing</strong> <span class="badge badge-primary">new</span></td><td>Documentation stops when hours stop. Any design depending on unbilled writing loses to the pressure that created the gap</td></tr>
-          <tr class="highlight-row"><td>9</td><td><strong>Verify before publishing</strong> <span class="badge badge-primary">new</span></td><td>A generated record that is wrong is the corpus&rsquo;s worst defect, mass-produced and carrying a citation</td></tr>
-        </tbody>
-      </table>
+      <ol style="list-style:none;padding-left:0">
+        <li><strong>1. Cite or say nothing</strong> &mdash; An answer about what the platform cannot do gets acted on in front of a client, and parts of the corpus are wrong rather than old</li>
+        <li><strong>2. Recency is correctness, not metadata</strong> &mdash; Document age carries information about whether the content is still true</li>
+        <li><strong>3. Surface conflicts; do not adjudicate</strong> &mdash; Contradiction is guaranteed. A single confident answer will sometimes be the stale one</li>
+        <li><strong>4. Assume no schema</strong> &mdash; Every project documents differently</li>
+        <li><strong>5. Measure against the person</strong> &mdash; The person-to-person round trip is the baseline; usage is only a proxy</li>
+        <li><strong>6. Coverage follows verified quality</strong> &mdash; Indexing everything indexes the wrong things too</li>
+        <li><strong>7. Do not rebuild what already runs</strong> <span class="badge badge-primary">new</span> &mdash; The retrieval surface exists and is owned. Effort goes where nothing exists</li>
+        <li><strong>8. Derive; never ask for more writing</strong> <span class="badge badge-primary">new</span> &mdash; Documentation stops when hours stop. Any design depending on unbilled writing loses to the pressure that created the gap</li>
+        <li><strong>9. Verify before publishing</strong> <span class="badge badge-primary">new</span> &mdash; A generated record that is wrong is the corpus&rsquo;s worst defect, mass-produced and carrying a citation</li>
+      </ol>
     </div>
 
     <div class="section" id="plan">
