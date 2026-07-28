@@ -32,6 +32,15 @@ preconditions:
     blocks: slack-frontdoor                      # slack-frontdoor may not reach status issued
                                                  # while this is unmet: the deflection signal
                                                  # becomes permanently unmeasurable post-launch
+                                                 # DESIGNED 2026-07-27, not yet run: Workstream C
+                                                 # of research/pilot/phase-0-census-design.md
+                                                 # specifies the instrument and, critically, which
+                                                 # DIRECTION of the round trip it counts — the
+                                                 # sponsor's DM volume measures his OUTBOUND
+                                                 # questions, not inbound demand on him (00:35:32).
+                                                 # Phase 0 is the only pre-launch window this can
+                                                 # be captured in, which is why C sits in a census
+                                                 # protocol rather than a measurement plan.
   # The four open boundary decisions (BD-1..BD-4) from problem-statement.md are NOT wired
   # here. Attempted 2026-07-27 and reverted: pointing a precondition at its resolving ADR
   # (decisions/000N-*.md) makes R7-paths raise a hard error, because `decisions/` is a
@@ -110,7 +119,15 @@ outputs:
   - id: pilot-protocol
     type: view
     serves: [pilot-sponsor.decide-pilot, senior-se.redirect-pings]
-    status: planned                            # three tests + corpus census (Stage 2, pending)
+    status: draft                              # RESCOPED 2026-07-27. Was "three tests + corpus
+                                               # census" for a Claude Tag pilot; that pilot is
+                                               # superseded (decisions/0001, 2026-07-27 later —
+                                               # Ask Commerce already ships the surface). The
+                                               # census was always the gating half and is what
+                                               # survives. `draft` not `ready`: the design is
+                                               # authored but unagreed, and its critical path
+                                               # (Drive access) is an unmade request.
+    artifact: research/pilot/phase-0-census-design.md
     renderer: markdown
     clearance: internal
   - id: measurement-plan
