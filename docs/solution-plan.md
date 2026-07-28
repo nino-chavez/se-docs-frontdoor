@@ -1,292 +1,148 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez
-**Date**: 2026-07-27
-**Status**: **Pre-decision.** Nothing here is committed. Four of the nine open questions in § 8 are decisions that have not been made, and the two assumptions that carry the plan (`A3`, `A5`) are untested. Read § 6 first if you want the short version — it is what this initiative has ruled out.
-**Audience**: Andrew (sponsor), Mark, Zac, and AI Operations for § 9.3.
+**Author**: Nino Chavez · **Date**: 2026-07-28 · **Format**: SCQ-R
+**Status**: Pre-decision. One decision and two requests are outstanding; both are named in §6.
+**For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
 ---
 
-## 1. Summary
+## Recommendation
 
-A decade of platform knowledge sits in a shrinking number of people. The documents that should hold it are produced as a byproduct of billable delivery, so they stop where billing stopped, vary where the template was optional, and are wrong where the platform shipped past a documented workaround.
+**Stop building a search tool. Send two requests to AI Operations, run a two-week census, and reserve the build decision for capture — the half no search tool can deliver.** I am not asking to build anything yet, and the only decision I need this week is whether recording knowledge is in scope at all.
 
-Discovery changed what this project is. **The retrieval half is already built and running.** `Ask Commerce`, maintained by AI Operations, implements six of the seven guiding principles this project committed to — the mapping is in §3.2, and the seventh was never something a search tool could do. What it cannot do is read the corpus that matters, treat solution knowledge as authoritative, or produce a record nobody wrote.
+## Situation, complication, question
 
-So the plan is: **measure the corpus, ask AI Operations for two things, and build the capture side.** Only the third is a build, and it is gated on a decision that has not been made.
+We committed to building a front door to SE knowledge. The reasoning held: a decade of platform history sits in a shrinking number of people, and the documents that should hold it are a byproduct of billable delivery, so they thin out exactly where the billing stopped. Mark and Zac established the shape of that at kickoff — one-off client conversations that sometimes never enter a documented process, smaller engagements that get no folder, documentation that stops when IPM hours run out, and a template followed differently on every project.
 
----
+The complication is that the front door already exists. `Ask Commerce`, built and maintained by our AI Operations team, is live, shared with every employee by default, and already implements six of the seven guiding principles this project committed to. It cites every claim with a last-modified date, flags anything over twelve months old, and surfaces conflicts rather than picking between them. Andrew, when you said "something similar to ask commerce," you were not reaching for an analogy — you were naming the system, and I filed it as an open question rather than checking.
 
-## 2. Analysis — how the problem was reframed twice
+That leaves the real question: **if the search tool is built, what is left worth building?**
 
-### 2.1 The founding framing, and why it broke
-
-The founding definition treated the corpus as a noisy given whose hygiene would improve as a byproduct of use. The sponsor kickoff broke that: between Mark and Zac, four structural holes established that documentation stops where billing stops, that smaller engagements often get no folder, and that the template is followed differently every project.
-
-The consequence is the inversion this whole plan rests on — **hygiene is an input to retrieval quality, not an output of it.**
-
-**Owner: `research/problem-space/problem-statement.md`.** It carries the four holes with their attributions, the eight claims `P1`–`P8`, and the argument for why the founding scope could not simply be widened. It is written to be read straight through; do that rather than take this paragraph's word for it.
-
-### 2.2 The second reframe, and it was the bigger one
-
-The kickoff left an open question — the sponsor twice referred to an existing internal capability, "something similar to ask commerce" (00:09:27) and "directly within CLA, like ask commerce" (00:33:23). That was recorded as the question that would most change the plan.
-
-It was not an analogy. Discovery on 2026-07-27 found `Ask Commerce` live, org-wide, and already implementing most of what this project had specified. **A memo proposing to build it had been drafted and was one decision away from being sent.**
-
-### 2.3 What discovery actually consisted of
-
-Stated so the findings can be weighted, and so a reader knows which are measured and which are read.
-
-| Method | Covered |
-| --- | --- |
-| Sponsor kickoff, transcribed with speaker attribution | The four structural holes; sponsor intent; the two-month floor |
-| Two internal governance registers | Data classification, approval routes, tool status |
-| Confluence REST API, authenticated | Corpus counts and recency across five spaces |
-| Google Drive, web UI | Opportunity corpus structure and an order-of-magnitude count |
-| `Ask Commerce` configuration and documentation, read directly | What exists, what it can reach, how it ranks and demotes |
-
-**One method was attempted and failed**: running real SE questions through Ask Commerce and recording the answers. Blocked on a per-person Claude spend cap, not on access. It remains the most valuable outstanding measurement.
+My recommendation is above. The rest of this document is why I believe it, what would change my mind, and what I need from each of you.
 
 ---
 
-## 3. Known research — what we have established
+## 1. The retrieval problem is solved, and not by us
 
-Every claim below is sourced. Handles in brackets are citable from the research corpus.
+The evidence for that claim is a principle-by-principle comparison, and it is worth seeing rather than taking on trust, because the headline number is my assessment rather than a measurement.
 
-### 3.1 The corpus is measured in Confluence, sized in Drive
-
-**Owner of these numbers: `research/current-state/confluence-corpus-census.md`.** It carries the full per-space table, the literal CQL, and the reproduction notes. Repeating the table here would create a second copy that rots at a different rate, so this section states only what the plan turns on:
-
-- **3,173 pages** across the five SE/SA/delivery spaces; **26%** touched in the last 12 months, **59%** untouched for two years or more. `[measured]`
-- **At least 692 opportunity folders** in Drive for 2026 alone. `[floor]` Counts *folders*, where the Confluence figures count *pages* — different units, so the defensible claim is an order of magnitude larger than the SE space, never a specific multiple.
-
-Three structural findings matter more than the totals:
-
-- **The primary persona's own space is the smallest and stalest.** The knowledge lives in IPM, SA and TAM — other organisations. That is why an SE asks a person: the answer was never filed where an SE would look. `[C-2]`
-- **TAM's documentation is not decaying** — 57% touched within twelve months against 19–21% for SA and IPM, under identical billing pressure. A working internal counterexample. `[C-3]`
-- **Timestamps cannot find wrong.** Every number above measures editing, not truth. `[C-4]`
-
-### 3.2 The question surface exists — the evidence behind "six of seven"
-
-`Ask Commerce` is Anthropic's native ask-your-org surface, configured and maintained by AI Operations, active and shared with every employee by default. The summary's headline claim is an **assessment**, not a measurement, so here is the mapping it rests on. Each row is checkable against the source in the evidence appendix; disagree with a row and the count changes.
-
-| Guiding principle (§4) | Implemented? | What it does |
+| Guiding principle | Implemented? | How |
 | --- | --- | --- |
-| 1. Cite or say nothing | Yes | Every factual claim carries a numbered citation; answers close with source name, last-modified date and URL. Its instructions forbid inventing URLs, owners or dates |
-| 2. Recency is correctness | Yes | Flags sources over twelve months old on fast-moving topics; checks last-updated on every source relied on |
-| 3. Surface conflicts, do not adjudicate | Yes | On unresolved conflict, instructed to surface both with dates rather than pick |
-| 4. Assume no schema | Yes | Federated search across three systems, no structural assumption |
-| 5. Measure against the person | **No** | Not a product capability. A measurement question, and still ours |
-| 6. Coverage follows verified quality | Yes | Source hierarchy plus explicit demotion rules |
-| 7. Answers are a starting point | Yes | Staleness and DRAFT flags framed as risk signals; high-stakes answers routed to source verification |
+| Cite or say nothing | Yes | Numbered citations; source name, last-modified date and URL on every answer. Instructed never to invent a URL, owner or date |
+| Recency is correctness | Yes | Flags sources over twelve months old on fast-moving topics |
+| Surface conflicts, don't adjudicate | Yes | On unresolved conflict, shows both with dates rather than choosing |
+| Assume no schema | Yes | Federated search across Confluence, Jira and Slack |
+| Measure against the person | **No** | Not a product capability. Ours to answer |
+| Coverage follows verified quality | Yes | Source hierarchy with explicit demotion rules |
+| Answers are a starting point | Yes | Staleness and DRAFT flags presented as risk signals |
 
-**Six of seven.** Note what the denominator contains: principle 5 was never something a retrieval tool could satisfy, so the honest reading is *"every principle a question surface could implement, is implemented."*
+Six of seven, and the seventh was never something a search tool could satisfy — it is a measurement question. The honest reading is that every principle a question surface *could* implement, is implemented. Building our own would produce a smaller, later, worse-supported version of something the whole company already has, which is why the first thing I am recommending is that we stop.
 
-Two gaps define the remaining work:
+## 2. The capture problem is not solved, and we can now size it
 
-- **It cannot read Google Drive.** It sees that a file exists and cannot open it. The tech scopes are in Drive. `[AC-1]`
-- **Solution knowledge has no authoritative source, and its spaces are demoted.** The routing table designates sources of truth for tool approval, HR, insider trading and deployment. Nothing for how we solve things for clients — and `SE`, `TAM` and `IPM` are explicitly named as non-authoritative. So 3,173 searchable pages can never be treated as settled. `[AC-2]`
+Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce cannot read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
 
-### 3.3 The capture argument now has first-party evidence
+The measurements support taking this seriously. Across the five spaces holding SE, SA and delivery knowledge there are **3,173 pages, of which 26% have been touched in the last twelve months** and 59% have not been touched in two years. The `SE` space is the smallest of the five at 155 pages, which explains the round trip better than any theory: an SE asks a person because the answer was never filed anywhere an SE would look.
 
-Ask Commerce's configuration contains **hand-written patches for individual contradictions in our documentation** — one page using two names for the same Slack channel, two pages disagreeing on a GitHub organisation name, with an instruction not to state that name confidently. `[AC-4]`
+Drive is larger by an order of magnitude. The 2026 opportunity folder alone holds **at least 692 opportunity folders** — a floor rather than an audit, and counting folders where the Confluence figures count pages, so the comparison holds directionally and not as a multiple. The census owns these numbers and the queries behind them.
 
-Every contradiction becomes a line of configuration a person maintains. It works. It does not scale. **One team is absorbing our documentation defects by hand, one defect at a time.** This is the strongest available argument for the capture work, and it comes from Commerce's own system rather than from theory.
+The strongest evidence is not a number. Ask Commerce's own configuration carries hand-written patches for individual contradictions in our documentation — one page that uses two different names for the same Slack channel, two pages that disagree on a GitHub organisation name, with an instruction not to state that name confidently. Every contradiction in our corpus becomes a line of configuration that a person writes and maintains. It works, and it does not scale. **One team is already absorbing our documentation defects by hand, one defect at a time**, which is the argument for fixing capture made from our own systems rather than from theory.
 
-### 3.4 Governance is not the obstacle it appeared to be
+## 3. Three things block the path, and none of them are mine to decide
 
-Every employee already has Claude — no request, no seat, usage-based billing with a **$1,000 monthly cap per person**. The relevant approval route is **Use-Case #2**: an existing approved tool processing a new type of data, which means an AI Use Case Review with a Privacy Impact Assessment, not a vendor intake. `[G2, G4]`
+Two of the three are requests to a team I have no authority over, which is the part of this that needs you rather than me. AI Operations would need to connect Drive contents to Ask Commerce, and to designate an authoritative source for solution knowledge. The first is a connector change. The second is harder, because every current entry on that list is owned by a governance or platform function and domain knowledge would be a new category — which is why I would open with a small, vettable space rather than asking them to bless the estate. Annex B is the request, written and ready to send.
 
-Two cost drivers to respect: an **AppSec review triggers on new MCP, integrations, or custom code**, and escalations go to an **AI Review Committee meeting quarterly** — a tail that could exceed the sponsor's entire stated two-month floor. A configured path adding no custom code avoids the first entirely. `[G2]`
+The third is yours alone. Recording knowledge going forward is a write system, and everything scoped so far has been read-only — the smaller security and privacy surface you identified as the whole two-month floor. That decision determines whether the remaining work is a project or a support ticket, and I would rather have it wrong-and-early than right-and-late.
 
----
-
-## 4. Guiding principles
-
-**The first six are owned by `research/problem-space/problem-statement.md`** and hold unchanged: *cite or say nothing · recency is correctness · surface conflicts, do not adjudicate · assume no schema · measure against the person · coverage follows verified quality.* Read them there; they are argued, not just listed.
-
-Three are new, and this plan owns them because they follow from discovery rather than from the problem:
-
-7. **Do not rebuild what already runs.** The retrieval surface exists and is owned by another team. Effort goes where nothing exists.
-8. **Derive; never ask for more writing.** Documentation stops when hours stop. Any design whose adoption depends on unbilled writing loses to the pressure that created the gap.
-9. **Verify before publishing.** A generated record that is wrong is the corpus's worst defect, mass-produced and carrying a citation. Unverified output does not ship in a degraded state; it does not ship.
-
-## 5. The plan
-
-### Phase 0 — Measure the corpus *(designed; partially run)*
-
-Protocol in `research/pilot/phase-0-census-design.md`. Two weeks elapsed, roughly four hours of senior SE/SA time.
-
-- **Inventory.** Confluence is done. Drive needs API access, not more scraping.
-- **Quality.** A changelog join finds the wrong-not-stale class cheaply, by joining shipped platform capabilities against documents that predate them and describe a workaround for their absence. A 50-document adjudicated sample gives a rate at roughly ±14 points.
-- **Demand baseline.** Must be captured now — it is unmeasurable after launch, and Phase 0 is the only pre-launch window.
-
-The single most useful output: **what fraction of engagements have no tech scope at all.** That is the closest available answer to "what fraction of questions have an answer anywhere."
-
-### Phase 1 — Two requests to AI Operations *(not a build)*
-
-1. **Connect Drive contents**, starting with tech scopes and SA folders.
-2. **Designate an authoritative source for solution knowledge.** Start narrow — `SIPR` is 66 pages, small enough to actually vet — rather than asking them to bless the estate.
-
-The second is harder: every current entry is owned by a governance or platform function, so domain knowledge is a new category.
-
-### Phase 2 — Build the capture side *(the only build)*
-
-Derive a solution record per engagement from artifacts that already exist — call transcripts, tech scope sheets, ticket history — verify it with the person who ran the engagement, publish it where Ask Commerce will trust it.
-
-```mermaid
-flowchart LR
-  S[Existing artifacts<br/>transcripts · scopes · tickets] --> D[Derive draft record]
-  D --> V{SA or IPM<br/>verifies}
-  V -- approved --> P[(Authoritative source)]
-  V -- rejected --> X[Discarded<br/>reason retained]
-  P --> A[Ask Commerce]
-  P --> W[Invalidation detector]
-  W -- capability shipped<br/>contradicts record --> V
-```
-
-The loop matters as much as the forward path: the changelog join from Phase 0 becomes a standing job, so records invalidated by a shipped capability return to the queue instead of rotting silently.
-
-**Decisions this phase rests on**, stated as decisions rather than assertions:
-
-| # | Decision | Trade-off |
-| --- | --- | --- |
-| D1 | Capture writes, scoped to one new record type; never modifies existing documents | +Addresses the actual failure, −Reopens a locked read-only invariant |
-| D2 | Derive from existing artifacts; never request net-new writing | +Survives billing pressure, −Bounded by what sources contain |
-| D3 | No record publishes without human verification | +Prevents industrialising the defect, −Throughput capped by reviewer time |
-| D4 | Publish into a designated authoritative source | +Records count as truth, −Depends on a grant we do not control |
-| D5 | Extend `forge-signal` rather than build a pipeline | +Weeks not months, −Inherits its assumptions |
-
-**Sequencing note.** Stage one of this phase is to produce **one record by hand** for a closed engagement and ask the SA who ran it whether they would have wanted it. That answers the only question that matters, costs a day, and precedes any build.
-
-### Phase 3 — Discovery support *(unchanged, still last)*
-
-Generating the hard questions for a given merchant, including the disqualifying ones. Depends on negative knowledge being present and current, which is what Phases 0–2 exist to address. The tech scope Andrew demonstrated already does a version of it; build from that rather than beside it.
+Governance is not the obstacle I expected it to be. Claude is already deployed to every employee with no approval gate, and the route for pointing an approved tool at new data is an AI Use Case Review rather than a vendor intake. What that review costs in time is the one number I still owe you.
 
 ---
 
-## 6. What we are deliberately not doing
+## 4. What I recommend we do
 
-The most useful section in a plan whose headline finding is that most of what was proposed already exists. Each of these was in scope at some point in this initiative's history, and each is now excluded on evidence rather than on preference.
+**Finish the census. Two weeks, roughly four hours of senior time.** The Confluence half is done and is where the figures above come from. Drive needs real API access rather than the file-listing scrape that produced the floor. The quality half matters more than the volume half, because timestamps find *stale* and cannot find *wrong* — Mark's guest-tokenization case is a document that is confidently, actively incorrect and looks identical to a good one in every count I can run. Finding those means joining shipped platform capabilities against documents that predate them, plus a small adjudicated sample to establish a rate.
+
+**Send the two requests now, in parallel.** They do not depend on the census finishing, and the answer to the Drive request determines whether the rest of this plan survives.
+
+**Build capture only after one record exists by hand.** Before any pipeline, I would take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available.
+
+**Sequence discovery support last.** Generating the hard questions for a merchant depends on negative knowledge being present and current, which is the decay problem the earlier phases exist to address. The tech scope you demonstrated already does a version of it and is the right starting point.
+
+## 5. What I recommend we not do
+
+Each of these was in scope at some point, and each is excluded on evidence rather than preference.
 
 | Not doing | Why | What would reopen it |
 | --- | --- | --- |
-| **Building a question surface** | It exists, org-wide, maintained by another team — see §3.2. Building one would be waste, and a worse version | AI Ops deprecating it (`A1`) |
-| **Building connectors** | Drive access is a request to AI Operations, not an engineering task. Building our own would trigger an AppSec review and duplicate their roadmap | A refusal, which is a stop-and-re-plan signal rather than a build trigger |
-| **Migrating or remediating the existing corpus** | 3,173 Confluence pages plus Drive. Cleaning them is unbounded, and it does not address why they got that way. Fixing the production process is the durable version | A specific high-traffic subset shown to be actively harmful |
-| **Designing a documentation template** | One exists and is followed differently every project. The constraint is unbilled hours, not template quality — a better template loses to the same pressure | Evidence that the template, not the time, is what fails |
-| **Adjudicating contradictions automatically** | Locked at founding and unchanged: surface conflicts, do not resolve them. Automated resolution produces a confident answer that is sometimes the stale one | Nothing currently foreseen. This is an invariant, not a trade-off |
-| **Indexing everything** | Coverage follows verified quality. Indexing the whole estate indexes the wrong things alongside the good | A census showing quality is uniformly high, which nobody expects |
-| **Using DM volume as the deflection metric** | It counts the sponsor's *outbound* questions, not inbound demand on him. Both are real; they are not the same number | Nothing — but the inbound instrument still has to be built |
-| **Writing any code before one record exists by hand** | Phase 2 stage one produces a single record manually and asks the SA who ran that engagement whether they wanted it. A day, and it can end the project | That test passing |
+| Building a question surface | It exists, org-wide, maintained by another team | AI Ops deprecating it |
+| Building connectors ourselves | A request to AI Ops, not an engineering task. Our own would trigger an AppSec review and duplicate their roadmap | A refusal — which is a stop-and-replan signal, not a build trigger |
+| Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
+| Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
+| Adjudicating contradictions automatically | Locked at founding: surface conflicts, do not resolve them | Nothing foreseen. An invariant |
+| Indexing everything | Coverage follows verified quality | A census showing uniformly high quality, which nobody expects |
+| Writing code before one record exists by hand | The manual test can end the project in a day | That test passing |
 
-**The pattern worth noticing.** Six of these eight are things a reasonable person would have built. Two of them — the question surface and the connectors — this initiative had actively planned. They are excluded because discovery found the work already done or already owned, not because they were bad ideas.
+## 6. What would change my recommendation
 
-## 7. Assumptions
+Two assumptions carry it, and both are weaker than the rest of this document.
 
-Each is stated with what would falsify it. Where an assumption is load-bearing and untested, that is the honest status.
+**That the wrong-not-stale problem is big enough to justify the work.** This rests on a single example — guest tokenization, from Mark. Everything in §4 depends on it and nothing has measured it. If the census sample comes back showing a low rate, the honest conclusion is that better search over a mostly-accurate corpus was enough, and this project ends with the two requests. That is the outcome I consider most likely to prove me wrong.
 
-| # | Assumption | Basis | What would falsify it |
-| --- | --- | --- | --- |
-| A1 | Ask Commerce remains the org's question surface | Active, maintained, org-wide, reviewed June 2026 | AI Ops deprecating or restructuring it |
-| A2 | AI Operations accepts source and authority requests from outside their team | They publish an intake form for exactly this | A refusal, or a scope limit on what sources qualify |
-| A3 | The wrong-not-stale class is material enough to justify capture | **One example** — guest tokenization. Unmeasured | Phase 0 § B returning a low rate. This is the assumption most likely to be wrong |
-| A4 | Tech scopes are the most uniform corpus because template-derived | Structure observed; contents not sampled | Content sampling showing per-project variance as wide as elsewhere |
-| A5 | SAs would find a derived record worth having | **Untested.** Phase 2 stage one tests it directly | An SA saying they would not have used it |
-| A6 | Verifying a derived record costs less than authoring one | Plausible, unmeasured | Reviewers reporting rewrite rather than check |
-| A7 | Enough source material exists per engagement to derive from | The corpus stops where billing stopped, so this is uncertain by construction | A high rate of "insufficient source material" in stage one |
+**That an SA would actually want a derived record.** Untested, and the one-record test in §4 is designed to find out cheaply before anything is built.
 
-**A3 and A5 carry the plan.** If either fails, Phase 2 should not be built, and the honest outcome is that Phase 1's two requests were the whole project.
+Two more that would change the shape rather than the direction: if AI Operations refuses the Drive connection, the plan needs rethinking rather than patching; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
+
+I would rather these be written down and wrong than unwritten and right.
 
 ---
 
-## 8. Gaps and open questions
+## 7. What I need from each of you
 
-| # | Question | Owner | Unblocked by |
-| --- | --- | --- | --- |
-| Q1 | Does capture sit inside this initiative, or go to a successor? (`BD-1`) | Sponsor + Nino | A decision. Nothing else |
-| Q2 | What is the audited Drive count, and what fraction of engagements have no tech scope? | Nino | Drive API access |
-| Q3 | What is the wrong-not-stale rate? | Nino + a senior reviewer | Phase 0 § B, and four hours of senior time |
-| Q4 | What does TAM do that keeps their documentation current? | Nino | One conversation. **Cheapest high-value item outstanding** |
-| Q5 | What does Ask Commerce actually return for real SE questions? | Nino | A Claude spend cap reset or increase |
-| Q6 | Who is this for — SE, SE+SA, or everyone? (`BD-2`) | Sponsor | A decision |
-| Q7 | How long does an AI Use Case Review take? | Sponsor or Nino | Asking GRC |
-| Q8 | Is there an IPM to talk to, and does hours-tracking live outside Confluence? | Sponsor | An introduction |
-| Q9 | What is the funding line, given a $1,000/person usage cap? (`BD-4`) | Sponsor | A decision |
+**Andrew.** One decision: does this write, or stay read-only. Then the two AI Operations requests in Annex B — a sponsor request lands differently than mine, particularly the authoritative-source one. Then a commitment of roughly four hours of senior SE/SA time for the census sample, which I would rather you grant explicitly than have Mark and Zac absorb quietly, since unbilled senior time is the exact constraint that caused this problem. And an introduction to an IPM, because the clearest structural finding in this work came from two people describing someone else's constraint.
 
-**Q1 gates the largest block of work. Q4 is the cheapest and may reduce it.**
+**Mark and Zac.** Where the tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking. One closed engagement you would be willing to see a derived record for. And a pointer into TAM — theirs is the only corpus in the census that is not decaying, at 57% touched in twelve months against 19–21% for SA and IPM under identical billing pressure, and I would rather learn what they do than import a practice from outside.
+
+**Not blocked on anyone.** I will finish the census design, draft the Drive access request, and produce the one hand-made record as soon as I have an engagement.
 
 ---
 
-## 9. Asks
+## Annex A — Evidence
 
-### 9.1 Andrew
+Every load-bearing claim, with how it was produced. Grades, because these are not equally strong: **Measured** (a query that was run, method recorded, re-runnable) · **Floor** (a lower bound from an incomplete method) · **Read** (stated in a source read directly) · **Observed** (happened during this work) · **Assessed** (a judgement, with the comparison shown) · **Reported** (someone said it, attributed and timestamped).
 
-1. **Decide Q1** — does this write, or stay read-only. Everything in Phase 2 depends on it, and it determines whether this is a project or a support ticket.
-2. **Make the two AI Operations requests** in Phase 1, or tell me to make them. A sponsor request lands differently, particularly the authoritative-source one.
-3. **Commit reviewer time** — roughly four hours of senior SE/SA time for Phase 0's sample, and a per-record budget for Phase 2 verification. Unbilled senior time is the exact constraint that caused this problem, so it needs granting rather than assuming.
-4. **Answer Q9.** The $1,000 monthly cap is the cost model if SE questions route to Claude at volume. I hit mine researching this.
-5. **An introduction to an IPM** (Q8).
+| Claim | Grade | Source of record |
+| --- | --- | --- |
+| 3,173 pages; per-space counts; 26% / 59% recency | Measured | `research/current-state/confluence-corpus-census.md` — literal queries in its method block |
+| TAM 57% vs SA 19%, IPM 21% | Measured | as above |
+| ≥ 692 opportunity folders in Drive, 2026 | Floor | as above, `C-5`. Scrolled a file listing, covers A–W, Drive's API unreachable from a browser session |
+| Connects Confluence/Jira/Slack; cannot read Drive | Read | `research/prior-art/ask-commerce.md` `AC-1` |
+| Demotes SE/TAM/IPM; no authoritative source for solution knowledge | Read | `ask-commerce.md` `AC-2` |
+| Six of seven principles implemented | **Assessed** | §1 of this document — dispute a row and the count changes |
+| Contradictions hand-patched into its configuration | Read | `ask-commerce.md` `AC-4` |
+| Claude org-wide, $1,000/person/month | Read | `research/current-state/ai-governance-constraints.md` `G4` |
+| The cap binds | Observed | An attempt to test Ask Commerce on 2026-07-27 was refused for reaching the limit |
+| Route is an AI Use Case Review, not a vendor intake | Read | `ai-governance-constraints.md` `G2` |
+| The four structural holes; the two-month floor | Reported | `research/sources/knowledge-database-kickoff-2026-07-27.md`, attributed per speaker |
+| Guest tokenization as the wrong-not-stale example | Reported | Mark, 00:18:13. **One example. §6 rests on it** |
 
-### 9.2 Mark and Zac
+Three weaknesses, stated here rather than left to be found. The wrong-not-stale assumption rests on that single example. No claim about Ask Commerce has been verified by *using* it — all of it is read from configuration, and the behavioural test is blocked on the spend cap. The Drive figure is a floor that counts folders where the Confluence figures count pages.
 
-1. **The source list** — where tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking. Informal is fine.
-2. **One closed engagement** you would be willing to see a derived record for, so Phase 2 stage one has a subject.
-3. **A pointer into TAM** (Q4).
+## Annex B — The request to AI Operations
 
-### 9.3 AI Operations
+Ready to send. Andrew, this reads better from you than from me.
 
-1. **Connect Google Drive contents** to Ask Commerce, starting with the tech scope and SA folders.
-2. **Designate an authoritative source for solution knowledge** — scoped initially to a small, vettable space rather than the estate.
-3. **Context on the maintenance cost** of the hardcoded authoritative-source list, which bears directly on whether request 2 is realistic.
-
-### 9.4 What I will do without waiting
-
-Run the Confluence half of Phase 0 (done), design the census (done), draft the AI Ops requests, and produce one record by hand for Phase 2 stage one as soon as I have an engagement from § 9.2.
-
----
-
-## 10. Evidence — how each claim was established
-
-Every load-bearing claim in this plan, with how it was produced. If someone asks *"where did that number come from?"*, the answer is a row in this table, not a memory.
-
-**Grades**, because they are not equally strong and should not be read as if they were:
-
-| Grade | Meaning |
-| --- | --- |
-| **Measured** | Produced by a query or count that was run, with the method recorded. Re-runnable |
-| **Floor** | A lower bound from an incomplete method. Directionally sound, not an inventory |
-| **Read** | Stated in a source document read directly. Quotable |
-| **Observed** | Something that happened during the work and was recorded |
-| **Assessed** | A judgement comparing two things. The comparison is shown so it can be disputed |
-| **Reported** | Someone said it. Attributed and timestamped, not independently verified |
-
-| Claim | Grade | How it was produced | Source of record |
-| --- | --- | --- | --- |
-| 3,173 pages across five spaces; per-space counts | **Measured** | Confluence REST search, `totalSize` of a CQL count per space, 2026-07-27 | `confluence-corpus-census.md` — literal queries in its method block |
-| 26% touched < 12 months; 59% untouched ≥ 24 months | **Measured** | Same queries with `lastmodified` cuts at the literal dates 2025-07-27 / 2024-07-27 | as above |
-| TAM 57% vs SA 19%, IPM 21% | **Measured** | Derived from the same counts | as above |
-| ≥ 692 opportunity folders in Drive 2026 | **Floor** | Scrolled the Drive folder listing and accumulated unique rows. Covers names A–W; a second pass from the top returned fewer and was discarded. Drive's API is not reachable from a browser session | `confluence-corpus-census.md` `C-5`, with the caveat stated inline |
-| Ask Commerce connects Confluence, Jira, Slack — and **cannot read Drive** | **Read** | Its own configuration states Drive is pointed at but not a connected source | `research/prior-art/ask-commerce.md` `AC-1` |
-| It demotes SE / TAM / IPM spaces; no authoritative source for solution knowledge | **Read** | Demotion rules and the authoritative-source routing table, read directly | `ask-commerce.md` `AC-2` |
-| It cites with last-modified dates, flags > 12-month sources, surfaces conflicts | **Read** | Its configuration and its AI Operations documentation page | `ask-commerce.md` |
-| **Six of seven principles implemented** | **Assessed** | Principle-by-principle mapping against the above | §3.2 of this document — the mapping is shown; dispute a row and the count changes |
-| Contradictions are hand-patched into its configuration | **Read** | Two specific instances: one page using two names for the same Slack channel; two pages disagreeing on a GitHub org name | `ask-commerce.md` `AC-4`. The configuration itself is not reproduced — see the governance note in `ai-governance-constraints.md` |
-| Claude is org-wide, usage-based, $1,000/person/month | **Read** | AI Operations' Claude hub page | `ai-governance-constraints.md` `G4` |
-| The cap binds | **Observed** | An attempt to run questions against Ask Commerce on 2026-07-27 was refused for reaching the monthly limit | `ask-commerce.md`, "Still unverified" |
-| Route is Use-Case #2 — AI Use Case Review plus Privacy Impact Assessment | **Read** | GRC canonical page, v7, 2026-05-27 | `ai-governance-constraints.md` `G2` |
-| AppSec triggers on new MCP / custom code; escalations go to a quarterly committee | **Read** | GRC SOP, v15 | `ai-governance-constraints.md` `G2` |
-| The four structural holes | **Reported** | Sponsor kickoff, attributed per speaker | `research/sources/knowledge-database-kickoff-2026-07-27.md` |
-| Two-month floor is security review plus hosting | **Reported** | Sponsor, 00:31:14 | as above |
-| Guest tokenization as the wrong-not-stale example | **Reported** | Mark, 00:18:13. **One example. `A3` rests on it** | as above |
-| Deflection instrument must state direction | **Reported** | Sponsor describing his own channel as outbound — "I just bug them that often", 00:35:32 | as above |
-
-**Three honest weaknesses**, stated here rather than left to be found:
-
-1. **`A3` — that the wrong-not-stale class is material — rests on a single reported example.** Everything Phase 2 is for depends on it, and Phase 0's sample is what tests it. It is the most likely claim in this plan to be wrong.
-2. **No claim about Ask Commerce has been verified by using it.** All of it is read from configuration and documentation. The behavioural test is designed and blocked on the spend cap.
-3. **The Drive figure is a floor and mixes units with the Confluence counts** — folders against pages. Treated as an order of magnitude, never as a multiple. See the note in §3.1.
+> **Subject: Two requests for Ask Commerce — Drive contents, and an authoritative source for solution knowledge**
+>
+> Hi — I lead the SE/SA function and we have been looking at how our team finds prior solution knowledge. We started out planning to build a question surface, then found that Ask Commerce already does almost everything we had specified. Rather than build alongside it, we would like to ask for two changes.
+>
+> **First, Drive contents.** Our tech scopes and SA project folders live in Google Drive, and Ask Commerce can see those files but not read them. That is the single largest and most uniform body of solution knowledge we have — one folder per client opportunity, with the tech scope built from a shared template, and at least 692 opportunity folders for 2026 alone. Without it, the corpus that matters most to our team is invisible to the tool everyone uses.
+>
+> **Second, an authoritative source for solution knowledge.** We understand the routing table designates sources of truth for tool approval, HR, equity and deployment, and that team and project spaces are demoted by default. That rule is doing its job — but it means the 3,173 pages across our SE, SA, TAM and IPM spaces can be searched and never treated as settled. We would like to propose a small, vettable space as a first authoritative entry rather than asking you to bless the whole estate. The Solution Architecture Knowledge Base is 66 pages, small enough that we can review all of it and stand behind what it says.
+>
+> **One question, and it is genuinely a question rather than a preamble to another ask.** Your instructions carry a maintained list of authoritative page IDs with a note that it needs updating whenever a page moves. What does that maintenance actually cost you? If designating a new source is expensive to keep true, we would rather know before proposing one — and it bears directly on a documentation-practice problem we are trying to fix on our side.
+>
+> Happy to bring the corpus measurements behind any of this. Thank you for building the thing — it changed our plan considerably, and for the better.
 
 ---
 
-<sub>**Traceability** — Problem framing and claim handles `P1`–`P8`, `BD-1`–`BD-4`: `research/problem-space/problem-statement.md`. Existing surface and its gaps `AC-1`–`AC-4`: `research/prior-art/ask-commerce.md`. Corpus measurements `C-1`–`C-5`: `research/current-state/confluence-corpus-census.md`. Approval route and data classification `G1`–`G8`: `research/current-state/ai-governance-constraints.md`. Census method: `research/pilot/phase-0-census-design.md`. Sponsor memo: `docs/decision-memo.md`. Decision D1 is the deliberate reopening of read-only that `decisions/0001-configure-first-pilot-as-prototype.md` requires for any write system. Jobs served: `se/JOB-1`, `sa/JOB-1` (Phases 0–1), `delivery-ipm/JOB-1` (Phase 2), `sponsor/JOB-1`–`JOB-2`, per `research/personas-and-jtbd.md`.</sub>
+<sub>**Sourcing.** Every claim has one owning document, listed in Annex A; this plan cites and links rather than restating, because duplicated claims rot at different rates. Problem framing and the `P1`–`P8` claims: `research/problem-space/problem-statement.md`, which argues them. Census method: `research/pilot/phase-0-census-design.md`. Sponsor memo: `docs/decision-memo.md`. The write decision is the deliberate reopening of read-only that `decisions/0001-configure-first-pilot-as-prototype.md` requires.</sub>

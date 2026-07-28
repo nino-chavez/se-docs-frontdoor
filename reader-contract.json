@@ -69,7 +69,8 @@
         "Jira",
         "Slack"
       ],
-      "denyTerms": []
+      "denyTerms": [],
+      "maxWordsPerText": 115
     },
     {
       "name": "initiative portal",
