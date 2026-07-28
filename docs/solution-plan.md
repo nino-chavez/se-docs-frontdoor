@@ -123,7 +123,7 @@ Every load-bearing claim, with how it was produced. Grades, because these are no
 | 3,173 pages; per-space counts; 26% / 59% recency | Measured | `research/current-state/confluence-corpus-census.md` — literal queries in its method block |
 | TAM 57% vs SA 19%, IPM 21% | Measured | as above |
 | ≥ 692 opportunity folders in Drive, 2026 | Floor | as above, `C-5`. Scrolled a file listing, covers A–W, Drive's API unreachable from a browser session |
-| Cannot read Drive | Read | `research/prior-art/ask-commerce.md` `AC-1` |
+| Drive is not connected, so its contents are unreadable | Read | `research/prior-art/ask-commerce.md` `AC-1`. A configuration state, not a platform limit: Anthropic's enterprise-search documentation lists Drive among supported sources and requires a Documents connector at setup. Resolved 2026-07-28 |
 | Connector list is Confluence, Jira, Slack | **Read — as of 2026-07-27, unverified live** | Its configuration and AI Ops documentation. Its own docs say the set may grow and tell you to ask it directly; the spend cap prevented that. I have described a document, not observed a running system |
 | Demotes SE/TAM/IPM; no authoritative source for solution knowledge | Read | `ask-commerce.md` `AC-2` |
 | Six of seven principles implemented | **Assessed** | §1 of this document — dispute a row and the count changes |
@@ -145,6 +145,8 @@ Ready to send. Andrew, this reads better from you than from me.
 > Hi — I lead the SE/SA function and we have been looking at how our team finds prior solution knowledge. We started out planning to build a question surface, then found that Ask Commerce already does almost everything we had specified. Rather than build alongside it, we would like to ask for two changes.
 >
 > **First, Drive contents.** Our tech scopes and SA project folders live in Google Drive, and Ask Commerce can see those files but not read them. That is the single largest and most uniform body of solution knowledge we have — one folder per client opportunity, with the tech scope built from a shared template, and at least 692 opportunity folders for 2026 alone. Without it, the corpus that matters most to our team is invisible to the tool everyone uses.
+>
+> We think this is a smaller ask than it sounds. Anthropic's documentation for the enterprise-search surface lists Drive among the sources it searches, and the Workspace connector reads file contents rather than just filenames — so this looks like completing a setup rather than obtaining a capability. The one thing we could not confirm from the docs is whether Shared Drives behave the same as personal Drive, and nearly all of ours are Shared. If you already know the answer, that alone would help.
 >
 > **Second, an authoritative source for solution knowledge.** We understand the routing table designates sources of truth for tool approval, HR, equity and deployment, and that team and project spaces are demoted by default. That rule is doing its job — but it means the 3,173 pages across our SE, SA, TAM and IPM spaces can be searched and never treated as settled. We would like to propose a small, vettable space as a first authoritative entry rather than asking you to bless the whole estate. The Solution Architecture Knowledge Base is 66 pages, small enough that we can review all of it and stand behind what it says.
 >

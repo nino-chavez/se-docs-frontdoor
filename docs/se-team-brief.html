@@ -266,7 +266,10 @@
       <strong>Verified the hard way #1 — NotebookLM is not a queryable source.</strong> Google publishes no API for asking a notebook questions (the Enterprise API manages notebooks; it cannot query them), and notebook sources are internal copies, invisible to Drive search unless they were imported from Drive. Norm, not code: originals live in Drive; notebooks import from Drive.
     </div>
     <div class="flag">
-      <strong>Verified the hard way #2 — a known Shared-Drive blind spot.</strong> An open Anthropic bug shows one variant of the Claude Drive connector silently sees only My Drive, not Shared Drives — empty results, no error. Whether our Enterprise connector is affected is undocumented, and most SE docs live in Shared Drives. This is pilot test #1; the custom-bot fallback fixes it with three API parameters.
+      <strong>Verified the hard way #2 &mdash; Drive is unread, and the reason is configuration.</strong> <em>Superseded 2026-07-28.</em> This flag previously blamed an open Anthropic Shared&nbsp;Drive bug and prescribed a custom-bot fallback. Both were wrong: the bug is on a different connector surface, a caveat <code>research/research-reference-grade.md</code> had already graded <strong>warn</strong> and this brief kept asserting anyway.
+    </div>
+    <div class="flag">
+      <strong>What replaces it.</strong> Anthropic&rsquo;s enterprise-search docs list Drive among supported sources, so the gap in Ask Commerce is an unfinished setup, not a platform limit &mdash; no custom build is warranted. Shared&nbsp;Drives specifically stay unconfirmed; the docs are silent, which is not the same as negative. Owner: <code>research/prior-art/ask-commerce.md</code> <code>AC-1</code>.
     </div>
 
     <h3 style="margin-top:2rem;">Source coverage map</h3>
@@ -299,7 +302,7 @@
       <table>
         <thead><tr><th>Trigger</th><th>What it means</th><th>The build fix</th></tr></thead>
         <tbody>
-          <tr><td>Shared-Drive blindness</td><td>Enterprise connector can&rsquo;t see Shared Drives</td><td>Custom Drive search tool — three API parameters</td></tr>
+          <tr><td>Drive unreadable <em>after</em> AI Ops connects it</td><td>Setup completed and Shared Drives still return nothing</td><td>Custom Drive search tool &mdash; but only then. Untriggered as of 2026-07-28: the setup has not been requested, so the fallback has nothing to fall back from</td></tr>
           <tr><td>Label inadequacy</td><td>Prompt-level authority tiers / conflict flags prove too lossy</td><td>Bot formats answers deterministically</td></tr>
           <tr><td>Scoping gaps</td><td>Tag can&rsquo;t restrict Slack search to named channels, or CMS sites matter</td><td>Custom tools with explicit scopes; targeted crawl</td></tr>
           <tr><td>Telemetry ceiling</td><td>Deflection can&rsquo;t be measured by survey + senior self-report</td><td>Bot in the middle logs every question</td></tr>

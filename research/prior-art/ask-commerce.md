@@ -59,6 +59,17 @@ The tech scopes and SA project folders — the corpus the sponsor proposed start
 
 This is `ADR-0001` trigger 1 (Shared-Drive visibility) resurfacing in concrete form. It is no longer a connector-capability unknown to be tested; it is a request to file with AI Operations.
 
+**Amendment, 2026-07-28 — the platform is not the obstacle, and the request is smaller than it looked.** Anthropic's own documentation for the enterprise-search surface this runs on lists Google Drive among the sources it searches, and states that setup *requires* choosing a connector for both Documents and Chat. The Workspace connector article separately confirms Claude extracts text content from Docs, Sheets, Slides, PDFs and MS Office files — contents, not metadata.
+
+So the observation above stands — Drive is not a connected source *in this deployment*, read directly from its configuration — but the inference drawn from it was wrong in the same way `G4` was wrong. Drive being unreadable here is a **configuration state, not a platform limit.** The request to AI Operations is to finish a documented setup, not to obtain a new capability, and no custom build sits behind it.
+
+Two things the vendor docs do *not* settle:
+
+- **Shared Drives specifically.** The enterprise-search article does not distinguish Shared Drives from My Drive. Silence, not confirmation.
+- **A separate limit that reads like this one and is not.** The Workspace connector article states the Drive connector "is only available when adding to Files in private projects" and "will be disabled for shared projects." That governs adding Drive files to a Project's **Files** panel — a different mechanism from the enterprise-search connector. Ask Commerce is a shared Project, so anyone reading that line while looking at this deployment would conclude Drive can never work here. It is the likeliest origin of the belief, and it is about the wrong mechanism.
+
+*Sources: `support.claude.com/en/articles/12489464-use-enterprise-search` and `.../10166901-use-google-workspace-connectors`, both resolved 2026-07-28.*
+
 ### `AC-2` — Solution knowledge has no authoritative source, and its spaces are structurally demoted
 
 The sharper gap, and the one that was invisible until the instructions were read.
