@@ -52,6 +52,8 @@ The strongest evidence is not a number. Ask Commerce's own configuration carries
 
 Two of the three are requests to a team I have no authority over, which is the part of this that needs you rather than me. AI Operations would need to connect Drive contents to Ask Commerce, and to designate an authoritative source for solution knowledge. The first is a connector change. The second is harder, because every current entry on that list is owned by a governance or platform function and domain knowledge would be a new category — which is why I would open with a small, vettable space rather than asking them to bless the estate. Annex B is the request, written and ready to send.
 
+Those two requests are not independent, and it took me too long to see it. Records produced by capture would land in Confluence, which Ask Commerce reads — but they would land in a *team* space, which its rules structurally demote. Without the authoritative-source designation, capture manufactures records the search tool is instructed not to believe. **The Drive request unblocks the corpus we already have; the authority request unblocks the corpus we would create.**
+
 The third is yours alone. Recording knowledge going forward is a write system, and everything scoped so far has been read-only — the smaller security and privacy surface you identified as the whole two-month floor. That decision determines whether the remaining work is a project or a support ticket, and I would rather have it wrong-and-early than right-and-late.
 
 Governance is not the obstacle I expected it to be. Claude is already deployed to every employee with no approval gate, and the route for pointing an approved tool at new data is an AI Use Case Review rather than a vendor intake. What that review costs in time is the one number I still owe you.
@@ -65,6 +67,8 @@ Governance is not the obstacle I expected it to be. Claude is already deployed t
 **Send the two requests now, in parallel.** They do not depend on the census finishing, and the answer to the Drive request determines whether the rest of this plan survives.
 
 **Build capture only after one record exists by hand.** Before any pipeline, I would take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available.
+
+**Write where the reader can read.** This is a constraint on the capture design rather than a task: the target is set by the retrieval surface's reach, not by what is convenient to build. Records that land anywhere Ask Commerce cannot see would recreate exactly the problem we are trying to solve, for a corpus of our own making.
 
 **Sequence discovery support last.** Generating the hard questions for a merchant depends on negative knowledge being present and current, which is the decay problem the earlier phases exist to address. The tech scope you demonstrated already does a version of it and is the right starting point.
 
@@ -89,6 +93,10 @@ Two assumptions carry it, and both are weaker than the rest of this document.
 **That the wrong-not-stale problem is big enough to justify the work.** This rests on a single example — guest tokenization, from Mark. Everything in §4 depends on it and nothing has measured it. If the census sample comes back showing a low rate, the honest conclusion is that better search over a mostly-accurate corpus was enough, and this project ends with the two requests. That is the outcome I consider most likely to prove me wrong.
 
 **That an SA would actually want a derived record.** Untested, and the one-record test in §4 is designed to find out cheaply before anything is built.
+
+**That the questions SEs ask stay document-shaped.** Ask Commerce answers *find me the document* well, which is the right shape for a corpus of prose. Capture would change the corpus into uniform records, and uniform records invite aggregate questions — how many engagements hit this limitation, which workarounds recur across clients — where a federated search returns three documents and the asker wanted a distribution.
+
+Negative knowledge has the same problem in a sharper form. Knowing what the platform cannot do, and whether that limitation still holds, looks more like a maintained register than a search index — and `P6` says that is the category which decays fastest and matters most. If Phase 0's demand work shows those questions are common, *don't rebuild retrieval* narrows to *don't rebuild search*, and a small query surface over the structured records earns its place. That is a far smaller build than the one we started with, and it is not decidable until we know what people actually ask.
 
 Two more that would change the shape rather than the direction: if AI Operations refuses the Drive connection, the plan needs rethinking rather than patching; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
 
@@ -115,7 +123,8 @@ Every load-bearing claim, with how it was produced. Grades, because these are no
 | 3,173 pages; per-space counts; 26% / 59% recency | Measured | `research/current-state/confluence-corpus-census.md` — literal queries in its method block |
 | TAM 57% vs SA 19%, IPM 21% | Measured | as above |
 | ≥ 692 opportunity folders in Drive, 2026 | Floor | as above, `C-5`. Scrolled a file listing, covers A–W, Drive's API unreachable from a browser session |
-| Connects Confluence/Jira/Slack; cannot read Drive | Read | `research/prior-art/ask-commerce.md` `AC-1` |
+| Cannot read Drive | Read | `research/prior-art/ask-commerce.md` `AC-1` |
+| Connector list is Confluence, Jira, Slack | **Read — as of 2026-07-27, unverified live** | Its configuration and AI Ops documentation. Its own docs say the set may grow and tell you to ask it directly; the spend cap prevented that. I have described a document, not observed a running system |
 | Demotes SE/TAM/IPM; no authoritative source for solution knowledge | Read | `ask-commerce.md` `AC-2` |
 | Six of seven principles implemented | **Assessed** | §1 of this document — dispute a row and the count changes |
 | Contradictions hand-patched into its configuration | Read | `ask-commerce.md` `AC-4` |
