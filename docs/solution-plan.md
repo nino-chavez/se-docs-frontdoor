@@ -74,6 +74,10 @@ That join is also the one capability the market scan found nobody shipping, so t
 
 **Send the two requests now, in parallel.** Neither depends on the census finishing. The Drive one should be cheap to grant, since it asks for a documented setup rather than a new capability; the authority request is the one that needs a sponsor behind it.
 
+One consequence of that request cuts against me, so I would rather name it than have it found. Connecting Drive makes at least 692 unaudited opportunity folders reachable through a tool people trust, with citations attached. Better retrieval over a defective corpus surfaces the defects faster — if the wrong-not-stale rate in Drive is high, the request I am pressing for spreads them rather than fixes them.
+
+Two things stop that being an argument against sending it. Ask Commerce demotes team-space content by default, so nothing arriving from Drive is treated as settled. And the census is the thing that measures the rate. But it does mean the two should run together rather than in sequence: if the request lands first and the rate turns out to be bad, we will have made the corpus more reachable without making it more correct.
+
 **Build capture only after one record exists by hand.** Before any pipeline, I would take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available.
 
 **Write where the reader can read.** This is a constraint on the capture design rather than a task: the target is set by the retrieval surface's reach, not by what is convenient to build. Records that land anywhere Ask Commerce cannot see would recreate exactly the problem we are trying to solve, for a corpus of our own making.
