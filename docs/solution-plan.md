@@ -38,6 +38,8 @@ The evidence for that claim is a principle-by-principle comparison, and it is wo
 
 Six of seven, and the seventh was never something a search tool could satisfy — it is a measurement question. The honest reading is that every principle a question surface *could* implement, is implemented. Building our own would produce a smaller, later, worse-supported version of something the whole company already has, which is why the first thing I am recommending is that we stop.
 
+That count is my assessment and the weakest-graded claim in this document, so it matters that it does not rest on one vendor. Google's competing enterprise product covers the same source set with the same permission-aware, cited retrieval. These are table stakes in a mature category, not a specification we wrote first.
+
 ## 2. The corpus is the problem, and the unsolved part is invalidation
 
 Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce does not read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. That one is a setup that was never finished rather than something the platform cannot do, which is why it belongs in a request and not in a build. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
@@ -141,6 +143,8 @@ Every load-bearing claim, with how it was produced. Grades, because these are no
 | Claude org-wide, $1,000/person/month | Read | `research/current-state/ai-governance-constraints.md` `G4` |
 | The cap binds | Observed | An attempt to test Ask Commerce on 2026-07-27 was refused for reaching the limit |
 | Route is an AI Use Case Review, not a vendor intake | Read | `ai-governance-constraints.md` `G2` |
+| Gemini Enterprise documents Shared Drive scoping | Read | `research/competitive/buy-landscape.md` — vendor Drive data-store doc, resolved 2026-07-29. `SharedDriveIds` under `admin_filter` / `admin_exclusion_filter` |
+| Adopting it would be a Vendor Intake, not a Use Case Review | Read | as above, against `G2`'s intake list. Its per-seat pricing is third-party-sourced only and graded **warn** there — no figure should be quoted from this plan |
 | The four structural holes; the two-month floor | Reported | `research/sources/knowledge-database-kickoff-2026-07-27.md`, attributed per speaker |
 | Guest tokenization as the wrong-not-stale example | Reported | Mark, 00:18:13. **One example. §6 rests on it** |
 
@@ -157,6 +161,8 @@ Ready to send. Andrew, this reads better from you than from me.
 > **First, Drive contents.** Our tech scopes and SA project folders live in Google Drive, and Ask Commerce can see those files but not read them. That is the single largest and most uniform body of solution knowledge we have — one folder per client opportunity, with the tech scope built from a shared template, and at least 692 opportunity folders for 2026 alone. Without it, the corpus that matters most to our team is invisible to the tool everyone uses.
 >
 > We think this is a smaller ask than it sounds. Anthropic's documentation for the enterprise-search surface lists Drive among the sources it searches, and the Workspace connector reads file contents rather than just filenames — so this looks like completing a setup rather than obtaining a capability. The one thing we could not confirm from the docs is whether Shared Drives behave the same as personal Drive, and nearly all of ours are Shared. If you already know the answer, that alone would help.
+>
+> And if Shared Drives are the sticking point, one thing from the wider category might be useful. Google's Gemini Enterprise exposes shared-drive scoping as an explicit include-or-exclude filter over named drive IDs, so an administrator can point it at a single shared drive without opening the estate. We are not suggesting we go and buy that — we mention it because that shape, scope to one named drive rather than all-or-nothing, is probably what makes this easy to say yes to. It is the shape we would ask for.
 >
 > **Second, an authoritative source for solution knowledge.** We understand the routing table designates sources of truth for tool approval, HR, equity and deployment, and that team and project spaces are demoted by default. That rule is doing its job — but it means the 3,173 pages across our SE, SA, TAM and IPM spaces can be searched and never treated as settled. We would like to propose a small, vettable space as a first authoritative entry rather than asking you to bless the whole estate. The Solution Architecture Knowledge Base is 66 pages, small enough that we can review all of it and stand behind what it says.
 >
