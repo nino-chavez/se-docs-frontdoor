@@ -135,6 +135,12 @@ Approval burden does not discriminate between the two options, so it cannot deci
 
 Recorded so a future reader does not revive the recommendation without the premise.
 
+> **Amendment, 2026-07-29 — the approved entry now names a product that no longer carries that name.** Google renamed NotebookLM to **Gemini Notebook** on 2026-07-16, describing it as "the same standalone product." The approval itself is unaffected in substance and `G5`'s conclusion above is unchanged.
+>
+> The register entry is now a small, live specimen of `P4`. Anyone checking whether "Gemini Notebook" is approved will not find it by name on the approved list; anyone reading the approved list will find a tool whose name no longer resolves. Neither reader can tell from the artifact which situation they are in. **A register that was eighteen months past review has now been overtaken by an event it cannot show.** No action needed for this initiative — recorded because the plan argues that recency is correctness, and this is that argument happening to the document that governs it, for the second time.
+>
+> Separately: the rename should not be confused with **Gemini Enterprise**, a distinct Google Cloud product that *is* a genuine alternative to `Ask Commerce`. It is assessed and rejected on record in `research/competitive/buy-landscape.md`, primarily because it is a paid subscription and therefore a `G2` **Vendor Intake** rather than an AI Use Case Review.
+
 ---
 
 **Original finding, retained for the factual record:**

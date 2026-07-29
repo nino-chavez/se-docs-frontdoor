@@ -20,6 +20,46 @@ The pilot's real competition is not a product — it is the **shoulder-tap to a 
 - **Indexed RAG** — ingest + embed into a vector store with ACL sync. Wins on latency and cross-source ranking at large corpus scale; loses on the ACL-sync-drift leak class, which OWASP's 2025 LLM Top 10 ranks #2 with documented incidents.
 - **Fit for this initiative**: moderate source count, all with real search APIs, uniform ACLs, freshness-sensitive → federated, with indexing held as a scoped contingency for weak-search sources only.
 
+## Gemini Enterprise — added 2026-07-29, and it is the strongest alternative on the shelf
+
+Raised because commerce.com is a Google Workspace shop and Google renamed NotebookLM to **Gemini Notebook** on 2026-07-16. The rename turns out to be the least interesting part; the product next to it is not.
+
+**Take the rename off the table first.** Google's own announcement says "We're renaming NotebookLM to Gemini Notebook. It's the same standalone product, now doing more across the Google ecosystem." What was added is native code execution against notebook sources and sync with the Gemini app. `G5` in `ai-governance-constraints.md` did not turn on the name — it retired the NotebookLM *recommendation* because approval burden stopped discriminating once Claude turned out to be org-wide, and left fitness unassessed. A rename touches neither. **`G5` stands.**
+
+**Gemini Enterprise is a different product and a real competitor to `Ask Commerce`.** A Google Cloud enterprise-search-and-agent platform with permission-aware federated and indexed retrieval over Google and third-party sources. Its connector set overlaps ours almost exactly: Google Drive, Confluence Cloud, Jira, Slack, SharePoint, OneDrive, ServiceNow, Salesforce, Box, Asana, Teams, HubSpot, Zendesk.
+
+**The uncomfortable part, stated plainly: it documents the one thing `AC-1` says we cannot do.** The Google Drive data store supports three scope modes — all drives in the workspace, a folder filter, or **a shared-drive filter**, configured with `SharedDriveIds` under `admin_filter` or `admin_exclusion_filter`. Shared drives are first-class configuration, not an open question. That is precisely the corpus the `Opportunities` shared drive holds and precisely the gap the Annex B request exists to close.
+
+Two architectural details that cut in our favour and were not obvious:
+
+- **The Drive connector federates.** "Data is not copied into the Gemini Enterprise index." Documents must be "accessible, either by placing them in a shared drive that is owned by the domain or by assigning the ownership to a user in the domain." Federation is the pattern this initiative already chose, so on Drive there is no new leak class.
+- **The third-party connectors index, and identity sync is not continuous.** ACL data refreshes on schedules ranging from every 30 minutes to every seven days. **That is the ACL-sync-drift leak class this document already retired indexed RAG over** (OWASP 2025 LLM Top 10 #2), with a documented staleness window of up to a week. It applies to Confluence, Jira and Slack — which is to say, to the entire corpus the census measured.
+
+Confluence Cloud specifics, since it is our largest source: it indexes spaces, pages and user information plus attachments and comments, ingests at 20 QPS, caps files at 200 MB, **does not support incremental sync for the spaces entity**, and **excludes archived pages from a full sync**. It also cannot authenticate with a Google Cloud service account.
+
+### Why it still does not displace Ask Commerce
+
+| Argument | Weight |
+|---|---|
+| **It is a separate paid subscription, and that changes the approval route** | Decisive. `G2` names **Vendor Intake Form — paid subscription or purchase** as its own path, distinct from the AI Use Case Review this initiative takes as an existing-approved-tool/new-data case. Adopting it converts the cheap route into the expensive one — the exact trade `decisions/0001` was built to avoid |
+| Being a Workspace shop does not entitle us to it | Corrects the premise. Workspace Business/Enterprise bundles the Gemini app and Notebook access; Gemini Enterprise is a distinct Google Cloud product, priced, sold and deployed separately, per-seat with consumption billing on top |
+| Duplicate AI spend beside Claude Enterprise | Same disqualifier that retired Glean. Claude is already deployed org-wide with no gate and sits in the GRC AI Registry at Confidential classification (`G4`) |
+| Two ask-your-org surfaces is a new `P4` instance | Answers would diverge between them with no adjudication layer, at the tool tier rather than the document tier. This initiative would be manufacturing the defect it exists to fix |
+| It does not touch invalidation | §2 of the plan now holds that invalidation is the only unsolved capability. Gemini Enterprise is a retrieval product; it changes nothing about what gets written down or when a record becomes wrong |
+
+### What it is actually good for
+
+**Leverage on the Drive request, and a named fallback.** Shared-drive scoping being routine configuration in a competing product is evidence the ask in Annex B is ordinary rather than exotic. And `solution-plan.md` §6's weakest branch — *what if AI Operations declines the Drive connection* — now resolves to a specific, costed, already-Workspace-native alternative instead of "the plan needs rethinking." That is a better answer than the one that branch had yesterday.
+
+**Revival condition:** AI Operations declines the Drive connection or cannot make Shared Drives work, **and** the census shows the Drive corpus carries the majority of decision-grade solution knowledge. Both, not either. A Vendor Intake is only worth opening for the corpus that turns out to matter most.
+
+| Reference | Track | Evidence | Used for | Gate-status |
+|---|---|---|---|---|
+| Gemini Enterprise connector, Drive data-store and editions docs (`docs.cloud.google.com/gemini/enterprise/docs/...`) | Quality | Vendor-authored primary; resolved 2026-07-29 | Shared-drive support; federation vs indexing; identity-sync intervals; Confluence limits | pass |
+| `blog.google` NotebookLM → Gemini Notebook announcement (2026-07-16) | Quality | Vendor-authored primary | The rename is a rename; `G5` unaffected | pass |
+| Gemini Enterprise pricing at roughly $21–60/user/month | Convention | **Third-party aggregators only.** Google's own pricing page could not be resolved — it truncated on fetch | Order-of-magnitude context for the Vendor Intake argument | **warn** — do not quote a figure to a sponsor. The load-bearing claim is *separate paid subscription*, which the vendor editions doc supports on its own |
+| Edition → connector mapping | — | Vendor doc returned an internally inconsistent mapping (Business appears on both sides of the full-vs-select connector split) | Nothing | **unresolved** — if this is ever revived, confirm which edition carries Confluence and Slack before costing anything |
+
 ## The capture shelf — added 2026-07-28, and it should have been here from the start
 
 Everything above scans the **retrieval** shelf. The capture shelf was never scanned, which left `solution-plan.md` §2 asserting "the capture problem is not solved" against an unexamined market. Partly wrong, and the correction is useful because it narrows what is actually differentiated.

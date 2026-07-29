@@ -86,6 +86,7 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 | --- | --- | --- |
 | Building a question surface | It exists, org-wide, maintained by another team | AI Ops deprecating it |
 | Building connectors ourselves | A request to AI Ops, not an engineering task. Our own would trigger an AppSec review and duplicate their roadmap | A refusal — which is a stop-and-replan signal, not a build trigger |
+| Buying a second question surface | Gemini Enterprise is the strongest candidate and it documents Shared Drive support we lack. But it is a paid subscription, so it is a Vendor Intake rather than the AI Use Case Review this plan depends on — the expensive route we are deliberately not taking — and two ask-your-org surfaces would diverge with nothing to adjudicate them | AI Ops declining Drive **and** the census showing Drive holds the majority of decision-grade knowledge. Both, not either |
 | Building capture workflow from scratch | Draft-from-artifact, route to an owner, expire on a clock all ship commercially. But §4's write-where-the-reader-can-read constraint rules those products out as destinations, because Ask Commerce cannot see them. Take the pattern, not the tool | A capture product that writes natively into Confluence or Drive |
 | Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
 | Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
@@ -107,7 +108,7 @@ That is a cleaner test than it was a week ago: invalidation is the only capabili
 
 Negative knowledge has the same problem in a sharper form. Knowing what the platform cannot do, and whether that limitation still holds, looks more like a maintained register than a search index — and `P6` says that is the category which decays fastest and matters most. If Phase 0's demand work shows those questions are common, *don't rebuild retrieval* narrows to *don't rebuild search*, and a small query surface over the structured records earns its place. That is a far smaller build than the one we started with, and it is not decidable until we know what people actually ask.
 
-Two more that would change the shape rather than the direction: if AI Operations declines the Drive connection — less likely now it reads as a documented setup, but it would leave the largest corpus invisible whatever else we do; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
+Two more that would change the shape rather than the direction: if AI Operations declines the Drive connection — less likely now it reads as a documented setup, and it no longer leaves us without a move, because Gemini Enterprise documents shared-drive scoping as ordinary configuration and would become worth a Vendor Intake if the census showed Drive holds the knowledge that matters; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
 
 I would rather these be written down and wrong than unwritten and right.
 
