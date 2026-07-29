@@ -38,7 +38,15 @@ The evidence for that claim is a principle-by-principle comparison, and it is wo
 
 Six of seven, and the seventh was never something a search tool could satisfy — it is a measurement question. The honest reading is that every principle a question surface *could* implement, is implemented. Building our own would produce a smaller, later, worse-supported version of something the whole company already has, which is why the first thing I am recommending is that we stop.
 
-That count is my assessment and the weakest-graded claim in this document, so it matters that it does not rest on one vendor. Google's competing enterprise product covers the same source set with the same permission-aware, cited retrieval. These are table stakes in a mature category, not a specification we wrote first.
+That count is my assessment and the weakest-graded claim in this document, so it matters that it does not rest on one vendor.
+
+**We are a Google Workspace shop, so I assessed the Google option rather than assume it away.** Gemini Enterprise covers the same source set with the same permission-aware, cited retrieval, and it does one thing Ask Commerce currently does not: its Drive connector treats shared drives as first-class configuration, scoped by named drive ID. That is our single biggest gap, documented as ordinary setup in a competing product.
+
+**I am still not recommending it, for one reason that outweighs the rest.** It is a paid subscription, which routes it to a Vendor Intake rather than the AI Use Case Review this plan depends on — converting the cheap approval path into the expensive one, which is the trade this whole approach exists to avoid. Being a Workspace shop does not change that; Gemini Enterprise is a separate Google Cloud product, sold and licensed independently of Workspace. Add duplicate spend beside Claude Enterprise, and two ask-your-org surfaces that would disagree with nothing to adjudicate them, and it loses on our constraints rather than on its merits.
+
+It stays on the shelf with a named revival condition in §5, and it is why §6's Drive-refusal branch now has an answer. `research/competitive/buy-landscape.md` owns the full assessment, including where the evidence is thin — I could not resolve Google's own pricing page, so no cost figure in this plan is one I would defend.
+
+The wider point stands: two mature vendors ship the same principle set. These are table stakes in a mature category, not a specification we wrote first.
 
 ## 2. The corpus is the problem, and the unsolved part is invalidation
 
