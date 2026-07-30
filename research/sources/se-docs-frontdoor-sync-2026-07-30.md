@@ -80,6 +80,19 @@ Andrew, at 00:24:07: management should be able to see what is planned, in a form
 
 **This is not a request for a summary.** The solution plan is written for a sponsor who will interrogate the evidence; it grades its own claims and shows its corrections. That is correct for its reader and wrong for a CPO scanning for whether this is worth funding. Two derived surfaces are the response, at different altitudes.
 
+## `S-8b` — Requirements were produced in this session and I did not capture them
+
+The first pass over this session recorded decisions and action items and treated everything else as discussion. That was wrong. The room also produced **requirements**, several of which never reached any artifact:
+
+- The **caution-wrapper** ask (Mark, 00:12:24), which he raised twice and re-framed himself when it was misread as an access-control request.
+- The **explicit rejection** of per-document classification and ACLs (Nino, 00:12:24), which is a scope boundary worth having on record.
+- **Training and messaging as a legitimate way to satisfy a requirement** (Nino, 00:14:38), which is the release valve on the point above.
+- Andrew's request that the plan carry **a written placeholder** for revisiting broader access (00:15:46) — a specific ask, not a vague "later."
+- Andrew's **speed-over-generality trade** (00:16:59): serve SE/SA fast, and a rebuild to broaden later is acceptable.
+- Andrew's request to **name both SE and SA** in every artifact and invitation (00:10:13).
+
+**The consequence was concrete.** `S-7` item 2 commits Alex Vela and me to evaluating platforms, and without these written down that evaluation had no acceptance criteria. `research/requirements/front-door-requirements.md` now owns them as `REQ-1`–`REQ-12` and is the checklist for that test.
+
 ## `S-9` — Adjacent, and explicitly out of scope
 
 Public-facing developer documentation. Andrew's point: the dev docs describe the API but not how to solve real problems, and the pricing question is his example — real-time to ERP versus server-side, with nothing that tells anyone how to implement it. Zac added the idea of a register of pre-vetted architectural patterns.
@@ -98,3 +111,4 @@ Public-facing developer documentation. Andrew's point: the dev docs describe the
 | Validation conditions are assigned to Nino + Alex, not blocked | §1, §7 |
 | Figma enters the source list; "M.com" unresolved | `source-and-org-landscape.md` |
 | Scope-as-analysis ratified | §3 — already correct, no edit |
+| Requirements extracted as `REQ-1`–`REQ-12` | `research/requirements/front-door-requirements.md`; §4 placeholder for the deferred-access note |

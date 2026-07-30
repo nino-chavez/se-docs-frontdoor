@@ -1,6 +1,6 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 3
+**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 4
 **Status**: In progress. The validation that gates everything else is now assigned rather than blocked — §1, and the action table in §7.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
@@ -13,6 +13,8 @@
 > The audience test in §4 is his. §7's ask changed as a result.
 >
 > **Revision 3** folds in the 30 July sync. Four things moved: the tool is confirmed as an **answer engine, not document retrieval**; the audience is **SE, SA and TAM**, with TPM deferred; **both validation conditions are now assigned** to me and Alex Vela of AI Operations rather than blocked; and Commerce's move to full Google Enterprise accounts means the **licensing premise behind rejecting Gemini Enterprise has to be re-checked**. `research/sources/se-docs-frontdoor-sync-2026-07-30.md` owns the session.
+>
+> **Revision 4** adds the requirements that session produced and my first pass missed — the caution-wrapper ask, the explicit rejection of an access-control layer, the deferred-access placeholder Andrew requested, and the speed-over-generality trade. `research/requirements/front-door-requirements.md` owns them as `REQ-1`–`REQ-12` and is the checklist for the joint platform test.
 >
 > One warning about that session's record. The Gemini-generated notes state in their Decisions block that Phase 1 is "a document retrieval tool rather than an autonomous answer engine." **That is wrong** — the transcript and the notes' own Details section both say the opposite. Anyone working from that block will build the wrong thing. `S-1` documents it.
 
@@ -54,7 +56,9 @@ That count is my assessment and the weakest-graded claim in this document, so it
 
 **We are a Google Workspace shop, so I assessed the Google option rather than assume it away.** Gemini Enterprise covers the same source set with the same permission-aware, cited retrieval, and it does one thing Ask Commerce currently does not: its Drive connector treats shared drives as first-class configuration, scoped by named drive ID. That is our single biggest gap, documented as ordinary setup in a competing product.
 
-**I am still not recommending it, for one reason that outweighs the rest.** It is a paid subscription, which routes it to a Vendor Intake rather than the AI Use Case Review this plan depends on — converting the cheap approval path into the expensive one, which is the trade this whole approach exists to avoid. Being a Workspace shop did not change that; Gemini Enterprise is a separate Google Cloud product, sold and licensed independently of Workspace. **That premise is now under re-check.** Alex Vela reported on 30 July that Commerce moved to full Google Enterprise accounts within the last fortnight, having previously gone through a third-party vendor with partial features. If that changed what we are entitled to, the cost argument weakens and this reopens on evidence rather than on preference — which is exactly what the joint test in §7 is for. Add duplicate spend beside Claude Enterprise, and two ask-your-org surfaces that would disagree with nothing to adjudicate them, and it loses on our constraints rather than on its merits.
+**I am still not recommending it, for one reason that outweighs the rest.** It is a paid subscription, which routes it to a Vendor Intake rather than the AI Use Case Review this plan depends on — converting the cheap approval path into the expensive one, which is the trade this whole approach exists to avoid. Being a Workspace shop did not change that; Gemini Enterprise is a separate Google Cloud product, sold and licensed independently of Workspace.
+
+**That premise is now under re-check.** Alex Vela reported on 30 July that Commerce moved to full Google Enterprise accounts within the last fortnight, having previously gone through a third-party vendor with partial features. If that changed what we are entitled to, the cost argument weakens and this reopens on evidence rather than on preference — which is exactly what the joint test in §7 is for. Add duplicate spend beside Claude Enterprise, and two ask-your-org surfaces that would disagree with nothing to adjudicate them, and it loses on our constraints rather than on its merits.
 
 It stays on the shelf with a named revival condition in §5, and it is why §6's Drive-refusal branch now has an answer. `research/competitive/buy-landscape.md` owns the full assessment, including where the evidence is thin — I could not resolve Google's own pricing page, so no cost figure in this plan is one I would defend.
 
@@ -126,6 +130,10 @@ Two things stop that being an argument against sending it. Ask Commerce demotes 
 
 **Define the audience by who can evaluate an answer, not who would benefit from it.** Andrew's test, sharpened by what the room actually worried about. The concern was not comprehension in the abstract; it was someone forwarding an unreviewed answer to a client. Phase 1 access is therefore **SE, SA and TAM**, with TPM deferred on Mark's caution that the results carry nuance. Some answers will be wrong — that is assumed, not hoped against, and it is the whole reason the boundary exists. The pilot has to watch not just whether answers are right, but whether they are safely usable by whoever asked.
 
+**Revisit wider access in a later phase — Andrew asked for this note specifically, so here it is.** Opening this beyond SE, SA and TAM is wanted, not refused. What has to be worked out first is which material a wider audience should see, which is a different question from whether they would find it useful. Mark's version of the safeguard is the one to design against: not access control, but a caution attached to an answer that says *be careful, this may be more technical than it looks*. Whether any candidate platform can do that is now a line item in the joint test.
+
+**Serve SE and SA fast; a rebuild to widen later is an acceptable price.** Andrew's trade, and it is worth recording because it cuts against the instinct to generalise: if this can be done in a fraction of the time by serving the two groups it is for, that is the goal, and he pre-authorised going bespoke later if broadening demands it. Note the distinction from the constraint above — **sources moving must not force a rebuild; the audience widening is allowed to.**
+
 **Design for the sources moving.** If the process owners change where documents live — which is the whole point of reporting to them — then a solution that needs rebuilding when they do was the wrong solution. In practice: configuration over code, named sources over hardcoded ones, and no assumption about folder layout. This is Andrew's requirement and it is also the strongest technical argument for the configured path over a build.
 
 **Sequence discovery support last.** Generating the hard questions for a merchant depends on negative knowledge being present and current, which is the decay problem the earlier phases exist to address. The tech scope you demonstrated already does a version of it and is the right starting point.
@@ -143,6 +151,7 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 | Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
 | Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
 | Adjudicating contradictions automatically | Locked at founding: surface conflicts, do not resolve them | Nothing foreseen. An invariant |
+| Classifying documents and building an access-control layer over them | Ruled out in the 30 July sync. It means marking every source with who may see it and why, then maintaining that — a scope explosion for a Phase 1 whose audience is three groups who can already open everything in it | A materially different audience, not a safeguard requirement. `REQ-4`'s caution wrapper is the cheap way to get most of this |
 | Indexing everything | Coverage follows verified quality | A census showing uniformly high quality, which nobody expects |
 | Writing code before one record exists by hand | The manual test can end the project in a day | That test passing |
 

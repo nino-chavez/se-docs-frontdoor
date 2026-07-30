@@ -12,6 +12,8 @@
     "reader:check": "node tools/lib/encounter-audit.mjs --root=. --strict",
     "manifest:check": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/actor-output.mjs\" actor-output.yml --root .",
     "manifest:gate": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/actor-output.mjs\" actor-output.yml --root . --gate",
-    "derive": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/account-derive.mjs\" --root ."
+    "derive": "BP=\"${BLUEPRINT_HOME:-$HOME/Workspace/dev/tools/blueprint}\"; node \"${BP/#\\~/$HOME}/template/tools/lib/account-derive.mjs\" --root .",
+    "parity:check": "python3 tools/check-parity.py",
+    "memos:build": "python3 tools/build-memos.py"
   }
 }
