@@ -1,7 +1,11 @@
 # Handoff — se-docs-frontdoor
 
-**Last session**: 2026-07-27 (kickoff ingested → problem restated → variant switched to research → Stage 1 + Stage 5 authored)
-**Position**: research variant. **Mechanical** reviewers green (0 blocks); the four agent-run judgment gates were run 2026-07-27 and **three returned BLOCKED**. Stage 5 deliverable drafted, partially remediated, not yet sent.
+**Last session**: 2026-07-30 (Gemini Enterprise assessed → Andrew's written feedback folded in as plan revision 2 → 30 July sync folded in as revision 3 → two derived memos authored)
+**Position**: research variant. **Mechanical** reviewers green (0 blocks). The solution plan is at **revision 3** and is the current centre of gravity — `docs/decision-memo.md` is the older Stage 5 artifact and is superseded in practice by it.
+
+> **Start here, 2026-07-31.** The single most useful thing outstanding is the **joint Nino/Alex Vela test** of what Claude and Google Enterprise can actually do today (`S-7` item 2). It answers *both* validation conditions gating the plan's recommendation, and it re-checks the Gemini Enterprise cost premise. Nothing else on this list unblocks as much.
+
+> **Do not trust the Gemini-generated notes of the 30 July sync.** Their Decisions block says Phase 1 is "a document retrieval tool rather than an autonomous answer engine." That is **backwards** — the transcript and the notes' own Details section both say the opposite. `research/sources/se-docs-frontdoor-sync-2026-07-30.md` `S-1` documents it. Anyone working from that block builds the wrong thing.
 
 > Read `research/problem-space/problem-statement.md` before doing anything else. It supersedes the founding framing and the `pilot_profile` block in `blueprint.yml`. Working from `blueprint.yml` alone will reproduce the old model.
 
@@ -18,13 +22,25 @@
 - **Phase 0 partially ran.** `research/current-state/confluence-corpus-census.md` (`C-1`–`C-4`): 3,173 pages across `IPM`/`SA`/`TAM`/`SE`/`SIPR`, 26% touched in 12 months, 59% untouched for two years. `IPM` at 1,599 pages substantially answers where delivery records project state. The `SE` space is the smallest and stalest — the knowledge lives in other orgs, which is `P8`'s round trip explained structurally. Confluence only; Drive, Gong and Slack uncounted, and **timestamps cannot see the `P4` wrong-not-stale defect.**
 - **Internal AI governance is in the corpus** — `research/current-state/ai-governance-constraints.md`, `G1`–`G8`. **Two findings were corrected the same day and the corrections are the instructive part:** `G4` originally read the software register as restricting Claude to unidentifiable/public data and called it a Stage 2 blocker. Wrong — Claude is deployed to every employee with no approval gate, usage-based at a $1,000/person monthly cap. The register is stale in the authoritative direction. `G5`'s NotebookLM recommendation is void with it. What stands: the corpus is Submit-for-Approval data (`G1`); the route is **Use-Case #2, an AI Use Case Review** (`G2`), duration still unmeasured; PoC rules forbid prototyping over the real corpus (`G3`); per-source constraints (`G6`). The file also records the data-governance decision for internal material: derived constraints travel, source registers do not.
 
-## Done this session (items 1–3 of the previous list)
+## Done 2026-07-30
+
+- **Gemini Enterprise assessed and rejected on record** (`research/competitive/buy-landscape.md`). It documents Shared Drive scoping as first-class config — the one thing `AC-1` says we lack — and it loses on approval route rather than merit. **Its cost premise is now under re-check**: Commerce moved to full Google Enterprise accounts in late July (`S-5`), which may change entitlement. Graded `Reported`, one hedged account, assigned for verification.
+- **The NotebookLM → Gemini Notebook rename changes nothing.** Google's own words: "the same standalone product." `G5` stands. The register entry now names a product that no longer carries that name, which is logged as a live `P4` specimen.
+- **`AC-1` corrected.** Drive is *unconnected*, not unreadable — Anthropic's enterprise-search docs list Drive among supported sources. A configuration state, not a platform limit, so no custom build sits behind it. The custom-bot fallback in `se-team-brief.html` is retired; `research-reference-grade.md` had already graded that transfer `warn` and the brief kept asserting it anyway.
+- **"Capture is unsolved" narrowed to "invalidation is unsolved."** The buy-landscape scan had only ever covered retrieval. Draft-from-artifact, route-to-owner, expire-on-a-clock all ship commercially. Changelog-driven invalidation and negative-knowledge registers do not.
+- **Plan revision 2** — Andrew's written feedback. Recommendation reframed from asserted to conditional; **operational self-sufficiency added as a first-class requirement** (it cuts against the recommended path and the plan now says so); Phase 2 rescoped to evaluate-and-recommend.
+- **Plan revision 3** — the 30 July sync. Answer engine confirmed; audience is SE/SA/**TAM** with TPM deferred; both validation conditions assigned rather than blocked; committed-action table added.
+- **Two derived memos**, against the sync action item and against Andrew's report that the plan reads like it needs an AI PhD: `docs/memo-leadership.md` (730 words, business framing, no funding ask) and `docs/memo-team.md` (1,120 words, per-team asks). Both registered as reader-contract surfaces; **the leadership memo enforces `plainness: lay` with a jargon deny-list**, so the readability bar is mechanical rather than a matter of my judgement. `tools/build-memos.py` generates the HTML so the two cannot drift.
+
+## Done 2026-07-27 (items 1–3 of the older list)
 
 - `pilot_profile` extracted; `walkthrough_citation` now lives in `research/personas-and-jtbd.md`.
 - **Variant switched to `research` by hand, not by the stamper.** `blueprint-init` preserves an existing `blueprint.yml`/`actor-output.yml`/`reader-contract.json`/`package.json`, so re-running it changes nothing — and `copyTree()` writes `research/personas-and-jtbd.md` *unconditionally* with the blank template, so running it for real would have destroyed the Stage 1 artifact. **Do not run the stamper against this initiative.**
 - Stage 1 (`research/personas-and-jtbd.md`) and Stage 5 (`docs/decision-memo.md`) authored. All reviewers green.
 
 ## Next
+
+0. **Run the joint test with Alex Vela (AI Operations).** Highest value outstanding, and it collapses three open items into one session. It answers plan §1 condition one (does Ask Commerce behave as its configuration claims — the empirical probe, item 4 below, which was blocked on the spend cap and now has an AI Ops partner), condition two (can we manage sources and configuration ourselves), and re-checks whether the new Google Enterprise account class changes the Gemini Enterprise cost argument (`S-5`). Until it reports, the plan's recommendation stays explicitly conditional and `solution-plan` stays `draft`.
 
 1. **The memo's attribution defects are closed. Two caveats before sending — read both, they are not the same thing.**
 
@@ -37,8 +53,10 @@
 3. ~~**Design Phase 0 concretely**~~ **DONE, as a draft protocol**: `research/pilot/phase-0-census-design.md`, wired to the `pilot-protocol` output (rescoped — the Claude Tag pilot it originally described is superseded). Three workstreams, two weeks elapsed, roughly four hours of senior SE/SA time. **Two things in it need a human decision before it can run:** the Drive access request (critical path, day 1) and the ~4 hours of senior adjudication time, which has to be asked of Andrew rather than quietly absorbed by Mark and Zac — unbilled senior time being the exact constraint `P2` blames for the whole problem.
 4. **Run the empirical probe of Ask Commerce.** A dozen real SE questions, recording what comes back. Blocked 2026-07-27 on the **$1,000/person monthly Claude spend cap**, which was hit during research — not on access or permission. Wait for the 1st, get it raised, or run from an account with headroom. This is the single most useful artifact for the first sync and the memo names it as owed.
 5. **Two inputs still not researchable from here**: an actual IPM to confirm `delivery-ipm/JOB-1` (flagged `implied-not-represented`), and whether IPM hours-tracking lives outside Confluence. The artifact substrate is found — `IPM` space, 1,599 pages (`C-1`).
-6. **Ask TAM what they do differently.** Cheapest high-value item outstanding. `TAM` is the one space whose documentation is not decaying — 57% touched in 12 months against 19–21% for `SA` and `IPM`, under the same billing pressure (`C-3`). One conversation, and it is the best Phase 2 lead found.
-7. **Drop `apps/portal/` + `packages/`** when a memo-rendering surface replaces them. Deferred deliberately: they are scaffolding under `template/CLAUDE.md` §1 and safe to delete, but they currently carry `npm run dev`/`build` and `reader-contract.json` declares `apps/portal/dist` as a surface. Deleting before the replacement exists just leaves a broken build. `persona-fit-reviewer` WARNs `PORTAL_OVER_PROMOTED` until then, which is correct.
+6. **Ask TAM what they do differently.** Cheapest high-value item outstanding. `TAM` is the one space whose documentation is not decaying — 57% touched in 12 months against 19–21% for `SA` and `IPM`, under the same billing pressure (`C-3`). One conversation, and it is the best Phase 2 lead found. **This got easier on 30 July**: TAM is now inside the Phase 1 audience (`S-3`), so they are a stakeholder rather than a research subject.
+7. **Two open threads from the sync that nobody owns.** Andrew referenced something transcribed as "M.com" as a route for pulling data out of repositories — the transcription is unreliable and the referent is not recoverable; ask rather than guess. And **Figma** entered the source list (`S-6`) with no assessment of whether it holds solution knowledge or only design artifacts.
+
+8. **Drop `apps/portal/` + `packages/`** when a memo-rendering surface replaces them. Deferred deliberately: they are scaffolding under `template/CLAUDE.md` §1 and safe to delete, but they currently carry `npm run dev`/`build` and `reader-contract.json` declares `apps/portal/dist` as a surface. Deleting before the replacement exists just leaves a broken build. `persona-fit-reviewer` WARNs `PORTAL_OVER_PROMOTED` until then, which is correct.
 
 ## Do not do these
 

@@ -23,7 +23,7 @@ Two gaps remain, and both are about the documents rather than the tool.
 
 | Gap | What it actually is |
 | --- | --- |
-| Our largest body of solution knowledge sits in Google Drive, which the tool cannot read | An unfinished setup, not a product limitation. A configuration request |
+| Our largest body of solution knowledge sits in Google Drive, which the tool cannot read | A setup that was never finished, not a product limit. Someone has to switch it on |
 | No source is designated authoritative for solution knowledge | A policy request to the same team |
 
 Neither is a build. Both are requests to a team that already exists.
@@ -38,7 +38,7 @@ We surveyed the market for this. Tools that draft documents, assign owners and e
 
 ## What this costs and what happens next
 
-Two weeks of measurement, roughly **four hours of senior engineering time**, and two configuration requests. Nothing else.
+Two weeks of measurement, roughly **four hours of senior engineering time**, and two requests to a team that already exists. Nothing else.
 
 That measurement answers the one question that decides whether there is a project here at all: how much of our documentation is actively wrong. If the answer is *not much*, better search over a mostly-accurate library was enough, and this finishes with two requests and no build. That is a real possibility and we would rather find it in two weeks than two quarters.
 
@@ -52,8 +52,8 @@ That measurement answers the one question that decides whether there is a projec
 
 Nothing today.
 
-One thing to be aware of: this work will surface findings about how our teams record knowledge, and some of those will point at processes this group does not own. We will bring them to the right leaders rather than act unilaterally. If documentation practice needs to change, that is a decision for the people who own it.
+One thing to be aware of: this work will turn up findings about how our teams record knowledge, and some of those will point at processes this group does not own. We will bring them to the right leaders rather than act unilaterally. If documentation practice needs to change, that is a decision for the people who own it.
 
 ---
 
-<sub>Full analysis, methods and evidence grading: `docs/solution-plan.md`. Every figure here traces to a recorded query. Corpus figures are measured; the Drive count is a lower bound, not an audit.</sub>
+<sub>Full analysis, methods and evidence grading: `docs/solution-plan.md`. Page counts are measured against recorded, re-runnable queries. The Drive figure is a lower bound, not an audit.</sub>

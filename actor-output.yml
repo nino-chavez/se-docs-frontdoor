@@ -147,6 +147,36 @@ outputs:
     artifact: docs/decision-memo.md             # the research-variant deliverable
     renderer: markdown
     clearance: internal
+  - id: solution-plan
+    type: view
+    serves: [pilot-sponsor.decide-pilot]
+    status: draft                               # revision 3, 2026-07-30. Stays `draft` because the
+                                                # two validation conditions in §1 are assigned but
+                                                # unanswered — the recommendation is explicitly
+                                                # conditional on them. Promote when the joint
+                                                # Nino/Alex test reports.
+    artifact: docs/solution-plan.md
+    renderer: markdown
+    clearance: internal
+  - id: memo-leadership
+    type: view
+    serves: [pilot-sponsor.decide-pilot]
+    status: draft                               # authored 2026-07-30 against the sync action item
+                                                # "convert planning documents to business format".
+                                                # `draft` until the sponsor forwards it — this one
+                                                # goes to readers who are not in the working group,
+                                                # so sending is the sponsor's call and not mine.
+    artifact: docs/memo-leadership.md
+    renderer: markdown
+    clearance: internal                         # reader-contract surface "Leadership memo",
+                                                # plainness: lay, enforced deny-list on jargon
+  - id: memo-team
+    type: view
+    serves: [pilot-sponsor.decide-pilot]
+    status: draft
+    artifact: docs/memo-team.md
+    renderer: markdown
+    clearance: internal                         # reader-contract surface "Team leads memo"
   - id: recovery-brief
     type: recovery-brief
     serves: [maintainer.recover-context]

@@ -8,6 +8,7 @@ Stage 1 current-state leg. Facts verified 2026-07-09; sources in `research/sourc
 |---|---|---|---|
 | Jira / Confluence | Real (Atlassian remote MCP, official) | Connector already live in our org | Ready |
 | Google Drive | Real (Drive API) | Anthropic Drive connector (admin toggle) | Pending Shared-Drive test |
+| Figma | Unexamined | None | **Added 2026-07-30** (`S-6`). Named in the sync as a daily-reach source. Whether it holds solution knowledge or only design artifacts is unknown; Mark and Zac own the source list that answers it |
 | Slack channels | Real (Slack search) | Slack connector, scoped to named SE channels | Ready |
 | Public dev docs | It's the public web | Web search, version-pinned by instruction | Ready |
 | Internal doc sites | Mixed — part Confluence-backed, part CMS | Confluence part covered; CMS part traffic-gated | Partial |

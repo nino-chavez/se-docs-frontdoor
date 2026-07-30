@@ -41,8 +41,8 @@ Confluence Cloud specifics, since it is our largest source: it indexes spaces, p
 
 | Argument | Weight |
 |---|---|
-| **It is a separate paid subscription, and that changes the approval route** | Decisive. `G2` names **Vendor Intake Form — paid subscription or purchase** as its own path, distinct from the AI Use Case Review this initiative takes as an existing-approved-tool/new-data case. Adopting it converts the cheap route into the expensive one — the exact trade `decisions/0001` was built to avoid |
-| Being a Workspace shop does not entitle us to it | Corrects the premise. Workspace Business/Enterprise bundles the Gemini app and Notebook access; Gemini Enterprise is a distinct Google Cloud product, priced, sold and deployed separately, per-seat with consumption billing on top |
+| **It is a separate paid subscription, and that changes the approval route** | Decisive **as of 2026-07-29, and under re-check as of 2026-07-30** — see the amendment below. `G2` names **Vendor Intake Form — paid subscription or purchase** as its own path, distinct from the AI Use Case Review this initiative takes as an existing-approved-tool/new-data case. Adopting it converts the cheap route into the expensive one — the exact trade `decisions/0001` was built to avoid |
+| Being a Workspace shop does not entitle us to it | **Superseded in part on 2026-07-30 — see the amendment below.** The product distinction holds: Gemini Enterprise is a distinct Google Cloud product from Workspace. What no longer holds unexamined is the entitlement conclusion, because Commerce changed its Google account class in late July |
 | Duplicate AI spend beside Claude Enterprise | Same disqualifier that retired Glean. Claude is already deployed org-wide with no gate and sits in the GRC AI Registry at Confidential classification (`G4`) |
 | Two ask-your-org surfaces is a new `P4` instance | Answers would diverge between them with no adjudication layer, at the tool tier rather than the document tier. This initiative would be manufacturing the defect it exists to fix |
 | It does not touch invalidation | §2 of the plan now holds that invalidation is the only unsolved capability. Gemini Enterprise is a retrieval product; it changes nothing about what gets written down or when a record becomes wrong |
@@ -52,6 +52,14 @@ Confluence Cloud specifics, since it is our largest source: it indexes spaces, p
 **Leverage on the Drive request, and a named fallback.** Shared-drive scoping being routine configuration in a competing product is evidence the ask in Annex B is ordinary rather than exotic. And `solution-plan.md` §6's weakest branch — *what if AI Operations declines the Drive connection* — now resolves to a specific, costed, already-Workspace-native alternative instead of "the plan needs rethinking." That is a better answer than the one that branch had yesterday.
 
 **Revival condition:** AI Operations declines the Drive connection or cannot make Shared Drives work, **and** the census shows the Drive corpus carries the majority of decision-grade solution knowledge. Both, not either. A Vendor Intake is only worth opening for the corpus that turns out to matter most.
+
+> **Amendment, 2026-07-30 — the entitlement premise may not hold.** Alex Vela of AI Operations reported in the 30 July sync (`S-5`) that Commerce moved to full Google Enterprise accounts within the preceding fortnight, having previously gone through a third-party vendor with "a lot of the features but not everything."
+>
+> **What that puts at risk is the decisive argument above.** The rejection rests on Gemini Enterprise being a separate purchase, which routes it to a `G2` Vendor Intake. If the new arrangement already carries some of it, the cost argument weakens and this reopens on evidence.
+>
+> **What survives regardless of licensing**, and it is worth separating so the re-check is not treated as a re-decision: Gemini Enterprise remains a distinct Google Cloud product from Workspace; the duplicate-surface objection (two ask-your-org systems answering the same question with nothing to adjudicate them, `P4` at the tool tier) does not depend on price at all; and its third-party connectors still index with identity sync on a 30-minute-to-7-day schedule.
+>
+> **Graded `Reported`** — one participant's account, hedged in the telling, of a change made days earlier. It is a reason to check, not a finding. The check is assigned: the joint Nino/Alex test named in `S-7` item 2.
 
 | Reference | Track | Evidence | Used for | Gate-status |
 |---|---|---|---|---|

@@ -73,6 +73,141 @@
       "maxWordsPerText": 115
     },
     {
+      "name": "Leadership memo",
+      "renderedRoots": [
+        "docs/memo-leadership.html"
+      ],
+      "sourceRoots": [
+        "docs/memo-leadership.md"
+      ],
+      "reader": "a CPO, CTO or CMO deciding whether this is worth funding and what risk it carries",
+      "job": "understand the business problem, what it costs, and what is being asked for — without needing to know how any of it works",
+      "assumedKnowledge": [
+        "the company's commercial model"
+      ],
+      "plainness": "lay",
+      "precisionLocks": [
+        "what it costs",
+        "what is not being built or bought",
+        "who decides what"
+      ],
+      "allowTerms": [
+        "AI",
+        "Google Drive",
+        "Ask Commerce",
+        "Claude",
+        "Solution Engineers",
+        "Solution Architects",
+        "Technical Account Managers"
+      ],
+      "denyTerms": [
+        {
+          "term": "corpus",
+          "reason": "jargon for a reader who does not work with document sets",
+          "replacement": "our documentation"
+        },
+        {
+          "term": "connector",
+          "reason": "implementation detail with no bearing on the decision",
+          "replacement": "connection"
+        },
+        {
+          "term": "federated",
+          "reason": "architecture vocabulary",
+          "replacement": "searches across"
+        },
+        {
+          "term": "retrieval",
+          "reason": "architecture vocabulary",
+          "replacement": "search"
+        },
+        {
+          "term": "invalidation",
+          "reason": "our internal term for the core gap",
+          "replacement": "knowing when a document became wrong"
+        },
+        {
+          "term": "RAG",
+          "reason": "acronym no executive should have to decode"
+        },
+        {
+          "term": "vector",
+          "reason": "implementation detail"
+        },
+        {
+          "term": "embedding",
+          "reason": "implementation detail"
+        },
+        {
+          "term": "schema",
+          "reason": "implementation detail"
+        },
+        {
+          "term": "Vendor Intake",
+          "reason": "internal process name; say what it means instead",
+          "replacement": "a new purchase"
+        },
+        {
+          "term": "AI Use Case Review",
+          "reason": "internal process name",
+          "replacement": "the standard approval"
+        }
+      ],
+      "maxWordsPerText": 70
+    },
+    {
+      "name": "Team leads memo",
+      "renderedRoots": [
+        "docs/memo-team.html"
+      ],
+      "sourceRoots": [
+        "docs/memo-team.md"
+      ],
+      "reader": "a team lead or manager whose people or processes this touches",
+      "job": "understand what was decided, what is being asked of their team, and what will not change without their say-so",
+      "assumedKnowledge": [
+        "how their own team documents work",
+        "the company's delivery model"
+      ],
+      "plainness": "practitioner",
+      "precisionLocks": [
+        "what each team is asked for",
+        "the measured figures",
+        "the scope boundary",
+        "who decides on process change"
+      ],
+      "allowTerms": [
+        "AI",
+        "SE",
+        "SA",
+        "IPM",
+        "TAM",
+        "TPM",
+        "Drive",
+        "Confluence",
+        "Jira",
+        "Slack",
+        "Figma",
+        "Ask Commerce",
+        "Claude"
+      ],
+      "denyTerms": [
+        {
+          "term": "RAG",
+          "reason": "acronym that adds nothing for this reader"
+        },
+        {
+          "term": "vector",
+          "reason": "implementation detail"
+        },
+        {
+          "term": "embedding",
+          "reason": "implementation detail"
+        }
+      ],
+      "maxWordsPerText": 95
+    },
+    {
       "name": "initiative portal",
       "renderedRoots": [
         "apps/portal/dist"
