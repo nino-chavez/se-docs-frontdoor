@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge access for Solution Engineering — Leadership</title>
+<style>
+    :root{--violet:#7c3aed;--navy:#1a365d;--ink:#171717;--ink2:#404040;--body:#525252;
+      --bg:#ffffff;--bg2:#f5f5f5;--ok:#059669;--warn:#d97706;--info:#0284c7;--rule:#e5e5e5}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background:var(--bg2);color:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:820px;margin:0 auto;padding:48px 24px 80px}
+    .sheet{background:var(--bg);border-radius:14px;padding:48px 52px;box-shadow:0 1px 3px rgba(0,0,0,.09),0 8px 28px rgba(0,0,0,.04)}
+    .eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--violet);margin-bottom:14px}
+    h1{font-size:31px;line-height:1.2;color:var(--ink);margin-bottom:14px;letter-spacing:-.015em}
+    .meta{font-size:13.5px;color:var(--ink2);padding-bottom:22px;margin-bottom:32px;border-bottom:2px solid var(--violet)}
+    .meta strong{color:var(--ink)}
+    h2{font-size:19px;color:var(--violet);margin:36px 0 14px;letter-spacing:-.01em}
+    h2:first-of-type{margin-top:0}
+    p{margin-bottom:15px;font-size:15.5px}
+    strong{color:var(--ink)}
+    table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+    th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+    th{background:var(--bg2);font-weight:650;color:var(--ink);font-size:13px;
+      letter-spacing:.03em;text-transform:uppercase}
+    td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+    tbody tr:last-child td{border-bottom:none}
+    tr.total td{border-top:2px solid var(--rule);font-weight:700;color:var(--ink)}
+    tr.flag td{background:#f0fdf4}
+    ul{margin:14px 0;padding-left:22px}
+    li{margin-bottom:9px;font-size:15.5px}
+    .callout{background:#f6f3ff;border-left:4px solid var(--violet);padding:16px 18px;
+      border-radius:0 8px 8px 0;margin:22px 0}
+    .callout p:last-child{margin-bottom:0}
+    .quiet{background:var(--bg2);border-radius:8px;padding:14px 16px;margin:22px 0;font-size:14px}
+    .quiet p:last-child{margin-bottom:0}
+    .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);font-size:12.5px;color:#737373}
+    .foot code{font-family:'Monaco','Consolas',monospace;font-size:11.5px;color:var(--ink2)}
+    .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    @media (max-width:640px){.sheet{padding:30px 22px;border-radius:10px}.wrap{padding:20px 12px 48px}h1{font-size:25px}}
+    @media print{@page{margin:.6in}body{background:#fff;font-size:11pt}
+      .wrap{padding:0;max-width:none}.sheet{box-shadow:none;padding:0;border-radius:0}
+      h2{page-break-after:avoid}table,tr{page-break-inside:avoid}
+      .callout,.quiet,tr.flag td{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="sheet">
+<div class="eyebrow">Leadership memo</div>
+<h1>Knowledge access for Solution Engineering</h1>
+<div class="meta"><strong>For</strong> leadership · <strong>From</strong> Nino Chavez · <strong>30 July 2026</strong><br><strong>Status</strong> In progress. No funding requested, no software purchase proposed.</div>
+<h2>The situation</h2>
+<p>A decade of platform knowledge sits with a small number of senior people. When they are busy, deals slow down. When they leave, it leaves with them.</p>
+<p>The documents that should hold that knowledge are a byproduct of billable delivery, so they stop where the billing stopped. We measured it rather than assumed it. Across the five internal spaces holding solution knowledge there are <strong>3,173 pages, and roughly a quarter have been touched in the last twelve months.</strong> Well over half have not been touched in two years.</p>
+<p>The cost shows up as the same question asked twice — an engineer asks a colleague because the answer was never written down anywhere they would find it.</p>
+<h2>What we found</h2>
+<p>We set out to build a search tool. We stopped, because Commerce already has one.</p>
+<p><strong>Ask Commerce, run by our AI Operations team, is live for every employee and already does almost everything this project had specified.</strong> Building our own would produce a later, smaller version of something we already own. That recommendation is not final — we are validating it over the next fortnight — but it is where the evidence points, and it removes the largest line item anyone expected to see here.</p>
+<p>Two gaps remain, and both are about the documents rather than the tool.</p>
+<div class="tw"><table><thead><tr><th>Gap</th><th>What it actually is</th></tr></thead><tbody><tr><td>Our largest body of solution knowledge sits in Google Drive, which the tool cannot read</td><td>An unfinished setup, not a product limitation. A configuration request</td></tr><tr><td>No source is designated authoritative for solution knowledge</td><td>A policy request to the same team</td></tr></tbody></table></div>
+<p>Neither is a build. Both are requests to a team that already exists.</p>
+<h2>The part nobody has solved</h2>
+<p>Knowing when a document became <strong>wrong</strong> rather than merely old.</p>
+<p>A document describing a workaround for something the platform could not do three years ago looks identical to a good one. Same author, same format, recent enough date. It is confidently incorrect, and anyone who follows it takes bad guidance into a client conversation.</p>
+<p>We surveyed the market for this. Tools that draft documents, assign owners and expire them on a schedule are widely available. <strong>Nothing we found detects that a document became wrong because the product shipped the capability it was working around.</strong> That is the only part of this worth building, and we are not asking to build it yet.</p>
+<h2>What this costs and what happens next</h2>
+<p>Two weeks of measurement, roughly <strong>four hours of senior engineering time</strong>, and two configuration requests. Nothing else.</p>
+<p>That measurement answers the one question that decides whether there is a project here at all: how much of our documentation is actively wrong. If the answer is <em>not much</em>, better search over a mostly-accurate library was enough, and this finishes with two requests and no build. That is a real possibility and we would rather find it in two weeks than two quarters.</p>
+<h2>What we are not doing</h2>
+<ul><li><strong>Not buying anything.</strong> A Google alternative exists and is genuinely strong. It would mean a second subscription alongside our existing Claude spend, and two systems that answer the same question differently.</li><li><strong>Not redesigning how the company stores documents.</strong> We will identify where knowledge lives today and what limits it, and bring that to the leaders who own those processes. The decision is theirs.</li><li><strong>Not opening it broadly yet.</strong> Phase 1 is Solution Engineers, Solution Architects and Technical Account Managers. Some answers will be wrong, and the people using it need the background to catch that before it reaches a client.</li></ul>
+<h2>What we need from you</h2>
+<p>Nothing today.</p>
+<p>One thing to be aware of: this work will surface findings about how our teams record knowledge, and some of those will point at processes this group does not own. We will bring them to the right leaders rather than act unilaterally. If documentation practice needs to change, that is a decision for the people who own it.</p>
+<div class="foot">Full analysis, methods and evidence grading: <code>docs/solution-plan.md</code>. Every figure here traces to a recorded query. Corpus figures are measured; the Drive count is a lower bound, not an audit.</div>
+</div></div>
+</body>
+</html>

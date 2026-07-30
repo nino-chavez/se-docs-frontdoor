@@ -1,7 +1,7 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 2
-**Status**: Pre-decision. Two requests are ready to send; the validation that gates everything else is named in §1.
+**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 3
+**Status**: In progress. The validation that gates everything else is now assigned rather than blocked — §1, and the action table in §7.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
 > **What changed in revision 2.** This responds to Andrew's notes. Three of them changed the plan rather than its wording:
@@ -11,6 +11,10 @@
 > - **Phase 2 is scoped to evaluate and recommend**, not build.
 >
 > The audience test in §4 is his. §7's ask changed as a result.
+>
+> **Revision 3** folds in the 30 July sync. Four things moved: the tool is confirmed as an **answer engine, not document retrieval**; the audience is **SE, SA and TAM**, with TPM deferred; **both validation conditions are now assigned** to me and Alex Vela of AI Operations rather than blocked; and Commerce's move to full Google Enterprise accounts means the **licensing premise behind rejecting Gemini Enterprise has to be re-checked**. `research/sources/se-docs-frontdoor-sync-2026-07-30.md` owns the session.
+>
+> One warning about that session's record. The Gemini-generated notes state in their Decisions block that Phase 1 is "a document retrieval tool rather than an autonomous answer engine." **That is wrong** — the transcript and the notes' own Details section both say the opposite. Anyone working from that block will build the wrong thing. `S-1` documents it.
 
 ---
 
@@ -50,7 +54,7 @@ That count is my assessment and the weakest-graded claim in this document, so it
 
 **We are a Google Workspace shop, so I assessed the Google option rather than assume it away.** Gemini Enterprise covers the same source set with the same permission-aware, cited retrieval, and it does one thing Ask Commerce currently does not: its Drive connector treats shared drives as first-class configuration, scoped by named drive ID. That is our single biggest gap, documented as ordinary setup in a competing product.
 
-**I am still not recommending it, for one reason that outweighs the rest.** It is a paid subscription, which routes it to a Vendor Intake rather than the AI Use Case Review this plan depends on — converting the cheap approval path into the expensive one, which is the trade this whole approach exists to avoid. Being a Workspace shop does not change that; Gemini Enterprise is a separate Google Cloud product, sold and licensed independently of Workspace. Add duplicate spend beside Claude Enterprise, and two ask-your-org surfaces that would disagree with nothing to adjudicate them, and it loses on our constraints rather than on its merits.
+**I am still not recommending it, for one reason that outweighs the rest.** It is a paid subscription, which routes it to a Vendor Intake rather than the AI Use Case Review this plan depends on — converting the cheap approval path into the expensive one, which is the trade this whole approach exists to avoid. Being a Workspace shop did not change that; Gemini Enterprise is a separate Google Cloud product, sold and licensed independently of Workspace. **That premise is now under re-check.** Alex Vela reported on 30 July that Commerce moved to full Google Enterprise accounts within the last fortnight, having previously gone through a third-party vendor with partial features. If that changed what we are entitled to, the cost argument weakens and this reopens on evidence rather than on preference — which is exactly what the joint test in §7 is for. Add duplicate spend beside Claude Enterprise, and two ask-your-org surfaces that would disagree with nothing to adjudicate them, and it loses on our constraints rather than on its merits.
 
 It stays on the shelf with a named revival condition in §5, and it is why §6's Drive-refusal branch now has an answer. `research/competitive/buy-landscape.md` owns the full assessment, including where the evidence is thin — I could not resolve Google's own pricing page, so no cost figure in this plan is one I would defend.
 
@@ -68,7 +72,7 @@ Andrew's objection to revision 1 was that it stated the Ask Commerce decision as
 
 If the answer to "can we manage sources, configuration and updates directly" is no, then the alternatives get more attractive rather than less: **Gemini Enterprise and a thin build both share the property that we would control them.** That is a real argument in their favour and it is new. It does not yet outweigh a Vendor Intake and duplicate spend, but the margin is narrower than §5 implied, and the honest position is that this is a question for AI Operations before it is a conclusion of mine.
 
-**Neither condition is expensive to test, and both should be answered before the first sync.** The first needs the spend cap lifted for a day. The second needs one conversation — which is why Annex B now asks it directly rather than leaving it to be discovered.
+**Both conditions are now assigned rather than blocked, which is the most useful thing to come out of the 30 July sync.** Alex Vela of AI Operations and I own a joint test of what Claude and Google Enterprise can actually do today, including connector reach, permissions, and who enables restricted features. That pairs the behavioural question with someone from the team that owns the answer to the control question, and it means the first condition no longer waits on a budget decision and the second no longer waits on someone thinking to ask.
 
 ## 2. The corpus is the problem, and the unsolved part is invalidation
 
@@ -118,7 +122,9 @@ Two things stop that being an argument against sending it. Ask Commerce demotes 
 
 **Write where the reader can read.** This is a constraint on the capture design rather than a task: the target is set by the retrieval surface's reach, not by what is convenient to build. Records that land anywhere Ask Commerce cannot see would recreate exactly the problem we are trying to solve, for a corpus of our own making.
 
-**Define the audience by who can act on an answer, not who would benefit from it.** Andrew's test, and it is better than the one this plan had. These answers are technical, and a reader without platform and implementation context can take a correct answer and act on it wrongly — which is worse than not finding it. That makes widening beyond SE and SA a decision requiring its own evidence rather than a default direction, and it gives the pilot something specific to watch: not just whether answers are right, but whether they are safely usable by whoever asked.
+**Build an answer engine, not a document retrieval tool.** Decided on 30 July, and it is worth stating flatly because the meeting's own notes record it backwards. An agent reasons over the corpus and produces an answer with citations; it does not hand back a list of files. Andrew's test for it was the practical one — you could not do this without an agent, and Ask Commerce already works this way.
+
+**Define the audience by who can evaluate an answer, not who would benefit from it.** Andrew's test, sharpened by what the room actually worried about. The concern was not comprehension in the abstract; it was someone forwarding an unreviewed answer to a client. Phase 1 access is therefore **SE, SA and TAM**, with TPM deferred on Mark's caution that the results carry nuance. Some answers will be wrong — that is assumed, not hoped against, and it is the whole reason the boundary exists. The pilot has to watch not just whether answers are right, but whether they are safely usable by whoever asked.
 
 **Design for the sources moving.** If the process owners change where documents live — which is the whole point of reporting to them — then a solution that needs rebuilding when they do was the wrong solution. In practice: configuration over code, named sources over hardcoded ones, and no assumption about folder layout. This is Andrew's requirement and it is also the strongest technical argument for the configured path over a build.
 
@@ -132,7 +138,7 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 | --- | --- | --- |
 | Building a question surface | It exists, org-wide, maintained by another team | AI Ops deprecating it |
 | Building connectors ourselves | A request to AI Ops, not an engineering task. Our own would trigger an AppSec review and duplicate their roadmap | A refusal — which is a stop-and-replan signal, not a build trigger |
-| Buying a second question surface | Gemini Enterprise is the strongest candidate and it documents Shared Drive support we lack. But it is a paid subscription, so it is a Vendor Intake rather than the AI Use Case Review this plan depends on — the expensive route we are deliberately not taking — and two ask-your-org surfaces would diverge with nothing to adjudicate them | AI Ops declining Drive **and** the census showing Drive holds the majority of decision-grade knowledge. Both, not either. Added in revision 2: **or** AI Operations confirming we cannot manage sources and configuration directly, which would make control the deciding factor instead of cost |
+| Buying a second question surface | Gemini Enterprise is the strongest candidate and it documents Shared Drive support we lack. But it is a paid subscription, so it is a Vendor Intake rather than the AI Use Case Review this plan depends on — the expensive route we are deliberately not taking — and two ask-your-org surfaces would diverge with nothing to adjudicate them | AI Ops declining Drive **and** the census showing Drive holds the majority of decision-grade knowledge. Both, not either. Added in revision 2: **or** AI Operations confirming we cannot manage sources and configuration directly, which would make control the deciding factor instead of cost. Added in revision 3: **the cost premise itself is under re-check** — Commerce moved to full Google Enterprise accounts in late July, and if that changes what we already hold, this row's main argument weakens |
 | Building capture workflow from scratch | Draft-from-artifact, route to an owner, expire on a clock all ship commercially. But §4's write-where-the-reader-can-read constraint rules those products out as destinations, because Ask Commerce cannot see them. Take the pattern, not the tool | A capture product that writes natively into Confluence or Drive |
 | Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
 | Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
@@ -174,6 +180,20 @@ I would rather these be written down and wrong than unwritten and right.
 **Mark and Zac.** Where the tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking. One closed engagement you would be willing to see a derived record for. And a pointer into TAM — theirs is the only corpus in the census that is not decaying, at 57% touched in twelve months against 19–21% for SA and IPM under identical billing pressure, and I would rather learn what they do than import a practice from outside.
 
 **Not blocked on anyone.** I will finish the census design, draft the Drive access request, and produce the one hand-made record as soon as I have an engagement.
+
+### Committed actions from the 30 July sync
+
+These are assigned, not proposed. `research/sources/se-docs-frontdoor-sync-2026-07-30.md` is the record.
+
+| Owner | Action | Why it matters here |
+| --- | --- | --- |
+| **Nino, Alex Vela** | Test what Claude and Google Enterprise can actually do today — connector reach, permissions, who enables restricted features | Answers **both** §1 validation conditions, and re-checks the Gemini Enterprise cost premise. The critical path |
+| **Mark, Zac** | List the sources reached for daily | Scopes the MVP corpus. Figma is new and not in our landscape doc |
+| **Zac** | Confirm with Levi where project documentation lives; establish a standard location if none is designated | Tests the cheapest hypothesis in §4 — that part of the gap is missing *places to put things* |
+| **Mark** | Confirm Phase 1 access groups | Substantially answered in the session: SE, SA, TAM. TPM deferred |
+| **Nino** | Business-format the planning documents for management | `docs/memo-leadership.md` and `docs/memo-team.md` |
+
+**One open item nobody owns.** Andrew referenced something transcribed as "M.com" as another route for pulling data out of repositories. The transcription is unreliable and I cannot recover the referent. I will ask rather than guess.
 
 ---
 
