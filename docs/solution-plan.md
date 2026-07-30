@@ -1,14 +1,22 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez · **Date**: 2026-07-28 · **Format**: SCQ-R
-**Status**: Pre-decision. One decision and two requests are outstanding; §3 names all three.
+**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 2
+**Status**: Pre-decision. Two requests are ready to send; the validation that gates everything else is named in §1.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
+
+> **What changed in revision 2.** This responds to Andrew's notes. Three of them changed the plan rather than its wording:
+>
+> - **The Ask Commerce decision is now a hypothesis with named validation conditions**, not a settled conclusion. He was right that revision 1 asserted it, and Annex A already admitted the evidence did not support asserting it.
+> - **Operational self-sufficiency is now a first-class requirement.** The sharpest of the three, and it cuts against my own recommended path.
+> - **Phase 2 is scoped to evaluate and recommend**, not build.
+>
+> The audience test in §4 is his. §7's ask changed as a result.
 
 ---
 
 ## Recommendation
 
-**Stop building a search tool. Send two requests to AI Operations, run a two-week census, and reserve the build decision for capture — the half no search tool can deliver.** I am not asking to build anything yet, and the only decision I need this week is whether recording knowledge is in scope at all.
+**Do not build a search tool. Validate that Ask Commerce can close the gaps and that it is ours to run, send two requests to AI Operations, and run a two-week census.** I am not asking to build anything, and I am no longer asking for a yes-or-no on the write decision this week — Andrew's read that it is not a binary is better than the question I put to him.
 
 ## Situation, complication, question
 
@@ -18,7 +26,7 @@ The complication is that the front door already exists. `Ask Commerce`, built an
 
 That leaves the real question: **if the search tool is built, what is left worth building?**
 
-My recommendation is above. The rest of this document is why I believe it, what would change my mind, and what I need from each of you.
+My recommendation is above. The rest of this document is why I believe it, what would change my mind, and what I need from each of you. One caveat belongs here rather than buried: *the front door already exists* is a hypothesis I have evidenced from configuration and not yet tested by use, and §1 names what would have to be true before we act on it as settled.
 
 ---
 
@@ -48,6 +56,20 @@ It stays on the shelf with a named revival condition in §5, and it is why §6's
 
 The wider point stands: two mature vendors ship the same principle set. These are table stakes in a mature category, not a specification we wrote first.
 
+### What has to be true before we treat this as decided
+
+Andrew's objection to revision 1 was that it stated the Ask Commerce decision as already made. He is right, and the previous draft was internally inconsistent about it: Annex A grades the six-of-seven count as **Assessed**, and admits that no claim about Ask Commerce has been verified by *using* it — every one is read from configuration, with the behavioural test blocked on a spend cap. A document cannot confess that and then open with a settled conclusion. Two conditions gate it, both his.
+
+**One — it closes the gaps, in behaviour and not on paper.** Everything in the table above is read from its instructions. What a system is told to do and what it does are different claims, and only one of them is evidenced here. The test is real SE questions run against it, with the answers recorded. That has been listed as pending since 27 July, blocked on the per-person spend cap rather than on access. **It has now been promoted from a nice-to-have artifact to the gate on the recommendation**, which changes who needs to unblock it and how urgently.
+
+**Two — it is ours to run.** This is the sharper condition and the plan did not have it. Relying on another team for every configuration change is a standing tax: it slows iteration and caps how fast the thing can improve. The concrete form is visible in its instructions, which carry a maintained list of roughly ten hardcoded Confluence page IDs with a note that the list needs updating whenever a page moves. Every source we add, every demotion rule we want changed, every contradiction that needs a patch is an edit to a prompt owned by AI Operations.
+
+**This condition cuts against the path I am recommending, so I will state the cost rather than argue around it.** My plan routes everything through AI Operations — two requests now and an unbounded number later. It buys the cheap approval route and pays for it in operational latency, and revision 1 priced only the first half.
+
+If the answer to "can we manage sources, configuration and updates directly" is no, then the alternatives get more attractive rather than less: **Gemini Enterprise and a thin build both share the property that we would control them.** That is a real argument in their favour and it is new. It does not yet outweigh a Vendor Intake and duplicate spend, but the margin is narrower than §5 implied, and the honest position is that this is a question for AI Operations before it is a conclusion of mine.
+
+**Neither condition is expensive to test, and both should be answered before the first sync.** The first needs the spend cap lifted for a day. The second needs one conversation — which is why Annex B now asks it directly rather than leaving it to be discovered.
+
 ## 2. The corpus is the problem, and the unsolved part is invalidation
 
 Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce does not read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. That one is a setup that was never finished rather than something the platform cannot do, which is why it belongs in a request and not in a build. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
@@ -68,7 +90,11 @@ The first is completing a setup their own platform documents — Drive is a supp
 
 Those two requests are not independent, and it took me too long to see it. Records produced by capture would land in Confluence, which Ask Commerce reads — but they would land in a *team* space, which its rules structurally demote. Without the authoritative-source designation, capture manufactures records the search tool is instructed not to believe. **The Drive request unblocks the corpus we already have; the authority request unblocks the corpus we would create.**
 
-The third is yours alone. Recording knowledge going forward is a write system, and everything scoped so far has been read-only — the smaller security and privacy surface you identified as the whole two-month floor. That decision determines whether the remaining work is a project or a support ticket, and I would rather have it wrong-and-early than right-and-late.
+The third is the write decision, and Andrew's reframe of it is better than the question I asked. Revision 1 put it as a binary — does this write, or stay read-only — on the reasoning that a write system is a larger security and privacy surface. **His answer is that this initiative should not be building recording processes at all initially; it should be evaluating the current ones and handing the findings to the managers who own them.**
+
+That is a scope reduction on the part of the plan I had called the differentiated value, and I think it is correct, for a reason I had not articulated: we do not own the processes we would be changing. Shane and his peers do. A plan that proposes new capture practice without them is proposing something it cannot land.
+
+So the third blocker is no longer a decision I need from Andrew. It is a sequencing constraint: **evaluate, report to the process owners, and let them decide what changes** — with two exceptions he named and I would keep. If the gap turns out to be closable trivially, a folder structure in Drive being his example, that belongs in Phase 1 rather than waiting for a phase boundary. And if the storage or documentation processes are likely to change shortly after we deliver, we need to know whether that forces a rebuild — which is a design requirement, and §4 now carries it.
 
 Governance is not the obstacle I expected it to be. Claude is already deployed to every employee with no approval gate, and the route for pointing an approved tool at new data is an AI Use Case Review rather than a vendor intake. What that review costs in time is the one number I still owe you.
 
@@ -80,15 +106,21 @@ Governance is not the obstacle I expected it to be. Claude is already deployed t
 
 That join is also the one capability the market scan found nobody shipping, so the census as already designed measures the exact thing that would justify building anything. The narrowing in §2 costs no redesign.
 
+It should also test the cheapest hypothesis anyone has put forward, which is Andrew's: that part of the gap is not missing documents but missing *places to put them*. If a meaningful share of what an SE cannot find turns out to exist already, sitting somewhere nobody thinks to look, then a folder structure and a naming convention close more of this gap than anything else in this plan — and they close it in Phase 1, for days of work rather than a quarter.
+
 **Send the two requests now, in parallel.** Neither depends on the census finishing. The Drive one should be cheap to grant, since it asks for a documented setup rather than a new capability; the authority request is the one that needs a sponsor behind it.
 
 One consequence of that request cuts against me, so I would rather name it than have it found. Connecting Drive makes at least 692 unaudited opportunity folders reachable through a tool people trust, with citations attached. Better retrieval over a defective corpus surfaces the defects faster — if the wrong-not-stale rate in Drive is high, the request I am pressing for spreads them rather than fixes them.
 
 Two things stop that being an argument against sending it. Ask Commerce demotes team-space content by default, so nothing arriving from Drive is treated as settled. And the census is the thing that measures the rate. But it does mean the two should run together rather than in sequence: if the request lands first and the rate turns out to be bad, we will have made the corpus more reachable without making it more correct.
 
-**Build capture only after one record exists by hand.** Before any pipeline, I would take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available.
+**Produce one record by hand — as evidence for the process owners, not as a prototype.** Take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available. Under the reframe in §3 it does a second job: it is the artifact to put in front of Shane and his peers when we report, because *documentation practice should change* lands differently next to a record showing what the change would produce.
 
 **Write where the reader can read.** This is a constraint on the capture design rather than a task: the target is set by the retrieval surface's reach, not by what is convenient to build. Records that land anywhere Ask Commerce cannot see would recreate exactly the problem we are trying to solve, for a corpus of our own making.
+
+**Define the audience by who can act on an answer, not who would benefit from it.** Andrew's test, and it is better than the one this plan had. These answers are technical, and a reader without platform and implementation context can take a correct answer and act on it wrongly — which is worse than not finding it. That makes widening beyond SE and SA a decision requiring its own evidence rather than a default direction, and it gives the pilot something specific to watch: not just whether answers are right, but whether they are safely usable by whoever asked.
+
+**Design for the sources moving.** If the process owners change where documents live — which is the whole point of reporting to them — then a solution that needs rebuilding when they do was the wrong solution. In practice: configuration over code, named sources over hardcoded ones, and no assumption about folder layout. This is Andrew's requirement and it is also the strongest technical argument for the configured path over a build.
 
 **Sequence discovery support last.** Generating the hard questions for a merchant depends on negative knowledge being present and current, which is the decay problem the earlier phases exist to address. The tech scope you demonstrated already does a version of it and is the right starting point.
 
@@ -100,7 +132,7 @@ Each of these was in scope at some point, and each is excluded on evidence rathe
 | --- | --- | --- |
 | Building a question surface | It exists, org-wide, maintained by another team | AI Ops deprecating it |
 | Building connectors ourselves | A request to AI Ops, not an engineering task. Our own would trigger an AppSec review and duplicate their roadmap | A refusal — which is a stop-and-replan signal, not a build trigger |
-| Buying a second question surface | Gemini Enterprise is the strongest candidate and it documents Shared Drive support we lack. But it is a paid subscription, so it is a Vendor Intake rather than the AI Use Case Review this plan depends on — the expensive route we are deliberately not taking — and two ask-your-org surfaces would diverge with nothing to adjudicate them | AI Ops declining Drive **and** the census showing Drive holds the majority of decision-grade knowledge. Both, not either |
+| Buying a second question surface | Gemini Enterprise is the strongest candidate and it documents Shared Drive support we lack. But it is a paid subscription, so it is a Vendor Intake rather than the AI Use Case Review this plan depends on — the expensive route we are deliberately not taking — and two ask-your-org surfaces would diverge with nothing to adjudicate them | AI Ops declining Drive **and** the census showing Drive holds the majority of decision-grade knowledge. Both, not either. Added in revision 2: **or** AI Operations confirming we cannot manage sources and configuration directly, which would make control the deciding factor instead of cost |
 | Building capture workflow from scratch | Draft-from-artifact, route to an owner, expire on a clock all ship commercially. But §4's write-where-the-reader-can-read constraint rules those products out as destinations, because Ask Commerce cannot see them. Take the pattern, not the tool | A capture product that writes natively into Confluence or Drive |
 | Remediating the existing corpus | Unbounded, and it does not address why the corpus got that way | A specific high-traffic subset shown to be actively harmful |
 | Designing a new template | One exists and is followed differently every project. The constraint is unbilled hours, not template quality | Evidence that the template, not the time, is what fails |
@@ -122,6 +154,8 @@ That is a cleaner test than it was a week ago: invalidation is the only capabili
 
 Negative knowledge has the same problem in a sharper form. Knowing what the platform cannot do, and whether that limitation still holds, looks more like a maintained register than a search index — and `P6` says that is the category which decays fastest and matters most. If Phase 0's demand work shows those questions are common, *don't rebuild retrieval* narrows to *don't rebuild search*, and a small query surface over the structured records earns its place. That is a far smaller build than the one we started with, and it is not decidable until we know what people actually ask.
 
+**That Ask Commerce can be ours to run.** §1 states the condition and what it costs if false; it appears here because it is the likeliest of these to come back negative, and because it is the one I did not think to ask before Andrew did. If AI Operations cannot give us direct control of sources and configuration, §5's comparison changes — not because the alternatives got cheaper, but because operational latency turns out to be a price paid every week rather than once.
+
 Two more that would change the shape rather than the direction: if AI Operations declines the Drive connection — less likely now it reads as a documented setup, and it no longer leaves us without a move, because Gemini Enterprise documents shared-drive scoping as ordinary configuration and would become worth a Vendor Intake if the census showed Drive holds the knowledge that matters; and if reviewer time is not committed, the verification step degrades into rubber-stamping, which would make a generated record worse than no record at all.
 
 I would rather these be written down and wrong than unwritten and right.
@@ -130,7 +164,12 @@ I would rather these be written down and wrong than unwritten and right.
 
 ## 7. What I need from each of you
 
-**Andrew.** One decision: does this write, or stay read-only. Then the two AI Operations requests in Annex B — a sponsor request lands differently than mine, particularly the authoritative-source one. Then a commitment of roughly four hours of senior SE/SA time for the census sample, which I would rather you grant explicitly than have Mark and Zac absorb quietly, since unbilled senior time is the exact constraint that caused this problem. And an introduction to an IPM, because the clearest structural finding in this work came from two people describing someone else's constraint.
+**Andrew.** Not the write decision any more — your reframe replaced it, and it was the better question. Four things instead:
+
+- **The spend cap lifted for a day**, so the behavioural test in §1 can run. It is now the gate on the whole recommendation, and it is blocked on budget rather than access.
+- **The two requests in Annex B** — they land differently from you than from me, particularly the authoritative-source one and the self-management question your notes prompted.
+- **Roughly four hours of senior SE/SA time** for the census sample, granted explicitly rather than absorbed quietly by Mark and Zac, since unbilled senior time is the exact constraint that caused this problem.
+- **An introduction to Shane and to an IPM** — the process owners we would report findings to under your Phase 2 reframe, and the source of the clearest structural finding in this work.
 
 **Mark and Zac.** Where the tech scopes and project folders actually live, and which of them you would trust a colleague to act on without checking. One closed engagement you would be willing to see a derived record for. And a pointer into TAM — theirs is the only corpus in the census that is not decaying, at 57% touched in twelve months against 19–21% for SA and IPM under identical billing pressure, and I would rather learn what they do than import a practice from outside.
 
@@ -160,7 +199,7 @@ Every load-bearing claim, with how it was produced. Grades, because these are no
 | The four structural holes; the two-month floor | Reported | `research/sources/knowledge-database-kickoff-2026-07-27.md`, attributed per speaker |
 | Guest tokenization as the wrong-not-stale example | Reported | Mark, 00:18:13. **One example. §6 rests on it** |
 
-Three weaknesses, stated here rather than left to be found. The wrong-not-stale assumption rests on that single example. No claim about Ask Commerce has been verified by *using* it — all of it is read from configuration, and the behavioural test is blocked on the spend cap. The Drive figure is a floor that counts folders where the Confluence figures count pages.
+Three weaknesses, stated here rather than left to be found. The wrong-not-stale assumption rests on that single example. No claim about Ask Commerce has been verified by *using* it — all of it is read from configuration, and the behavioural test is blocked on the spend cap. **That weakness is what Andrew's first objection identified, and §1 now treats it as the gate rather than as a footnote here.** The Drive figure is a floor that counts folders where the Confluence figures count pages.
 
 ## Annex B — The request to AI Operations
 
@@ -179,6 +218,8 @@ Ready to send. Andrew, this reads better from you than from me.
 > **Second, an authoritative source for solution knowledge.** We understand the routing table designates sources of truth for tool approval, HR, equity and deployment, and that team and project spaces are demoted by default. That rule is doing its job — but it means the 3,173 pages across our SE, SA, TAM and IPM spaces can be searched and never treated as settled. We would like to propose a small, vettable space as a first authoritative entry rather than asking you to bless the whole estate. The Solution Architecture Knowledge Base is 66 pages, small enough that we can review all of it and stand behind what it says.
 >
 > **One question, and it is genuinely a question rather than a preamble to another ask.** Your instructions carry a maintained list of authoritative page IDs with a note that it needs updating whenever a page moves. What does that maintenance actually cost you? If designating a new source is expensive to keep true, we would rather know before proposing one — and it bears directly on a documentation-practice problem we are trying to fix on our side.
+>
+> **A second question, and this one shapes whether we build on Ask Commerce at all.** How much of the configuration can a requesting team manage directly? If adding a source, adjusting a demotion rule or patching a contradiction is always an edit to instructions your team owns, we would like to understand the turnaround, and whether there is a supported way for us to hold some of it ourselves. We are not asking to edit your prompt. We are trying to work out whether to route our team's needs through you — which we would rather do — or to stand something up separately, which we would rather not.
 >
 > Happy to bring the corpus measurements behind any of this. Thank you for building the thing — it changed our plan considerably, and for the better.
 
