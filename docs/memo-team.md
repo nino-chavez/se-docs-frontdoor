@@ -1,6 +1,6 @@
 # SE/SA knowledge access — where this stands, and what we need
 
-**For** team leads and managers across Services, Support and Documentation · **From** Nino Chavez · **30 July 2026**
+**For** team leads and managers across Services, Support and Documentation · **From** Nino Chavez · **31 July 2026**
 **Status** In progress. Actions assigned; validation running over the next fortnight.
 
 ---
@@ -41,6 +41,16 @@ Two things stand out.
 
 Separately, at least 692 client opportunity folders sit in Drive for 2026 alone. That is a floor from counting a file listing, not an audited number, and getting a real one needs proper access.
 
+## What Mark's answer changed
+
+Mark named three archives he works from: the Confluence `SA` space, a shared Google Drive, and Lucidchart.
+
+**Ask Commerce reads one of them.** It is also connected to Jira and Slack, which he did not name. So the tool is wired to two sources our most senior SA did not list, and blind to two he did.
+
+That reframes the problem. The Confluence figures above are precise, and they turn out to describe roughly a third of one senior person's actual working set. It is the strongest argument yet for getting Drive connected, and it is worth someone else checking against their own habits — **Zac, your list may differ, and if it does that matters.**
+
+**Lucid is new to this work.** An official Claude connector exists and inherits Lucid's own permissions, which is the hard part solved. Two things are unresolved: whether that kind of connector can attach to a shared org-wide assistant rather than an individual's, and whether adding it triggers a security review that every path we have chosen so far was designed to avoid. Both are on the list for the platform test this week.
+
 ## The problem underneath
 
 Search quality is capped by what gets written down. When capture fails, the retrieval layer absorbs the damage.
@@ -53,8 +63,9 @@ The sharper version of the problem is documents that are **wrong rather than old
 
 | Who | What | Why |
 | --- | --- | --- |
-| **Mark, Zac** | The sources you actually reach for daily — Slack, Jira, Confluence, Drive, Figma, anything else | Scopes what has to be connected. Figma came up and is not in our current map |
-| **Zac, with Levi** | Where project documentation is stored today, and whether a standard location exists | This may be the cheapest fix available. See below |
+| ~~Mark~~ — **answered 30 July** | Confluence `SA`, a shared Google Drive, Lucidchart | It changed the shape of the problem. See *What Mark's answer changed* above |
+| **Zac** | Still open — the sources you reach for daily | Mark's three may not be yours |
+| **Zac, with Levi** | Where project documentation is stored today, and whether a standard location exists | This may be the cheapest fix available. See *The cheapest thing on the table* below |
 | **Mark** | Confirm Phase 1 access groups | Substantially settled: SE, SA, TAM. TPMs deferred for now |
 | **Alex Vela, AI Operations** | A joint test of what Claude and Google Enterprise can do today | Answers both validation questions above |
 | **TAM leads** | Twenty minutes on what you do differently | You are the only group whose documentation is not decaying |

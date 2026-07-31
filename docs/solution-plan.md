@@ -1,6 +1,6 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 4
+**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 5
 **Status**: In progress. The validation that gates everything else is now assigned rather than blocked — §1, and the action table in §7.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
@@ -15,6 +15,8 @@
 > **Revision 3** folds in the 30 July sync. Four things moved: the tool is confirmed as an **answer engine, not document retrieval**; the audience is **SE, SA and TAM**, with TPM deferred; **both validation conditions are now assigned** to me and Alex Vela of AI Operations rather than blocked; and Commerce's move to full Google Enterprise accounts means the **licensing premise behind rejecting Gemini Enterprise has to be re-checked**. `research/sources/se-docs-frontdoor-sync-2026-07-30.md` owns the session.
 >
 > **Revision 4** adds the requirements that session produced and my first pass missed — the caution-wrapper ask, the explicit rejection of an access-control layer, the deferred-access placeholder Andrew requested, and the speed-over-generality trade. `research/requirements/front-door-requirements.md` owns them as `REQ-1`–`REQ-12` and is the checklist for the joint platform test.
+>
+> **Revision 5** lands Mark's answer on the source question, and it is worse than the plan assumed. His three main sources are Confluence `SA`, a shared Google Drive and **Lucidchart** — and Ask Commerce reads one of the three. `S-6a` owns it.
 >
 > One warning about that session's record. The Gemini-generated notes state in their Decisions block that Phase 1 is "a document retrieval tool rather than an autonomous answer engine." **That is wrong** — the transcript and the notes' own Details section both say the opposite. Anyone working from that block will build the wrong thing. `S-1` documents it.
 
@@ -81,6 +83,10 @@ If the answer to "can we manage sources, configuration and updates directly" is 
 ## 2. The corpus is the problem, and the unsolved part is invalidation
 
 Two gaps separate what exists from what an SE actually needs, and both are about the corpus rather than the tool. Ask Commerce does not read Google Drive — it sees that a file exists and cannot open it — and the tech scopes and SA project folders live in Drive. That one is a setup that was never finished rather than something the platform cannot do, which is why it belongs in a request and not in a build. It also has no authoritative source designated for solution knowledge, and it explicitly demotes the `SE`, `TAM` and `IPM` spaces, so even the pages it can read it will never treat as settled.
+
+**Mark answered the source question on 30 July, and it is worse than the paragraph above implies.** His three main sources are the Confluence `SA` space, a shared Google Drive, and Lucidchart. Ask Commerce reads the first and neither of the other two. It is also connected to Jira and Slack, which he did not name. **One of three.** The corpus the census measured so precisely turns out to be about a third of what a senior SA actually reaches for.
+
+Lucid is new to this work and brings a constraint with it. An official Claude connector exists, but it is delivered as an MCP server, and `G2` records that new MCP triggers an AppSec review — the one cost every path chosen so far was designed to avoid. Whether it can attach to an enterprise-search surface at all is unresolved and is the first question for the joint test.
 
 The measurements support taking this seriously. Across the five spaces holding SE, SA and delivery knowledge there are **3,173 pages, of which 26% have been touched in the last twelve months** and 59% have not been touched in two years. The `SE` space is the smallest of the five at 155 pages, which explains the round trip better than any theory: an SE asks a person because the answer was never filed anywhere an SE would look.
 
@@ -239,6 +245,8 @@ Ready to send. Andrew, this reads better from you than from me.
 > Hi — I lead the SE/SA function and we have been looking at how our team finds prior solution knowledge. We started out planning to build a question surface, then found that Ask Commerce already does almost everything we had specified. Rather than build alongside it, we would like to ask for two changes.
 >
 > **First, Drive contents.** Our tech scopes and SA project folders live in Google Drive, and Ask Commerce can see those files but not read them. That is the single largest and most uniform body of solution knowledge we have — one folder per client opportunity, with the tech scope built from a shared template, and at least 692 opportunity folders for 2026 alone. Without it, the corpus that matters most to our team is invisible to the tool everyone uses.
+>
+> To put a number on it: we asked our most senior SA which archives he works from. He named three. Ask Commerce reads one of them. It is connected to two sources he did not name, and cannot read the two he did.
 >
 > We think this is a smaller ask than it sounds. Anthropic's documentation for the enterprise-search surface lists Drive among the sources it searches, and the Workspace connector reads file contents rather than just filenames — so this looks like completing a setup rather than obtaining a capability. The one thing we could not confirm from the docs is whether Shared Drives behave the same as personal Drive, and nearly all of ours are Shared. If you already know the answer, that alone would help.
 >

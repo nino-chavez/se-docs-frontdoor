@@ -48,9 +48,21 @@ The front door should be able to mark an answer as technical, carrying a caveat 
 
 ### `REQ-5` — Connect to the sources people actually use · **Must**
 
-Confirmed in-session: Slack, Jira, Confluence, Google Drive. **Figma** was named and is unassessed (`S-6`). Mark and Zac own the definitive list.
+**Mark answered on 2026-07-30 and it reframes this requirement** (`S-6a`). His three "major ones" are the **Confluence `SA` space**, a **shared Google Drive**, and **Lucidchart**.
 
-**Google Drive shared drives are the load-bearing case.** The tech scopes and SA project folders live there, and that is `AC-1`, the largest single gap.
+| Source | Reachable by Ask Commerce today? |
+| --- | --- |
+| Confluence `SA` | Yes |
+| Shared Google Drive | **No** — `AC-1` |
+| Lucidchart | **No** — not connected, and see below |
+
+**One of three.** Ask Commerce is connected to Jira and Slack, which Mark did not name, and cannot read the two sources he did. This is a materially worse position than `AC-1` alone describes, and it is the strongest single argument for the Drive request.
+
+**Google Drive shared drives remain the load-bearing case.** The identifier Mark supplied carries Google's shared-drive prefix, confirming this is the `AC-1` case and not a personal folder.
+
+**Lucid is the new problem.** An official Claude connector exists, delivered as a provider-hosted MCP server with permission inheritance. Two things are unresolved and both belong in the joint test: whether an MCP connector can attach to a Claude **enterprise-search project** rather than only to individual chats and projects, and whether adding one triggers the `G2` **AppSec review** — it is an MCP, so the working assumption is yes. That would be the first requirement to push this work out of the configure-only lane.
+
+**Figma is withdrawn.** It was speculation in the meeting, not a report. Zac has not yet answered and may extend this list.
 
 ### `REQ-6` — Scope access by group · **Must**
 

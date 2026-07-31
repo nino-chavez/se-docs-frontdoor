@@ -54,7 +54,39 @@ Precisely what is now unsafe to assert: that adopting a Google front door necess
 
 **Graded as `Reported`** — one participant's account of a recent change, given with hedges ("I think"). It is not yet evidence about entitlement. It is a reason to check, and checking is `S-7`.
 
-## `S-6` — Source list for the MVP, and Figma is new
+## `S-6a` — Mark answered, and one of his three is invisible to every candidate
+
+**Answered by email 2026-07-30, 22:23.** Mark named three "major ones":
+
+| Source | Status against the front door |
+| --- | --- |
+| **Confluence — the `SA` space** | Connected to Ask Commerce today. 912 pages, 19% touched in twelve months (`C-1`) — the second-largest and second-stalest space in the census |
+| **A shared Google Drive** | Not connected (`AC-1`). The identifier he supplied carries Google's shared-drive prefix, so this is a **shared drive**, not a personal folder — which is precisely the case `AC-1` is about |
+| **Lucidchart** | **Not in this initiative's landscape at all until now.** No candidate front door reads it as configured |
+
+**The headline is the overlap, and it is worse than the plan currently argues.** Ask Commerce connects to Confluence, Jira and Slack. Mark named Confluence, Drive and Lucid. **One of three.** The tool is connected to two sources he did not name and cannot read two he did.
+
+`AC-1` framed the Drive gap as one missing source. On Mark's evidence it is closer to *the majority of what a senior SA reaches for is unreadable*. The census measured the Confluence corpus precisely and that corpus turns out to be a third of his working set.
+
+**Note what is absent.** No Slack, no Jira, no Figma. Figma was **my speculation in the meeting**, not a report — the transcript has "Slack, Jira, Confluence, Google Drive, maybe Figma. I don't know what else" (00:04:31). Mark's answer supersedes the guess: **Lucid is the real third source and Figma should not be carried as one** until someone names it independently. Zac has not yet answered and may add to this.
+
+### The Lucid finding, and the constraint it introduces
+
+Lucid ships an **official Claude connector**, announced 2026, delivered as a **provider-hosted MCP server** (`mcp.lucid.app/mcp`) using OAuth with dynamic client registration. It searches documents, retrieves and summarises diagram content, and inherits Lucid's own permission model — which satisfies `REQ-3` without new access plumbing.
+
+**But it is an MCP connector, and that has a governance cost this initiative has so far avoided.** `G2` records that an **AppSec review is triggered by new or updated MCP, integrations, open-source software, or custom code**. Every path chosen to date has deliberately added none of those. Connecting Lucid would be the first requirement to push this work out of the configure-only lane and into an AppSec review.
+
+**Unverified and load-bearing**: whether an MCP connector can be attached to a Claude **enterprise-search project** at all, as opposed to an individual's chats and projects. Ask Commerce is the former. Its setup chooses connectors for Documents and Chat; nothing I could resolve says MCP servers can join that set. **If they cannot, Lucid is unreachable from Ask Commerce regardless of the connector existing** — and that is a sharper version of the same question `AC-1` asks about Drive. First thing to put to Alex Vela.
+
+*Sources: Lucid's launch announcement and MCP server documentation, resolved 2026-07-31. The capability claims are `Read`; nothing has been observed running.*
+
+### Governance note on the identifiers
+
+Mark's email carries a live Confluence space URL, a shared-drive ID and a Lucid folder ID. **They are deliberately not transcribed here**, consistent with the rule in `ai-governance-constraints.md`: derived findings and structure travel into this repo, raw internal identifiers do not, because the repo is private but sits on a personal account. There is no precedent for internal URLs in this corpus and this is not the place to start one. The identifiers stay in email and go directly into the AI Operations request.
+
+**One structural question they raise.** The census established that tech scopes live in an `Opportunities` shared drive organised by year (`C-5`). Whether Mark's shared drive is that one, a parent of it, or a different drive entirely is **not determinable from the link alone** and changes what the Drive request should name. Ask him; do not assume.
+
+## `S-6` — Source list as scoped in the session, superseded in part by `S-6a`
 
 Named in the session as daily-reach sources: Slack, Jira, Confluence, Google Drive, and **Figma**. Mark and Zac own producing the actual list.
 

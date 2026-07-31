@@ -1,6 +1,6 @@
 # Knowledge access for Solution Engineering
 
-**For** leadership · **From** Nino Chavez · **30 July 2026**
+**For** leadership · **From** Nino Chavez · **31 July 2026**
 **Status** In progress. No funding requested, no software purchase proposed.
 
 ---
@@ -19,14 +19,17 @@ We set out to build a search tool. We stopped, because Commerce already has one.
 
 **Ask Commerce, run by our AI Operations team, is live for every employee and already does almost everything this project had specified.** Building our own would produce a later, smaller version of something we already own. That recommendation is not final — we are validating it over the next fortnight — but it is where the evidence points, and it removes the largest line item anyone expected to see here.
 
-Two gaps remain, and both are about the documents rather than the tool.
+We asked our most senior solution architect which archives he actually works from. He named three. **The tool reads one of them.** That is the size of the gap, measured on one person's real working set rather than estimated.
+
+Three gaps remain, and all of them are about where the documents live rather than the tool itself.
 
 | Gap | What it actually is |
 | --- | --- |
 | Our largest body of solution knowledge sits in Google Drive, which the tool cannot read | A setup that was never finished, not a product limit. Someone has to switch it on |
 | No source is designated authoritative for solution knowledge | A policy request to the same team |
+| A third archive — our diagramming tool — was not on anyone's list until this week | Newly found. A connection exists; whether it can be used here is being checked |
 
-Neither is a build. Both are requests to a team that already exists.
+None of these is a build. All three are requests to a team that already exists.
 
 ## The part nobody has solved
 
