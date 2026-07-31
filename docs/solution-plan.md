@@ -1,6 +1,6 @@
 # Solution Plan — SE/SA Knowledge Capture
 
-**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 5
+**Author**: Nino Chavez · **Date**: 2026-07-30 · **Format**: SCQ-R · **Revision**: 6
 **Status**: In progress. The validation that gates everything else is now assigned rather than blocked — §1, and the action table in §7.
 **For**: Andrew (sponsor), Mark, Zac. Annex B is addressed to AI Operations and is ready to send.
 
@@ -17,6 +17,8 @@
 > **Revision 4** adds the requirements that session produced and my first pass missed — the caution-wrapper ask, the explicit rejection of an access-control layer, the deferred-access placeholder Andrew requested, and the speed-over-generality trade. `research/requirements/front-door-requirements.md` owns them as `REQ-1`–`REQ-12` and is the checklist for the joint platform test.
 >
 > **Revision 5** lands Mark's answer on the source question, and it is worse than the plan assumed. His three main sources are Confluence `SA`, a shared Google Drive and **Lucidchart** — and Ask Commerce reads one of the three. `S-6a` owns it.
+>
+> **Revision 6** adds a defect class this plan did not have, found in a working internal system: a wrong *rule* that manufactures wrong records on every run, where refreshing reproduces the defect rather than fixing it. `research/prior-art/internal-vault-pattern.md` owns it.
 >
 > One warning about that session's record. The Gemini-generated notes state in their Decisions block that Phase 1 is "a document retrieval tool rather than an autonomous answer engine." **That is wrong** — the transcript and the notes' own Details section both say the opposite. Anyone working from that block will build the wrong thing. `S-1` documents it.
 
@@ -94,7 +96,13 @@ Drive is larger by an order of magnitude. The 2026 opportunity folder alone hold
 
 The strongest evidence is not a number. Ask Commerce's own configuration carries hand-written patches for individual contradictions in our documentation — one page that uses two different names for the same Slack channel, two pages that disagree on a GitHub organisation name, with an instruction not to state that name confidently. Every contradiction in our corpus becomes a line of configuration that a person writes and maintains. It works, and it does not scale. **One team is already absorbing our documentation defects by hand, one defect at a time**, which is the argument for fixing capture made from our own systems rather than from theory.
 
-Capture itself is not the unsolved part, and a scan of that market is what narrows it. Drafting a record from an existing artifact, routing it to a named owner and expiring it on a clock all ship commercially today. What does not ship: invalidating a document *because a shipped capability made it wrong*, or holding negative knowledge as a record rather than as prose. **The gap is invalidation** — narrower than the claim this section used to make, and a much smaller thing to build. `research/competitive/buy-landscape.md` owns that scan and grades it, including where it is thin.
+Capture itself is not the unsolved part, and a scan of that market is what narrows it. Drafting a record from an existing artifact, routing it to a named owner and expiring it on a clock all ship commercially today. What does not ship: invalidating a document *because a shipped capability made it wrong*, or holding negative knowledge as a record rather than as prose. **The gap is invalidation** — narrower than the claim this section used to make, and a much smaller thing to build.
+
+One addition, from a working internal system rather than from theory. This plan has distinguished documents that are *stale* from documents that are *wrong*. There is a third case and it is the worst of them: **a wrong rule that generates wrong records on every run.** An internal vault hard-codes its canonical facts into the instructions its refresh routine follows, and one of those facts — the location of a repository — names an organisation that does not exist. I verified that on 31 July.
+
+Refreshing does not correct it; refreshing re-asserts it, and every output arrives correctly dated and confidently wrong. A staleness detector built on timestamps would rate those notes the healthiest in the corpus.
+
+**That matters here because the capture system in §4 is the same shape** — records generated from instructions and templates. **Invalidation has to cover the generator, not only the output.** `research/competitive/buy-landscape.md` owns that scan and grades it, including where it is thin.
 
 ## 3. Three things block the path, and none of them are mine to decide
 
@@ -131,6 +139,10 @@ Two things stop that being an argument against sending it. Ask Commerce demotes 
 **Produce one record by hand — as evidence for the process owners, not as a prototype.** Take one closed engagement, produce its record manually from the transcripts and tech scope that already exist, and ask the SA who ran it whether they would have wanted it. That costs a day and can end the project, which makes it the cheapest decision-grade evidence available. Under the reframe in §3 it does a second job: it is the artifact to put in front of Shane and his peers when we report, because *documentation practice should change* lands differently next to a record showing what the change would produce.
 
 **Write where the reader can read.** This is a constraint on the capture design rather than a task: the target is set by the retrieval surface's reach, not by what is convenient to build. Records that land anywhere Ask Commerce cannot see would recreate exactly the problem we are trying to solve, for a corpus of our own making.
+
+**Surface conflicts where the reader is looking, not into a queue.** The sibling of the constraint above, and it corrects something §1 scores as satisfied. The same internal vault implements *surface conflicts, do not adjudicate* better than most — it has an explicit written arbitration policy — and the principle still fails, because unreconciled items are parked in a registry the reader never opens. Five sit there now, one of them a contradiction on a headline commercial fact.
+
+The conflict is documented and invisible at the same time. **A conflict routed somewhere the asker will not look is, from where they stand, the same as no conflict at all.**
 
 **Build an answer engine, not a document retrieval tool.** Decided on 30 July, and it is worth stating flatly because the meeting's own notes record it backwards. An agent reasons over the corpus and produces an answer with citations; it does not hand back a list of files. Andrew's test for it was the practical one — you could not do this without an agent, and Ask Commerce already works this way.
 
@@ -170,6 +182,10 @@ Two assumptions carry it, and both are weaker than the rest of this document.
 That is a cleaner test than it was a week ago: invalidation is the only capability the market scan found nobody shipping, so **if invalidation is not needed there is nothing left to build** — not a smaller build, none. That is the outcome I consider most likely to prove me wrong.
 
 **That an SA would actually want a derived record.** Untested, and the one-record test in §4 is designed to find out cheaply before anything is built.
+
+**That whatever we build keeps running.** The internal vault in `internal-vault-pattern.md` has twenty-two commits, one author and no scheduled execution — it runs when a laptop is awake, it last ran a week ago, and nothing tells a reader that. `P2` says documentation stops when the billable hours stop; this is the same structure one level up, where **automation stops when one person's attention stops** and announces it less readily than a person would.
+
+It is also the price of §1's second condition: a system that is ours to run can quietly become one person's laptop. Any capture we propose needs a named owner, execution off anyone's workstation, and a visible heartbeat.
 
 **That the questions SEs ask stay document-shaped.** Ask Commerce answers *find me the document* well, which is the right shape for a corpus of prose. Capture would change the corpus into uniform records, and uniform records invite aggregate questions — how many engagements hit this limitation, which workarounds recur across clients — where a federated search returns three documents and the asker wanted a distribution.
 
