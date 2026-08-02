@@ -12,6 +12,7 @@
 # Expected state today: PENDING — three outputs `planned`, and three preconditions
 # deliberately unmet (one measurement baseline, two undecided boundary calls).
 
+schema: actor-output/1
 initiative: se-docs-frontdoor
 
 account:
@@ -21,6 +22,7 @@ account:
                                               # demand evidence; the 2026-07-09 grill ledger is
                                               # the superseded founding record in the same dir
   state: HANDOFF.md                           # position, next steps, explicit do-not-do list
+  publication: work-library.publication.yml  # exact-file projection for protected Work Library preview
 
 # Typed precondition — replaces the old open-vocabulary label
 # `freshness: baseline-before-golive`, which no validator could interpret
@@ -87,6 +89,15 @@ actors:
           statement: redirects "quick questions" to the bot with confidence in its answers
           proof:
             target: { method: observed-human, signal: champions recruited pre-go-live and using the redirect }
+  - id: work-library-importer
+    kind: agent
+    evidence: { status: intrinsic }
+    outcomes:
+      - id: ingest-declared-preview
+        success:
+          statement: stage only the declared internal draft artifacts from the exact source revision without upgrading their lifecycle
+          proof:
+            target: { method: cold-agent, signal: protected build emits a receipt and preserves every projected output as draft }
 
 outputs:
   - id: slack-frontdoor
@@ -183,4 +194,10 @@ outputs:
     status: ready
     artifact: HANDOFF.md                       # HANDOFF.md already is this
     renderer: markdown
+    clearance: internal
+  - id: publication-projection
+    type: publication-projection
+    serves: [work-library-importer.ingest-declared-preview]
+    status: draft
+    artifact: work-library.publication.yml
     clearance: internal

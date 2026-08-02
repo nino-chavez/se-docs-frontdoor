@@ -1,0 +1,63 @@
+# Protected preview only. The source decision, solution plan, and audience memos
+# remain draft in actor-output.yml. This projection does not authorize sending,
+# implementation, or wider distribution.
+schema: work-library-publication/0
+case_id: se-docs-frontdoor
+adapter: blueprint
+account: actor-output.yml
+canonical_output: decision-memo
+
+catalog:
+  title: SE Docs Front Door
+  subtitle: Knowledge capture and source trust
+  question: What remains after the internal answer surface already exists?
+  summary: The retrieval layer is already live. The unresolved work is source coverage, authority, and the way delivery work produces durable knowledge.
+
+collection_candidates:
+  - commerce
+  - knowledge-operations
+
+projections:
+  - id: decision
+    output: decision-memo
+    artifact: docs/decision-memo.md
+    render_as: executive-decision
+    label: Revised decision memo
+    route: /
+
+  - id: leadership-brief
+    output: memo-leadership
+    artifact: docs/memo-leadership.md
+    render_as: executive-brief
+    label: Leadership brief
+    route: /brief
+
+  - id: solution-plan
+    output: solution-plan
+    artifact: docs/solution-plan.md
+    render_as: strategy-memo
+    label: Conditional solution plan
+    route: /plan
+
+  - id: phase-zero
+    output: pilot-protocol
+    artifact: research/pilot/phase-0-census-design.md
+    render_as: reference-document
+    label: Phase 0 census design
+    route: /reference/phase-zero
+
+  - id: recovery
+    output: recovery-brief
+    artifact: HANDOFF.md
+    render_as: case-history
+    label: Source recovery and handoff
+    route: /history
+
+exclude:
+  - research/sources/**
+  - HANDOFF-INTERNAL-ACCESS.md
+  - apps/**
+  - packages/**
+  - tools/**
+  - "**/.git/**"
+  - "**/node_modules/**"
