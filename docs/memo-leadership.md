@@ -1,6 +1,6 @@
 # Knowledge access for Solution Engineering
 
-**For** leadership · **From** Nino Chavez · **31 July 2026**
+**For** leadership · **From** Nino Chavez · **3 August 2026**
 **Status** In progress. No funding requested, no software purchase proposed.
 
 ---
@@ -17,7 +17,7 @@ The cost shows up as the same question asked twice — an engineer asks a collea
 
 We set out to build a search tool. We stopped, because Commerce already has one.
 
-**Ask Commerce, run by our AI Operations team, is live for every employee and already does almost everything this project had specified.** Building our own would produce a later, smaller version of something we already own. That recommendation is not final — we are validating it over the next fortnight — but it is where the evidence points, and it removes the largest line item anyone expected to see here.
+**Ask Commerce, run by our AI Operations team, is live for every employee and already does almost everything this project had specified.** Building our own would produce a later, smaller version of something we already own. Not building it removes the largest line item anyone expected to see here.
 
 We asked our most senior solution architect which archives he actually works from. He named three. **The tool reads one of them.** That is the size of the gap, measured on one person's real working set rather than estimated.
 
@@ -31,6 +31,8 @@ Three gaps remain, and all of them are about where the documents live rather tha
 
 None of these is a build. All three are requests to a team that already exists.
 
+**We have made the call, provisionally.** Use what we already own rather than buy a second system. It is reversible, and we have written down the four specific findings that would reverse it. The next fortnight is designed to test them.
+
 ## The part nobody has solved
 
 Knowing when a document became **wrong** rather than merely old.
@@ -38,6 +40,10 @@ Knowing when a document became **wrong** rather than merely old.
 A document describing a workaround for something the platform could not do three years ago looks identical to a good one. Same author, same format, recent enough date. It is confidently incorrect, and anyone who follows it takes bad guidance into a client conversation.
 
 We surveyed the market for this. Tools that draft documents, assign owners and expire them on a schedule are widely available. **Nothing we found detects that a document became wrong because the product shipped the capability it was working around.** That is the only part of this worth building, and we are not asking to build it yet.
+
+We found a live example inside Commerce this week. Another team runs an automated system that keeps its own notes current from our tools. Its instructions name a code repository that no longer exists. Every refresh confidently rewrites the same wrong fact, and every note comes out freshly dated.
+
+**That is the failure worth preventing: not a document going stale, but a rule going wrong and quietly manufacturing more of them.** No product on the market looks for it.
 
 ## What this costs and what happens next
 
@@ -47,7 +53,7 @@ That measurement answers the one question that decides whether there is a projec
 
 ## What we are not doing
 
-- **Not buying anything.** A Google alternative exists and is genuinely strong. It would mean a second subscription alongside our existing Claude spend, and two systems that answer the same question differently.
+- **Not buying anything.** A Google alternative exists and is genuinely strong — it reads shared drives today, which ours does not. It would mean a second subscription alongside our existing Claude spend, and two systems answering the same question differently with nothing to settle between them.
 - **Not redesigning how the company stores documents.** We will identify where knowledge lives today and what limits it, and bring that to the leaders who own those processes. The decision is theirs.
 - **Not opening it broadly yet.** Phase 1 is Solution Engineers, Solution Architects and Technical Account Managers. Some answers will be wrong, and the people using it need the background to catch that before it reaches a client.
 

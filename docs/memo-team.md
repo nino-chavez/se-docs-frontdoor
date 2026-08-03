@@ -1,6 +1,6 @@
 # SE/SA knowledge access — where this stands, and what we need
 
-**For** team leads and managers across Services, Support and Documentation · **From** Nino Chavez · **31 July 2026**
+**For** team leads and managers across Services, Support and Documentation · **From** Nino Chavez · **3 August 2026**
 **Status** In progress. Actions assigned; validation running over the next fortnight.
 
 ---
@@ -51,6 +51,14 @@ That reframes the problem. The Confluence figures above are precise, and they tu
 
 **Lucid is new to this work.** An official Claude connector exists and inherits Lucid's own permissions, which is the hard part solved. Two things are unresolved: whether that kind of connector can attach to a shared org-wide assistant rather than an individual's, and whether adding it triggers a security review that every path we have chosen so far was designed to avoid. Both are on the list for the platform test this week.
 
+## What we have decided, and what is still open
+
+**We have settled the front door provisionally: Ask Commerce.** Not because it beat the alternative on features — Google's product is genuinely strong and reads shared drives today, which ours does not. It wins on cost of entry. Ours is already approved and deployed to everyone; adopting a second means a new purchase, a new approval, and two assistants answering the same question differently with nothing to settle between them.
+
+That is written down with four specific findings that would reverse it. A working assumption, not a lock.
+
+**The session with AI Operations changed shape as a result.** It is no longer *which tool wins*. It is a gap inventory: score what we are going to use against the requirements list, and produce a table of what it cannot do, with an owner and a cost against each gap. That table is what the next three decisions need.
+
 ## The problem underneath
 
 Search quality is capped by what gets written down. When capture fails, the retrieval layer absorbs the damage.
@@ -67,9 +75,10 @@ The sharper version of the problem is documents that are **wrong rather than old
 | **Zac** | Still open — the sources you reach for daily | Mark's three may not be yours |
 | **Zac, with Levi** | Where project documentation is stored today, and whether a standard location exists | This may be the cheapest fix available. See *The cheapest thing on the table* below |
 | **Mark** | Confirm Phase 1 access groups | Substantially settled: SE, SA, TAM. TPMs deferred for now |
-| **Alex Vela, AI Operations** | A joint test of what Claude and Google Enterprise can do today | Answers both validation questions above |
+| **Alex Vela, AI Operations** | A gap inventory, scored against the requirements list | Answers both validation questions above. First question: whether a diagramming connector can attach to a shared org-wide assistant at all |
 | **TAM leads** | Twenty minutes on what you do differently | You are the only group whose documentation is not decaying |
 | **Chris** | A comparison of scope | Your documentation work overlaps this. Better to find the overlap now than twice |
+| **Anyone reading this** | Tell us what already exists | We have now found working internal systems for this twice, both by accident. Thirty seconds of your recall beats another week of ours |
 
 ## The cheapest thing on the table
 
@@ -84,6 +93,10 @@ If a meaningful share of what an engineer cannot find already exists, sitting so
 **Phase 1 is an answer engine, not a file search.** You ask a question, an agent reasons over the corpus and answers with citations. It does not hand back a list of documents.
 
 **Access is limited on purpose.** Some answers will be wrong. The boundary exists so nobody forwards an unreviewed answer to a client. That is the actual risk, and it is why access is defined by who can evaluate an answer rather than who would benefit from one.
+
+**Whatever we end up with has to keep running without one person.** We looked at an automated knowledge system inside Commerce this week. Twenty-two commits, one author, no scheduled run — it works when a laptop happens to be awake, and it had not run for a week when we looked. Nothing told a reader that.
+
+Anything we propose needs a named owner, a schedule that does not depend on anyone's machine, and a visible sign of life. A system that is quietly not running is worse than no system, because people keep trusting it.
 
 ## Timeline
 
