@@ -21,35 +21,49 @@ projections:
   - id: decision
     output: decision-memo
     artifact: docs/decision-memo.md
-    render_as: executive-decision
+    render_as: markdown-document
+    kind: decision
     label: Revised decision memo
     route: /
 
   - id: leadership-brief
     output: memo-leadership
     artifact: docs/memo-leadership.md
-    render_as: executive-brief
+    render_as: markdown-document
+    kind: brief
     label: Leadership brief
     route: /brief
 
+  # standing: conditional per HANDOFF.md's own framing — "the plan's
+  # recommendation stays explicitly conditional and solution-plan stays
+  # draft" until the joint Ask Commerce / Google Enterprise test reports.
   - id: solution-plan
     output: solution-plan
     artifact: docs/solution-plan.md
-    render_as: strategy-memo
+    render_as: markdown-document
+    kind: plan
+    standing: conditional
     label: Conditional solution plan
     route: /plan
 
+  # Reclassified from a proposed specification: the document's own header
+  # declares "Doc type: How-to (Diátaxis) — Follow it to run the census,"
+  # and its body is a step-by-step protocol (workstreams, a numbered
+  # procedure, a duration/sequence table) — a procedure, not a bound
+  # system shape.
   - id: phase-zero
     output: pilot-protocol
     artifact: research/pilot/phase-0-census-design.md
-    render_as: reference-document
+    render_as: markdown-document
+    kind: procedure
     label: Phase 0 census design
     route: /reference/phase-zero
 
   - id: recovery
     output: recovery-brief
     artifact: HANDOFF.md
-    render_as: case-history
+    render_as: markdown-document
+    kind: history
     label: Source recovery and handoff
     route: /history
 
