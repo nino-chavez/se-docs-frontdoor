@@ -13,6 +13,22 @@ The pilot's real competition is not a product — it is the **shoulder-tap to a 
 | Glean | Enterprise-search platform, 100+ permission-aware connectors, polished Slack container | ~$60k/yr floor, sales-led; duplicate spend next to existing Claude Enterprise |
 | Onyx (ex-Danswer) | Open-source (MIT) self-hostable enterprise search + Slack bot; syncs source ACLs into its index; can run Claude as its model | ACL-sync is its differentiator — and our access posture is uniform, so the differentiator buys nothing. Named revival condition: indexed-RAG-with-ACL-sync across many weak-search sources (ADR-0001) |
 | Dust | Agent platform (MIT core), Claude among its models, $30–150/seat credit-metered | Sits between Onyx and a thin self-build without beating either on our inventory |
+| OpenViking (Volcengine / ByteDance) | Open-source context database for agents — a `viking://` filesystem paradigm, L0/L1/L2 tiered retrieval, session-derived memory; AGPLv3 core, self-hosted HTTP server | Fails `REQ-3` and `REQ-7`. Its authorization is a private key namespace — "All API keys are plain random tokens with no embedded identity" — so it cannot inherit per-user Confluence or Drive ACLs, and building the mirror is `REQ-12`, ruled out in-session. Added 2026-08-30; see the note below |
+
+> **OpenViking, assessed 2026-08-30 — no reversal trigger fires, and it does not fit the one build slot that is open.**
+>
+> Run against `ADR-0002`'s trigger table first, because that is this initiative's gate for admitting a new tool. AI Operations has not declined the Drive connection — the request has not been made. Nothing says we cannot manage sources and configuration. The MCP-attachment question is open, but its named consequence is *Lucid unreachable*, which is a connector trigger rather than a retrieval-store one. The Gemini entitlement re-check is unrelated.
+>
+> `ADR-0002` §3 leaves exactly one build slot: `V-1`, invalidating a record because the rule that generated it became wrong — "a checker that runs against a corpus, not a system anyone queries." OpenViking is the second thing. The trigger is unfired regardless, because the wrong-rate is unmeasured.
+>
+> Three blocks, in force order. **`REQ-3` collides with `REQ-12`**, per the row above. **`REQ-7` collides with `G2`**: a server you run (`openviking-server`, `ov.conf`), connectors you write, AGPLv3 in the tree — new open-source software, new integrations and custom code at once, which is the trigger `G2` names for an AppSec review, plus the quarterly AI Review Committee tail that can exceed the sponsor's stated two-month floor on its own. **And every provider choice loses on a different named constraint**: the documented default is Volcengine embedding and VLM endpoints, a new vendor processing `G1` Submit-for-Approval and privacy-tier content, so a Vendor Intake; OpenAI is the same problem with a different vendor; local Ollama avoids the vendor and buys hosting, which is the thing the sponsor identified as the entire two-month floor.
+>
+> One more, sourced but softer, and it lands on `BD-1`: the server extracts six categories of memory from sessions automatically. That is write-side capture against the `READ-ONLY v1` line, arriving as a default rather than as a decision.
+>
+> **Not established: that it lacks an invalidation mechanism.** The vendor pages read describe none. That is undocumented, not absent, and it is the one claim here that must not be repeated as a finding without a deeper pull. The weaker form is sufficient anyway — like Gemini Enterprise, it is a retrieval product, and it changes nothing about what gets written down or when a record becomes wrong.
+>
+> Consistent with this document's own headline: retrieval is commodity, reconciliation is not. The measured bottlenecks are `AC-1` (Drive is an org permission request), `AC-2` (authoritative-source designation is a governance ask) and Phase 2 capture. Hierarchical retrieval and token budgeting solve a problem this initiative does not have.
+
 
 ## The retrieval-architecture comparison (build patterns, not products)
 
@@ -102,5 +118,6 @@ Track classification per the two-track framework (convention = "users/market rec
 | Dust | Convention | Vendor-published pricing/model docs | Competitive context | pass |
 | Slack Slackbot / Agentforce | Convention | Vendor announcements (2026-03) + tech-press coverage | Competitive context: the incumbent-platform default to name in any pitch | pass |
 | Guru, Notion AI, Atlassian Rovo | Convention | Vendor docs; surveyed in sources doc, not load-bearing here | Breadth of the scanned shelf | pass |
+| OpenViking docs (`volcengine-openviking.mintlify.app`; `guides/authentication.md`, `guides/deployment.md`) | Quality | Vendor-authored primary, fetched 2026-08-30 | Self-hosted server plus external embedding/VLM provider; API keys with "no embedded identity"; automatic six-category session-memory extraction; AGPLv3 core | pass — **but absence of an invalidation mechanism was not established**, only not documented in the pages read. Separately, the repo landing page and the authentication guide disagree on whether multi-tenancy is open-source or enterprise-only; not relied on here |
 
 No design-quality recommendations in this initiative rest on convention-track references: the product names anchor market context only, and every architectural claim traces to a vendor-primary or standards-body source above.
